@@ -66,7 +66,7 @@ textarea {
   gap: 16px;
   padding: 10px 12px;
   color: var(--brand);
-  background: rgba(255, 255, 255, 0.94);
+  background: #fff;
   border: 1px solid rgba(1, 69, 126, 0.1);
   border-radius: 999px;
   transform: translateX(-50%);
@@ -82,7 +82,7 @@ textarea {
 .site-header.is-scrolled {
   top: 10px;
   color: var(--brand);
-  background: rgba(255, 255, 255, 0.96);
+  background: #fff;
   border-color: rgba(1, 69, 126, 0.12);
 }
 
@@ -97,6 +97,14 @@ textarea {
 .brand-word {
   justify-self: start;
   padding-left: 8px;
+}
+
+.cleanspace-logo {
+  display: block;
+  width: clamp(132px, 17vw, 220px);
+  height: auto;
+  max-height: 42px;
+  object-fit: contain;
 }
 
 .brand-logo-link {
@@ -313,7 +321,9 @@ h1,
 h2,
 h3,
 p {
-  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 h1,
@@ -335,6 +345,12 @@ h2 {
 
 h3 {
   font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+}
+
+.capability-grid h3 {
+  font-size: clamp(1.08rem, 1.35vw, 1.42rem);
+  line-height: 1.12;
+  text-wrap: balance;
 }
 
 .lead {
@@ -575,7 +591,7 @@ h3 {
 }
 
 .product-overview-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .product-card {
@@ -795,7 +811,7 @@ h3 {
 
 .mask-choice-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
@@ -850,6 +866,17 @@ h3 {
 
 .mask-choice-card h3 {
   min-height: 2.1em;
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.product-card h3,
+.product-card p,
+.mask-summary,
+.tag {
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .mask-summary {
@@ -1740,6 +1767,11 @@ h3 {
   .brand-subline {
     font-size: 0.66rem;
     letter-spacing: 0.14em;
+  }
+
+  .cleanspace-logo {
+    width: clamp(120px, 38vw, 170px);
+    max-height: 32px;
   }
 
   .hero {

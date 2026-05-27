@@ -9,7 +9,7 @@ const heroRotator = document.querySelector("[data-hero-rotator]");
 const heroRotatorSlides = [
   {
     model: "CleanSpace WORK",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-WORK-USA-Stack-00-A.png",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
   },
   {
     model: "CleanSpace CST PRO",
@@ -73,7 +73,7 @@ const partImageRules = [
     match: ["PAF-0058"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-    label: "Pred-filter in zascitna prevleka",
+    label: "Pred-filter in zaščitna prevleka",
   },
   {
     match: ["CST1000"],
@@ -205,7 +205,7 @@ const partImageRules = [
     match: ["CS3011"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
-    label: "HALO cistilni in shranjevalni cep",
+    label: "HALO čistilni in shranjevalni čep",
   },
 ];
 
@@ -376,7 +376,7 @@ contactForm?.addEventListener("submit", (event) => {
 
   const body = [
     `Ime: ${name}`,
-    `E-posta: ${email}`,
+    `E-pošta: ${email}`,
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
     "",
@@ -384,7 +384,7 @@ contactForm?.addEventListener("submit", (event) => {
   ].join("\n");
 
   const mailto = new URL("mailto:sales@tu-val.si");
-  mailto.searchParams.set("subject", `Povprasevanje CleanSpace - ${interest}`);
+  mailto.searchParams.set("subject", `Povpraševanje CleanSpace - ${interest}`);
   mailto.searchParams.set("body", body);
 
   window.location.href = mailto.toString();
