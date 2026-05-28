@@ -94,6 +94,17 @@
           <label>
             Opis delovnega okolja
             <textarea name="message" rows="5" required placeholder="Kje bi masko uporabljali, kakšen prah/plini so prisotni, koliko uporabnikov jo želi testirati ..."></textarea>
+          <label>
+          Priponka
+          <input
+            name="attachment"
+            type="file"
+            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
+          >
+          <small class="field-help">
+            Dodate lahko PDF, sliko ali dokument. Priponko boste nato ročno dodali v e-poštni program.
+          </small>
+
           </label>
           <button class="button primary" type="submit">Pripravi e-pošto za naročilo testa</button>
           <p class="form-note" data-form-note>
