@@ -489,4 +489,13 @@ contactForm?.addEventListener("submit", (event) => {
   if (formNote) {
     formNote.textContent = "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
   }
-});
+  const attachmentInput = document.querySelector("#attachment");
+const fileName = document.querySelector("#fileName");
+
+if (attachmentInput && fileName) {
+  attachmentInput.addEventListener("change", () => {
+    fileName.textContent = attachmentInput.files.length
+      ? attachmentInput.files[0].name
+      : "Datoteka ni izbrana";
+  });
+}
