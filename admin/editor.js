@@ -1,0 +1,321 @@
+const contentPath = "content/site.json";
+
+const pageMap = [
+  { key: "index", file: "index.html", label: "Domov" },
+  { key: "maske", file: "maske.html", label: "Maske" },
+  { key: "test", file: "test.html", label: "Naroči test" },
+  { key: "kontakt", file: "kontakt.html", label: "Kontakt" },
+  { key: "cleanspace_work", file: "cleanspace-work.html", label: "CleanSpace WORK" },
+  { key: "cleanspace_cst_pro", file: "cleanspace-cst-pro.html", label: "CleanSpace CST PRO" },
+  { key: "cleanspace_cst_ultra", file: "cleanspace-cst-ultra.html", label: "CleanSpace CST ULTRA" },
+  { key: "cleanspace_ex", file: "cleanspace-ex.html", label: "CleanSpace EX" },
+  { key: "cleanspace_halo", file: "cleanspace-halo.html", label: "CleanSpace HALO" },
+];
+
+const elements = {
+  loginForm: document.querySelector("[data-login-form]"),
+  username: document.querySelector("[data-username]"),
+  password: document.querySelector("[data-password]"),
+  logout: document.querySelector("[data-logout]"),
+  saveGithub: document.querySelector("[data-save-github]"),
+  pageSelect: document.querySelector("[data-page-select]"),
+  fieldList: document.querySelector("[data-field-list]"),
+  preview: document.querySelector("[data-preview]"),
+  status: document.querySelector("[data-status]"),
+  currentPage: document.querySelector("[data-current-page]"),
+};
+
+let content = null;
+let selectedPage = pageMap[0];
+let dirty = false;
+let activeKey = "";
+let authenticated = false;
+
+const setStatus = (message, type = "") => {
+  elements.status.textContent = message;
+  elements.status.className = `status${type ? ` is-${type}` : ""}`;
+};
+
+const truncate = (text, length = 92) => {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  return normalized.length > length ? `${normalized.slice(0, length - 1)}...` : normalized;
+};
+
+const pageEntries = () => [...(content.common || []), ...(content[selectedPage.key] || [])];
+
+const markDirty = () => {
+  dirty = true;
+  setStatus("Sprememba je pripravljena. Ko končaš, klikni Shrani na GitHub.");
+};
+
+const renderFields = () => {
+  elements.fieldList.textContent = "";
+
+  pageEntries().forEach((entry, index) => {
+    const key = `${entry.selector}|${index}`;
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = `field-card${activeKey === key ? " is-active" : ""}`;
+    card.innerHTML = `<strong>${entry.label || "Besedilo"}</strong><span>${truncate(entry.text || "")}</span>`;
+    card.addEventListener("click", () => focusEditable(key));
+    elements.fieldList.append(card);
+  });
+};
+
+const findEntryByKey = (key) => {
+  const entries = pageEntries();
+  const index = Number(key.split("|").pop());
+  return entries[index] || null;
+};
+
+const updateEntryText = (key, value) => {
+  const entry = findEntryByKey(key);
+  if (!entry) return;
+  entry.text = value.replace(/\s+/g, " ").trim();
+  markDirty();
+  renderFields();
+};
+
+const syncPreviewTexts = () => {
+  const doc = elements.preview.contentDocument;
+  if (!doc) return;
+
+  let changed = false;
+
+  doc.querySelectorAll("[data-editor-key]").forEach((editable) => {
+    const entry = findEntryByKey(editable.dataset.editorKey || "");
+    if (!entry) return;
+
+    const nextText = editable.textContent.replace(/\s+/g, " ").trim();
+    if (entry.text === nextText) return;
+
+    entry.text = nextText;
+    changed = true;
+  });
+
+  if (changed) {
+    dirty = true;
+    renderFields();
+  }
+};
+
+const injectEditorStyles = (doc) => {
+  const style = doc.createElement("style");
+  style.textContent = `
+    [data-editor-key] {
+      outline: 3px solid rgba(1, 69, 126, 0.55) !important;
+      outline-offset: 4px !important;
+      cursor: text !important;
+    }
+    [data-editor-key]:hover,
+    [data-editor-key].editor-active {
+      outline-color: rgba(220, 165, 95, 0.95) !important;
+      box-shadow: 0 0 0 6px rgba(220, 165, 95, 0.16) !important;
+    }
+  `;
+  doc.head.append(style);
+};
+
+const preventPreviewNavigation = (doc) => {
+  doc.addEventListener(
+    "click",
+    (event) => {
+      const editable = event.target.closest("[data-editor-key]");
+      const interactive = event.target.closest("a, button, [data-card-link]");
+
+      if (editable || interactive) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    true
+  );
+};
+
+const focusEditable = (key) => {
+  const doc = elements.preview.contentDocument;
+  if (!doc) return;
+
+  doc.querySelectorAll(".editor-active").forEach((node) => node.classList.remove("editor-active"));
+  const editable = doc.querySelector(`[data-editor-key="${CSS.escape(key)}"]`);
+
+  if (editable) {
+    activeKey = key;
+    editable.classList.add("editor-active");
+    editable.scrollIntoView({ block: "center", behavior: "smooth" });
+    editable.focus();
+    renderFields();
+  }
+};
+
+const preparePreview = () => {
+  const doc = elements.preview.contentDocument;
+  if (!doc || !content) return;
+
+  injectEditorStyles(doc);
+  preventPreviewNavigation(doc);
+
+  pageEntries().forEach((entry, index) => {
+    if (!entry.selector || typeof entry.text !== "string") return;
+    const key = `${entry.selector}|${index}`;
+    const target = doc.querySelector(entry.selector);
+    if (!target) return;
+
+    target.dataset.editorKey = key;
+    target.contentEditable = "true";
+    target.spellcheck = true;
+
+    target.addEventListener("focus", () => {
+      activeKey = key;
+      target.classList.add("editor-active");
+      renderFields();
+    });
+
+    target.addEventListener("blur", () => {
+      target.classList.remove("editor-active");
+      updateEntryText(key, target.textContent);
+    });
+
+    target.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        target.blur();
+      }
+    });
+  });
+};
+
+const loadPreview = () => {
+  elements.currentPage.textContent = selectedPage.label;
+  activeKey = "";
+  renderFields();
+  elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
+};
+
+const loadContent = async () => {
+  const response = await fetch(`../${contentPath}?updated=${Date.now()}`);
+  if (!response.ok) throw new Error("Ne morem naložiti content/site.json.");
+  content = await response.json();
+};
+
+const setAuthenticated = (isAuthenticated, username = "") => {
+  authenticated = isAuthenticated;
+  document.body.classList.toggle("is-authenticated", authenticated);
+
+  if (authenticated) {
+    setStatus(`Prijavljen kot ${username || "admin"}. Klikni besedilo v predogledu in ga popravi.`);
+  } else {
+    setStatus("Za urejanje se prijavi z admin računom.", "error");
+  }
+};
+
+const checkSession = async () => {
+  const response = await fetch("../api/session");
+  const session = await response.json();
+  setAuthenticated(Boolean(session.authenticated), session.username);
+  return Boolean(session.authenticated);
+};
+
+const login = async () => {
+  const response = await fetch("../api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: elements.username.value.trim(),
+      password: elements.password.value,
+    }),
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    setStatus(result.message || "Prijava ni uspela.", "error");
+    return false;
+  }
+
+  elements.password.value = "";
+  setAuthenticated(true, result.username);
+
+  if (!content) {
+    await loadContent();
+    loadPreview();
+  }
+
+  return true;
+};
+
+const logout = async () => {
+  await fetch("../api/logout", { method: "POST" });
+  setAuthenticated(false);
+};
+
+const saveToGithub = async () => {
+  syncPreviewTexts();
+
+  if (!authenticated) {
+    setStatus("Najprej se prijavi z admin računom.", "error");
+    return;
+  }
+
+  setStatus("Shranjujem na GitHub...");
+
+  const response = await fetch("../api/content", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content }),
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    setStatus(result.message || "Shranjevanje ni uspelo.", "error");
+    return;
+  }
+
+  dirty = false;
+  setStatus(result.message || "Shranjeno na GitHub. Railway bo stran ponovno objavil.", "success");
+};
+
+const init = async () => {
+  pageMap.forEach((page) => {
+    const option = document.createElement("option");
+    option.value = page.key;
+    option.textContent = page.label;
+    elements.pageSelect.append(option);
+  });
+
+  elements.pageSelect.addEventListener("change", () => {
+    selectedPage = pageMap.find((page) => page.key === elements.pageSelect.value) || pageMap[0];
+    loadPreview();
+  });
+
+  elements.preview.addEventListener("load", () => {
+    window.setTimeout(preparePreview, 600);
+  });
+
+  elements.loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await login();
+  });
+
+  elements.logout.addEventListener("click", logout);
+  elements.saveGithub.addEventListener("click", saveToGithub);
+
+  window.addEventListener("beforeunload", (event) => {
+    if (!dirty) return;
+    event.preventDefault();
+    event.returnValue = "";
+  });
+
+  try {
+    const hasSession = await checkSession();
+
+    if (hasSession) {
+      await loadContent();
+      loadPreview();
+      setStatus("Klikni besedilo v predogledu, ga popravi in klikni Shrani na GitHub.");
+    }
+  } catch (error) {
+    setStatus(error.message || "Urejevalnika ni bilo mogoče zagnati.", "error");
+  }
+};
+
+init();
