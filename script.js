@@ -460,17 +460,20 @@ contactForm?.addEventListener("submit", (event) => {
   const preferredDate = formData.get("preferredDate")?.toString().trim() || "";
   const message = formData.get("message")?.toString().trim() || "";
   const isTestRequest = contactForm.dataset.formType === "test";
+  const attachment = formData.get("attachment");
+  const attachmentName = attachment instanceof File && attachment.name ? attachment.name : "";
 
-  const bodyLines = [
+   const bodyLines = [
     `Ime: ${name}`,
-    `E-pošta: ${email}`,
-    phone ? `Telefon: ${phone}` : null,
+     `E-pošta: ${email}`,
+     phone ? `Telefon: ${phone}` : null,
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
-    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-    "",
-    message,
-  ].filter((line) => line !== null);
+     preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+     attachmentName ? `Priponka za dodati: ${attachmentName}` : null,
+     "",
+     message,
+    ].filter((line) => line !== null);
 
   const body = bodyLines.join("\n");
 
