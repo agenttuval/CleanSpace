@@ -94,18 +94,23 @@
           <label>
             Opis delovnega okolja
             <textarea name="message" rows="5" required placeholder="Kje bi masko uporabljali, kakšen prah/plini so prisotni, koliko uporabnikov jo želi testirati ..."></textarea>
-          <label>
-          Priponka
-          <input
-            name="attachment"
-            type="file"
-            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
-          >
-          <small class="field-help">
-            Dodate lahko PDF, sliko ali dokument. Priponko boste nato ročno dodali v e-poštni program.
-          </small>
+          <label class="file-upload">
+  <span class="file-upload-label">Priponka</span>
 
-          </label>
+  <input
+    id="attachment"
+    name="attachment"
+    type="file"
+    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"
+  >
+
+  <span class="file-upload-button">Izberi datoteko</span>
+  <span class="file-upload-name" id="fileName">Datoteka ni izbrana</span>
+
+  <small class="field-help">
+    Dodate lahko PDF, sliko ali dokument.
+  </small>
+</label>
           <button class="button primary" type="submit">Pripravi e-pošto za naročilo testa</button>
           <p class="form-note" data-form-note>
             Ob oddaji se pripravi e-poštno sporočilo na sales@tu-val.si. Pošiljanje nato potrdite v svojem e-poštnem programu.
