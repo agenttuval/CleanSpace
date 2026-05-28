@@ -1,3 +1,84 @@
+const loadContentTexts = () => {
+  try {
+    const request = new XMLHttpRequest();
+    request.open("GET", `content/site.json?updated=${Date.now()}`, false);
+    request.send(null);
+
+    if (request.status >= 200 && request.status < 300) {
+      return JSON.parse(request.responseText);
+    }
+  } catch (error) {
+    return null;
+  }
+
+  return null;
+};
+
+const mergeTextEntries = (fallbackEntries = [], contentEntries = []) => {
+  const merged = new Map();
+
+  [...fallbackEntries, ...contentEntries].forEach((entry) => {
+    if (!entry?.selector) return;
+    const key = `${entry.selector}|${entry.attribute || ""}|${entry.all || ""}`;
+    merged.set(key, entry);
+  });
+
+  return [...merged.values()];
+};
+
+const mergeTextGroups = (fallbackTexts = {}, contentTexts = {}) => {
+  const pageNames = new Set([...Object.keys(fallbackTexts), ...Object.keys(contentTexts)]);
+
+  return [...pageNames].reduce((groups, pageName) => {
+    groups[pageName] = mergeTextEntries(fallbackTexts[pageName], contentTexts[pageName]);
+    return groups;
+  }, {});
+};
+
+const applyEditableTexts = () => {
+  const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, loadContentTexts() || {});
+  if (!Object.keys(textGroups).length) return;
+
+  const pageName = window.location.pathname.split("/").pop() || "index.html";
+  const contentPageNames = {
+    "index.html": "index",
+    "maske.html": "maske",
+    "kontakt.html": "kontakt",
+    "test.html": "test",
+    "cleanspace-work.html": "cleanspace_work",
+    "cleanspace-cst-pro.html": "cleanspace_cst_pro",
+    "cleanspace-cst-ultra.html": "cleanspace_cst_ultra",
+    "cleanspace-ex.html": "cleanspace_ex",
+    "cleanspace-halo.html": "cleanspace_halo",
+  };
+  const pageEntries = mergeTextEntries(
+    textGroups[pageName] || [],
+    textGroups[contentPageNames[pageName]] || []
+  );
+  const entries = [...(textGroups.common || []), ...pageEntries];
+
+  entries.forEach((entry) => {
+    if (!entry?.selector || typeof entry.text !== "string") return;
+
+    const elements = entry.all
+      ? document.querySelectorAll(entry.selector)
+      : [document.querySelector(entry.selector)];
+
+    elements.forEach((element) => {
+      if (!element) return;
+
+      if (entry.attribute) {
+        element.setAttribute(entry.attribute, entry.text);
+        return;
+      }
+
+      element.textContent = entry.text;
+    });
+  });
+};
+
+applyEditableTexts();
+
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("[data-nav]");
@@ -55,7 +136,7 @@ const partImageRules = [
     match: ["CST1005"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-    label: "CST1005 delcni filter",
+    label: "CST1005 delčni filter",
   },
   {
     match: ["CST1004"],
@@ -79,13 +160,13 @@ const partImageRules = [
     match: ["CST1000"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-    label: "CST PRO Power System",
+    label: "CST PRO pogonska enota",
   },
   {
     match: ["CST1010"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
-    label: "CST ULTRA Power System",
+    label: "CST ULTRA pogonska enota",
   },
   {
     match: ["CST1019", "CST1020", "CST1037", "CST1038", "CST1024"],
@@ -115,7 +196,7 @@ const partImageRules = [
     match: ["PAF-0035"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/09/CleanSpace-PAF-0035-Particulate-Filter-Image-02-1200x1200.jpg",
-    label: "PAF-0035 delcni filter",
+    label: "PAF-0035 delčni filter",
   },
   {
     match: ["PAF-0036"],
@@ -151,13 +232,13 @@ const partImageRules = [
     match: ["PAF-0049"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2021/03/17-CleanSpace-EX-with-Full-Face-Mask-and-Coverall-Filter.jpg",
-    label: "CleanSpace filter coverall",
+    label: "CleanSpace zaščitna prevleka filtra",
   },
   {
     match: ["PAF-0060"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/09/PAF-_0060-CleanSpace-EX.jpg",
-    label: "CleanSpace EX Power System",
+    label: "CleanSpace EX pogonska enota",
   },
   {
     match: ["PAF-1030", "PAF-1028", "PAF-1012", "PAF-1013"],
@@ -193,7 +274,7 @@ const partImageRules = [
     match: ["HALO POWER SYSTEM"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png",
-    label: "HALO Power System",
+    label: "HALO pogonska enota",
   },
   {
     match: ["CS3008"],
@@ -344,6 +425,7 @@ if (contactForm) {
   const requestedInterest = params.get("interest") || params.get("model");
   const interestSelect = contactForm.elements.namedItem("interest");
   const messageField = contactForm.elements.namedItem("message");
+  const isTestRequest = contactForm.dataset.formType === "test";
 
   if (requestedInterest && interestSelect instanceof HTMLSelectElement) {
     const matchingOption = [...interestSelect.options].find(
@@ -355,7 +437,9 @@ if (contactForm) {
     }
 
     if (messageField instanceof HTMLTextAreaElement && !messageField.value) {
-      messageField.value = `Pozdravljeni, zanimam se za ${requestedInterest}. Prosim za dodatne informacije in ponudbo.`;
+      messageField.value = isTestRequest
+        ? `Pozdravljeni, masko ${requestedInterest} bi radi naročili na test. Prosim za dogovor glede termina in pogojev preizkusa.`
+        : `Pozdravljeni, zanimam se za ${requestedInterest}. Prosim za dodatne informacije in ponudbo.`;
     }
 
     if (formNote) {
@@ -370,21 +454,31 @@ contactForm?.addEventListener("submit", (event) => {
   const formData = new FormData(contactForm);
   const name = formData.get("name")?.toString().trim() || "";
   const email = formData.get("email")?.toString().trim() || "";
+  const phone = formData.get("phone")?.toString().trim() || "";
   const company = formData.get("company")?.toString().trim() || "";
   const interest = formData.get("interest")?.toString().trim() || "";
+  const preferredDate = formData.get("preferredDate")?.toString().trim() || "";
   const message = formData.get("message")?.toString().trim() || "";
+  const isTestRequest = contactForm.dataset.formType === "test";
 
-  const body = [
+  const bodyLines = [
     `Ime: ${name}`,
     `E-pošta: ${email}`,
+    phone ? `Telefon: ${phone}` : null,
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
+    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
     "",
     message,
-  ].join("\n");
+  ].filter((line) => line !== null);
+
+  const body = bodyLines.join("\n");
 
   const mailto = new URL("mailto:sales@tu-val.si");
-  mailto.searchParams.set("subject", `Povpraševanje CleanSpace - ${interest}`);
+  mailto.searchParams.set(
+    "subject",
+    `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`
+  );
   mailto.searchParams.set("body", body);
 
   window.location.href = mailto.toString();

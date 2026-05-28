@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
-  --ink: #101418;
-  --muted: #5f6973;
+  --ink: #01457e;
+  --muted: #426f96;
   --line: #dee2e6;
   --panel: #ffffff;
   --soft: #eef3f8;
@@ -10,8 +10,8 @@
   --brand-dark: #00345f;
   --accent: #dca55f;
   --danger: #88072d;
-  --charcoal: #13283a;
-  --shadow: 0 24px 70px rgba(16, 20, 24, 0.13);
+  --charcoal: #00345f;
+  --shadow: 0 24px 70px rgba(1, 69, 126, 0.13);
   --radius: 8px;
   --max: 1180px;
   font-family:
@@ -30,7 +30,8 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--soft-2);
+  background:
+    linear-gradient(180deg, #f7fafc 0%, #ffffff 38%, var(--soft-2) 100%);
 }
 
 body.nav-open {
@@ -60,7 +61,7 @@ textarea {
   top: 18px;
   left: 50%;
   display: grid;
-  grid-template-columns: minmax(130px, 1fr) auto minmax(220px, 1fr);
+  grid-template-columns: minmax(130px, 1fr) auto minmax(330px, 1fr);
   width: min(calc(100% - 32px), var(--max));
   align-items: center;
   gap: 16px;
@@ -71,7 +72,7 @@ textarea {
   border-radius: 999px;
   transform: translateX(-50%);
   backdrop-filter: blur(20px);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 18px 50px rgba(1, 69, 126, 0.16);
   transition:
     background 220ms ease,
     color 220ms ease,
@@ -144,6 +145,21 @@ textarea {
   color: currentColor;
   font-size: 0.92rem;
   font-weight: 700;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.site-nav a[href="test.html"] {
+  color: var(--brand);
+  background: rgba(1, 69, 126, 0.06);
+  border: 1px solid rgba(1, 69, 126, 0.12);
+}
+
+.site-nav a:hover {
+  background: rgba(1, 69, 126, 0.06);
+  transform: translateY(-1px);
 }
 
 .site-nav a::after {
@@ -209,8 +225,20 @@ textarea {
   overflow: hidden;
   padding: 118px max(24px, calc((100vw - var(--max)) / 2)) 46px;
   background:
-    linear-gradient(110deg, rgba(1, 69, 126, 0.97), rgba(19, 40, 58, 0.9) 48%, rgba(220, 165, 95, 0.12)),
+    linear-gradient(110deg, rgba(1, 69, 126, 0.97), rgba(0, 52, 95, 0.91) 48%, rgba(220, 165, 95, 0.14)),
     var(--charcoal);
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  content: "";
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 72%);
+  pointer-events: none;
 }
 
 .hero::after {
@@ -283,6 +311,8 @@ textarea {
   position: relative;
   z-index: 1;
   border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 28px 72px rgba(0, 52, 95, 0.26);
   transform: translateZ(22px);
   backface-visibility: visible;
   transition:
@@ -389,6 +419,16 @@ h3 {
     border-color 240ms ease;
 }
 
+.button:focus-visible,
+.site-nav a:focus-visible,
+.brand:focus-visible,
+.brand-logo-link:focus-visible,
+.product-card:focus-visible,
+.mask-choice-card:focus-visible {
+  outline: 3px solid rgba(220, 165, 95, 0.84);
+  outline-offset: 4px;
+}
+
 .button::before {
   position: absolute;
   inset: -40% auto -40% -80%;
@@ -427,7 +467,7 @@ h3 {
 }
 
 .button.primary {
-  color: #071011;
+  color: var(--brand-dark);
   background: var(--accent);
   box-shadow: 0 16px 42px rgba(220, 165, 95, 0.28);
 }
@@ -543,15 +583,43 @@ h3 {
 .contact-card,
 .contact-form,
 .location-panel {
+  position: relative;
   background: var(--panel);
-  border: 1px solid rgba(16, 20, 24, 0.08);
+  border: 1px solid rgba(1, 69, 126, 0.1);
   border-radius: var(--radius);
-  box-shadow: 0 18px 45px rgba(16, 20, 24, 0.06);
+  box-shadow: 0 18px 45px rgba(1, 69, 126, 0.07);
+}
+
+.capability-grid article::before,
+.product-card::before,
+.mask-choice-card::before,
+.contact-card::before,
+.contact-form::before,
+.location-panel::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  content: "";
+  opacity: 0.82;
 }
 
 .capability-grid article {
+  overflow: hidden;
   min-height: 250px;
   padding: 24px;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.capability-grid article:hover {
+  border-color: rgba(1, 69, 126, 0.2);
+  box-shadow: 0 24px 58px rgba(1, 69, 126, 0.12);
+  transform: translateY(-4px);
 }
 
 .capability-grid span,
@@ -595,6 +663,7 @@ h3 {
 }
 
 .product-card {
+  isolation: isolate;
   display: grid;
   min-height: 420px;
   overflow: hidden;
@@ -616,7 +685,7 @@ h3 {
 
 .product-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 58px rgba(16, 20, 24, 0.13);
+  box-shadow: 0 24px 58px rgba(1, 69, 126, 0.16);
 }
 
 .product-card:hover img {
@@ -816,13 +885,15 @@ h3 {
 }
 
 .mask-choice-card {
+  position: relative;
+  isolation: isolate;
   display: grid;
   min-height: 430px;
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(16, 20, 24, 0.08);
+  border: 1px solid rgba(1, 69, 126, 0.1);
   border-radius: var(--radius);
-  box-shadow: 0 18px 45px rgba(16, 20, 24, 0.06);
+  box-shadow: 0 18px 45px rgba(1, 69, 126, 0.07);
   cursor: pointer;
   transition:
     transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -831,8 +902,7 @@ h3 {
 }
 
 .mask-choice-card:focus-visible {
-  outline: 3px solid rgba(220, 165, 95, 0.86);
-  outline-offset: 4px;
+  outline-color: rgba(220, 165, 95, 0.86);
 }
 
 .mask-choice-card img {
@@ -848,7 +918,7 @@ h3 {
 
 .mask-choice-card:hover {
   border-color: rgba(1, 69, 126, 0.18);
-  box-shadow: 0 26px 62px rgba(16, 20, 24, 0.14);
+  box-shadow: 0 26px 62px rgba(1, 69, 126, 0.16);
   transform: translateY(-6px);
 }
 
@@ -1499,6 +1569,21 @@ h3 {
   overflow: hidden;
 }
 
+.test-side-panel {
+  display: grid;
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 70px rgba(1, 69, 126, 0.11);
+}
+
+.test-side-panel > img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  background: var(--soft);
+}
+
 .map-frame {
   position: relative;
   height: 430px;
@@ -1613,19 +1698,19 @@ h3 {
 
 @keyframes heroProductCubeSpin {
   0% {
-    transform: perspective(1100px) translate3d(0, 0, 0) rotateX(-7deg) rotateY(-18deg);
+    transform: perspective(1100px) translate3d(0, 0, 0) rotateX(-7deg) rotateY(-16deg);
   }
   25% {
-    transform: perspective(1100px) translate3d(0, -10px, 0) rotateX(-9deg) rotateY(72deg);
+    transform: perspective(1100px) translate3d(0, -10px, 0) rotateX(-9deg) rotateY(12deg);
   }
   50% {
-    transform: perspective(1100px) translate3d(0, -18px, 0) rotateX(-7deg) rotateY(162deg);
+    transform: perspective(1100px) translate3d(0, -18px, 0) rotateX(-7deg) rotateY(-12deg);
   }
   75% {
-    transform: perspective(1100px) translate3d(0, -10px, 0) rotateX(-9deg) rotateY(252deg);
+    transform: perspective(1100px) translate3d(0, -10px, 0) rotateX(-9deg) rotateY(14deg);
   }
   100% {
-    transform: perspective(1100px) translate3d(0, 0, 0) rotateX(-7deg) rotateY(342deg);
+    transform: perspective(1100px) translate3d(0, 0, 0) rotateX(-7deg) rotateY(-16deg);
   }
 }
 
