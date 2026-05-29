@@ -58,7 +58,7 @@ const applyEditableTexts = () => {
   const entries = [...(textGroups.common || []), ...pageEntries];
 
   entries.forEach((entry) => {
-    if (!entry?.selector || typeof entry.text !== "string") return;
+    if (!entry?.selector || typeof entry.text !== "string" || !entry.text.trim()) return;
 
     const elements = entry.all
       ? document.querySelectorAll(entry.selector)
