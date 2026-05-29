@@ -140,7 +140,7 @@
     {
       "label": "Domov - pregled naslov",
       "selector": ".products-preview .section-heading h2",
-      "text": "Kratek pregled CleanSpace mask"
+      "text": "Kratek pregled CleanSpace respiratorjev"
     },
     {
       "label": "Domov - WORK oznaka",
@@ -155,7 +155,7 @@
     {
       "label": "Domov - WORK opis",
       "selector": ".product-card:nth-child(1) div > p:last-child",
-      "text": "Najlažji industrijski respirator z aktivnim dovajanjem zraka za visoko prašna okolja, lesarstvo, beton in varjenje."
+      "text": "Najlažji CleanSpace respirator za prah, varjenje, lesarstvo, beton in delavnice, kjer je potrebna udobna zaščita dihal."
     },
     {
       "label": "Domov - CST PRO oznaka",
@@ -170,12 +170,12 @@
     {
       "label": "Domov - CST PRO opis",
       "selector": ".product-card:nth-child(2) div > p:last-child",
-      "text": "Vzdržljiv in povezan sistem za zahtevna opravila, z Bluetooth povezavo v CleanSpace aplikacijo."
+      "text": "Profesionalni respirator za zahtevno industrijo, ki združuje zanesljivo zaščito dihal, povezljivost in enostaven nadzor uporabe."
     },
     {
       "label": "Domov - CST ULTRA oznaka",
       "selector": ".product-card:nth-child(3) .tag",
-      "text": "Dekontaminacija"
+      "text": "VISOKA ZAŠČITA IN NADZOR"
     },
     {
       "label": "Domov - CST ULTRA naslov",
@@ -185,7 +185,7 @@
     {
       "label": "Domov - CST ULTRA opis",
       "selector": ".product-card:nth-child(3) div > p:last-child",
-      "text": "Napreden respirator z aktivnim dovajanjem zraka za okolja, kjer so pomembni IP65 zaščita, podatki o uporabi in nadzor skladnosti."
+      "text": "Napreden respirator za dekontaminacijo in zahtevna okolja, kjer so pomembni IP65 zaščita, sledljivost in nadzor skladnosti."
     },
     {
       "label": "Domov - EX oznaka",
@@ -200,7 +200,7 @@
     {
       "label": "Domov - EX opis",
       "selector": ".product-card:nth-child(4) div > p:last-child",
-      "text": "Intrinzično varen respirator z aktivnim dovajanjem zraka za eksplozijsko ogrožena okolja, kemijo, petrokemijo ter nafto in plin."
+      "text": "ATEX respirator za nevarna in eksplozijsko ogrožena območja v kemiji, petrokemiji, energetiki ter industriji nafte in plina."
     },
     {
       "label": "Domov - HALO oznaka",
@@ -215,12 +215,12 @@
     {
       "label": "Domov - HALO opis",
       "selector": ".product-card:nth-child(5) div > p:last-child",
-      "text": "Za zdravstvena, farmacevtska in laboratorijska okolja, kjer sta udobje in dekontaminacija ključna."
+      "text": "Udoben respirator za zdravstvo, farmacijo in laboratorije, zasnovan za varno delo, dekontaminacijo in dolgotrajno uporabo."
     },
     {
       "label": "Domov - primerjava gumb",
       "selector": ".center-action .button",
-      "text": "Primerjaj modele"
+      "text": "Primerjava modelov"
     },
     {
       "label": "Domov - tehnologija nadnaslov",
@@ -230,12 +230,12 @@
     {
       "label": "Domov - tehnologija naslov",
       "selector": ".difference-copy h2",
-      "text": "Dihanje, ki ga sistem zazna in podpre"
+      "text": "Respirator, ki diha z uporabnikom"
     },
     {
       "label": "Domov - tehnologija opis",
       "selector": ".difference-copy > p:not(.eyebrow)",
-      "text": "CleanSpace sistemi so zasnovani kot pozitivno-tlačni respiratorji. AirSensit tehnologija se odziva na uporabnikovo dihanje in prilagaja pretok svežega filtriranega zraka, kar zmanjša občutek napora pri daljši uporabi."
+      "text": "CleanSpace z AirSensit tehnologijo samodejno zazna ritem dihanja in prilagodi pretok filtriranega zraka potrebam uporabnika. Rezultat je udobnejša zaščita dihal, manj občutka napora in večja zanesljivost pri delu v zahtevnih okoljih."
     }
   ],
   "maske": [
