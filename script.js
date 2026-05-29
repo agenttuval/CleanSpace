@@ -82,7 +82,7 @@ applyEditableTexts();
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("[data-nav]");
-const revealItems = document.querySelectorAll(".reveal");
+vealItems = document.querySelectorAll(".reveal");
 const contactForm = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 const heroRotator = document.querySelector("[data-hero-rotator]");
@@ -356,22 +356,26 @@ document.querySelectorAll("[data-card-link]").forEach((card) => {
   });
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
-);
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
+  );
 
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
-  revealObserver.observe(item);
-});
+  revealItems.forEach((item, index) => {
+    item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
+    revealObserver.observe(item);
+  });
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
 
 const revealVisibleItems = () => {
   revealItems.forEach((item) => {
