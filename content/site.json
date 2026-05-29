@@ -175,7 +175,7 @@
     {
       "label": "Domov - CST ULTRA oznaka",
       "selector": ".product-card:nth-child(3) .tag",
-      "text": "Dekontaminacija"
+      "text": "ZAHTEVNA OKOLJA IN NADZOR"
     },
     {
       "label": "Domov - CST ULTRA naslov",
@@ -267,27 +267,27 @@
     {
       "label": "Maske - WORK opis",
       "selector": ".mask-choice-card:nth-child(1) .mask-summary",
-      "text": "Lahek industrijski respirator z aktivnim dovodom zraka za zaščito dihal pri delu s prahom, lesom, betonom in varjenjem"
+      "text": "Lahek respirator za prah, dim in delce v delavnicah, pri brušenju, rezanju in varjenju. Namenjen je uporabi s polmasko in hitri menjavi filtra."
     },
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Vzdržljiv povezan respirator za zahtevna industrijska okolja, z Bluetooth povezavo in podporo v CleanSpace aplikaciji."
+      "text": "Univerzalen industrijski model za daljše izmene, delčne ali kombinirane filtre ter uporabo s polmasko ali celoobrazno masko."
     },
     {
       "label": "Maske - CST ULTRA opis",
       "selector": ".mask-choice-card:nth-child(3) .mask-summary",
-      "text": "Napreden respirator z aktivnim dovodom zraka, IP65 zaščito, spremljanjem uporabe in podporo za nadzor skladnosti."
+      "text": "Robustnejša izvedba za zahtevnejša okolja, kjer sta pomembna čiščenje opreme in zanesljivo delovanje z različnimi CST filtri."
     },
     {
       "label": "Maske - EX opis",
       "selector": ".mask-choice-card:nth-child(4) .mask-summary",
-      "text": "Intrinzično varen ATEX respirator za eksplozijsko ogrožena okolja, kemijsko industrijo, petrokemijo, nafto in plin."
+      "text": "Model za eksplozijsko nevarna območja in industrijske postopke, kjer so potrebni posebni EX filtri, dodatki in višja stopnja varnosti."
     },
     {
       "label": "Maske - HALO opis",
       "selector": ".mask-choice-card:nth-child(5) .mask-summary",
-      "text": "Respirator za zdravstvo, farmacijo in laboratorije, kjer sta ključna udobje pri dolgotrajni uporabi in zanesljiva zaščita dihal."
+      "text": "Respirator za zdravstvo, laboratorije in farmacijo, z možnostjo polmaske ali celoobrazne maske ter HEPA/Bio filtracijo."
     }
   ],
   "kontakt": [
@@ -418,7 +418,7 @@
     {
       "label": "WORK - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za delovna mesta, kjer je glavno tveganje prah. Primeren za delavnice, beton, lesarstvo, čiščenje, vzdrževanje in izbrana varilska dela."
+      "text": "Najlažji industrijski respirator z aktivnim dovajanjem filtriranega zraka za delovna mesta, kjer je glavno tveganje prah: delavnice, beton, lesarstvo, čiščenje in varjenje."
     },
     {
       "label": "WORK - kontakt gumb",
@@ -433,7 +433,7 @@
     {
       "label": "WORK - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CleanSpace WORK je najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za delovna mesta, kjer je glavno tveganje prah. Sistem je nameščen za vratom, zato uporabnik ne potrebuje pasu, cevi ali težke enote na hrbtu. Primeren je za delavnice, gradbeništvo, lesarstvo, čiščenje, vzdrževanje in druga prašna delovna okolja, kjer sta pomembna udobje in učinkovita zaščita dihal."
+      "text": "WORK je najbolj neposredna izbira za prašna industrijska okolja. Sistem sedi za vratom, zato uporabnik nima pasu, cevi ali težke enote na hrbtu."
     }
   ],
   "cleanspace_cst_pro": [
@@ -445,7 +445,7 @@
     {
       "label": "CST PRO - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Robusten industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja, kot so varjenje, obdelava kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambna industrija. Omogoča uporabo filtra trdih delcev ali kombiniranih filtrov ter povezavo z aplikacijo CleanSpace za nadzor uporabe in vzdrževanja."
+      "text": "Robusten respirator z aktivnim dovajanjem filtriranega zraka za varjenje, kovinsko obdelavo, kamen, cement, čiščenje in prehrambno industrijo."
     },
     {
       "label": "CST PRO - kontakt gumb",
@@ -460,7 +460,7 @@
     {
       "label": "CST PRO - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CleanSpace CST PRO je robusten industrijski respirator za podjetja, kjer se zaposleni srečujejo s prahom, dimom, aerosoli, plini ali kombiniranimi tveganji. Z daljšim časom delovanja, možnostjo različnih filtrov in povezavo z aplikacijo CleanSpace omogoča varno, udobno in nadzorovano zaščito dihal pri vsakodnevni profesionalni uporabi"
+      "text": "CST PRO je univerzalen industrijski model z daljšim časom delovanja in možnostjo delčnih ali kombiniranih filtrov. Primeren je za ekipe, ki potrebujejo robusten sistem za več različnih opravil."
     }
   ],
   "cleanspace_cst_ultra": [
