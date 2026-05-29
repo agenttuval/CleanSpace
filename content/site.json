@@ -267,27 +267,27 @@
     {
       "label": "Maske - WORK opis",
       "selector": ".mask-choice-card:nth-child(1) .mask-summary",
-      "text": "Najlažji CleanSpace respirator za prah, varjenje, lesarstvo, beton in delavnice, kjer je potrebna udobna zaščita dihal."
+      "text": "Lahek industrijski respirator z aktivnim dovodom zraka za zaščito dihal pri delu s prahom, lesom, betonom in varjenjem"
     },
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Profesionalni respirator za zahtevno industrijo, ki združuje zanesljivo zaščito dihal, povezljivost in enostaven nadzor uporabe."
+      "text": "Vzdržljiv povezan respirator za zahtevna industrijska okolja, z Bluetooth povezavo in podporo v CleanSpace aplikaciji."
     },
     {
       "label": "Maske - CST ULTRA opis",
       "selector": ".mask-choice-card:nth-child(3) .mask-summary",
-      "text": "Napreden respirator za dekontaminacijo in zahtevna okolja, kjer so pomembni IP65 zaščita, sledljivost in nadzor skladnosti."
+      "text": "Napreden respirator z aktivnim dovodom zraka, IP65 zaščito, spremljanjem uporabe in podporo za nadzor skladnosti."
     },
     {
       "label": "Maske - EX opis",
       "selector": ".mask-choice-card:nth-child(4) .mask-summary",
-      "text": "ATEX respirator za nevarna in eksplozijsko ogrožena območja v kemiji, petrokemiji, energetiki ter industriji nafte in plina."
+      "text": "Intrinzično varen ATEX respirator za eksplozijsko ogrožena okolja, kemijsko industrijo, petrokemijo, nafto in plin."
     },
     {
       "label": "Maske - HALO opis",
       "selector": ".mask-choice-card:nth-child(5) .mask-summary",
-      "text": "Udoben respirator za zdravstvo, farmacijo in laboratorije, zasnovan za varno delo, dekontaminacijo in dolgotrajno uporabo."
+      "text": "Respirator za zdravstvo, farmacijo in laboratorije, kjer sta ključna udobje pri dolgotrajni uporabi in zanesljiva zaščita dihal."
     }
   ],
   "kontakt": [
