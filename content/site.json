@@ -433,7 +433,7 @@
     {
       "label": "WORK - opis respiratorja",
       "selector": ".family-story p",
-      "text": "WORK je najbolj neposredna izbira za prašna industrijska okolja. Sistem sedi za vratom, zato uporabnik nima pasu, cevi ali težke enote na hrbtu."
+      "text": "CleanSpace WORK je najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za delovna mesta, kjer je glavno tveganje prah. Sistem je nameščen za vratom, zato uporabnik ne potrebuje pasu, cevi ali težke enote na hrbtu. Primeren je za delavnice, gradbeništvo, lesarstvo, čiščenje, vzdrževanje in druga prašna delovna okolja, kjer sta pomembna udobje in učinkovita zaščita dihal."
     }
   ],
   "cleanspace_cst_pro": [
@@ -445,7 +445,7 @@
     {
       "label": "CST PRO - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Robusten respirator z aktivnim dovajanjem filtriranega zraka za varjenje, kovinsko obdelavo, kamen, cement, čiščenje in prehrambno industrijo."
+      "text": "Robusten industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja, kot so varjenje, obdelava kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambna industrija. Omogoča uporabo filtra trdih delcev ali kombiniranih filtrov ter povezavo z aplikacijo CleanSpace za nadzor uporabe in vzdrževanja."
     },
     {
       "label": "CST PRO - kontakt gumb",
@@ -460,7 +460,7 @@
     {
       "label": "CST PRO - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CST PRO je univerzalen industrijski model z daljšim časom delovanja in možnostjo delčnih ali kombiniranih filtrov. Primeren je za ekipe, ki potrebujejo robusten sistem za več različnih opravil."
+      "text": "CleanSpace CST PRO je robusten industrijski respirator za podjetja, kjer se zaposleni srečujejo s prahom, dimom, aerosoli, plini ali kombiniranimi tveganji. Z daljšim časom delovanja, možnostjo različnih filtrov in povezavo z aplikacijo CleanSpace omogoča varno, udobno in nadzorovano zaščito dihal pri vsakodnevni profesionalni uporabi"
     }
   ],
   "cleanspace_cst_ultra": [
