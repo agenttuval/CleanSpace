@@ -13,7 +13,7 @@
     {
       "label": "Navigacija - naroci test",
       "selector": ".site-nav a:nth-child(3)",
-      "text": "Naroči test"
+      "text": "Naroči brezplačni test"
     },
     {
       "label": "Navigacija - kontakt",
