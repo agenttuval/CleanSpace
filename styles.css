@@ -2068,7 +2068,9 @@ h3 {
     opacity: 1;
     transform: none;
   }
-  .file-upload {
+}
+
+.file-upload {
   display: block;
 }
 
@@ -2106,19 +2108,4 @@ h3 {
   margin-left: 0.8rem;
   color: #64748b;
   font-size: 0.95rem;
-
-.reveal {
-  opacity: 1;
-  transform: none;
 }
-
-.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 500ms ease, transform 500ms ease;
-}
-
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: none;
-

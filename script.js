@@ -82,7 +82,7 @@ applyEditableTexts();
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("[data-nav]");
-vealItems = document.querySelectorAll(".reveal");
+const revealItems = document.querySelectorAll(".reveal");
 const contactForm = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 const heroRotator = document.querySelector("[data-hero-rotator]");
@@ -356,8 +356,10 @@ document.querySelectorAll("[data-card-link]").forEach((card) => {
   });
 });
 
+let revealObserver = null;
+
 if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -384,7 +386,7 @@ const revealVisibleItems = () => {
     const rect = item.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
       item.classList.add("is-visible");
-      revealObserver.unobserve(item);
+      revealObserver?.unobserve(item);
     }
   });
 };
@@ -467,17 +469,17 @@ contactForm?.addEventListener("submit", (event) => {
   const attachment = formData.get("attachment");
   const attachmentName = attachment instanceof File && attachment.name ? attachment.name : "";
 
-   const bodyLines = [
+  const bodyLines = [
     `Ime: ${name}`,
-     `E-pošta: ${email}`,
-     phone ? `Telefon: ${phone}` : null,
+    `E-pošta: ${email}`,
+    phone ? `Telefon: ${phone}` : null,
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
-     preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-     attachmentName ? `Priponka za dodati: ${attachmentName}` : null,
-     "",
-     message,
-    ].filter((line) => line !== null);
+    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+    attachmentName ? `Priponka za dodati: ${attachmentName}` : null,
+    "",
+    message,
+  ].filter((line) => line !== null);
 
   const body = bodyLines.join("\n");
 
@@ -493,7 +495,9 @@ contactForm?.addEventListener("submit", (event) => {
   if (formNote) {
     formNote.textContent = "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
   }
-  const attachmentInput = document.querySelector("#attachment");
+});
+
+const attachmentInput = document.querySelector("#attachment");
 const fileName = document.querySelector("#fileName");
 
 if (attachmentInput && fileName) {
