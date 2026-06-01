@@ -23,6 +23,12 @@ const elements = {
   preview: document.querySelector("[data-preview]"),
   status: document.querySelector("[data-status]"),
   currentPage: document.querySelector("[data-current-page]"),
+  styleLabel: document.querySelector("[data-active-style-label]"),
+  styleFontSize: document.querySelector("[data-style-font-size]"),
+  styleFontFamily: document.querySelector("[data-style-font-family]"),
+  styleX: document.querySelector("[data-style-x]"),
+  styleY: document.querySelector("[data-style-y]"),
+  styleReset: document.querySelector("[data-style-reset]"),
 };
 
 let content = null;
@@ -41,7 +47,113 @@ const truncate = (text, length = 92) => {
   return normalized.length > length ? `${normalized.slice(0, length - 1)}...` : normalized;
 };
 
-const pageEntries = () => [...(content.common || []), ...(content[selectedPage.key] || [])];
+const cleanText = (text = "") => text.replace(/\s+/g, " ").trim();
+
+const pageEntries = () =>
+  content ? [...(content.common || []), ...(content[selectedPage.key] || [])] : [];
+
+const getPageSpecificEntries = () => {
+  if (!content) return [];
+  content[selectedPage.key] = content[selectedPage.key] || [];
+  return content[selectedPage.key];
+};
+
+const editableTextSelectors = [
+  "header .site-nav a",
+  "main h1",
+  "main h2",
+  "main h3",
+  "main h4",
+  "main p",
+  "main li",
+  "main figcaption",
+  "main .tag",
+  "main .pill",
+  "main .button",
+  "main .panel-label",
+  "footer strong",
+  "footer p",
+  "footer a",
+];
+
+const selectorClassBlocklist = new Set([
+  "reveal",
+  "is-visible",
+  "editor-active",
+  "button",
+  "primary",
+  "ghost",
+  "yes",
+  "no",
+]);
+
+const escapeCss = (value) => {
+  if (window.CSS?.escape) return CSS.escape(value);
+  return value.replace(/[^a-zA-Z0-9_-]/g, "\\$&");
+};
+
+const selectorForElement = (element) => {
+  const parts = [];
+  let node = element;
+
+  while (node && node.nodeType === 1 && node.tagName.toLowerCase() !== "body") {
+    const tag = node.tagName.toLowerCase();
+    const parent = node.parentElement;
+    if (!parent) break;
+
+    const usefulClasses = [...node.classList]
+      .filter((className) => !selectorClassBlocklist.has(className))
+      .slice(0, 2);
+    const classPart = usefulClasses.length
+      ? `.${usefulClasses.map((className) => escapeCss(className)).join(".")}`
+      : "";
+    const sameTagSiblings = [...parent.children].filter((child) => child.tagName === node.tagName);
+    const nthPart =
+      sameTagSiblings.length > 1 ? `:nth-of-type(${sameTagSiblings.indexOf(node) + 1})` : "";
+
+    parts.unshift(`${tag}${classPart}${nthPart}`);
+
+    if (["header", "main", "footer"].includes(tag)) break;
+    node = parent;
+  }
+
+  return parts.join(" > ");
+};
+
+const isVisibleTextElement = (element) => {
+  const text = cleanText(element.textContent || "");
+  if (!text || text.length > 720) return false;
+  if (element.closest("script, style, noscript, template")) return false;
+  if (element.querySelector("input, textarea, select, iframe, video")) return false;
+
+  const style = element.ownerDocument.defaultView.getComputedStyle(element);
+  return style.display !== "none" && style.visibility !== "hidden";
+};
+
+const discoverEditableTexts = (doc) => {
+  const managedElements = new Set(
+    pageEntries()
+      .filter((entry) => entry.selector && !entry.attribute)
+      .map((entry) => doc.querySelector(entry.selector))
+      .filter(Boolean)
+  );
+  const entries = getPageSpecificEntries();
+
+  doc.querySelectorAll(editableTextSelectors.join(",")).forEach((element) => {
+    if (managedElements.has(element) || !isVisibleTextElement(element)) return;
+
+    const selector = selectorForElement(element);
+    if (!selector || doc.querySelector(selector) !== element) return;
+
+    const text = cleanText(element.textContent || "");
+    entries.push({
+      label: `Besedilo - ${truncate(text, 42)}`,
+      selector,
+      text,
+    });
+    managedElements.add(element);
+  });
+};
 
 const markDirty = () => {
   dirty = true;
@@ -63,15 +175,92 @@ const renderFields = () => {
 };
 
 const findEntryByKey = (key) => {
+  if (!key) return null;
   const entries = pageEntries();
-  const index = Number(key.split("|").pop());
+  const indexText = key.split("|").pop();
+  if (indexText === "") return null;
+  const index = Number(indexText);
+  if (Number.isNaN(index)) return null;
   return entries[index] || null;
+};
+
+const activeEntry = () => findEntryByKey(activeKey);
+
+const activeEditable = () => {
+  const doc = elements.preview.contentDocument;
+  if (!doc || !activeKey) return null;
+  return doc.querySelector(`[data-editor-key="${CSS.escape(activeKey)}"]`);
+};
+
+const applyEntryStyleToTarget = (target, style = {}) => {
+  if (!target) return;
+
+  target.style.fontSize = style.fontSize ? `${Number(style.fontSize)}px` : "";
+  target.style.fontFamily = style.fontFamily || "";
+
+  const hasMove = style.x !== undefined || style.y !== undefined;
+  const x = Number(style.x) || 0;
+  const y = Number(style.y) || 0;
+
+  target.style.left = hasMove && x ? `${x}px` : "";
+  target.style.top = hasMove && y ? `${y}px` : "";
+
+  if (hasMove && (x || y)) {
+    target.style.position = "relative";
+  }
+};
+
+const updateStyleControls = () => {
+  const entry = activeEntry();
+  const style = entry?.style || {};
+  const disabled = !entry;
+
+  [elements.styleFontSize, elements.styleFontFamily, elements.styleX, elements.styleY, elements.styleReset].forEach(
+    (control) => {
+      control.disabled = disabled;
+    }
+  );
+
+  elements.styleLabel.textContent = entry
+    ? entry.label || truncate(entry.text || "", 44)
+    : "Najprej klikni besedilo v predogledu.";
+  elements.styleFontSize.value = style.fontSize || "";
+  elements.styleFontFamily.value = style.fontFamily || "";
+  elements.styleX.value = style.x ?? "";
+  elements.styleY.value = style.y ?? "";
+};
+
+const setEntryStyleValue = (property, value) => {
+  const entry = activeEntry();
+  if (!entry) return;
+
+  entry.style = entry.style || {};
+
+  if (value === "") {
+    delete entry.style[property];
+  } else if (property === "fontFamily") {
+    entry.style[property] = value;
+  } else {
+    const numericValue = Number(value);
+    if (Number.isNaN(numericValue)) return;
+    entry.style[property] = numericValue;
+  }
+
+  if (!Object.keys(entry.style).length) {
+    delete entry.style;
+  }
+
+  applyEntryStyleToTarget(activeEditable(), entry.style);
+  markDirty();
+  updateStyleControls();
 };
 
 const updateEntryText = (key, value) => {
   const entry = findEntryByKey(key);
   if (!entry) return;
-  entry.text = value.replace(/\s+/g, " ").trim();
+  const nextText = cleanText(value);
+  if (entry.text === nextText) return;
+  entry.text = nextText;
   markDirty();
   renderFields();
 };
@@ -86,7 +275,7 @@ const syncPreviewTexts = () => {
     const entry = findEntryByKey(editable.dataset.editorKey || "");
     if (!entry) return;
 
-    const nextText = editable.textContent.replace(/\s+/g, " ").trim();
+    const nextText = cleanText(editable.textContent || "");
     if (entry.text === nextText) return;
 
     entry.text = nextText;
@@ -154,9 +343,11 @@ const preparePreview = () => {
 
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
+  discoverEditableTexts(doc);
+  renderFields();
 
   pageEntries().forEach((entry, index) => {
-    if (!entry.selector || typeof entry.text !== "string") return;
+    if (!entry.selector || typeof entry.text !== "string" || entry.attribute) return;
     const key = `${entry.selector}|${index}`;
     const target = doc.querySelector(entry.selector);
     if (!target) return;
@@ -164,16 +355,19 @@ const preparePreview = () => {
     target.dataset.editorKey = key;
     target.contentEditable = "true";
     target.spellcheck = true;
+    applyEntryStyleToTarget(target, entry.style);
 
     target.addEventListener("focus", () => {
       activeKey = key;
       target.classList.add("editor-active");
       renderFields();
+      updateStyleControls();
     });
 
     target.addEventListener("blur", () => {
       target.classList.remove("editor-active");
       updateEntryText(key, target.textContent);
+      updateStyleControls();
     });
 
     target.addEventListener("keydown", (event) => {
@@ -183,12 +377,15 @@ const preparePreview = () => {
       }
     });
   });
+
+  updateStyleControls();
 };
 
 const loadPreview = () => {
   elements.currentPage.textContent = selectedPage.label;
   activeKey = "";
   renderFields();
+  updateStyleControls();
   elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
 };
 
@@ -196,6 +393,10 @@ const loadContent = async () => {
   const response = await fetch(`../${contentPath}?updated=${Date.now()}`);
   if (!response.ok) throw new Error("Ne morem naložiti content/site.json.");
   content = await response.json();
+  content.common = content.common || [];
+  pageMap.forEach((page) => {
+    content[page.key] = content[page.key] || [];
+  });
 };
 
 const setAuthenticated = (isAuthenticated, username = "") => {
@@ -298,6 +499,23 @@ const init = async () => {
 
   elements.logout.addEventListener("click", logout);
   elements.saveGithub.addEventListener("click", saveToGithub);
+  elements.styleFontSize.addEventListener("input", () =>
+    setEntryStyleValue("fontSize", elements.styleFontSize.value)
+  );
+  elements.styleFontFamily.addEventListener("change", () =>
+    setEntryStyleValue("fontFamily", elements.styleFontFamily.value)
+  );
+  elements.styleX.addEventListener("input", () => setEntryStyleValue("x", elements.styleX.value));
+  elements.styleY.addEventListener("input", () => setEntryStyleValue("y", elements.styleY.value));
+  elements.styleReset.addEventListener("click", () => {
+    const entry = activeEntry();
+    if (!entry) return;
+    delete entry.style;
+    applyEntryStyleToTarget(activeEditable(), {});
+    markDirty();
+    updateStyleControls();
+  });
+  updateStyleControls();
 
   window.addEventListener("beforeunload", (event) => {
     if (!dirty) return;

@@ -35,6 +35,24 @@ const mergeTextGroups = (fallbackTexts = {}, contentTexts = {}) => {
   }, {});
 };
 
+const applyEditableStyle = (element, style = {}) => {
+  if (!element || !style) return;
+
+  if (style.fontSize) {
+    element.style.fontSize = `${style.fontSize}px`;
+  }
+
+  if (style.fontFamily) {
+    element.style.fontFamily = style.fontFamily;
+  }
+
+  if (style.x || style.y) {
+    element.style.position = element.style.position || "relative";
+    element.style.left = `${Number(style.x) || 0}px`;
+    element.style.top = `${Number(style.y) || 0}px`;
+  }
+};
+
 const applyEditableTexts = () => {
   const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, loadContentTexts() || {});
   if (!Object.keys(textGroups).length) return;
@@ -58,7 +76,7 @@ const applyEditableTexts = () => {
   const entries = [...(textGroups.common || []), ...pageEntries];
 
   entries.forEach((entry) => {
-    if (!entry?.selector || typeof entry.text !== "string" || !entry.text.trim()) return;
+    if (!entry?.selector || typeof entry.text !== "string") return;
 
     const elements = entry.all
       ? document.querySelectorAll(entry.selector)
@@ -73,6 +91,7 @@ const applyEditableTexts = () => {
       }
 
       element.textContent = entry.text;
+      applyEditableStyle(element, entry.style);
     });
   });
 };
@@ -356,28 +375,22 @@ document.querySelectorAll("[data-card-link]").forEach((card) => {
   });
 });
 
-let revealObserver = null;
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
+);
 
-if ("IntersectionObserver" in window) {
-  revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
-  );
-
-  revealItems.forEach((item, index) => {
-    item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
-    revealObserver.observe(item);
-  });
-} else {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-}
+revealItems.forEach((item, index) => {
+  item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
+  revealObserver.observe(item);
+});
 
 const revealVisibleItems = () => {
   revealItems.forEach((item) => {
@@ -386,7 +399,7 @@ const revealVisibleItems = () => {
     const rect = item.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
       item.classList.add("is-visible");
-      revealObserver?.unobserve(item);
+      revealObserver.unobserve(item);
     }
   });
 };
@@ -466,8 +479,6 @@ contactForm?.addEventListener("submit", (event) => {
   const preferredDate = formData.get("preferredDate")?.toString().trim() || "";
   const message = formData.get("message")?.toString().trim() || "";
   const isTestRequest = contactForm.dataset.formType === "test";
-  const attachment = formData.get("attachment");
-  const attachmentName = attachment instanceof File && attachment.name ? attachment.name : "";
 
   const bodyLines = [
     `Ime: ${name}`,
@@ -476,7 +487,6 @@ contactForm?.addEventListener("submit", (event) => {
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
     preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-    attachmentName ? `Priponka za dodati: ${attachmentName}` : null,
     "",
     message,
   ].filter((line) => line !== null);
@@ -496,14 +506,3 @@ contactForm?.addEventListener("submit", (event) => {
     formNote.textContent = "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
   }
 });
-
-const attachmentInput = document.querySelector("#attachment");
-const fileName = document.querySelector("#fileName");
-
-if (attachmentInput && fileName) {
-  attachmentInput.addEventListener("change", () => {
-    fileName.textContent = attachmentInput.files.length
-      ? attachmentInput.files[0].name
-      : "Datoteka ni izbrana";
-  });
-}

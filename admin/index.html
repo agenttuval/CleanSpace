@@ -34,6 +34,39 @@
           Stran
           <select data-page-select></select>
         </label>
+        <div class="style-panel" data-style-panel>
+          <div class="style-panel-head">
+            <strong>Oblika izbranega besedila</strong>
+            <span data-active-style-label>Najprej klikni besedilo v predogledu.</span>
+          </div>
+          <div class="style-grid">
+            <label>
+              Velikost
+              <input data-style-font-size type="number" min="10" max="120" step="1" placeholder="px">
+            </label>
+            <label>
+              Pisava
+              <select data-style-font-family>
+                <option value="">Privzeta</option>
+                <option value="Inter, ui-sans-serif, system-ui, sans-serif">Inter</option>
+                <option value="'Segoe UI', ui-sans-serif, system-ui, sans-serif">Segoe UI</option>
+                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', Times, serif">Times New Roman</option>
+              </select>
+            </label>
+            <label>
+              Premik levo/desno
+              <input data-style-x type="number" min="-260" max="260" step="1" placeholder="0">
+            </label>
+            <label>
+              Premik gor/dol
+              <input data-style-y type="number" min="-260" max="260" step="1" placeholder="0">
+            </label>
+          </div>
+          <button class="secondary light" type="button" data-style-reset>Ponastavi obliko</button>
+        </div>
         <div class="field-list" data-field-list></div>
       </aside>
 
