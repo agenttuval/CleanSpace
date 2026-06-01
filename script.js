@@ -39,6 +39,19 @@ const mergeTextGroups = (fallbackTexts = {}, contentTexts = {}) => {
   }, {});
 };
 
+const contentPageNames = {
+  "index.html": "index",
+  "maske.html": "maske",
+  "videi.html": "videi",
+  "kontakt.html": "kontakt",
+  "test.html": "test",
+  "cleanspace-work.html": "cleanspace_work",
+  "cleanspace-cst-pro.html": "cleanspace_cst_pro",
+  "cleanspace-cst-ultra.html": "cleanspace_cst_ultra",
+  "cleanspace-ex.html": "cleanspace_ex",
+  "cleanspace-halo.html": "cleanspace_halo",
+};
+
 const applyEditableStyle = (element, style = {}) => {
   if (!element || !style) return;
 
@@ -62,18 +75,6 @@ const applyEditableTexts = () => {
   if (!Object.keys(textGroups).length) return;
 
   const pageName = window.location.pathname.split("/").pop() || "index.html";
-  const contentPageNames = {
-    "index.html": "index",
-    "maske.html": "maske",
-    "videi.html": "videi",
-    "kontakt.html": "kontakt",
-    "test.html": "test",
-    "cleanspace-work.html": "cleanspace_work",
-    "cleanspace-cst-pro.html": "cleanspace_cst_pro",
-    "cleanspace-cst-ultra.html": "cleanspace_cst_ultra",
-    "cleanspace-ex.html": "cleanspace_ex",
-    "cleanspace-halo.html": "cleanspace_halo",
-  };
   const pageEntries = mergeTextEntries(
     textGroups[pageName] || [],
     textGroups[contentPageNames[pageName]] || []
@@ -101,7 +102,37 @@ const applyEditableTexts = () => {
   });
 };
 
+const applyEditableImages = () => {
+  const content = loadContentTexts() || {};
+  const imageGroups = content.images || {};
+  if (!imageGroups || typeof imageGroups !== "object") return;
+
+  const pageName = window.location.pathname.split("/").pop() || "index.html";
+  const imageGroup = (key) => (Array.isArray(imageGroups[key]) ? imageGroups[key] : []);
+  const entries = [
+    ...imageGroup("common"),
+    ...imageGroup(pageName),
+    ...imageGroup(contentPageNames[pageName]),
+  ];
+
+  entries.forEach((entry) => {
+    if (!entry?.selector || !entry.src) return;
+
+    const image = document.querySelector(entry.selector);
+    if (!image) return;
+
+    image.src = entry.src;
+    image.setAttribute("src", entry.src);
+
+    if (typeof entry.alt === "string") {
+      image.alt = entry.alt;
+      image.setAttribute("alt", entry.alt);
+    }
+  });
+};
+
 applyEditableTexts();
+applyEditableImages();
 
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
@@ -315,21 +346,103 @@ const partImageRules = [
   },
 ];
 
+const hasClass = (element, className) =>
+  Boolean(element?.classList?.contains?.(className)) ||
+  ` ${element?.className || ""} `.includes(` ${className} `);
+
+const addClass = (element, className) => {
+  if (!element) return;
+
+  if (element.classList?.add) {
+    element.classList.add(className);
+    return;
+  }
+
+  if (className === "is-visible" && element.style) {
+    element.style.opacity = "1";
+    element.style.transform = "none";
+  }
+
+  try {
+    if (!hasClass(element, className)) {
+      element.className = `${element.className || ""} ${className}`.trim();
+    }
+  } catch (error) {
+    // Some embedded preview browsers expose read-only className/classList.
+  }
+};
+
+const removeClass = (element, className) => {
+  if (!element) return;
+
+  if (element.classList?.remove) {
+    element.classList.remove(className);
+    return;
+  }
+
+  try {
+    element.className = ` ${element.className || ""} `.replace(` ${className} `, " ").trim();
+  } catch (error) {
+    // Non-critical visual state only.
+  }
+};
+
+const toggleClass = (element, className, force) => {
+  if (!element) return;
+
+  if (element.classList?.toggle) {
+    element.classList.toggle(className, force);
+    return;
+  }
+
+  const shouldAdd = typeof force === "boolean" ? force : !hasClass(element, className);
+  if (shouldAdd) {
+    addClass(element, className);
+  } else {
+    removeClass(element, className);
+  }
+};
+
+const on = (target, eventName, handler, options) => {
+  if (typeof target?.addEventListener === "function") {
+    target.addEventListener(eventName, handler, options);
+  }
+};
+
+const setDataValue = (element, key, value) => {
+  if (!element) return;
+
+  try {
+    if (element.dataset) {
+      element.dataset[key] = value;
+      return;
+    }
+  } catch (error) {
+    // Some preview environments expose read-only dataset objects.
+  }
+
+  try {
+    element.setAttribute?.(`data-${key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`, value);
+  } catch (error) {
+    // Non-critical enhancement only.
+  }
+};
+
 const setHeaderState = () => {
   if (!header) return;
-  header.classList.toggle("is-scrolled", window.scrollY > 24);
+  toggleClass(header, "is-scrolled", window.scrollY > 24);
 };
 
 setHeaderState();
-window.addEventListener("scroll", setHeaderState, { passive: true });
+on(window, "scroll", setHeaderState, { passive: true });
 
-menuToggle?.addEventListener("click", () => {
-  document.body.classList.toggle("nav-open");
+on(menuToggle, "click", () => {
+  toggleClass(document.body, "nav-open");
 });
 
-nav?.addEventListener("click", (event) => {
+on(nav, "click", (event) => {
   if (event.target instanceof HTMLAnchorElement) {
-    document.body.classList.remove("nav-open");
+    removeClass(document.body, "nav-open");
   }
 });
 
@@ -337,24 +450,30 @@ if (heroRotator) {
   let heroSlideIndex = 0;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  heroRotatorSlides.forEach((slide) => {
-    const image = new Image();
-    image.src = slide.src;
-  });
+  if (typeof Image === "function") {
+    heroRotatorSlides.forEach((slide) => {
+      const image = new Image();
+      image.src = slide.src;
+    });
+  }
 
-  heroRotator.dataset.currentModel = heroRotatorSlides[heroSlideIndex].model;
+  setDataValue(heroRotator, "currentModel", heroRotatorSlides[heroSlideIndex].model);
 
-  if (!prefersReducedMotion) {
+  if (
+    !prefersReducedMotion &&
+    typeof window.setInterval === "function" &&
+    typeof window.setTimeout === "function"
+  ) {
     window.setInterval(() => {
       heroSlideIndex = (heroSlideIndex + 1) % heroRotatorSlides.length;
       const nextSlide = heroRotatorSlides[heroSlideIndex];
 
-      heroRotator.classList.add("is-changing");
+      addClass(heroRotator, "is-changing");
 
       window.setTimeout(() => {
         heroRotator.src = nextSlide.src;
-        heroRotator.dataset.currentModel = nextSlide.model;
-        heroRotator.classList.remove("is-changing");
+        setDataValue(heroRotator, "currentModel", nextSlide.model);
+        removeClass(heroRotator, "is-changing");
       }, 320);
     }, 5000);
   }
@@ -368,12 +487,12 @@ document.querySelectorAll("[data-card-link]").forEach((card) => {
     }
   };
 
-  card.addEventListener("click", (event) => {
+  on(card, "click", (event) => {
     if (event.target instanceof Element && event.target.closest("a, button")) return;
     openCardLink();
   });
 
-  card.addEventListener("keydown", (event) => {
+  on(card, "keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     if (event.target instanceof Element && event.target.closest("a, button")) return;
     event.preventDefault();
@@ -381,44 +500,56 @@ document.querySelectorAll("[data-card-link]").forEach((card) => {
   });
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
-);
-
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
-  revealObserver.observe(item);
-});
+let revealObserver = null;
 
 const revealVisibleItems = () => {
   revealItems.forEach((item) => {
-    if (item.classList.contains("is-visible")) return;
+    if (hasClass(item, "is-visible")) return;
 
     const rect = item.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
-      item.classList.add("is-visible");
-      revealObserver.unobserve(item);
+      addClass(item, "is-visible");
+      revealObserver?.unobserve(item);
     }
   });
 };
 
-window.addEventListener("load", revealVisibleItems);
-window.addEventListener("resize", revealVisibleItems);
-setTimeout(revealVisibleItems, 350);
+if ("IntersectionObserver" in window) {
+  addClass(document.body, "reveal-ready");
+
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          addClass(entry.target, "is-visible");
+          revealObserver?.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -6% 0px", threshold: 0.04 }
+  );
+
+  revealItems.forEach((item, index) => {
+    item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
+    revealObserver.observe(item);
+  });
+} else {
+  revealItems.forEach((item) => addClass(item, "is-visible"));
+}
+
+on(window, "load", revealVisibleItems);
+on(window, "resize", revealVisibleItems);
+if (typeof window.setTimeout === "function") {
+  window.setTimeout(revealVisibleItems, 350);
+} else {
+  revealVisibleItems();
+}
 
 document.querySelectorAll(".detail-block").forEach((block) => {
   const heading = block.querySelector("h4")?.textContent?.trim().toLowerCase() || "";
   if (!heading.includes("filtri") && !heading.includes("pripomo")) return;
 
-  block.querySelector("ul")?.classList.add("visual-parts");
+  addClass(block.querySelector("ul"), "visual-parts");
 
   block.querySelectorAll("li").forEach((item) => {
     if (item.querySelector("img")) return;
@@ -440,10 +571,12 @@ document.querySelectorAll(".detail-block").forEach((block) => {
     copy.textContent = text;
 
     item.textContent = "";
-    item.classList.add("part-card");
+    addClass(item, "part-card");
     item.append(image, copy);
   });
 });
+
+applyEditableImages();
 
 const videoMaskLabels = {
   work: "CleanSpace WORK",
@@ -602,6 +735,15 @@ if (contactForm) {
   const interestSelect = contactForm.elements.namedItem("interest");
   const messageField = contactForm.elements.namedItem("message");
   const isTestRequest = contactForm.dataset.formType === "test";
+  const fileInput = contactForm.querySelector("[data-file-input]");
+  const fileList = contactForm.querySelector("[data-file-list]");
+
+  fileInput?.addEventListener("change", () => {
+    const names = [...fileInput.files].map((file) => file.name);
+    if (fileList) {
+      fileList.textContent = names.length ? names.join(", ") : "Ni izbranih datotek.";
+    }
+  });
 
   if (requestedInterest && interestSelect instanceof HTMLSelectElement) {
     const matchingOption = [...interestSelect.options].find(
@@ -636,6 +778,10 @@ contactForm?.addEventListener("submit", (event) => {
   const preferredDate = formData.get("preferredDate")?.toString().trim() || "";
   const message = formData.get("message")?.toString().trim() || "";
   const isTestRequest = contactForm.dataset.formType === "test";
+  const attachmentNames = formData
+    .getAll("attachments")
+    .filter((file) => file instanceof File && file.name)
+    .map((file) => file.name);
 
   const bodyLines = [
     `Ime: ${name}`,
@@ -644,6 +790,7 @@ contactForm?.addEventListener("submit", (event) => {
     `Podjetje: ${company || "-"}`,
     `Zanimanje: ${interest}`,
     preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+    attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
     "",
     message,
   ].filter((line) => line !== null);
@@ -660,6 +807,8 @@ contactForm?.addEventListener("submit", (event) => {
   window.location.href = mailto.toString();
 
   if (formNote) {
-    formNote.textContent = "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
+    formNote.textContent = attachmentNames.length
+      ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
+      : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
   }
 });

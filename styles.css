@@ -1761,6 +1761,48 @@ h3 {
   box-shadow: 0 0 0 4px rgba(1, 69, 126, 0.14);
 }
 
+.file-upload input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.file-upload-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  padding: 0 18px;
+  color: #fff;
+  background: var(--brand);
+  border: 1px solid var(--brand);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 900;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.file-upload:focus-within .file-upload-button,
+.file-upload-button:hover {
+  background: var(--brand-dark);
+  transform: translateY(-1px);
+}
+
+.file-upload-list {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
 .form-note {
   margin: 0;
   color: var(--muted);
@@ -1877,14 +1919,19 @@ h3 {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 700ms ease,
     transform 700ms ease;
 }
 
-.reveal.is-visible {
+body.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+body.reveal-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }

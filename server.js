@@ -52,6 +52,9 @@ const normalizeContent = (content) => {
   return {
     ...content,
     common: Array.isArray(content.common) ? content.common : [],
+    images: content.images && typeof content.images === "object" && !Array.isArray(content.images)
+      ? content.images
+      : {},
     videos: Array.isArray(content.videos) ? content.videos : [],
   };
 };

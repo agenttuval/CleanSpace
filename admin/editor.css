@@ -178,7 +178,8 @@ body.is-authenticated .repo-panel label {
   border-color: #bce8d5;
 }
 
-.style-panel {
+.style-panel,
+.image-panel {
   display: grid;
   gap: 12px;
   padding: 12px;
@@ -224,6 +225,8 @@ body.is-authenticated .repo-panel label {
 
 .style-panel input,
 .style-panel select,
+.image-panel input,
+.image-panel textarea,
 .video-manager input,
 .video-manager select,
 .video-manager textarea {
@@ -231,7 +234,8 @@ body.is-authenticated .repo-panel label {
   border-color: var(--line);
 }
 
-.style-panel button {
+.style-panel button,
+.image-panel button {
   min-height: 38px;
   width: 100%;
 }

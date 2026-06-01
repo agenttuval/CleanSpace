@@ -30,6 +30,10 @@ const elements = {
   styleX: document.querySelector("[data-style-x]"),
   styleY: document.querySelector("[data-style-y]"),
   styleReset: document.querySelector("[data-style-reset]"),
+  imageLabel: document.querySelector("[data-active-image-label]"),
+  imageSrc: document.querySelector("[data-image-src]"),
+  imageAlt: document.querySelector("[data-image-alt]"),
+  imageReset: document.querySelector("[data-image-reset]"),
   videoManager: document.querySelector("[data-video-manager]"),
   videoMask: document.querySelector("[data-video-mask]"),
   videoTitle: document.querySelector("[data-video-title]"),
@@ -43,6 +47,7 @@ let content = null;
 let selectedPage = pageMap[0];
 let dirty = false;
 let activeKey = "";
+let activeImageKey = "";
 let authenticated = false;
 
 const videoMasks = [
@@ -80,6 +85,15 @@ const videoEntries = () => {
   return content.videos;
 };
 
+const imageEntries = () => {
+  if (!content) return [];
+  content.images = content.images && typeof content.images === "object" ? content.images : {};
+  content.images[selectedPage.key] = Array.isArray(content.images[selectedPage.key])
+    ? content.images[selectedPage.key]
+    : [];
+  return content.images[selectedPage.key];
+};
+
 const normalizeVideoUrl = (value = "") => {
   const iframeMatch = value.match(/src=["']([^"']+)["']/i);
   return (iframeMatch ? iframeMatch[1] : value).trim();
@@ -95,6 +109,8 @@ const editableTextSelectors = [
   "main h3",
   "main h4",
   "main p",
+  "main a",
+  "main button",
   "main li",
   "main figcaption",
   "main .tag",
@@ -180,6 +196,41 @@ const discoverEditableTexts = (doc) => {
       label: `Besedilo - ${truncate(text, 42)}`,
       selector,
       text,
+    });
+    managedElements.add(element);
+  });
+};
+
+const isVisibleImageElement = (element) => {
+  if (!element.getAttribute("src")) return false;
+  if (element.closest("script, style, noscript, template")) return false;
+
+  const style = element.ownerDocument.defaultView.getComputedStyle(element);
+  return style.display !== "none" && style.visibility !== "hidden";
+};
+
+const discoverEditableImages = (doc) => {
+  const managedElements = new Set(
+    imageEntries()
+      .filter((entry) => entry.selector)
+      .map((entry) => doc.querySelector(entry.selector))
+      .filter(Boolean)
+  );
+  const entries = imageEntries();
+
+  doc.querySelectorAll("header img, main img, footer img").forEach((element) => {
+    if (managedElements.has(element) || !isVisibleImageElement(element)) return;
+
+    const selector = selectorForElement(element);
+    if (!selector || doc.querySelector(selector) !== element) return;
+
+    const src = element.getAttribute("src") || "";
+    const alt = element.getAttribute("alt") || "";
+    entries.push({
+      label: `Slika - ${truncate(alt || src, 42)}`,
+      selector,
+      src,
+      alt,
     });
     managedElements.add(element);
   });
@@ -292,6 +343,62 @@ const activeEditable = () => {
   return doc.querySelector(`[data-editor-key="${CSS.escape(activeKey)}"]`);
 };
 
+const findImageEntryByKey = (key) => {
+  if (!key) return null;
+  const indexText = key.split("|").pop();
+  if (indexText === "") return null;
+  const index = Number(indexText);
+  if (Number.isNaN(index)) return null;
+  return imageEntries()[index] || null;
+};
+
+const activeImageEntry = () => findImageEntryByKey(activeImageKey);
+
+const activeImage = () => {
+  const doc = elements.preview.contentDocument;
+  if (!doc || !activeImageKey) return null;
+  return doc.querySelector(`[data-image-key="${CSS.escape(activeImageKey)}"]`);
+};
+
+const applyImageEntryToTarget = (target, entry = {}) => {
+  if (!target) return;
+
+  if (entry.src) {
+    target.src = entry.src;
+    target.setAttribute("src", entry.src);
+  }
+
+  if (typeof entry.alt === "string") {
+    target.alt = entry.alt;
+    target.setAttribute("alt", entry.alt);
+  }
+};
+
+const updateImageControls = () => {
+  const entry = activeImageEntry();
+  const disabled = !entry;
+
+  [elements.imageSrc, elements.imageAlt, elements.imageReset].forEach((control) => {
+    control.disabled = disabled;
+  });
+
+  elements.imageLabel.textContent = entry
+    ? entry.label || truncate(entry.alt || entry.src || "", 44)
+    : "Najprej klikni sliko v predogledu.";
+  elements.imageSrc.value = entry?.src || "";
+  elements.imageAlt.value = entry?.alt || "";
+};
+
+const setImageEntryValue = (property, value) => {
+  const entry = activeImageEntry();
+  if (!entry) return;
+
+  entry[property] = value.trim();
+  applyImageEntryToTarget(activeImage(), entry);
+  markDirty();
+  updateImageControls();
+};
+
 const applyEntryStyleToTarget = (target, style = {}) => {
   if (!target) return;
 
@@ -401,6 +508,16 @@ const injectEditorStyles = (doc) => {
       outline-color: rgba(220, 165, 95, 0.95) !important;
       box-shadow: 0 0 0 6px rgba(220, 165, 95, 0.16) !important;
     }
+    [data-image-key] {
+      outline: 3px solid rgba(6, 79, 62, 0.62) !important;
+      outline-offset: 4px !important;
+      cursor: pointer !important;
+    }
+    [data-image-key]:hover,
+    [data-image-key].editor-active-image {
+      outline-color: rgba(220, 165, 95, 0.95) !important;
+      box-shadow: 0 0 0 6px rgba(220, 165, 95, 0.18) !important;
+    }
   `;
   doc.head.append(style);
 };
@@ -409,10 +526,25 @@ const preventPreviewNavigation = (doc) => {
   doc.addEventListener(
     "click",
     (event) => {
+      const image = event.target.closest("[data-image-key]");
       const editable = event.target.closest("[data-editor-key]");
       const interactive = event.target.closest("a, button, [data-card-link]");
 
-      if (editable || interactive) {
+      if (image) {
+        event.preventDefault();
+        event.stopPropagation();
+        focusImage(image.dataset.imageKey || "");
+        return;
+      }
+
+      if (editable) {
+        event.preventDefault();
+        event.stopPropagation();
+        focusEditable(editable.dataset.editorKey || "");
+        return;
+      }
+
+      if (interactive) {
         event.preventDefault();
         event.stopPropagation();
       }
@@ -421,19 +553,44 @@ const preventPreviewNavigation = (doc) => {
   );
 };
 
+const focusImage = (key) => {
+  const doc = elements.preview.contentDocument;
+  if (!doc) return;
+
+  doc
+    .querySelectorAll(".editor-active-image")
+    .forEach((node) => node.classList.remove("editor-active-image"));
+  const image = doc.querySelector(`[data-image-key="${CSS.escape(key)}"]`);
+
+  if (image) {
+    activeImageKey = key;
+    activeKey = "";
+    image.classList.add("editor-active-image");
+    image.scrollIntoView({ block: "center", behavior: "smooth" });
+    renderFields();
+    updateStyleControls();
+    updateImageControls();
+  }
+};
+
 const focusEditable = (key) => {
   const doc = elements.preview.contentDocument;
   if (!doc) return;
 
   doc.querySelectorAll(".editor-active").forEach((node) => node.classList.remove("editor-active"));
+  doc
+    .querySelectorAll(".editor-active-image")
+    .forEach((node) => node.classList.remove("editor-active-image"));
   const editable = doc.querySelector(`[data-editor-key="${CSS.escape(key)}"]`);
 
   if (editable) {
     activeKey = key;
+    activeImageKey = "";
     editable.classList.add("editor-active");
     editable.scrollIntoView({ block: "center", behavior: "smooth" });
     editable.focus();
     renderFields();
+    updateImageControls();
   }
 };
 
@@ -444,6 +601,7 @@ const preparePreview = () => {
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
   discoverEditableTexts(doc);
+  discoverEditableImages(doc);
   renderFields();
 
   pageEntries().forEach((entry, index) => {
@@ -457,12 +615,25 @@ const preparePreview = () => {
     target.spellcheck = true;
     applyEntryStyleToTarget(target, entry.style);
 
-    target.addEventListener("focus", () => {
+    const activateTarget = () => {
       activeKey = key;
+      activeImageKey = "";
+      doc.querySelectorAll(".editor-active").forEach((node) => node.classList.remove("editor-active"));
+      doc
+        .querySelectorAll(".editor-active-image")
+        .forEach((node) => node.classList.remove("editor-active-image"));
       target.classList.add("editor-active");
       renderFields();
       updateStyleControls();
+      updateImageControls();
+    };
+
+    target.addEventListener("focus", () => {
+      activateTarget();
     });
+
+    target.addEventListener("pointerdown", activateTarget, true);
+    target.addEventListener("click", activateTarget, true);
 
     target.addEventListener("blur", () => {
       target.classList.remove("editor-active");
@@ -478,14 +649,34 @@ const preparePreview = () => {
     });
   });
 
+  imageEntries().forEach((entry, index) => {
+    if (!entry.selector || typeof entry.src !== "string") return;
+    const key = `${entry.selector}|${index}`;
+    const target = doc.querySelector(entry.selector);
+    if (!target) return;
+
+    target.dataset.imageKey = key;
+    target.tabIndex = 0;
+    applyImageEntryToTarget(target, entry);
+
+    target.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      focusImage(key);
+    });
+  });
+
   updateStyleControls();
+  updateImageControls();
 };
 
 const loadPreview = () => {
   elements.currentPage.textContent = selectedPage.label;
   activeKey = "";
+  activeImageKey = "";
   renderFields();
   updateStyleControls();
+  updateImageControls();
   renderVideoManager();
   elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
 };
@@ -508,9 +699,13 @@ const loadContent = async () => {
   if (!loadedContent) throw new Error("Ne morem naložiti vsebine strani.");
   content = loadedContent;
   content.common = content.common || [];
+  content.images = content.images && typeof content.images === "object" ? content.images : {};
   content.videos = Array.isArray(content.videos) ? content.videos : [];
   pageMap.forEach((page) => {
     content[page.key] = content[page.key] || [];
+    content.images[page.key] = Array.isArray(content.images[page.key])
+      ? content.images[page.key]
+      : [];
   });
 };
 
@@ -632,6 +827,19 @@ const init = async () => {
   elements.logout.addEventListener("click", logout);
   elements.saveGithub.addEventListener("click", saveToGithub);
   elements.videoAdd.addEventListener("click", addVideo);
+  elements.imageSrc.addEventListener("input", () => setImageEntryValue("src", elements.imageSrc.value));
+  elements.imageAlt.addEventListener("input", () => setImageEntryValue("alt", elements.imageAlt.value));
+  elements.imageReset.addEventListener("click", () => {
+    const indexText = activeImageKey.split("|").pop();
+    const index = Number(indexText);
+    if (Number.isNaN(index)) return;
+
+    imageEntries().splice(index, 1);
+    activeImageKey = "";
+    markDirty();
+    loadPreview();
+    updateImageControls();
+  });
   elements.styleFontSize.addEventListener("input", () =>
     setEntryStyleValue("fontSize", elements.styleFontSize.value)
   );
@@ -649,6 +857,7 @@ const init = async () => {
     updateStyleControls();
   });
   updateStyleControls();
+  updateImageControls();
 
   window.addEventListener("beforeunload", (event) => {
     if (!dirty) return;
@@ -661,6 +870,8 @@ const init = async () => {
 
     if (hasSession) {
       await loadContent();
+      selectedPage = pageMap.find((page) => page.key === requestedPage) || selectedPage;
+      elements.pageSelect.value = selectedPage.key;
       loadPreview();
       setStatus("Klikni besedilo v predogledu, ga popravi in klikni Shrani spremembe.");
     }
