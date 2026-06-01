@@ -1,14 +1,18 @@
 const loadContentTexts = () => {
-  try {
-    const request = new XMLHttpRequest();
-    request.open("GET", `content/site.json?updated=${Date.now()}`, false);
-    request.send(null);
+  const sources = ["/api/content", "content/site.json"];
 
-    if (request.status >= 200 && request.status < 300) {
-      return JSON.parse(request.responseText);
+  for (const source of sources) {
+    try {
+      const request = new XMLHttpRequest();
+      request.open("GET", `${source}?updated=${Date.now()}`, false);
+      request.send(null);
+
+      if (request.status >= 200 && request.status < 300) {
+        return JSON.parse(request.responseText.replace(/^\uFEFF/, ""));
+      }
+    } catch (error) {
+      // Fall back to the next source.
     }
-  } catch (error) {
-    return null;
   }
 
   return null;

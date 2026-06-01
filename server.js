@@ -8,6 +8,7 @@ const port = Number(process.env.PORT || 4173);
 const repo = process.env.GITHUB_REPO || "agenttuval/CleanSpace";
 const branch = process.env.GITHUB_BRANCH || "main";
 const contentPath = "content/site.json";
+let runtimeContent = null;
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
@@ -15,8 +16,11 @@ const mimeTypes = {
   ".ico": "image/x-icon",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".mp4": "video/mp4",
+  ".ogg": "video/ogg",
   ".png": "image/png",
   ".svg": "image/svg+xml",
+  ".webm": "video/webm",
   ".webp": "image/webp",
 };
 
@@ -43,6 +47,36 @@ const readBody = (req) =>
     req.on("error", reject);
   });
 
+const normalizeContent = (content) => {
+  if (!content || typeof content !== "object" || Array.isArray(content)) return null;
+  return {
+    ...content,
+    common: Array.isArray(content.common) ? content.common : [],
+    videos: Array.isArray(content.videos) ? content.videos : [],
+  };
+};
+
+const readLocalContent = async () => {
+  if (runtimeContent) return runtimeContent;
+
+  const raw = await fs.readFile(path.join(root, contentPath), "utf8");
+  runtimeContent = normalizeContent(JSON.parse(raw.replace(/^\uFEFF/, "")));
+  return runtimeContent;
+};
+
+const persistRuntimeContent = async (content) => {
+  runtimeContent = normalizeContent(content);
+  const updatedJson = `${JSON.stringify(runtimeContent, null, 2)}\n`;
+
+  try {
+    await fs.writeFile(path.join(root, contentPath), updatedJson, "utf8");
+  } catch (error) {
+    console.warn(`Runtime content was not written to disk: ${error.message}`);
+  }
+
+  return updatedJson;
+};
+
 const parseCookies = (cookieHeader = "") =>
   cookieHeader.split(";").reduce((cookies, part) => {
     const [name, ...valueParts] = part.trim().split("=");
@@ -67,17 +101,23 @@ const makeSession = (username) => {
 };
 
 const verifySession = (req) => {
-  const token = parseCookies(req.headers.cookie).tuval_admin;
-  if (!token || !token.includes(".")) return null;
+  try {
+    const token = parseCookies(req.headers.cookie).tuval_admin;
+    if (!token || !token.includes(".")) return null;
 
-  const [payload, signature] = token.split(".");
-  const expected = sign(payload);
-  const valid = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
-  if (!valid) return null;
+    const [payload, signature] = token.split(".");
+    const expected = sign(payload);
+    if (signature.length !== expected.length) return null;
 
-  const session = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
-  if (!session.exp || session.exp < Date.now()) return null;
-  return session;
+    const valid = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+    if (!valid) return null;
+
+    const session = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
+    if (!session.exp || session.exp < Date.now()) return null;
+    return session;
+  } catch (error) {
+    return null;
+  }
 };
 
 const cookieOptions = () => {
@@ -122,20 +162,24 @@ const handleContentSave = async (req, res) => {
   const session = requireAdmin(req, res);
   if (!session) return;
 
-  const githubToken = process.env.GITHUB_TOKEN;
-  if (!githubToken) {
-    send(res, 500, {
-      ok: false,
-      message: "Na Railway manjka GITHUB_TOKEN.",
-    });
-    return;
-  }
-
   const body = JSON.parse(await readBody(req));
-  const content = body.content;
+  const content = normalizeContent(body.content);
 
   if (!content || typeof content !== "object") {
     send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
+    return;
+  }
+
+  const githubToken = process.env.GITHUB_TOKEN;
+
+  if (!githubToken) {
+    await persistRuntimeContent(content);
+    send(res, 200, {
+      ok: true,
+      persistent: false,
+      message:
+        "Shranjeno na trenutno Railway instanco. Za trajno shranjevanje po ponovnem zagonu dodaj GITHUB_TOKEN.",
+    });
     return;
   }
 
@@ -182,11 +226,17 @@ const handleContentSave = async (req, res) => {
     return;
   }
 
-  if (process.env.NODE_ENV !== "production") {
-    await fs.writeFile(path.join(root, contentPath), updatedJson, "utf8");
-  }
+  await persistRuntimeContent(content);
 
-  send(res, 200, { ok: true, message: "Shranjeno na GitHub." });
+  send(res, 200, { ok: true, persistent: true, message: "Shranjeno na GitHub in osveženo na Railwayu." });
+};
+
+const handleContentRead = async (res) => {
+  const content = await readLocalContent();
+  send(res, 200, content, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
 };
 
 const serveStatic = async (req, res) => {
@@ -237,6 +287,11 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname === "/api/session") {
       const session = verifySession(req);
       send(res, 200, { ok: true, authenticated: Boolean(session), username: session?.username || null });
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/content") {
+      await handleContentRead(res);
       return;
     }
 

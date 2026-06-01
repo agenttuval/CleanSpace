@@ -187,7 +187,7 @@ const discoverEditableTexts = (doc) => {
 
 const markDirty = () => {
   dirty = true;
-  setStatus("Sprememba je pripravljena. Ko končaš, klikni Shrani na GitHub.");
+  setStatus("Sprememba je pripravljena. Ko končaš, klikni Shrani spremembe.");
 };
 
 const renderVideoManager = () => {
@@ -491,9 +491,22 @@ const loadPreview = () => {
 };
 
 const loadContent = async () => {
-  const response = await fetch(`../${contentPath}?updated=${Date.now()}`);
-  if (!response.ok) throw new Error("Ne morem naložiti content/site.json.");
-  content = await response.json();
+  const sources = [`../api/content?updated=${Date.now()}`, `../${contentPath}?updated=${Date.now()}`];
+  let loadedContent = null;
+
+  for (const source of sources) {
+    try {
+      const response = await fetch(source);
+      if (!response.ok) continue;
+      loadedContent = JSON.parse((await response.text()).replace(/^\uFEFF/, ""));
+      break;
+    } catch (error) {
+      // Fall back to the next source.
+    }
+  }
+
+  if (!loadedContent) throw new Error("Ne morem naložiti vsebine strani.");
+  content = loadedContent;
   content.common = content.common || [];
   content.videos = Array.isArray(content.videos) ? content.videos : [];
   pageMap.forEach((page) => {
@@ -559,7 +572,7 @@ const saveToGithub = async () => {
     return;
   }
 
-  setStatus("Shranjujem na GitHub...");
+  setStatus("Shranjujem spremembe...");
 
   const response = await fetch("../api/content", {
     method: "PUT",
@@ -574,7 +587,7 @@ const saveToGithub = async () => {
   }
 
   dirty = false;
-  setStatus(result.message || "Shranjeno na GitHub. Railway bo stran ponovno objavil.", "success");
+  setStatus(result.message || "Shranjeno. Stran je osvežena.", "success");
 };
 
 const init = async () => {
@@ -649,7 +662,7 @@ const init = async () => {
     if (hasSession) {
       await loadContent();
       loadPreview();
-      setStatus("Klikni besedilo v predogledu, ga popravi in klikni Shrani na GitHub.");
+      setStatus("Klikni besedilo v predogledu, ga popravi in klikni Shrani spremembe.");
     }
   } catch (error) {
     setStatus(error.message || "Urejevalnika ni bilo mogoče zagnati.", "error");
