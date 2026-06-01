@@ -536,7 +536,7 @@ const renderVideoPage = () => {
   if (count) {
     count.textContent = filteredVideos.length
       ? `${filteredVideos.length} ${filteredVideos.length === 1 ? "video" : "videi"}`
-      : "Videe lahko dodate v adminu.";
+      : "Video galerija je pripravljena.";
   }
 
   if (!grid || !empty) return;
