@@ -23,7 +23,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -71,7 +72,8 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   min-height: 42px;
   padding: 0 12px;
   color: var(--brand);
@@ -79,6 +81,13 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 8px;
   outline: none;
+}
+
+textarea {
+  min-height: 92px;
+  padding-block: 10px;
+  line-height: 1.45;
+  resize: vertical;
 }
 
 button {
@@ -139,7 +148,7 @@ body.is-authenticated .repo-panel label {
 
 .editor-sidebar {
   display: grid;
-  grid-template-rows: auto auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
   gap: 14px;
   padding: 16px;
 }
@@ -175,6 +184,19 @@ body.is-authenticated .repo-panel label {
   border-radius: 8px;
 }
 
+.video-manager {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  background: #fff8ee;
+  border: 1px solid #efd3a7;
+  border-radius: 8px;
+}
+
+.video-manager[hidden] {
+  display: none;
+}
+
 .style-panel-head {
   display: grid;
   gap: 3px;
@@ -198,7 +220,10 @@ body.is-authenticated .repo-panel label {
 }
 
 .style-panel input,
-.style-panel select {
+.style-panel select,
+.video-manager input,
+.video-manager select,
+.video-manager textarea {
   min-height: 38px;
   border-color: var(--line);
 }
@@ -212,6 +237,45 @@ button.light {
   color: var(--brand);
   background: #fff;
   border-color: var(--line);
+}
+
+.video-admin-list {
+  display: grid;
+  max-height: 190px;
+  gap: 8px;
+  overflow: auto;
+}
+
+.video-admin-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.12);
+  border-radius: 8px;
+}
+
+.video-admin-item strong,
+.video-admin-item span {
+  display: block;
+}
+
+.video-admin-item strong {
+  color: var(--brand-dark);
+  font-size: 0.82rem;
+}
+
+.video-admin-item span {
+  color: #426f96;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.video-admin-item button {
+  min-height: 34px;
+  padding-inline: 10px;
 }
 
 .field-list {

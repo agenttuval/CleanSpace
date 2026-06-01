@@ -61,6 +61,7 @@ const applyEditableTexts = () => {
   const contentPageNames = {
     "index.html": "index",
     "maske.html": "maske",
+    "videi.html": "videi",
     "kontakt.html": "kontakt",
     "test.html": "test",
     "cleanspace-work.html": "cleanspace_work",
@@ -105,6 +106,7 @@ const revealItems = document.querySelectorAll(".reveal");
 const contactForm = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 const heroRotator = document.querySelector("[data-hero-rotator]");
+const videoPage = document.querySelector("[data-video-page]");
 
 const heroRotatorSlides = [
   {
@@ -438,6 +440,157 @@ document.querySelectorAll(".detail-block").forEach((block) => {
     item.append(image, copy);
   });
 });
+
+const videoMaskLabels = {
+  work: "CleanSpace WORK",
+  "cst-pro": "CleanSpace CST PRO",
+  "cst-ultra": "CleanSpace CST ULTRA",
+  ex: "CleanSpace EX",
+  halo: "CleanSpace HALO",
+};
+
+const normalizeVideoUrl = (value = "") => {
+  const iframeMatch = value.match(/src=["']([^"']+)["']/i);
+  return (iframeMatch ? iframeMatch[1] : value).trim();
+};
+
+const videoEmbed = (rawUrl = "") => {
+  const normalizedUrl = normalizeVideoUrl(rawUrl);
+
+  try {
+    const url = new URL(normalizedUrl, window.location.href);
+    const host = url.hostname.replace(/^www\./, "");
+    const isHttp = url.protocol === "http:" || url.protocol === "https:";
+    if (!isHttp) {
+      return { type: "link", src: "#" };
+    }
+
+    if (host === "youtu.be") {
+      return {
+        type: "iframe",
+        src: `https://www.youtube.com/embed/${url.pathname.replace("/", "")}`,
+      };
+    }
+
+    if (host.includes("youtube.com")) {
+      const videoId = url.searchParams.get("v") || url.pathname.split("/").filter(Boolean).pop();
+      if (videoId) {
+        return { type: "iframe", src: `https://www.youtube.com/embed/${videoId}` };
+      }
+    }
+
+    if (host.includes("vimeo.com")) {
+      const videoId = url.pathname.split("/").filter(Boolean).pop();
+      if (videoId) {
+        return { type: "iframe", src: `https://player.vimeo.com/video/${videoId}` };
+      }
+    }
+
+    if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url.pathname)) {
+      return { type: "video", src: url.href };
+    }
+
+    return { type: "link", src: url.href };
+  } catch (error) {
+    return { type: "link", src: normalizedUrl };
+  }
+};
+
+const renderVideoPage = () => {
+  if (!videoPage) return;
+
+  const content = loadContentTexts() || {};
+  const videos = Array.isArray(content.videos) ? content.videos : [];
+  const params = new URLSearchParams(window.location.search);
+  const selectedMask = params.get("mask") || "";
+  const maskLabel = videoMaskLabels[selectedMask] || "";
+  const filteredVideos = selectedMask
+    ? videos.filter((video) => video.mask === selectedMask)
+    : videos;
+
+  const title = document.querySelector("[data-video-page-title]");
+  const filterLabel = document.querySelector("[data-video-filter-label]");
+  const sectionTitle = document.querySelector("[data-video-section-title]");
+  const count = document.querySelector("[data-video-count]");
+  const grid = document.querySelector("[data-video-grid]");
+  const empty = document.querySelector("[data-video-empty]");
+
+  if (title && maskLabel) {
+    title.textContent = `Videi za ${maskLabel}`;
+  }
+
+  if (filterLabel && maskLabel) {
+    filterLabel.textContent = maskLabel;
+  }
+
+  if (sectionTitle) {
+    sectionTitle.textContent = filteredVideos.length
+      ? "Dodani video posnetki"
+      : "Video galerija je trenutno prazna";
+  }
+
+  if (count) {
+    count.textContent = filteredVideos.length
+      ? `${filteredVideos.length} ${filteredVideos.length === 1 ? "video" : "videi"}`
+      : "Videe lahko dodate v adminu.";
+  }
+
+  if (!grid || !empty) return;
+
+  grid.textContent = "";
+  empty.hidden = filteredVideos.length > 0;
+
+  filteredVideos.forEach((video) => {
+    const card = document.createElement("article");
+    card.className = "stored-video-card";
+
+    const embed = videoEmbed(video.url);
+    const media = document.createElement("div");
+    media.className = "stored-video-media";
+
+    if (embed.type === "iframe") {
+      const iframe = document.createElement("iframe");
+      iframe.src = embed.src;
+      iframe.title = video.title || "CleanSpace video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      media.append(iframe);
+    } else if (embed.type === "video") {
+      const videoElement = document.createElement("video");
+      videoElement.src = embed.src;
+      videoElement.controls = true;
+      videoElement.preload = "metadata";
+      media.append(videoElement);
+    } else {
+      const link = document.createElement("a");
+      link.href = embed.src;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = "Odpri video";
+      media.append(link);
+    }
+
+    const copy = document.createElement("div");
+    copy.className = "stored-video-copy";
+
+    const tag = document.createElement("p");
+    tag.className = "tag";
+    tag.textContent = videoMaskLabels[video.mask] || "CleanSpace";
+
+    const heading = document.createElement("h3");
+    heading.textContent = video.title || "CleanSpace video";
+
+    const description = document.createElement("p");
+    description.textContent = video.description || "Dodani video za prikaz izdelka, uporabe ali navodil.";
+
+    copy.append(tag, heading, description);
+    card.append(media, copy);
+    grid.append(card);
+  });
+};
+
+renderVideoPage();
 
 if (contactForm) {
   const params = new URLSearchParams(window.location.search);

@@ -3,6 +3,7 @@ const contentPath = "content/site.json";
 const pageMap = [
   { key: "index", file: "index.html", label: "Domov" },
   { key: "maske", file: "maske.html", label: "Maske" },
+  { key: "videi", file: "videi.html", label: "Videi" },
   { key: "test", file: "test.html", label: "Naroči test" },
   { key: "kontakt", file: "kontakt.html", label: "Kontakt" },
   { key: "cleanspace_work", file: "cleanspace-work.html", label: "CleanSpace WORK" },
@@ -29,6 +30,13 @@ const elements = {
   styleX: document.querySelector("[data-style-x]"),
   styleY: document.querySelector("[data-style-y]"),
   styleReset: document.querySelector("[data-style-reset]"),
+  videoManager: document.querySelector("[data-video-manager]"),
+  videoMask: document.querySelector("[data-video-mask]"),
+  videoTitle: document.querySelector("[data-video-title]"),
+  videoUrl: document.querySelector("[data-video-url]"),
+  videoDescription: document.querySelector("[data-video-description]"),
+  videoAdd: document.querySelector("[data-video-add]"),
+  videoList: document.querySelector("[data-video-list]"),
 };
 
 let content = null;
@@ -36,6 +44,14 @@ let selectedPage = pageMap[0];
 let dirty = false;
 let activeKey = "";
 let authenticated = false;
+
+const videoMasks = [
+  { value: "work", label: "CleanSpace WORK" },
+  { value: "cst-pro", label: "CleanSpace CST PRO" },
+  { value: "cst-ultra", label: "CleanSpace CST ULTRA" },
+  { value: "ex", label: "CleanSpace EX" },
+  { value: "halo", label: "CleanSpace HALO" },
+];
 
 const setStatus = (message, type = "") => {
   elements.status.textContent = message;
@@ -57,6 +73,20 @@ const getPageSpecificEntries = () => {
   content[selectedPage.key] = content[selectedPage.key] || [];
   return content[selectedPage.key];
 };
+
+const videoEntries = () => {
+  if (!content) return [];
+  content.videos = Array.isArray(content.videos) ? content.videos : [];
+  return content.videos;
+};
+
+const normalizeVideoUrl = (value = "") => {
+  const iframeMatch = value.match(/src=["']([^"']+)["']/i);
+  return (iframeMatch ? iframeMatch[1] : value).trim();
+};
+
+const videoMaskLabel = (value) =>
+  videoMasks.find((mask) => mask.value === value)?.label || "CleanSpace";
 
 const editableTextSelectors = [
   "header .site-nav a",
@@ -158,6 +188,76 @@ const discoverEditableTexts = (doc) => {
 const markDirty = () => {
   dirty = true;
   setStatus("Sprememba je pripravljena. Ko končaš, klikni Shrani na GitHub.");
+};
+
+const renderVideoManager = () => {
+  if (!elements.videoManager || !elements.videoList || !content) return;
+
+  const isVideoPage = selectedPage.key === "videi";
+  elements.videoManager.hidden = !isVideoPage;
+  if (!isVideoPage) return;
+
+  const videos = videoEntries();
+  elements.videoList.textContent = "";
+
+  if (!videos.length) {
+    const empty = document.createElement("p");
+    empty.className = "video-admin-empty";
+    empty.textContent = "Ni dodanih videov.";
+    elements.videoList.append(empty);
+    return;
+  }
+
+  videos.forEach((video, index) => {
+    const item = document.createElement("div");
+    item.className = "video-admin-item";
+
+    const copy = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = video.title || "Video brez naslova";
+    const meta = document.createElement("span");
+    meta.textContent = `${videoMaskLabel(video.mask)} - ${truncate(video.url || "", 52)}`;
+    copy.append(title, meta);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "secondary light";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Izbriši";
+    deleteButton.addEventListener("click", () => {
+      videos.splice(index, 1);
+      markDirty();
+      renderVideoManager();
+      loadPreview();
+    });
+
+    item.append(copy, deleteButton);
+    elements.videoList.append(item);
+  });
+};
+
+const addVideo = () => {
+  if (!content) return;
+
+  const url = normalizeVideoUrl(elements.videoUrl.value);
+  if (!url) {
+    setStatus("Dodaj video link ali embed kodo.", "error");
+    return;
+  }
+
+  videoEntries().push({
+    id: window.crypto?.randomUUID?.() || `video-${Date.now()}`,
+    mask: elements.videoMask.value,
+    title: elements.videoTitle.value.trim() || videoMaskLabel(elements.videoMask.value),
+    description: elements.videoDescription.value.trim(),
+    url,
+  });
+
+  elements.videoTitle.value = "";
+  elements.videoUrl.value = "";
+  elements.videoDescription.value = "";
+  markDirty();
+  renderVideoManager();
+  loadPreview();
 };
 
 const renderFields = () => {
@@ -386,6 +486,7 @@ const loadPreview = () => {
   activeKey = "";
   renderFields();
   updateStyleControls();
+  renderVideoManager();
   elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
 };
 
@@ -394,6 +495,7 @@ const loadContent = async () => {
   if (!response.ok) throw new Error("Ne morem naložiti content/site.json.");
   content = await response.json();
   content.common = content.common || [];
+  content.videos = Array.isArray(content.videos) ? content.videos : [];
   pageMap.forEach((page) => {
     content[page.key] = content[page.key] || [];
   });
@@ -476,12 +578,29 @@ const saveToGithub = async () => {
 };
 
 const init = async () => {
+  const initialParams = new URLSearchParams(window.location.search);
+  const requestedPage = initialParams.get("page");
+  const requestedMask = initialParams.get("mask");
+
   pageMap.forEach((page) => {
     const option = document.createElement("option");
     option.value = page.key;
     option.textContent = page.label;
     elements.pageSelect.append(option);
   });
+
+  videoMasks.forEach((mask) => {
+    const option = document.createElement("option");
+    option.value = mask.value;
+    option.textContent = mask.label;
+    elements.videoMask.append(option);
+  });
+
+  selectedPage = pageMap.find((page) => page.key === requestedPage) || selectedPage;
+  elements.pageSelect.value = selectedPage.key;
+  if (requestedMask && videoMasks.some((mask) => mask.value === requestedMask)) {
+    elements.videoMask.value = requestedMask;
+  }
 
   elements.pageSelect.addEventListener("change", () => {
     selectedPage = pageMap.find((page) => page.key === elements.pageSelect.value) || pageMap[0];
@@ -499,6 +618,7 @@ const init = async () => {
 
   elements.logout.addEventListener("click", logout);
   elements.saveGithub.addEventListener("click", saveToGithub);
+  elements.videoAdd.addEventListener("click", addVideo);
   elements.styleFontSize.addEventListener("input", () =>
     setEntryStyleValue("fontSize", elements.styleFontSize.value)
   );

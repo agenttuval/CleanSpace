@@ -67,6 +67,30 @@
           </div>
           <button class="secondary light" type="button" data-style-reset>Ponastavi obliko</button>
         </div>
+        <div class="video-manager" data-video-manager hidden>
+          <div class="style-panel-head">
+            <strong>Videi</strong>
+            <span>Dodaj YouTube, Vimeo, iframe ali direkten video link. Shrani na GitHub, ko končaš.</span>
+          </div>
+          <label>
+            Maska
+            <select data-video-mask></select>
+          </label>
+          <label>
+            Naslov videa
+            <input data-video-title type="text" placeholder="Npr. Prikaz uporabe WORK">
+          </label>
+          <label>
+            Video link ali embed koda
+            <textarea data-video-url rows="3" placeholder="https://www.youtube.com/watch?v=..."></textarea>
+          </label>
+          <label>
+            Kratek opis
+            <textarea data-video-description rows="3" placeholder="Kratek opis za kupce"></textarea>
+          </label>
+          <button class="primary" type="button" data-video-add>Dodaj video</button>
+          <div class="video-admin-list" data-video-list></div>
+        </div>
         <div class="field-list" data-field-list></div>
       </aside>
 
