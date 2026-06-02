@@ -34,7 +34,10 @@ const mergeTextGroups = (fallbackTexts = {}, contentTexts = {}) => {
   const pageNames = new Set([...Object.keys(fallbackTexts), ...Object.keys(contentTexts)]);
 
   return [...pageNames].reduce((groups, pageName) => {
-    groups[pageName] = mergeTextEntries(fallbackTexts[pageName], contentTexts[pageName]);
+    groups[pageName] = mergeTextEntries(
+      Array.isArray(fallbackTexts[pageName]) ? fallbackTexts[pageName] : [],
+      Array.isArray(contentTexts[pageName]) ? contentTexts[pageName] : []
+    );
     return groups;
   }, {});
 };
