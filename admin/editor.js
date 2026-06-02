@@ -20,16 +20,22 @@ const elements = {
   logout: document.querySelector("[data-logout]"),
   saveGithub: document.querySelector("[data-save-github]"),
   pageSelect: document.querySelector("[data-page-select]"),
+  customTitle: document.querySelector("[data-custom-title]"),
+  customText: document.querySelector("[data-custom-text]"),
+  customAdd: document.querySelector("[data-custom-add]"),
+  customList: document.querySelector("[data-custom-list]"),
   fieldList: document.querySelector("[data-field-list]"),
   preview: document.querySelector("[data-preview]"),
   status: document.querySelector("[data-status]"),
   currentPage: document.querySelector("[data-current-page]"),
   styleLabel: document.querySelector("[data-active-style-label]"),
+  styleColor: document.querySelector("[data-style-color]"),
   styleFontSize: document.querySelector("[data-style-font-size]"),
   styleFontFamily: document.querySelector("[data-style-font-family]"),
   styleX: document.querySelector("[data-style-x]"),
   styleY: document.querySelector("[data-style-y]"),
   styleReset: document.querySelector("[data-style-reset]"),
+  customColor: document.querySelector("[data-custom-color]"),
   imageLabel: document.querySelector("[data-active-image-label]"),
   imageSrc: document.querySelector("[data-image-src]"),
   imageAlt: document.querySelector("[data-image-alt]"),
@@ -49,6 +55,7 @@ let dirty = false;
 let activeKey = "";
 let activeImageKey = "";
 let authenticated = false;
+let pendingCustomBlockId = "";
 
 const videoMasks = [
   { value: "work", label: "CleanSpace WORK" },
@@ -70,8 +77,59 @@ const truncate = (text, length = 92) => {
 
 const cleanText = (text = "") => text.replace(/\s+/g, " ").trim();
 
+const makeCustomBlockId = () =>
+  `block-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+const ensureCustomBlockId = (block) => {
+  const current = String(block.id || "");
+  if (/^[a-zA-Z0-9_-]+$/.test(current)) return current;
+  block.id = makeCustomBlockId();
+  return block.id;
+};
+
+const customBlocksForPage = () => {
+  if (!content) return [];
+  content.customBlocks =
+    content.customBlocks && typeof content.customBlocks === "object" && !Array.isArray(content.customBlocks)
+      ? content.customBlocks
+      : {};
+  content.customBlocks[selectedPage.key] = Array.isArray(content.customBlocks[selectedPage.key])
+    ? content.customBlocks[selectedPage.key]
+    : [];
+  return content.customBlocks[selectedPage.key];
+};
+
+const findCustomBlock = (id) => customBlocksForPage().find((block) => block.id === id);
+
+const customBlockEntries = () =>
+  customBlocksForPage().flatMap((block, index) => {
+    const id = ensureCustomBlockId(block);
+    const labelBase = `Okvir ${index + 1}`;
+
+    return [
+      {
+        label: `${labelBase} - naslov`,
+        selector: `[data-custom-block="${id}"] h2`,
+        text: block.title || "",
+        style: block.titleStyle,
+        customBlockId: id,
+        customBlockField: "title",
+        customBlockStyleField: "titleStyle",
+      },
+      {
+        label: `${labelBase} - besedilo`,
+        selector: `[data-custom-block="${id}"] p`,
+        text: block.text || "",
+        style: block.textStyle,
+        customBlockId: id,
+        customBlockField: "text",
+        customBlockStyleField: "textStyle",
+      },
+    ];
+  });
+
 const pageEntries = () =>
-  content ? [...(content.common || []), ...(content[selectedPage.key] || [])] : [];
+  content ? [...(content.common || []), ...(content[selectedPage.key] || []), ...customBlockEntries()] : [];
 
 const getPageSpecificEntries = () => {
   if (!content) return [];
@@ -311,6 +369,73 @@ const addVideo = () => {
   loadPreview();
 };
 
+const renderCustomBlockManager = () => {
+  if (!elements.customList || !content) return;
+
+  const blocks = customBlocksForPage();
+  elements.customList.textContent = "";
+
+  if (!blocks.length) {
+    const empty = document.createElement("p");
+    empty.className = "custom-admin-empty";
+    empty.textContent = "Na tej strani še ni dodatnih okvirjev.";
+    elements.customList.append(empty);
+    return;
+  }
+
+  blocks.forEach((block, index) => {
+    const item = document.createElement("div");
+    item.className = "custom-admin-item";
+
+    const copy = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = block.title || `Okvir ${index + 1}`;
+    const text = document.createElement("span");
+    text.textContent = truncate(block.text || "Brez besedila.", 58);
+    copy.append(title, text);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "secondary light";
+    deleteButton.textContent = "Odstrani";
+    deleteButton.addEventListener("click", () => {
+      blocks.splice(index, 1);
+      activeKey = "";
+      markDirty();
+      renderCustomBlockManager();
+      loadPreview();
+    });
+
+    item.append(copy, deleteButton);
+    elements.customList.append(item);
+  });
+};
+
+const addCustomBlock = () => {
+  if (!content) return;
+
+  const title = elements.customTitle.value.trim() || "Nov besedilni okvir";
+  const text = elements.customText.value.trim() || "Vpiši dodatno besedilo za ta okvir.";
+  const color = elements.customColor.value || "#01457e";
+  const id = makeCustomBlockId();
+
+  customBlocksForPage().push({
+    id,
+    title,
+    text,
+    titleStyle: { color },
+    textStyle: { color },
+  });
+
+  elements.customTitle.value = "";
+  elements.customText.value = "";
+  activeKey = "";
+  pendingCustomBlockId = id;
+  markDirty();
+  renderCustomBlockManager();
+  loadPreview();
+};
+
 const renderFields = () => {
   elements.fieldList.textContent = "";
 
@@ -333,6 +458,52 @@ const findEntryByKey = (key) => {
   const index = Number(indexText);
   if (Number.isNaN(index)) return null;
   return entries[index] || null;
+};
+
+const getEntryStyle = (entry) => {
+  if (!entry) return {};
+  if (!entry.customBlockId) return entry.style || {};
+
+  const block = findCustomBlock(entry.customBlockId);
+  return block?.[entry.customBlockStyleField] || {};
+};
+
+const ensureEntryStyle = (entry) => {
+  if (!entry) return {};
+  if (!entry.customBlockId) {
+    entry.style = entry.style || {};
+    return entry.style;
+  }
+
+  const block = findCustomBlock(entry.customBlockId);
+  if (!block) return {};
+  block[entry.customBlockStyleField] = block[entry.customBlockStyleField] || {};
+  entry.style = block[entry.customBlockStyleField];
+  return block[entry.customBlockStyleField];
+};
+
+const clearEntryStyle = (entry) => {
+  if (!entry) return;
+
+  if (entry.customBlockId) {
+    const block = findCustomBlock(entry.customBlockId);
+    if (block) delete block[entry.customBlockStyleField];
+    delete entry.style;
+    return;
+  }
+
+  delete entry.style;
+};
+
+const setEntryText = (entry, text) => {
+  if (!entry) return;
+
+  if (entry.customBlockId) {
+    const block = findCustomBlock(entry.customBlockId);
+    if (block) block[entry.customBlockField] = text;
+  }
+
+  entry.text = text;
 };
 
 const activeEntry = () => findEntryByKey(activeKey);
@@ -402,6 +573,7 @@ const setImageEntryValue = (property, value) => {
 const applyEntryStyleToTarget = (target, style = {}) => {
   if (!target) return;
 
+  target.style.color = style.color || "";
   target.style.fontSize = style.fontSize ? `${Number(style.fontSize)}px` : "";
   target.style.fontFamily = style.fontFamily || "";
 
@@ -419,10 +591,10 @@ const applyEntryStyleToTarget = (target, style = {}) => {
 
 const updateStyleControls = () => {
   const entry = activeEntry();
-  const style = entry?.style || {};
+  const style = getEntryStyle(entry);
   const disabled = !entry;
 
-  [elements.styleFontSize, elements.styleFontFamily, elements.styleX, elements.styleY, elements.styleReset].forEach(
+  [elements.styleColor, elements.styleFontSize, elements.styleFontFamily, elements.styleX, elements.styleY, elements.styleReset].forEach(
     (control) => {
       control.disabled = disabled;
     }
@@ -431,6 +603,7 @@ const updateStyleControls = () => {
   elements.styleLabel.textContent = entry
     ? entry.label || truncate(entry.text || "", 44)
     : "Najprej klikni besedilo v predogledu.";
+  elements.styleColor.value = style.color || "#01457e";
   elements.styleFontSize.value = style.fontSize || "";
   elements.styleFontFamily.value = style.fontFamily || "";
   elements.styleX.value = style.x ?? "";
@@ -441,23 +614,23 @@ const setEntryStyleValue = (property, value) => {
   const entry = activeEntry();
   if (!entry) return;
 
-  entry.style = entry.style || {};
+  const style = ensureEntryStyle(entry);
 
   if (value === "") {
-    delete entry.style[property];
-  } else if (property === "fontFamily") {
-    entry.style[property] = value;
+    delete style[property];
+  } else if (property === "fontFamily" || property === "color") {
+    style[property] = value;
   } else {
     const numericValue = Number(value);
     if (Number.isNaN(numericValue)) return;
-    entry.style[property] = numericValue;
+    style[property] = numericValue;
   }
 
-  if (!Object.keys(entry.style).length) {
-    delete entry.style;
+  if (!Object.keys(style).length) {
+    clearEntryStyle(entry);
   }
 
-  applyEntryStyleToTarget(activeEditable(), entry.style);
+  applyEntryStyleToTarget(activeEditable(), getEntryStyle(entry));
   markDirty();
   updateStyleControls();
 };
@@ -467,7 +640,7 @@ const updateEntryText = (key, value) => {
   if (!entry) return;
   const nextText = cleanText(value);
   if (entry.text === nextText) return;
-  entry.text = nextText;
+  setEntryText(entry, nextText);
   markDirty();
   renderFields();
 };
@@ -485,7 +658,7 @@ const syncPreviewTexts = () => {
     const nextText = cleanText(editable.textContent || "");
     if (entry.text === nextText) return;
 
-    entry.text = nextText;
+    setEntryText(entry, nextText);
     changed = true;
   });
 
@@ -594,10 +767,74 @@ const focusEditable = (key) => {
   }
 };
 
+const injectCustomBlocksIntoPreview = (doc) => {
+  const main = doc.querySelector("main");
+  if (!main) return;
+
+  const blocks = customBlocksForPage();
+  const validIds = new Set(blocks.map((block) => ensureCustomBlockId(block)));
+
+  doc.querySelectorAll("[data-custom-block]").forEach((blockElement) => {
+    if (!validIds.has(blockElement.getAttribute("data-custom-block") || "")) {
+      blockElement.remove();
+    }
+  });
+
+  let section = doc.querySelector("[data-custom-blocks]");
+  if (!blocks.length) {
+    section?.remove();
+    return;
+  }
+
+  if (!section) {
+    section = doc.createElement("section");
+    section.className = "section custom-content-section";
+    section.setAttribute("data-custom-blocks", "");
+    main.append(section);
+  }
+
+  let grid = section.querySelector(".custom-content-grid");
+  if (!grid) {
+    grid = doc.createElement("div");
+    grid.className = "custom-content-grid";
+    section.append(grid);
+  }
+
+  blocks.forEach((block, index) => {
+    const id = ensureCustomBlockId(block);
+    let article = doc.querySelector(`[data-custom-block="${id}"]`);
+
+    if (!article) {
+      article = doc.createElement("article");
+      article.className = "custom-text-card reveal";
+      article.setAttribute("data-custom-block", id);
+      grid.append(article);
+    }
+
+    let title = article.querySelector("h2");
+    if (!title) {
+      title = doc.createElement("h2");
+      article.prepend(title);
+    }
+
+    let text = article.querySelector("p");
+    if (!text) {
+      text = doc.createElement("p");
+      article.append(text);
+    }
+
+    title.textContent = block.title || `Okvir ${index + 1}`;
+    text.textContent = block.text || "Vpiši dodatno besedilo za ta okvir.";
+    applyEntryStyleToTarget(title, block.titleStyle);
+    applyEntryStyleToTarget(text, block.textStyle);
+  });
+};
+
 const preparePreview = () => {
   const doc = elements.preview.contentDocument;
   if (!doc || !content) return;
 
+  injectCustomBlocksIntoPreview(doc);
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
   discoverEditableTexts(doc);
@@ -666,6 +903,21 @@ const preparePreview = () => {
     });
   });
 
+  if (pendingCustomBlockId) {
+    const block = doc.querySelector(`[data-custom-block="${CSS.escape(pendingCustomBlockId)}"]`);
+    const title = block?.querySelector("h2");
+
+    if (block) {
+      block.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+
+    if (title?.dataset.editorKey) {
+      focusEditable(title.dataset.editorKey);
+    }
+
+    pendingCustomBlockId = "";
+  }
+
   updateStyleControls();
   updateImageControls();
 };
@@ -677,6 +929,7 @@ const loadPreview = () => {
   renderFields();
   updateStyleControls();
   updateImageControls();
+  renderCustomBlockManager();
   renderVideoManager();
   elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
 };
@@ -699,10 +952,17 @@ const loadContent = async () => {
   if (!loadedContent) throw new Error("Ne morem naložiti vsebine strani.");
   content = loadedContent;
   content.common = content.common || [];
+  content.customBlocks =
+    content.customBlocks && typeof content.customBlocks === "object" && !Array.isArray(content.customBlocks)
+      ? content.customBlocks
+      : {};
   content.images = content.images && typeof content.images === "object" ? content.images : {};
   content.videos = Array.isArray(content.videos) ? content.videos : [];
   pageMap.forEach((page) => {
     content[page.key] = content[page.key] || [];
+    content.customBlocks[page.key] = Array.isArray(content.customBlocks[page.key])
+      ? content.customBlocks[page.key]
+      : [];
     content.images[page.key] = Array.isArray(content.images[page.key])
       ? content.images[page.key]
       : [];
@@ -827,6 +1087,8 @@ const init = async () => {
   elements.logout.addEventListener("click", logout);
   elements.saveGithub.addEventListener("click", saveToGithub);
   elements.videoAdd.addEventListener("click", addVideo);
+  elements.customAdd.addEventListener("click", addCustomBlock);
+  elements.styleColor.addEventListener("input", () => setEntryStyleValue("color", elements.styleColor.value));
   elements.imageSrc.addEventListener("input", () => setImageEntryValue("src", elements.imageSrc.value));
   elements.imageAlt.addEventListener("input", () => setImageEntryValue("alt", elements.imageAlt.value));
   elements.imageReset.addEventListener("click", () => {
@@ -851,7 +1113,7 @@ const init = async () => {
   elements.styleReset.addEventListener("click", () => {
     const entry = activeEntry();
     if (!entry) return;
-    delete entry.style;
+    clearEntryStyle(entry);
     applyEntryStyleToTarget(activeEditable(), {});
     markDirty();
     updateStyleControls();

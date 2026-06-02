@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tu-Val CleanSpace urejevalnik</title>
-    <link rel="stylesheet" href="editor.css?v=3">
+    <link rel="stylesheet" href="editor.css?v=5">
   </head>
   <body>
     <header class="editor-header">
@@ -34,12 +34,36 @@
           Stran
           <select data-page-select></select>
         </label>
+        <div class="custom-panel" data-custom-panel>
+          <div class="style-panel-head">
+            <strong>Dodaj besedilni okvir</strong>
+            <span>Okvir se doda na trenutno izbrano stran in ga lahko urediš v predogledu.</span>
+          </div>
+          <label>
+            Barva črk
+            <input data-custom-color type="color" value="#01457e">
+          </label>
+          <label>
+            Naslov okvirja
+            <input data-custom-title type="text" placeholder="Npr. Dodatne prednosti">
+          </label>
+          <label>
+            Besedilo okvirja
+            <textarea data-custom-text rows="3" placeholder="Vpiši besedilo, ki ga želiš dodati na stran."></textarea>
+          </label>
+          <button class="primary" type="button" data-custom-add>Dodaj okvir</button>
+          <div class="custom-admin-list" data-custom-list></div>
+        </div>
         <div class="style-panel" data-style-panel>
           <div class="style-panel-head">
             <strong>Oblika izbranega besedila</strong>
             <span data-active-style-label>Najprej klikni besedilo v predogledu.</span>
           </div>
           <div class="style-grid">
+            <label>
+              Barva črk
+              <input data-style-color type="color" value="#01457e">
+            </label>
             <label>
               Velikost
               <input data-style-font-size type="number" min="10" max="120" step="1" placeholder="px">
@@ -118,6 +142,6 @@
       </section>
     </main>
 
-    <script src="editor.js?v=5"></script>
+    <script src="editor.js?v=8"></script>
   </body>
 </html>

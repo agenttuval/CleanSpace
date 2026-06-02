@@ -20,8 +20,10 @@ const loadContentTexts = () => {
 
 const mergeTextEntries = (fallbackEntries = [], contentEntries = []) => {
   const merged = new Map();
+  const fallbackList = Array.isArray(fallbackEntries) ? fallbackEntries : [];
+  const contentList = Array.isArray(contentEntries) ? contentEntries : [];
 
-  [...fallbackEntries, ...contentEntries].forEach((entry) => {
+  [...fallbackList, ...contentList].forEach((entry) => {
     if (!entry?.selector) return;
     const key = `${entry.selector}|${entry.attribute || ""}|${entry.all || ""}`;
     merged.set(key, entry);
@@ -34,10 +36,7 @@ const mergeTextGroups = (fallbackTexts = {}, contentTexts = {}) => {
   const pageNames = new Set([...Object.keys(fallbackTexts), ...Object.keys(contentTexts)]);
 
   return [...pageNames].reduce((groups, pageName) => {
-    groups[pageName] = mergeTextEntries(
-      Array.isArray(fallbackTexts[pageName]) ? fallbackTexts[pageName] : [],
-      Array.isArray(contentTexts[pageName]) ? contentTexts[pageName] : []
-    );
+    groups[pageName] = mergeTextEntries(fallbackTexts[pageName], contentTexts[pageName]);
     return groups;
   }, {});
 };
@@ -55,8 +54,18 @@ const contentPageNames = {
   "cleanspace-halo.html": "cleanspace_halo",
 };
 
+const siteContent = loadContentTexts() || {};
+
+const currentPageName = () => window.location.pathname.split("/").pop() || "index.html";
+
+const currentContentKey = () => contentPageNames[currentPageName()] || currentPageName();
+
 const applyEditableStyle = (element, style = {}) => {
   if (!element || !style) return;
+
+  if (style.color) {
+    element.style.color = style.color;
+  }
 
   if (style.fontSize) {
     element.style.fontSize = `${style.fontSize}px`;
@@ -73,11 +82,52 @@ const applyEditableStyle = (element, style = {}) => {
   }
 };
 
-const applyEditableTexts = () => {
-  const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, loadContentTexts() || {});
+const customBlocksForCurrentPage = (content = {}) => {
+  const groups = content.customBlocks || {};
+  if (!groups || typeof groups !== "object" || Array.isArray(groups)) return [];
+
+  const groupFor = (key) => (Array.isArray(groups[key]) ? groups[key] : []);
+  return [...groupFor(currentPageName()), ...groupFor(currentContentKey())];
+};
+
+const renderCustomBlocks = (content = {}) => {
+  const blocks = customBlocksForCurrentPage(content);
+  const main = document.querySelector("main");
+  if (!main || !blocks.length) return;
+
+  const section = document.createElement("section");
+  section.setAttribute("class", "section custom-content-section");
+  section.setAttribute("data-custom-blocks", "");
+
+  const grid = document.createElement("div");
+  grid.setAttribute("class", "custom-content-grid");
+
+  blocks.forEach((block, index) => {
+    const article = document.createElement("article");
+    article.setAttribute("class", "custom-text-card reveal");
+    article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
+
+    const title = document.createElement("h2");
+    title.textContent = block.title || "Dodaten opis";
+    applyEditableStyle(title, block.titleStyle);
+
+    const text = document.createElement("p");
+    text.textContent = block.text || "Dodajte besedilo za ta okvir.";
+    applyEditableStyle(text, block.textStyle);
+
+    article.append(title, text);
+    grid.append(article);
+  });
+
+  section.append(grid);
+  main.append(section);
+};
+
+const applyEditableTexts = (content = {}) => {
+  const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, content);
   if (!Object.keys(textGroups).length) return;
 
-  const pageName = window.location.pathname.split("/").pop() || "index.html";
+  const pageName = currentPageName();
   const pageEntries = mergeTextEntries(
     textGroups[pageName] || [],
     textGroups[contentPageNames[pageName]] || []
@@ -105,12 +155,11 @@ const applyEditableTexts = () => {
   });
 };
 
-const applyEditableImages = () => {
-  const content = loadContentTexts() || {};
+const applyEditableImages = (content = {}) => {
   const imageGroups = content.images || {};
   if (!imageGroups || typeof imageGroups !== "object") return;
 
-  const pageName = window.location.pathname.split("/").pop() || "index.html";
+  const pageName = currentPageName();
   const imageGroup = (key) => (Array.isArray(imageGroups[key]) ? imageGroups[key] : []);
   const entries = [
     ...imageGroup("common"),
@@ -134,8 +183,9 @@ const applyEditableImages = () => {
   });
 };
 
-applyEditableTexts();
-applyEditableImages();
+renderCustomBlocks(siteContent);
+applyEditableTexts(siteContent);
+applyEditableImages(siteContent);
 
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
@@ -639,7 +689,7 @@ const videoEmbed = (rawUrl = "") => {
 const renderVideoPage = () => {
   if (!videoPage) return;
 
-  const content = loadContentTexts() || {};
+  const content = siteContent || {};
   const videos = Array.isArray(content.videos) ? content.videos : [];
   const params = new URLSearchParams(window.location.search);
   const selectedMask = params.get("mask") || "";
@@ -769,7 +819,7 @@ if (contactForm) {
   }
 }
 
-contactForm?.addEventListener("submit", async (event) => {
+contactForm?.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const formData = new FormData(contactForm);
@@ -786,68 +836,32 @@ contactForm?.addEventListener("submit", async (event) => {
     .filter((file) => file instanceof File && file.name)
     .map((file) => file.name);
 
-  if (isTestRequest) {
-    const bodyLines = [
-      `Ime: ${name}`,
-      `E-pošta: ${email}`,
-      phone ? `Telefon: ${phone}` : null,
-      `Podjetje: ${company || "-"}`,
-      `Zanimanje: ${interest}`,
-      preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-      attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
-      "",
-      message,
-    ].filter((line) => line !== null);
+  const bodyLines = [
+    `Ime: ${name}`,
+    `E-pošta: ${email}`,
+    phone ? `Telefon: ${phone}` : null,
+    `Podjetje: ${company || "-"}`,
+    `Zanimanje: ${interest}`,
+    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+    attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
+    "",
+    message,
+  ].filter((line) => line !== null);
 
-    const body = bodyLines.join("\n");
+  const body = bodyLines.join("\n");
 
-    const mailto = new URL("mailto:sales@tu-val.si");
-    mailto.searchParams.set("subject", `Naročilo maske na test - ${interest}`);
-    mailto.searchParams.set("body", body);
+  const mailto = new URL("mailto:sales@tu-val.si");
+  mailto.searchParams.set(
+    "subject",
+    `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`
+  );
+  mailto.searchParams.set("body", body);
 
-    window.location.href = mailto.toString();
+  window.location.href = mailto.toString();
 
-    if (formNote) {
-      formNote.textContent = attachmentNames.length
-        ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
-        : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
-    }
-
-    return;
-  }
-
-  const submitButton = contactForm.querySelector("[type='submit']");
-  const originalButtonText = submitButton?.textContent || "Pošlji povpraševanje";
-
-  if (submitButton) {
-    submitButton.disabled = true;
-    submitButton.textContent = "Slanje...";
-  }
-
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, subject: interest, message }),
-    });
-
-    if (response.ok) {
-      contactForm.reset();
-      if (submitButton) {
-        submitButton.textContent = "Hvala! Vaše povpraševanje je bilo poslano.";
-      }
-    } else {
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-      alert("Napaka pri pošiljanju. Prosim poskusite ponovno.");
-    }
-  } catch {
-    if (submitButton) {
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText;
-    }
-    alert("Napaka pri pošiljanju. Prosim poskusite ponovno.");
+  if (formNote) {
+    formNote.textContent = attachmentNames.length
+      ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
+      : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
   }
 });

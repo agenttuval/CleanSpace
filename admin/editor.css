@@ -90,6 +90,13 @@ textarea {
   resize: vertical;
 }
 
+input[type="color"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 5px;
+  cursor: pointer;
+}
+
 button {
   min-height: 42px;
   padding: 0 14px;
@@ -148,7 +155,7 @@ body.is-authenticated .repo-panel label {
 
 .editor-sidebar {
   display: grid;
-  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  align-content: start;
   gap: 14px;
   min-height: 0;
   overflow-x: hidden;
@@ -179,7 +186,8 @@ body.is-authenticated .repo-panel label {
 }
 
 .style-panel,
-.image-panel {
+.image-panel,
+.custom-panel {
   display: grid;
   gap: 12px;
   padding: 12px;
@@ -225,6 +233,8 @@ body.is-authenticated .repo-panel label {
 
 .style-panel input,
 .style-panel select,
+.custom-panel input,
+.custom-panel textarea,
 .image-panel input,
 .image-panel textarea,
 .video-manager input,
@@ -235,7 +245,8 @@ body.is-authenticated .repo-panel label {
 }
 
 .style-panel button,
-.image-panel button {
+.image-panel button,
+.custom-panel button {
   min-height: 38px;
   width: 100%;
 }
@@ -251,6 +262,51 @@ button.light {
   max-height: 190px;
   gap: 8px;
   overflow: auto;
+}
+
+.custom-admin-list {
+  display: grid;
+  gap: 8px;
+}
+
+.custom-admin-empty {
+  margin: 0;
+  color: #426f96;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.custom-admin-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.12);
+  border-radius: 8px;
+}
+
+.custom-admin-item strong,
+.custom-admin-item span {
+  display: block;
+}
+
+.custom-admin-item strong {
+  color: var(--brand-dark);
+  font-size: 0.82rem;
+}
+
+.custom-admin-item span {
+  color: #426f96;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.custom-admin-item button {
+  min-height: 34px;
+  width: auto;
+  padding-inline: 10px;
 }
 
 .video-admin-item {
