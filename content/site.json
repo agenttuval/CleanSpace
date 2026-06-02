@@ -730,12 +730,6 @@
         "alt": ""
       },
       {
-        "label": "Slika - CleanSpace WORK respirator",
-        "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
-        "alt": "CleanSpace WORK respirator"
-      },
-      {
         "label": "Slika - CleanSpace CST PRO respirator",
         "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(2) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg",
@@ -764,6 +758,12 @@
         "selector": "main > section.section.difference-band:nth-of-type(4) > div.difference-visual:nth-of-type(1) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-ULTRA-Lifestyle-Image1-Thumbnail.jpg",
         "alt": "CleanSpace respirator pri delu na terenu"
+      },
+      {
+        "label": "Slika - CleanSpace WORK respirator",
+        "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+        "alt": "CleanSpace WORK respirator"
       }
     ],
     "maske": [
