@@ -542,6 +542,169 @@
       "label": "WORK - opis respiratorja",
       "selector": ".family-story p",
       "text": "WORK je najbolj neposredna izbira za prašna industrijska okolja. Sistem sedi za vratom, zato uporabnik nima pasu, cevi ali težke enote na hrbtu."
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace WORK",
+      "style": {
+        "fontSize": 80
+      }
+    },
+    {
+      "label": "Besedilo - Maska za del obraza: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
+      "text": "Maska za del obraza: da"
+    },
+    {
+      "label": "Besedilo - Celoobrazna maska: ne",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
+      "text": "Celoobrazna maska: ne"
+    },
+    {
+      "label": "Besedilo - do 8 h",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
+      "text": "do 8 h"
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - Slike",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "Slike"
+    },
+    {
+      "label": "Besedilo - Opis respiratorja",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
+      "text": "Opis respiratorja"
+    },
+    {
+      "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "AirSensit tehnologija prilagaja pretok zraka dihanju uporabnika."
+    },
+    {
+      "label": "Besedilo - TM3 delčna filtracija za prah in delce.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "TM3 delčna filtracija za prah in delce."
+    },
+    {
+      "label": "Besedilo - Usmerjen v uporabo s polmasko in hitro me...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Usmerjen v uporabo s polmasko in hitro menjavo filtra."
+    },
+    {
+      "label": "Besedilo - Obrazni deli",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
+      "text": "Obrazni deli"
+    },
+    {
+      "label": "Besedilo - KITCS3000WORK-S / M / L - komplet WORK s ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(1)",
+      "text": "KITCS3000WORK-S / M / L - komplet WORK s polmasko in naglavnim trakom."
+    },
+    {
+      "label": "Besedilo - CS3003WORK / CS3004WORK / CS3005WORK - po...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(2)",
+      "text": "CS3003WORK / CS3004WORK / CS3005WORK - polmaska s tekstilnim naglavnim trakom S / M / L."
+    },
+    {
+      "label": "Besedilo - Filtri",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
+      "text": "Filtri"
+    },
+    {
+      "label": "Besedilo - CS3002WORK - CleanSpace WORK Particulate ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card",
+      "text": "CS3002WORK - CleanSpace WORK Particulate Standard TM3 filter, pakiranje 3 kosi."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
+      "text": "Pripomočki"
+    },
+    {
+      "label": "Besedilo - PAF-1043 - komplet za kvantitativno preve...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "PAF-1043 - komplet za kvantitativno preverjanje prileganja polmaske."
+    },
+    {
+      "label": "Besedilo - PAF-1101 - univerzalni polnilnik za Clean...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "PAF-1101 - univerzalni polnilnik za CleanSpace WORK pogonsko enoto."
+    },
+    {
+      "label": "Besedilo - Video in svetovanje",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "Video in svetovanje"
+    },
+    {
+      "label": "Besedilo - WORK je za ekipe, ki potrebujejo hitro za...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
+      "text": "WORK je za ekipe, ki potrebujejo hitro zaščito pri prašnih opravilih"
+    },
+    {
+      "label": "Besedilo - Kje se najbolje izkaže",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
+      "text": "Kje se najbolje izkaže"
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK je namenjen predvsem delo...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+      "text": "CleanSpace WORK je namenjen predvsem delovnim mestom z delci in prahom. Zaradi kompaktne pogonske enote za vratom je uporaben pri brušenju, rezanju, pripravi materiala, varjenju in čiščenju, kjer uporabnik potrebuje več svobode gibanja kot pri klasičnih sistemih s pasom in cevjo."
+    },
+    {
+      "label": "Besedilo - Kupec pri izbiri najprej preveri velikost...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+      "text": "Kupec pri izbiri najprej preveri velikost polmaske, tip delcev v okolju in koliko časa bo respirator v uporabi v eni izmeni. Tu-Val lahko pomaga pri izboru velikosti, filtra, polnilnika in dodatkov za preverjanje prileganja maske."
+    },
+    {
+      "label": "Besedilo - Najbolj smiselna izbira za prah, beton, l...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
+      "text": "Najbolj smiselna izbira za prah, beton, les, kovinsko obdelavo in vzdrževanje."
+    },
+    {
+      "label": "Besedilo - Uporablja se s polmasko, zato ostane obra...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
+      "text": "Uporablja se s polmasko, zato ostane obrazni del lahek in hitro pripravljen za delo."
+    },
+    {
+      "label": "Besedilo - Za pline, pare ali eksplozijsko ogrožena ...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
+      "text": "Za pline, pare ali eksplozijsko ogrožena območja je treba izbrati drug model in primeren filter."
+    },
+    {
+      "label": "Besedilo - Interna video stran Videi za WORK Odpre p...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
+      "text": "Interna video stran Videi za WORK Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model WORK."
+    },
+    {
+      "label": "Besedilo - Videi za WORK",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > h3",
+      "text": "Videi za WORK"
+    },
+    {
+      "label": "Besedilo - Odpre prazno interno video stran, kjer se...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
+      "text": "Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model WORK."
+    },
+    {
+      "label": "Besedilo - Preizkus pri kupcu Naroči masko na test P...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
+      "text": "Preizkus pri kupcu Naroči masko na test Pošlji povpraševanje Tu-Val ekipi in preveri, ali WORK ustreza tvojemu delovnemu okolju."
+    },
+    {
+      "label": "Besedilo - Naroči masko na test",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > h3",
+      "text": "Naroči masko na test"
+    },
+    {
+      "label": "Besedilo - Pošlji povpraševanje Tu-Val ekipi in prev...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
+      "text": "Pošlji povpraševanje Tu-Val ekipi in preveri, ali WORK ustreza tvojemu delovnemu okolju."
     }
   ],
   "cleanspace_cst_pro": [
@@ -822,7 +985,62 @@
     "videi": [],
     "test": [],
     "kontakt": [],
-    "cleanspace_work": [],
+    "cleanspace_work": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace WORK respirator",
+        "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+        "alt": "CleanSpace WORK respirator"
+      },
+      {
+        "label": "Slika - CleanSpace WORK pri varjenju",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/01/CleanSpace-WORK-welder_USA2-scaled.jpg",
+        "alt": "CleanSpace WORK pri varjenju"
+      },
+      {
+        "label": "Slika - CleanSpace WORK komplet in filter",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-Halo-WORK-Stack-03.png",
+        "alt": "CleanSpace WORK komplet in filter"
+      },
+      {
+        "label": "Slika - CleanSpace WORK stranski pogled",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+        "alt": "CleanSpace WORK stranski pogled"
+      },
+      {
+        "label": "Slika - CleanSpace WORK filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/07/CleanSpace-WORK-CS3002WORK-Particulate-Standard-TM3-P3-Filter-01.jpg",
+        "alt": "CleanSpace WORK filter"
+      },
+      {
+        "label": "Slika - Half Mask Fit Testing Kit",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-PAF-1043-Half-Mask-Quantitative-Fit-Testing-Kit-Image-1200x718.png",
+        "alt": "Half Mask Fit Testing Kit"
+      },
+      {
+        "label": "Slika - CleanSpace polnilnik",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
+        "alt": "CleanSpace polnilnik"
+      }
+    ],
     "cleanspace_cst_pro": [],
     "cleanspace_cst_ultra": [],
     "cleanspace_ex": [],
