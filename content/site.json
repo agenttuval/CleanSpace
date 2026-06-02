@@ -50,7 +50,10 @@
     {
       "label": "Domov - glavni naslov",
       "selector": ".hero-content h1",
-      "text": "CleanSpace respiratorji"
+      "text": "CleanSpace respiratorji",
+      "style": {
+        "fontSize": 80
+      }
     },
     {
       "label": "Domov - uvodni opis",
