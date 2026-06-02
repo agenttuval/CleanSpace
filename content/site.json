@@ -262,12 +262,12 @@
     {
       "label": "Maske - naslov",
       "selector": ".page-hero-copy h1",
-      "text": "Maske"
+      "text": "Modeli CleanSpace respiratorjev"
     },
     {
       "label": "Maske - uvodni opis",
       "selector": ".page-hero-copy .lead",
-      "text": "Izberite CleanSpace model in hitro primerjajte, za katero uporabo je posamezen respirator najbolj primeren."
+      "text": "Izberite model CleanSpace in hitro preverite, kateri respirator je najprimernejši za vaše delovno okolje, vrsto izpostavljenosti in način uporabe."
     },
     {
       "label": "Maske - pregled nadnaslov",
