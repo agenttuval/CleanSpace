@@ -766,7 +766,7 @@ if (contactForm) {
   }
 }
 
-contactForm?.addEventListener("submit", (event) => {
+contactForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(contactForm);
@@ -783,32 +783,68 @@ contactForm?.addEventListener("submit", (event) => {
     .filter((file) => file instanceof File && file.name)
     .map((file) => file.name);
 
-  const bodyLines = [
-    `Ime: ${name}`,
-    `E-pošta: ${email}`,
-    phone ? `Telefon: ${phone}` : null,
-    `Podjetje: ${company || "-"}`,
-    `Zanimanje: ${interest}`,
-    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-    attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
-    "",
-    message,
-  ].filter((line) => line !== null);
+  if (isTestRequest) {
+    const bodyLines = [
+      `Ime: ${name}`,
+      `E-pošta: ${email}`,
+      phone ? `Telefon: ${phone}` : null,
+      `Podjetje: ${company || "-"}`,
+      `Zanimanje: ${interest}`,
+      preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+      attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
+      "",
+      message,
+    ].filter((line) => line !== null);
 
-  const body = bodyLines.join("\n");
+    const body = bodyLines.join("\n");
 
-  const mailto = new URL("mailto:sales@tu-val.si");
-  mailto.searchParams.set(
-    "subject",
-    `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`
-  );
-  mailto.searchParams.set("body", body);
+    const mailto = new URL("mailto:sales@tu-val.si");
+    mailto.searchParams.set("subject", `Naročilo maske na test - ${interest}`);
+    mailto.searchParams.set("body", body);
 
-  window.location.href = mailto.toString();
+    window.location.href = mailto.toString();
 
-  if (formNote) {
-    formNote.textContent = attachmentNames.length
-      ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
-      : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
+    if (formNote) {
+      formNote.textContent = attachmentNames.length
+        ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
+        : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
+    }
+
+    return;
+  }
+
+  const submitButton = contactForm.querySelector("[type='submit']");
+  const originalButtonText = submitButton?.textContent || "Pošlji povpraševanje";
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Slanje...";
+  }
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, subject: interest, message }),
+    });
+
+    if (response.ok) {
+      contactForm.reset();
+      if (submitButton) {
+        submitButton.textContent = "Hvala! Vaše povpraševanje je bilo poslano.";
+      }
+    } else {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+      alert("Napaka pri pošiljanju. Prosim poskusite ponovno.");
+    }
+  } catch {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+    alert("Napaka pri pošiljanju. Prosim poskusite ponovno.");
   }
 });
