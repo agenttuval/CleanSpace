@@ -559,12 +559,12 @@
     {
       "label": "Besedilo - Celoobrazna maska: ne",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
-      "text": "Celoobrazna maska: ne"
+      "text": "Celoobrazna maska: da"
     },
     {
       "label": "Besedilo - do 8 h",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
-      "text": "do 8 h"
+      "text": "baterija do 8 h"
     },
     {
       "label": "Besedilo - Nazaj na maske",
