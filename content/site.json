@@ -110,7 +110,7 @@
     {
       "label": "Domov - kartica 01 opis",
       "selector": ".capability-grid article:nth-child(1) p",
-      "text": "Izbira respiratorja, maske in filtra glede na okolje, izpostavljenost in način dela."
+      "text": "Skupaj izberemo pravo CleanSpace zaščito dihal za vaše delovno okolje – od respiratorja in maske do ustreznega filtra za prah, dim, aerosole ali škodljive pline."
     },
     {
       "label": "Domov - kartica 02 naslov",
@@ -120,7 +120,7 @@
     {
       "label": "Domov - kartica 02 opis",
       "selector": ".capability-grid article:nth-child(2) p",
-      "text": "Rešitve za varjenje, prah, farmacijo, laboratorije, dezinficiranje in eksplozijsko ogrožena območja."
+      "text": "CleanSpace respiratorji za zahtevna okolja: varjenje, prah, farmacija, laboratoriji, dezinfekcija in ATEX območja."
     },
     {
       "label": "Domov - kartica 03 naslov",
@@ -130,7 +130,7 @@
     {
       "label": "Domov - kartica 03 opis",
       "selector": ".capability-grid article:nth-child(3) p",
-      "text": "Kontakt, dodatki, filtri, nadomestni deli in pomoč pri pravilni uporabi opreme."
+      "text": "Zagotovimo podporo pri uporabi opreme, izbiri dodatkov, filtrov, nadomestnih delov in pravilnem vzdrževanju CleanSpace respiratorjev."
     },
     {
       "label": "Domov - pregled nadnaslov",
