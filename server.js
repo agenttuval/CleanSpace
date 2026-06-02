@@ -244,38 +244,49 @@ const handleContentRead = async (res) => {
 };
 
 const handleContact = async (req, res) => {
-  const body = JSON.parse(await readBody(req));
-  const { name, email, subject, message } = body;
-
-  if (!name || !email || !subject || !message) {
-    send(res, 400, { ok: false, message: "Vsa polja so obvezna (name, email, subject, message)." });
-    return;
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    send(res, 400, { ok: false, message: "Neveljaven format e-poštnega naslova." });
-    return;
-  }
-
-  const host = process.env.EMAIL_HOST;
-  const port = Number(process.env.EMAIL_PORT) || 587;
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASSWORD;
-
-  if (!host || !user || !pass) {
-    send(res, 500, { ok: false, message: "E-poštna konfiguracija ni nastavljena." });
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass },
-  });
+  console.log("Contact form request received");
 
   try {
+    const body = JSON.parse(await readBody(req));
+    console.log("Parsed body:", { name: body.name, email: body.email, subject: body.subject });
+
+    const { name, email, subject, message } = body;
+
+    if (!name || !email || !subject || !message) {
+      console.log("Missing required fields");
+      send(res, 400, { ok: false, message: "Vsa polja so obvezna (name, email, subject, message)." });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log("Invalid email format:", email);
+      send(res, 400, { ok: false, message: "Neveljaven format e-poštnega naslova." });
+      return;
+    }
+
+    const host = process.env.EMAIL_HOST;
+    const emailPort = Number(process.env.EMAIL_PORT) || 587;
+    const user = process.env.EMAIL_USER;
+    const pass = process.env.EMAIL_PASSWORD;
+
+    console.log("Email config check:", { host: !!host, user: !!user, pass: !!pass, port: emailPort });
+
+    if (!host || !user || !pass) {
+      console.log("Missing email configuration");
+      send(res, 500, { ok: false, message: "E-poštna konfiguracija ni nastavljena." });
+      return;
+    }
+
+    console.log("Creating transporter...");
+    const transporter = nodemailer.createTransport({
+      host,
+      port: emailPort,
+      secure: emailPort === 465,
+      auth: { user, pass },
+    });
+
+    console.log("Sending email...");
     await transporter.sendMail({
       from: user,
       to: user,
@@ -284,9 +295,11 @@ const handleContact = async (req, res) => {
       text: `New inquiry received via the contact form.\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
     });
 
+    console.log("Email sent successfully");
     send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
   } catch (error) {
-    console.error("Email send error:", error.message);
+    console.error("Contact form error:", error);
+    console.error("Error stack:", error.stack);
     send(res, 500, { ok: false, message: "Napaka pri pošiljanju e-pošte. Prosim poskusite ponovno." });
   }
 };
