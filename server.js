@@ -192,76 +192,112 @@ const handleLogin = async (req, res) => {
 };
 
 const handleContentSave = async (req, res) => {
-  const session = requireAdmin(req, res);
-  if (!session) return;
+  console.log("[handleContentSave] PUT /api/content request received");
 
-  const body = JSON.parse(await readBody(req));
-  const content = normalizeContent(body.content);
+  try {
+    const session = requireAdmin(req, res);
+    if (!session) {
+      console.log("[handleContentSave] Authentication failed — no valid session");
+      return;
+    }
+    console.log(`[handleContentSave] Admin authenticated: ${session.username}`);
 
-  if (!content || typeof content !== "object") {
-    send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
-    return;
-  }
+    const body = JSON.parse(await readBody(req));
+    const content = normalizeContent(body.content);
+    console.log("[handleContentSave] Content received:", {
+      bodyKeys: body ? Object.keys(body) : null,
+      contentKeys: content ? Object.keys(content) : null,
+      contentValid: content !== null && typeof content === "object",
+    });
 
-  const githubToken = process.env.GITHUB_TOKEN;
+    if (!content || typeof content !== "object") {
+      console.log("[handleContentSave] Validation failed — content missing or invalid");
+      send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
+      return;
+    }
 
-  if (!githubToken) {
+    const githubToken = process.env.GITHUB_TOKEN;
+    console.log(`[handleContentSave] GITHUB_TOKEN present: ${Boolean(githubToken)}, repo: ${repo}, branch: ${branch}`);
+
+    if (!githubToken) {
+      console.log("[handleContentSave] Saving to local runtime (no GITHUB_TOKEN)");
+      await persistRuntimeContent(content);
+      console.log("[handleContentSave] Content saved successfully (local runtime only)");
+      send(res, 200, {
+        ok: true,
+        persistent: false,
+        message:
+          "Shranjeno na trenutno Railway instanco. Za trajno shranjevanje po ponovnem zagonu dodaj GITHUB_TOKEN.",
+      });
+      return;
+    }
+
+    const apiUrl = `https://api.github.com/repos/${repo}/contents/${contentPath}`;
+    console.log(`[handleContentSave] Attempting to read current file from GitHub: GET ${apiUrl}?ref=${branch}`);
+    const currentResponse = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: "application/vnd.github+json",
+        "User-Agent": "tuval-cleanspace-admin",
+      },
+    });
+    console.log(`[handleContentSave] GitHub GET response status: ${currentResponse.status}`);
+
+    if (!currentResponse.ok) {
+      const errorBody = await currentResponse.text();
+      console.log(`[handleContentSave] GitHub GET failed — status: ${currentResponse.status}, body: ${errorBody}`);
+      send(res, currentResponse.status, {
+        ok: false,
+        message: "GitHub datoteke ni bilo mogoče prebrati. Preveri GITHUB_TOKEN.",
+      });
+      return;
+    }
+
+    const currentFile = await currentResponse.json();
+    console.log(`[handleContentSave] GitHub file read OK — sha: ${currentFile.sha}`);
+
+    const updatedJson = `${JSON.stringify(content, null, 2)}\n`;
+    console.log(`[handleContentSave] Attempting to save to GitHub: PUT ${apiUrl} (branch: ${branch})`);
+    const updateResponse = await fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "User-Agent": "tuval-cleanspace-admin",
+      },
+      body: JSON.stringify({
+        message: `Update website text content (${session.username})`,
+        content: Buffer.from(updatedJson, "utf8").toString("base64"),
+        sha: currentFile.sha,
+        branch,
+      }),
+    });
+    console.log(`[handleContentSave] GitHub PUT response status: ${updateResponse.status}`);
+
+    if (!updateResponse.ok) {
+      const errorBody = await updateResponse.text();
+      console.log(`[handleContentSave] GitHub PUT failed — status: ${updateResponse.status}, body: ${errorBody}`);
+      send(res, updateResponse.status, {
+        ok: false,
+        message: "Shranjevanje na GitHub ni uspelo.",
+      });
+      return;
+    }
+
+    const updateResult = await updateResponse.json();
+    console.log(`[handleContentSave] GitHub PUT succeeded — commit sha: ${updateResult?.commit?.sha}`);
+
+    console.log("[handleContentSave] Saving to local runtime cache");
     await persistRuntimeContent(content);
-    send(res, 200, {
-      ok: true,
-      persistent: false,
-      message:
-        "Shranjeno na trenutno Railway instanco. Za trajno shranjevanje po ponovnem zagonu dodaj GITHUB_TOKEN.",
-    });
-    return;
+
+    console.log("[handleContentSave] Content saved successfully (GitHub + local runtime)");
+    send(res, 200, { ok: true, persistent: true, message: "Shranjeno na GitHub in osveženo na Railwayu." });
+  } catch (error) {
+    console.error("[handleContentSave] Unexpected error:", error.message);
+    console.error("[handleContentSave] Stack trace:", error.stack);
+    throw error;
   }
-
-  const apiUrl = `https://api.github.com/repos/${repo}/contents/${contentPath}`;
-  const currentResponse = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
-    headers: {
-      Authorization: `Bearer ${githubToken}`,
-      Accept: "application/vnd.github+json",
-      "User-Agent": "tuval-cleanspace-admin",
-    },
-  });
-
-  if (!currentResponse.ok) {
-    send(res, currentResponse.status, {
-      ok: false,
-      message: "GitHub datoteke ni bilo mogoče prebrati. Preveri GITHUB_TOKEN.",
-    });
-    return;
-  }
-
-  const currentFile = await currentResponse.json();
-  const updatedJson = `${JSON.stringify(content, null, 2)}\n`;
-  const updateResponse = await fetch(apiUrl, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${githubToken}`,
-      Accept: "application/vnd.github+json",
-      "Content-Type": "application/json",
-      "User-Agent": "tuval-cleanspace-admin",
-    },
-    body: JSON.stringify({
-      message: `Update website text content (${session.username})`,
-      content: Buffer.from(updatedJson, "utf8").toString("base64"),
-      sha: currentFile.sha,
-      branch,
-    }),
-  });
-
-  if (!updateResponse.ok) {
-    send(res, updateResponse.status, {
-      ok: false,
-      message: "Shranjevanje na GitHub ni uspelo.",
-    });
-    return;
-  }
-
-  await persistRuntimeContent(content);
-
-  send(res, 200, { ok: true, persistent: true, message: "Shranjeno na GitHub in osveženo na Railwayu." });
 };
 
 const handleContentRead = async (res) => {
