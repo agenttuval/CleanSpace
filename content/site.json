@@ -282,27 +282,27 @@
     {
       "label": "Maske - WORK opis",
       "selector": ".mask-choice-card:nth-child(1) .mask-summary",
-      "text": "Lahek respirator za prah, dim in delce v delavnicah, pri brušenju, rezanju in varjenju. Namenjen je uporabi s polmasko in hitri menjavi filtra."
+      "text": "Najlažji industrijski respirator z aktivnim dovajanjem zraka za visoko prašna okolja, lesarstvo, beton in varjenje."
     },
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Univerzalen industrijski model za daljše izmene, delčne ali kombinirane filtre ter uporabo s polmasko ali celoobrazno masko."
+      "text": "Vzdržljiv in povezan sistem za zahtevna opravila, z Bluetooth povezavo v CleanSpace aplikacijo."
     },
     {
       "label": "Maske - CST ULTRA opis",
       "selector": ".mask-choice-card:nth-child(3) .mask-summary",
-      "text": "Robustnejša izvedba za zahtevnejša okolja, kjer sta pomembna čiščenje opreme in zanesljivo delovanje z različnimi CST filtri."
+      "text": "Napreden respirator z aktivnim dovajanjem zraka za okolja, kjer so pomembni IP65 zaščita, podatki o uporabi in nadzor skladnosti."
     },
     {
       "label": "Maske - EX opis",
       "selector": ".mask-choice-card:nth-child(4) .mask-summary",
-      "text": "Model za eksplozijsko nevarna območja in industrijske postopke, kjer so potrebni posebni EX filtri, dodatki in višja stopnja varnosti."
+      "text": "Intrinzično varen respirator z aktivnim dovajanjem zraka za eksplozijsko ogrožena okolja, kemijo, petrokemijo ter nafto in plin."
     },
     {
       "label": "Maske - HALO opis",
       "selector": ".mask-choice-card:nth-child(5) .mask-summary",
-      "text": "Respirator za zdravstvo, laboratorije in farmacijo, z možnostjo polmaske ali celoobrazne maske ter HEPA/Bio filtracijo."
+      "text": "Za zdravstvena, farmacevtska in laboratorijska okolja, kjer sta udobje in dekontaminacija ključna."
     },
     {
       "label": "Besedilo - Prah in delavnica",
@@ -798,12 +798,6 @@
         "alt": "CleanSpace CST PRO"
       },
       {
-        "label": "Slika - CleanSpace CST ULTRA",
-        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
-        "alt": "CleanSpace CST ULTRA"
-      },
-      {
         "label": "Slika - CleanSpace EX",
         "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-EX-USA-01.jpg",
@@ -814,6 +808,12 @@
         "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
         "alt": "CleanSpace HALO"
+      },
+      {
+        "label": "Slika - CleanSpace CST ULTRA",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
+        "alt": "CleanSpace CST ULTRA"
       }
     ],
     "videi": [],
