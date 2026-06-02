@@ -2,6 +2,7 @@ const crypto = require("node:crypto");
 const fs = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
+const nodemailer = require("nodemailer");
 
 const root = __dirname;
 const port = Number(process.env.PORT || 4173);
@@ -242,6 +243,49 @@ const handleContentRead = async (res) => {
   });
 };
 
+const handleContact = async (req, res) => {
+  const body = JSON.parse(await readBody(req));
+  const { name, email, subject, message } = body;
+
+  if (!name || !email || !subject || !message) {
+    send(res, 400, { ok: false, message: "Vsa polja so obvezna (name, email, subject, message)." });
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    send(res, 400, { ok: false, message: "Neveljaven format e-poštnega naslova." });
+    return;
+  }
+
+  const host = process.env.EMAIL_HOST;
+  const port = Number(process.env.EMAIL_PORT) || 587;
+  const user = process.env.EMAIL_USER;
+  const pass = process.env.EMAIL_PASSWORD;
+
+  if (!host || !user || !pass) {
+    send(res, 500, { ok: false, message: "E-poštna konfiguracija ni nastavljena." });
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    auth: { user, pass },
+  });
+
+  await transporter.sendMail({
+    from: user,
+    to: user,
+    replyTo: email,
+    subject: `New Inquiry: ${subject}`,
+    text: `New inquiry received via the contact form.\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
+  });
+
+  send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
+};
+
 const serveStatic = async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const cleanPath = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
@@ -300,6 +344,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === "PUT" && url.pathname === "/api/content") {
       await handleContentSave(req, res);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/contact") {
+      await handleContact(req, res);
       return;
     }
 
