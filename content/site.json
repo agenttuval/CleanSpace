@@ -303,6 +303,81 @@
       "label": "Maske - HALO opis",
       "selector": ".mask-choice-card:nth-child(5) .mask-summary",
       "text": "Respirator za zdravstvo, laboratorije in farmacijo, z možnostjo polmaske ali celoobrazne maske ter HEPA/Bio filtracijo."
+    },
+    {
+      "label": "Besedilo - Prah in delavnica",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > p.tag:nth-of-type(1)",
+      "text": "Prah in delavnica"
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > h3",
+      "text": "CleanSpace WORK"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > div.choice-actions > a.dark",
+      "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - Industrija",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(2) > div > p.tag:nth-of-type(1)",
+      "text": "Industrija"
+    },
+    {
+      "label": "Besedilo - CleanSpace CST PRO",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(2) > div > h3",
+      "text": "CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(2) > div > div.choice-actions > a.dark",
+      "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - Dekontaminacija",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > div > p.tag:nth-of-type(1)",
+      "text": "ZAHTEVNA OKOLJA IN NADZOR"
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > div > h3",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > div > div.choice-actions > a.dark",
+      "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - Nevarna območja",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > p.tag:nth-of-type(1)",
+      "text": "Nevarna območja"
+    },
+    {
+      "label": "Besedilo - CleanSpace EX",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > h3",
+      "text": "CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > div.choice-actions > a.dark",
+      "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - Zdravstvo",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > div > p.tag:nth-of-type(1)",
+      "text": "Zdravstvo"
+    },
+    {
+      "label": "Besedilo - CleanSpace HALO",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > div > h3",
+      "text": "CleanSpace HALO"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > div > div.choice-actions > a.dark",
+      "text": "Kontakt"
     }
   ],
   "kontakt": [
@@ -691,7 +766,56 @@
         "alt": "CleanSpace respirator pri delu na terenu"
       }
     ],
-    "maske": [],
+    "maske": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace CST PRO respirator",
+        "selector": "main > section.page-hero.mask-picker-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg",
+        "alt": "CleanSpace CST PRO respirator"
+      },
+      {
+        "label": "Slika - CleanSpace WORK",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+        "alt": "CleanSpace WORK"
+      },
+      {
+        "label": "Slika - CleanSpace CST PRO",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg",
+        "alt": "CleanSpace CST PRO"
+      },
+      {
+        "label": "Slika - CleanSpace CST ULTRA",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
+        "alt": "CleanSpace CST ULTRA"
+      },
+      {
+        "label": "Slika - CleanSpace EX",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-EX-USA-01.jpg",
+        "alt": "CleanSpace EX"
+      },
+      {
+        "label": "Slika - CleanSpace HALO",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
+        "alt": "CleanSpace HALO"
+      }
+    ],
     "videi": [],
     "test": [],
     "kontakt": [],
