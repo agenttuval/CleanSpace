@@ -275,15 +275,20 @@ const handleContact = async (req, res) => {
     auth: { user, pass },
   });
 
-  await transporter.sendMail({
-    from: user,
-    to: user,
-    replyTo: email,
-    subject: `New Inquiry: ${subject}`,
-    text: `New inquiry received via the contact form.\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
-  });
+  try {
+    await transporter.sendMail({
+      from: user,
+      to: user,
+      replyTo: email,
+      subject: `New Inquiry: ${subject}`,
+      text: `New inquiry received via the contact form.\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
+    });
 
-  send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
+    send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
+  } catch (error) {
+    console.error("Email send error:", error.message);
+    send(res, 500, { ok: false, message: "Napaka pri pošiljanju e-pošte. Prosim poskusite ponovno." });
+  }
 };
 
 const serveStatic = async (req, res) => {
