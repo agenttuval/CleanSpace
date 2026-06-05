@@ -2,6 +2,7 @@ const crypto = require("node:crypto");
 const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const http = require("node:http");
+const net = require("node:net");
 const path = require("node:path");
 const tls = require("node:tls");
 
@@ -859,7 +860,7 @@ const handleVascoOrdersJsonExcel = async (req, res) => {
 
 const smtpConfig = () => ({
   host: process.env.EMAIL_HOST || "smtp.siol.net",
-  port: Number(process.env.EMAIL_PORT || 465),
+  port: Number(process.env.EMAIL_PORT || 587),
   user: process.env.EMAIL_USER || "sale@tu-val.si",
   pass: process.env.EMAIL_PASS || "",
   to: process.env.EMAIL_TO || "sales@tu-val.si",
@@ -918,11 +919,25 @@ const sendSmtpEmail = ({ from, to, subject, text }) =>
     const effectiveFrom = from || cfg.user;
     const effectiveTo = to || cfg.to;
 
-    const socket = tls.connect(
-      { host: cfg.host, port: cfg.port, servername: cfg.host },
-      async () => {
+    const plainSocket = net.connect({ host: cfg.host, port: cfg.port }, async () => {
+      try {
+        await waitForGreeting(plainSocket);
+        await smtpCommand(plainSocket, `EHLO ${cfg.host}`);
+        await smtpCommand(plainSocket, "STARTTLS");
+
+        // Upgrade the plain connection to TLS
+        const socket = tls.connect({
+          host: cfg.host,
+          servername: cfg.host,
+          socket: plainSocket,
+        });
+
+        await new Promise((res, rej) => {
+          socket.once("secureConnect", res);
+          socket.once("error", rej);
+        });
+
         try {
-          await waitForGreeting(socket);
           await smtpCommand(socket, `EHLO ${cfg.host}`);
           await smtpCommand(socket, "AUTH LOGIN");
           await smtpCommand(socket, base64(cfg.user));
@@ -941,10 +956,13 @@ const sendSmtpEmail = ({ from, to, subject, text }) =>
           socket.destroy();
           reject(error);
         }
+      } catch (error) {
+        plainSocket.destroy();
+        reject(error);
       }
-    );
+    });
 
-    socket.on("error", (error) => reject(error));
+    plainSocket.on("error", (error) => reject(error));
   });
 
 const handleContactForm = async (req, res) => {
