@@ -3,7 +3,7 @@ const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 
 const root = __dirname;
 
@@ -857,7 +857,16 @@ const handleVascoOrdersJsonExcel = async (req, res) => {
   });
 };
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const createSmtpTransport = () =>
+  nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT || 465),
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
 
 const handleContactForm = async (req, res) => {
   const body = await parseJsonBody(req);
@@ -876,8 +885,8 @@ const handleContactForm = async (req, res) => {
     return;
   }
 
-  if (!process.env.RESEND_API_KEY) {
-    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjka RESEND_API_KEY)." });
+  if (!process.env.EMAIL_HOST || !process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjkajo EMAIL_HOST, EMAIL_USER ali EMAIL_PASSWORD)." });
     return;
   }
 
@@ -896,18 +905,19 @@ const handleContactForm = async (req, res) => {
   const text = bodyLines.join("\n");
 
   try {
-    await resend.emails.send({
-      from: "CleanSpace <onboarding@resend.dev>",
+    const transporter = createSmtpTransport();
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
       to: "sales@tu-val.si",
       replyTo: email,
       subject,
       text,
     });
 
-    console.log(`[handleContactForm] Email sent: ${subject} (from ${email})`);
+    console.log(`[handleContactForm] Email sent via SiOL SMTP: ${subject} (from ${email})`);
     send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
   } catch (error) {
-    console.error(`[handleContactForm] Resend error: ${error.message}`);
+    console.error(`[handleContactForm] SMTP error: ${error.message}`);
     send(res, 500, { ok: false, message: "Pošiljanje sporočila ni uspelo. Prosimo, poskusite znova." });
   }
 };
