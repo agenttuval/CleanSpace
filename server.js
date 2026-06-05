@@ -2,10 +2,15 @@ const crypto = require("node:crypto");
 const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const http = require("node:http");
+const net = require("node:net");
 const path = require("node:path");
-const nodemailer = require("nodemailer");
+const tls = require("node:tls");
 
 const root = __dirname;
+const localVascoRoot = path.join(root, "vasco");
+const siblingVascoRoot = path.join(path.dirname(root), "vasco");
+
+const vascoAppRoot = () => (fsSync.existsSync(localVascoRoot) ? localVascoRoot : siblingVascoRoot);
 
 const loadDotEnvFile = (envPath) => {
   if (!fsSync.existsSync(envPath)) return;
@@ -27,6 +32,7 @@ const loadDotEnvFile = (envPath) => {
 const loadDotEnv = () => {
   loadDotEnvFile(path.join(root, ".env"));
   loadDotEnvFile(path.join(root, "vasco", ".env"));
+  loadDotEnvFile(path.join(path.dirname(root), "vasco", ".env"));
 };
 
 loadDotEnv();
@@ -193,112 +199,76 @@ const handleLogin = async (req, res) => {
 };
 
 const handleContentSave = async (req, res) => {
-  console.log("[handleContentSave] PUT /api/content request received");
+  const session = requireAdmin(req, res);
+  if (!session) return;
 
-  try {
-    const session = requireAdmin(req, res);
-    if (!session) {
-      console.log("[handleContentSave] Authentication failed — no valid session");
-      return;
-    }
-    console.log(`[handleContentSave] Admin authenticated: ${session.username}`);
+  const body = JSON.parse(await readBody(req));
+  const content = normalizeContent(body.content);
 
-    const body = JSON.parse(await readBody(req));
-    const content = normalizeContent(body.content);
-    console.log("[handleContentSave] Content received:", {
-      bodyKeys: body ? Object.keys(body) : null,
-      contentKeys: content ? Object.keys(content) : null,
-      contentValid: content !== null && typeof content === "object",
-    });
-
-    if (!content || typeof content !== "object") {
-      console.log("[handleContentSave] Validation failed — content missing or invalid");
-      send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
-      return;
-    }
-
-    const githubToken = process.env.GITHUB_TOKEN;
-    console.log(`[handleContentSave] GITHUB_TOKEN present: ${Boolean(githubToken)}, repo: ${repo}, branch: ${branch}`);
-
-    if (!githubToken) {
-      console.log("[handleContentSave] Saving to local runtime (no GITHUB_TOKEN)");
-      await persistRuntimeContent(content);
-      console.log("[handleContentSave] Content saved successfully (local runtime only)");
-      send(res, 200, {
-        ok: true,
-        persistent: false,
-        message:
-          "Shranjeno na trenutno Railway instanco. Za trajno shranjevanje po ponovnem zagonu dodaj GITHUB_TOKEN.",
-      });
-      return;
-    }
-
-    const apiUrl = `https://api.github.com/repos/${repo}/contents/${contentPath}`;
-    console.log(`[handleContentSave] Attempting to read current file from GitHub: GET ${apiUrl}?ref=${branch}`);
-    const currentResponse = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: "application/vnd.github+json",
-        "User-Agent": "tuval-cleanspace-admin",
-      },
-    });
-    console.log(`[handleContentSave] GitHub GET response status: ${currentResponse.status}`);
-
-    if (!currentResponse.ok) {
-      const errorBody = await currentResponse.text();
-      console.log(`[handleContentSave] GitHub GET failed — status: ${currentResponse.status}, body: ${errorBody}`);
-      send(res, currentResponse.status, {
-        ok: false,
-        message: "GitHub datoteke ni bilo mogoče prebrati. Preveri GITHUB_TOKEN.",
-      });
-      return;
-    }
-
-    const currentFile = await currentResponse.json();
-    console.log(`[handleContentSave] GitHub file read OK — sha: ${currentFile.sha}`);
-
-    const updatedJson = `${JSON.stringify(content, null, 2)}\n`;
-    console.log(`[handleContentSave] Attempting to save to GitHub: PUT ${apiUrl} (branch: ${branch})`);
-    const updateResponse = await fetch(apiUrl, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "User-Agent": "tuval-cleanspace-admin",
-      },
-      body: JSON.stringify({
-        message: `Update website text content (${session.username})`,
-        content: Buffer.from(updatedJson, "utf8").toString("base64"),
-        sha: currentFile.sha,
-        branch,
-      }),
-    });
-    console.log(`[handleContentSave] GitHub PUT response status: ${updateResponse.status}`);
-
-    if (!updateResponse.ok) {
-      const errorBody = await updateResponse.text();
-      console.log(`[handleContentSave] GitHub PUT failed — status: ${updateResponse.status}, body: ${errorBody}`);
-      send(res, updateResponse.status, {
-        ok: false,
-        message: "Shranjevanje na GitHub ni uspelo.",
-      });
-      return;
-    }
-
-    const updateResult = await updateResponse.json();
-    console.log(`[handleContentSave] GitHub PUT succeeded — commit sha: ${updateResult?.commit?.sha}`);
-
-    console.log("[handleContentSave] Saving to local runtime cache");
-    await persistRuntimeContent(content);
-
-    console.log("[handleContentSave] Content saved successfully (GitHub + local runtime)");
-    send(res, 200, { ok: true, persistent: true, message: "Shranjeno na GitHub in osveženo na Railwayu." });
-  } catch (error) {
-    console.error("[handleContentSave] Unexpected error:", error.message);
-    console.error("[handleContentSave] Stack trace:", error.stack);
-    throw error;
+  if (!content || typeof content !== "object") {
+    send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
+    return;
   }
+
+  const githubToken = process.env.GITHUB_TOKEN;
+
+  if (!githubToken) {
+    await persistRuntimeContent(content);
+    send(res, 200, {
+      ok: true,
+      persistent: false,
+      message:
+        "Shranjeno na trenutno Railway instanco. Za trajno shranjevanje po ponovnem zagonu dodaj GITHUB_TOKEN.",
+    });
+    return;
+  }
+
+  const apiUrl = `https://api.github.com/repos/${repo}/contents/${contentPath}`;
+  const currentResponse = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
+    headers: {
+      Authorization: `Bearer ${githubToken}`,
+      Accept: "application/vnd.github+json",
+      "User-Agent": "tuval-cleanspace-admin",
+    },
+  });
+
+  if (!currentResponse.ok) {
+    send(res, currentResponse.status, {
+      ok: false,
+      message: "GitHub datoteke ni bilo mogoče prebrati. Preveri GITHUB_TOKEN.",
+    });
+    return;
+  }
+
+  const currentFile = await currentResponse.json();
+  const updatedJson = `${JSON.stringify(content, null, 2)}\n`;
+  const updateResponse = await fetch(apiUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${githubToken}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
+      "User-Agent": "tuval-cleanspace-admin",
+    },
+    body: JSON.stringify({
+      message: `Update website text content (${session.username})`,
+      content: Buffer.from(updatedJson, "utf8").toString("base64"),
+      sha: currentFile.sha,
+      branch,
+    }),
+  });
+
+  if (!updateResponse.ok) {
+    send(res, updateResponse.status, {
+      ok: false,
+      message: "Shranjevanje na GitHub ni uspelo.",
+    });
+    return;
+  }
+
+  await persistRuntimeContent(content);
+
+  send(res, 200, { ok: true, persistent: true, message: "Shranjeno na GitHub in osveženo na Railwayu." });
 };
 
 const handleContentRead = async (res) => {
@@ -322,6 +292,288 @@ const parseJsonBody = async (req) => {
   }
 };
 
+const smtpEnvValue = (...keys) => {
+  for (const key of keys) {
+    const value = process.env[key];
+    if (value && value.trim()) return value.trim();
+  }
+
+  return "";
+};
+
+const smtpBoolean = (value, fallback) => {
+  if (value === undefined || value === "") return fallback;
+  return /^(1|true|yes|on)$/i.test(String(value));
+};
+
+const smtpConfig = () => {
+  const host = smtpEnvValue("SMTP_HOST", "EMAIL_HOST", "MAIL_HOST") || "smtp.gmail.com";
+  const port = Number(smtpEnvValue("SMTP_PORT", "EMAIL_PORT", "MAIL_PORT") || 465);
+  const user =
+    smtpEnvValue("SMTP_USER", "EMAIL_USER", "MAIL_USER", "GMAIL_USER", "GMAIL_EMAIL") ||
+    "agenttuval@gmail.com";
+  const pass = smtpEnvValue(
+    "SMTP_PASS",
+    "SMTP_PASSWORD",
+    "EMAIL_PASS",
+    "EMAIL_PASSWORD",
+    "MAIL_PASS",
+    "MAIL_PASSWORD",
+    "GMAIL_APP_PASSWORD",
+    "GMAIL_PASSWORD"
+  );
+  const secure = smtpBoolean(smtpEnvValue("SMTP_SECURE", "EMAIL_SECURE", "MAIL_SECURE"), port === 465);
+
+  return {
+    host,
+    port,
+    secure,
+    starttls: smtpBoolean(smtpEnvValue("SMTP_STARTTLS", "EMAIL_STARTTLS", "MAIL_STARTTLS"), !secure),
+    user,
+    pass,
+    from: smtpEnvValue("MAIL_FROM", "EMAIL_FROM", "SMTP_FROM") || "agenttuval@gmail.com",
+    to: smtpEnvValue("MAIL_TO", "EMAIL_TO", "SMTP_TO", "CONTACT_EMAIL_TO") || "agenttuval@gmail.com",
+  };
+};
+
+const sanitizeHeader = (value = "") => String(value).replace(/[\r\n]+/g, " ").trim();
+
+const extractEmailAddress = (value = "") => {
+  const text = sanitizeHeader(value);
+  const match = text.match(/<([^>]+)>/);
+  return (match ? match[1] : text).trim();
+};
+
+const formatAddress = (name, email) => {
+  const cleanEmail = extractEmailAddress(email);
+  const cleanName = sanitizeHeader(name);
+  if (!cleanName) return cleanEmail;
+  return `"${cleanName.replace(/"/g, "'")}" <${cleanEmail}>`;
+};
+
+const encodeMailHeader = (value = "") =>
+  /^[\x00-\x7F]*$/.test(value)
+    ? sanitizeHeader(value)
+    : `=?UTF-8?B?${Buffer.from(value, "utf8").toString("base64")}?=`;
+
+const readSmtpResponse = (socket) =>
+  new Promise((resolve, reject) => {
+    let response = "";
+    const timeout = setTimeout(() => {
+      cleanup();
+      reject(new Error("SMTP strežnik se ni odzval pravočasno."));
+    }, 20000);
+
+    const cleanup = () => {
+      clearTimeout(timeout);
+      socket.off("data", onData);
+      socket.off("error", onError);
+      socket.off("close", onClose);
+    };
+
+    const onError = (error) => {
+      cleanup();
+      reject(error);
+    };
+
+    const onClose = () => {
+      cleanup();
+      reject(new Error("SMTP povezava se je zaprla pred odgovorom."));
+    };
+
+    const onData = (chunk) => {
+      response += chunk.toString("utf8");
+      const lines = response.split(/\r?\n/).filter(Boolean);
+      const lastLine = lines[lines.length - 1] || "";
+
+      if (/^\d{3} /.test(lastLine)) {
+        cleanup();
+        resolve({
+          code: Number(lastLine.slice(0, 3)),
+          message: lines.join("\n"),
+        });
+      }
+    };
+
+    socket.on("data", onData);
+    socket.once("error", onError);
+    socket.once("close", onClose);
+  });
+
+const writeSmtp = (socket, value) =>
+  new Promise((resolve, reject) => {
+    socket.write(value, "utf8", (error) => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+
+const smtpCommand = async (socket, command, expectedCodes) => {
+  await writeSmtp(socket, `${command}\r\n`);
+  const response = await readSmtpResponse(socket);
+
+  if (!expectedCodes.includes(response.code)) {
+    throw new Error(`SMTP napaka pri ukazu ${command.split(" ")[0]}: ${response.message}`);
+  }
+
+  return response;
+};
+
+const connectSmtpSocket = (config) =>
+  new Promise((resolve, reject) => {
+    const options = {
+      host: config.host,
+      port: config.port,
+      servername: config.host,
+    };
+    const onError = (error) => reject(error);
+    const onConnect = () => {
+      socket.off("error", onError);
+      resolve(socket);
+    };
+    const socket = config.secure ? tls.connect(options, onConnect) : net.connect(options, onConnect);
+
+    socket.once("error", onError);
+  });
+
+const upgradeToTls = (socket, config) =>
+  new Promise((resolve, reject) => {
+    socket.removeAllListeners("data");
+    socket.removeAllListeners("error");
+    socket.removeAllListeners("close");
+
+    const secureSocket = tls.connect(
+      {
+        socket,
+        servername: config.host,
+      },
+      () => resolve(secureSocket)
+    );
+
+    secureSocket.once("error", reject);
+  });
+
+const sendSmtpMail = async ({ subject, text, replyTo }) => {
+  const config = smtpConfig();
+
+  if (!config.pass) {
+    throw new Error(
+      "Manjka SMTP geslo. V Railway dodaj SMTP_PASS ali GMAIL_APP_PASSWORD za agenttuval@gmail.com."
+    );
+  }
+
+  let socket = await connectSmtpSocket(config);
+
+  try {
+    await readSmtpResponse(socket);
+    await smtpCommand(socket, "EHLO tu-val.si", [250]);
+
+    if (!config.secure && config.starttls) {
+      await smtpCommand(socket, "STARTTLS", [220]);
+      socket = await upgradeToTls(socket, config);
+      await smtpCommand(socket, "EHLO tu-val.si", [250]);
+    }
+
+    await smtpCommand(socket, "AUTH LOGIN", [334]);
+    await smtpCommand(socket, Buffer.from(config.user, "utf8").toString("base64"), [334]);
+    await smtpCommand(socket, Buffer.from(config.pass, "utf8").toString("base64"), [235]);
+
+    await smtpCommand(socket, `MAIL FROM:<${extractEmailAddress(config.from)}>`, [250]);
+    await smtpCommand(socket, `RCPT TO:<${extractEmailAddress(config.to)}>`, [250, 251]);
+    await smtpCommand(socket, "DATA", [354]);
+
+    const message = [
+      `From: ${formatAddress("Tu-Val CleanSpace", config.from)}`,
+      `To: ${formatAddress("Agent Tu-Val", config.to)}`,
+      replyTo ? `Reply-To: ${formatAddress("Stranka", replyTo)}` : null,
+      `Subject: ${encodeMailHeader(subject)}`,
+      `Date: ${new Date().toUTCString()}`,
+      `Message-ID: <${crypto.randomUUID()}@tu-val.si>`,
+      "MIME-Version: 1.0",
+      "Content-Type: text/plain; charset=utf-8",
+      "Content-Transfer-Encoding: 8bit",
+      "",
+      text,
+    ]
+      .filter(Boolean)
+      .join("\r\n")
+      .replace(/^\./gm, "..");
+
+    await writeSmtp(socket, `${message}\r\n.\r\n`);
+    const dataResponse = await readSmtpResponse(socket);
+    if (dataResponse.code !== 250) {
+      throw new Error(`SMTP napaka pri pošiljanju sporočila: ${dataResponse.message}`);
+    }
+
+    await smtpCommand(socket, "QUIT", [221]);
+  } finally {
+    socket.end();
+  }
+};
+
+const handleContactEmail = async (req, res) => {
+  const body = await parseJsonBody(req);
+  const isTestRequest = body.formType === "test";
+  const name = cleanValue(body.name || "");
+  const email = cleanValue(body.email || "");
+  const phone = cleanValue(body.phone || "");
+  const company = cleanValue(body.company || "");
+  const interest = cleanValue(body.interest || "");
+  const preferredDate = cleanValue(body.preferredDate || "");
+  const message = cleanValue(body.message || "");
+  const page = cleanValue(body.page || "");
+  const attachmentNames = Array.isArray(body.attachments)
+    ? body.attachments.map((value) => cleanValue(value)).filter(Boolean)
+    : [];
+
+  if (!name || !email || !message) {
+    send(res, 400, {
+      ok: false,
+      message: "Manjkajo obvezni podatki: ime, e-pošta ali sporočilo.",
+    });
+    return;
+  }
+
+  const subject = `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"}${
+    interest ? ` - ${interest}` : ""
+  }`;
+  const text = [
+    "Novo sporočilo s spletne strani Tu-Val CleanSpace",
+    "",
+    `Tip obrazca: ${isTestRequest ? "Naročilo testne maske" : "Povpraševanje"}`,
+    `Datum oddaje: ${new Date().toLocaleString("sl-SI", { timeZone: "Europe/Ljubljana" })}`,
+    page ? `Stran: ${page}` : null,
+    "",
+    "Podatki stranke:",
+    `Ime in priimek: ${name}`,
+    `E-pošta: ${email}`,
+    phone ? `Telefon: ${phone}` : null,
+    `Podjetje: ${company || "-"}`,
+    `Zanimanje: ${interest || "-"}`,
+    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+    attachmentNames.length ? `Izbrane datoteke v obrazcu: ${attachmentNames.join(", ")}` : null,
+    attachmentNames.length
+      ? "Opomba: datoteke zaradi varnosti niso samodejno pripete. Stranko kontaktirajte za pošiljanje prilog."
+      : null,
+    "",
+    "Sporočilo:",
+    message,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
+  await sendSmtpMail({
+    subject,
+    text,
+    replyTo: email,
+  });
+
+  send(res, 200, {
+    ok: true,
+    message: "Sporočilo je bilo poslano.",
+  });
+};
+
 const createHttpError = (status, message, details) => {
   const error = new Error(message);
   error.status = status;
@@ -331,6 +583,11 @@ const createHttpError = (status, message, details) => {
 
 const vascoBaseUrl = () => (process.env.VASCO_API_BASE_URL || "http://192.168.0.5:8101").replace(/\/+$/, "");
 
+const vascoTimeoutMs = () => {
+  const configured = Number(process.env.VASCO_API_TIMEOUT_MS || 20000);
+  return Number.isFinite(configured) && configured >= 1000 ? configured : 20000;
+};
+
 const cleanValue = (value) => (typeof value === "string" ? value.trim() : value);
 
 const normalizeDateTime = (value) => {
@@ -339,11 +596,127 @@ const normalizeDateTime = (value) => {
   return /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00` : date;
 };
 
-const bearerTokenFrom = (body) => {
+const explicitBearerTokenFrom = (body) => {
   const providedToken = cleanValue(body.bearerToken || body.token || "");
+  return providedToken ? providedToken.replace(/^Bearer\s+/i, "") : "";
+};
+
+const envBearerToken = () => {
   const envToken = cleanValue(process.env.VASCO_API_TOKEN || "");
-  const token = providedToken || envToken;
-  return token ? token.replace(/^Bearer\s+/i, "") : "";
+  return envToken ? envToken.replace(/^Bearer\s+/i, "") : "";
+};
+
+const vascoLoginFrom = (body = {}) => {
+  const login = body.vascoLogin && typeof body.vascoLogin === "object" ? body.vascoLogin : {};
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : {};
+  const username = cleanValue(login.username || body.vascoUsername || filters.vascoUsername || process.env.VASCO_API_USERNAME || "");
+  const password = cleanValue(login.password || body.vascoPassword || filters.vascoPassword || process.env.VASCO_API_PASSWORD || "");
+  const taxNumber = cleanValue(login.taxNumber || body.taxNumber || filters.taxNumber || process.env.VASCO_API_TAX_NUMBER || "");
+  const year = cleanValue(login.year ?? body.year ?? filters.year ?? process.env.VASCO_API_YEAR ?? "0");
+
+  if (!username || !password || !taxNumber) return null;
+
+  return {
+    username,
+    password,
+    taxNumber,
+    year: Number.isFinite(Number(year)) ? Number(year) : 0,
+  };
+};
+
+const vascoTokenCache = new Map();
+
+const jwtExpirationMs = (token) => {
+  try {
+    const payload = token.split(".")[1];
+    if (!payload) return 0;
+
+    const decoded = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
+    const exp = Number(decoded.exp);
+    return Number.isFinite(exp) ? exp * 1000 : 0;
+  } catch (error) {
+    return 0;
+  }
+};
+
+const fetchVascoLoginToken = async (credentials) => {
+  const cacheKey = [vascoBaseUrl(), credentials.username, credentials.taxNumber, credentials.year].join("|");
+  const cached = vascoTokenCache.get(cacheKey);
+  if (cached && cached.expiresAt > Date.now() + 60_000) {
+    return cached.token;
+  }
+
+  const timeoutMs = vascoTimeoutMs();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let response;
+
+  try {
+    response = await fetch(`${vascoBaseUrl()}/api/v1/Avtentikacija`, {
+      method: "POST",
+      signal: controller.signal,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "User-Agent": "tuval-vasco-excel",
+      },
+      body: JSON.stringify({
+        username: credentials.username,
+        password: credentials.password,
+        taxNumber: credentials.taxNumber,
+        year: credentials.year,
+        returnPastYears: false,
+      }),
+    });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw createHttpError(504, `Vasco prijava se ni odzvala v ${Math.round(timeoutMs / 1000)} sekundah.`);
+    }
+
+    throw createHttpError(502, `Vasco prijava ni dosegljiva: ${error.message}`);
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  const responseText = await response.text();
+  let payload = null;
+  try {
+    payload = responseText ? JSON.parse(responseText) : null;
+  } catch (error) {
+    payload = responseText;
+  }
+
+  if (!response.ok) {
+    const message = payload?.title || payload?.message || payload?.detail || "Vasco prijava ni uspela.";
+    throw createHttpError(response.status, message, payload);
+  }
+
+  const token = cleanValue(payload?.apiKey || payload?.ApiKey || payload?.apikey || "");
+  if (!token) {
+    throw createHttpError(502, "Vasco prijava ni vrnila apiKey.", payload);
+  }
+
+  const jwtExpiresAt = jwtExpirationMs(token);
+  const fallbackExpiresAt = Date.now() + 29 * 60 * 1000;
+  vascoTokenCache.set(cacheKey, {
+    token,
+    expiresAt: jwtExpiresAt ? Math.min(jwtExpiresAt, fallbackExpiresAt) : fallbackExpiresAt,
+  });
+
+  return token;
+};
+
+const resolveVascoToken = async (body) => {
+  const explicitToken = explicitBearerTokenFrom(body);
+  if (explicitToken) return explicitToken;
+
+  const credentials = vascoLoginFrom(body);
+  if (credentials) return fetchVascoLoginToken(credentials);
+
+  const envToken = envBearerToken();
+  if (envToken) return envToken;
+
+  return "";
 };
 
 const vascoFiltersFrom = (body) => {
@@ -385,23 +758,30 @@ const buildVascoOrdersUrl = (filters) => {
   return url;
 };
 
-const fetchVascoOrders = async (body) => {
-  const token = bearerTokenFrom(body);
-  if (!token) {
-    throw createHttpError(400, "Manjka Vasco bearer token. Nastavi VASCO_API_TOKEN ali ga vnesi v obrazec.");
+const fetchVascoJson = async (url, token, fallbackMessage) => {
+  const timeoutMs = vascoTimeoutMs();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let response;
+
+  try {
+    response = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "User-Agent": "tuval-vasco-excel",
+      },
+    });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw createHttpError(504, `Vasco API se ni odzval v ${Math.round(timeoutMs / 1000)} sekundah. Preveri povezavo do Vasca ali token.`);
+    }
+
+    throw createHttpError(502, `Vasco API ni dosegljiv: ${error.message}`);
+  } finally {
+    clearTimeout(timeout);
   }
-
-  const filters = vascoFiltersFrom(body);
-  assertUsefulVascoFilter(filters, body);
-
-  const url = buildVascoOrdersUrl(filters);
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-      "User-Agent": "tuval-vasco-excel",
-    },
-  });
 
   const responseText = await response.text();
   let payload = null;
@@ -412,19 +792,109 @@ const fetchVascoOrders = async (body) => {
   }
 
   if (!response.ok) {
-    const message = payload?.title || payload?.message || payload?.detail || "Vasco API ni vrnil uspešnega odgovora.";
+    const message = payload?.title || payload?.message || payload?.detail || fallbackMessage;
     throw createHttpError(response.status, message, payload);
   }
+
+  return payload;
+};
+
+const postVascoJson = async (url, token, payload, fallbackMessage) => {
+  const timeoutMs = vascoTimeoutMs();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let response;
+
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      signal: controller.signal,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "User-Agent": "tuval-vasco-excel",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw createHttpError(504, `Vasco API se ni odzval v ${Math.round(timeoutMs / 1000)} sekundah. Preveri povezavo do Vasca ali token.`);
+    }
+
+    throw createHttpError(502, `Vasco API ni dosegljiv: ${error.message}`);
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  const responseText = await response.text();
+  let responsePayload = null;
+  try {
+    responsePayload = responseText ? JSON.parse(responseText) : {};
+  } catch (error) {
+    responsePayload = responseText;
+  }
+
+  if (!response.ok) {
+    const message = responsePayload?.title || responsePayload?.message || responsePayload?.detail || fallbackMessage;
+    throw createHttpError(response.status, message, responsePayload);
+  }
+
+  return responsePayload;
+};
+
+const shouldEnrichCatalogs = (body) => {
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : body;
+  const value = filters.dopolniNazive ?? filters.DopolniNazive ?? body.dopolniNazive;
+  if (value === undefined || value === null || value === "") return true;
+
+  const normalized = String(value).trim().toLocaleLowerCase("sl-SI");
+  return !["0", "false", "ne", "no"].includes(normalized);
+};
+
+const fetchVascoOrders = async (body) => {
+  const token = await resolveVascoToken(body);
+  if (!token) {
+    throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
+  }
+
+  const filters = vascoFiltersFrom(body);
+  assertUsefulVascoFilter(filters, body);
+
+  const url = buildVascoOrdersUrl(filters);
+  const payload = await fetchVascoJson(url, token, "Vasco API ni vrnil uspešnega odgovora.");
 
   if (!Array.isArray(payload)) {
     throw createHttpError(502, "Vasco API je vrnil nepričakovano obliko podatkov.", payload);
   }
 
+  const warnings = shouldEnrichCatalogs(body) ? await enrichOrdersFromCatalogs(payload, token) : [];
+  await fetchOrderStatesForOrders(payload, token, warnings);
+  const planningData = await fetchVascoPlanningData(payload, token, body, warnings);
+
   return {
     filters,
     orders: payload,
     source: `${url.origin}${url.pathname}`,
+    warnings,
+    planningData,
   };
+};
+
+const fetchVascoOrderItemFields = async (body) => {
+  const token = await resolveVascoToken(body);
+  if (!token) {
+    throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
+  }
+
+  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloKupca/postavke/polja`);
+  const payload = await fetchVascoJson(url, token, "Vasco API ni vrnil seznama polj.");
+
+  if (!Array.isArray(payload)) {
+    throw createHttpError(502, "Vasco API je vrnil nepričakovano obliko seznama polj.", payload);
+  }
+
+  return payload;
 };
 
 const asNumber = (value) => (typeof value === "number" && Number.isFinite(value) ? value : 0);
@@ -449,6 +919,11 @@ const formatExtraFields = (fields) => {
     .join("; ");
 };
 
+const normalizeKey = (value) =>
+  String(value ?? "")
+    .trim()
+    .toLocaleLowerCase("sl-SI");
+
 const firstValue = (object, keys) => {
   for (const key of keys) {
     const value = object?.[key];
@@ -458,12 +933,1190 @@ const firstValue = (object, keys) => {
   return "";
 };
 
+const extraFieldNamesFrom = (body, orders = []) => {
+  const bodyNames = Array.isArray(body.extraFieldNames)
+    ? body.extraFieldNames
+    : String(body.filters?.dodatnaPoljaPostavke || body.filters?.DodatnaPoljaPostavke || body.dodatnaPoljaPostavke || "")
+        .split(",");
+
+  const names = bodyNames.map((name) => String(name || "").trim()).filter(Boolean);
+
+  orders.forEach((order) => {
+    (Array.isArray(order.postavke) ? order.postavke : []).forEach((item) => {
+      (Array.isArray(item.dodatnaPolja) ? item.dodatnaPolja : []).forEach((field) => {
+        const name = field?.naziv || field?.name;
+        if (name && !names.some((existing) => normalizeKey(existing) === normalizeKey(name))) {
+          names.push(String(name));
+        }
+      });
+    });
+  });
+
+  return names;
+};
+
+const extraFieldValue = (fields, name) => {
+  if (!Array.isArray(fields) || !name) return "";
+  const target = normalizeKey(name);
+  const field = fields.find((entry) => normalizeKey(entry?.naziv || entry?.name) === target);
+  return field?.vrednost ?? field?.value ?? "";
+};
+
+const objectFieldValue = (object, name) => {
+  if (!object || typeof object !== "object" || !name) return "";
+  const target = normalizeKey(name);
+  const match = Object.entries(object).find(([key, value]) => normalizeKey(key) === target && value !== undefined && value !== null && value !== "");
+  return match ? match[1] : "";
+};
+
+const itemFieldValue = (item, name) => {
+  const extraValue = extraFieldValue(item?.dodatnaPolja, name);
+  if (extraValue !== "") return extraValue;
+  return objectFieldValue(item, name);
+};
+
+const objectValueByNames = (object, names) => {
+  for (const name of names) {
+    const value = objectFieldValue(object, name);
+    if (value !== undefined && value !== null && value !== "") return value;
+  }
+
+  return "";
+};
+
+const itemValueByNames = (item, names) => {
+  for (const name of names) {
+    const value = itemFieldValue(item, name);
+    if (value !== undefined && value !== null && value !== "") return value;
+  }
+
+  return "";
+};
+
+const canonicalItemExtraFields = new Set(
+  [
+    "sifra",
+    "SIFRA",
+    "KOLICINA",
+    "CENA",
+    "CENA_Z_DDV",
+    "PRODAJNA_CENA",
+    "PRODAJNA_CENA_Z_DDV",
+    "PREDVID_DOBAVA",
+    "PROSTO_D1",
+  ].map(normalizeKey)
+);
+
+const displayExtraFieldNames = (names = []) => {
+  const seen = new Set();
+  return names.filter((name) => {
+    const key = normalizeKey(name);
+    if (!key || canonicalItemExtraFields.has(key) || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
+
+const orderCustomerNameFrom = (order) =>
+  objectValueByNames(order, ["nazivKupca", "nazivPartnerja", "nazivPartner", "partnerNaziv", "kupecNaziv"]);
+
+const itemCodeFrom = (item) =>
+  itemValueByNames(item, ["sifra", "SIFRA", "sifraArtikla", "sifra_artikla", "artikel", "Artikel"]);
+
+const itemArticleNameFrom = (item) =>
+  itemValueByNames(item, [
+    "nazivArtikla",
+    "naziv_artikla",
+    "NAZIV_ARTIKLA",
+    "nazivArt",
+    "naziv",
+    "opisArtikla",
+    "opis_artikla",
+  ]);
+
+const itemNameFrom = (item) => itemArticleNameFrom(item) || itemValueByNames(item, ["OPIS"]);
+
+const itemQuantityFrom = (item) =>
+  itemValueByNames(item, ["kolicina", "količina", "kol", "KOLICINA", "kolicinaNarocena"]);
+
+const itemPriceFrom = (item) =>
+  itemValueByNames(item, [
+    "cena",
+    "CENA",
+    "prodajnaCena",
+    "prodajna_cena",
+    "PRODAJNA_CENA",
+    "cenaZDDV",
+    "CENA_Z_DDV",
+    "prodajnaCenaZDDV",
+    "prodajnaCenaZDdv",
+    "PRODAJNA_CENA_Z_DDV",
+  ]);
+
+const itemDeliveryFrom = (item) =>
+  itemValueByNames(item, [
+    "predvidenaDobava",
+    "predvidDobava",
+    "PREDVID_DOBAVA",
+    "potrjenaDobava",
+    "PROSTO_D1",
+    "datumDobave",
+    "datumVeljavnosti",
+  ]);
+
+const orderDeliveriesFrom = (order) => (Array.isArray(order?.dobave) ? order.dobave : []);
+
+const deliveryDocumentFrom = (delivery) => {
+  if (!delivery || typeof delivery !== "object") return "";
+  const documentType = objectValueByNames(delivery, ["dokument", "Dokument"]);
+  const number = [objectValueByNames(delivery, ["stevilka", "Stevilka"]), objectValueByNames(delivery, ["leto", "Leto"])]
+    .filter((value) => value !== undefined && value !== null && value !== "")
+    .join(".");
+  const date = formatDate(objectValueByNames(delivery, ["datum", "Datum"]));
+
+  return [documentType, number, date].filter(Boolean).join(" ");
+};
+
+const orderDeliveriesTextFrom = (order) => orderDeliveriesFrom(order).map(deliveryDocumentFrom).filter(Boolean).join("; ");
+
+const itemStockFrom = (item) =>
+  itemValueByNames(item, [
+    "zaloga",
+    "ZALOGA",
+    "prostaZaloga",
+    "PROSTA_ZALOGA",
+    "razpolozljivaZaloga",
+    "zalogaRazpolozljiva",
+    "STANJE_ZALOGE",
+  ]);
+
+const parseDecimal = (value) => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (value === undefined || value === null || value === "") return 0;
+
+  const text = String(value).trim().replace(/\s+/g, "");
+  const normalized = text.includes(",") ? text.replace(/\./g, "").replace(",", ".") : text;
+  const number = Number(normalized);
+  return Number.isFinite(number) ? number : 0;
+};
+
+const dateKeyFrom = (value) => {
+  const text = String(value ?? "").trim();
+  if (!text) return "";
+
+  const iso = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
+
+  const sl = text.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+  if (sl) return `${sl[3]}-${sl[2].padStart(2, "0")}-${sl[1].padStart(2, "0")}`;
+
+  return text;
+};
+
+const formatQuantity = (value) => {
+  const number = parseDecimal(value);
+  return Number.isFinite(number) ? Math.round(number * 1000) / 1000 : 0;
+};
+
+const itemPriceWithoutVatFrom = (item) =>
+  itemValueByNames(item, ["prodajnaCena", "prodajna_cena", "PRODAJNA_CENA", "cena", "CENA"]);
+
+const itemPriceWithVatFrom = (item) =>
+  itemValueByNames(item, ["prodajnaCenaZDDV", "prodajnaCenaZDdv", "cenaZDDV", "CENA_Z_DDV", "PRODAJNA_CENA_Z_DDV"]);
+
+const compactObject = (object) =>
+  Object.fromEntries(
+    Object.entries(object).filter(([, value]) => value !== "" && value !== undefined && value !== null && !(Array.isArray(value) && !value.length))
+  );
+
+const optionalNumber = (value) => {
+  if (value === "" || value === undefined || value === null) return "";
+  return parseDecimal(value);
+};
+
+const requiredInteger = (value, label) => {
+  const number = Number(value);
+  if (!Number.isInteger(number)) {
+    throw createHttpError(400, `${label} mora biti celo število.`);
+  }
+  return number;
+};
+
+const todayDateTime = () => `${new Date().toISOString().slice(0, 10)}T00:00:00`;
+
+const sourceOrderLabelFrom = (order) =>
+  [objectValueByNames(order, ["stevilka", "Stevilka"]), objectValueByNames(order, ["leto", "Leto"])]
+    .filter((value) => value !== undefined && value !== null && value !== "")
+    .join(".");
+
+const selectedDeliveryRowsFrom = (body) => {
+  const rows = Array.isArray(body.rows) ? body.rows : Array.isArray(body.deliveryRows) ? body.deliveryRows : [];
+
+  if (!rows.length) {
+    throw createHttpError(400, "Izberi vsaj eno postavko za dobavnico.");
+  }
+
+  return rows.map((row) => ({
+    order: row?.order && typeof row.order === "object" ? row.order : {},
+    item: row?.item && typeof row.item === "object" ? row.item : row?.postavka && typeof row.postavka === "object" ? row.postavka : {},
+  }));
+};
+
+const deliveryLineFrom = ({ order, item }, index) => {
+  const sifra = cleanValue(itemCodeFrom(item));
+  const quantity = formatQuantity(itemQuantityFrom(item));
+
+  if (!sifra) {
+    throw createHttpError(400, `Postavka ${index + 1} nima šifre artikla.`);
+  }
+
+  if (!quantity || quantity <= 0) {
+    throw createHttpError(400, `Postavka ${sifra} nima veljavne količine.`);
+  }
+
+  return compactObject({
+    sifra,
+    kolicina: quantity,
+    prodajnaCena: optionalNumber(itemPriceWithoutVatFrom(item)),
+    prodajnaCenaZDdv: optionalNumber(itemPriceWithVatFrom(item)),
+    rabat1: optionalNumber(objectValueByNames(item, ["rabat1", "Rabat1", "rabat"])),
+    stopnjaDdv: optionalNumber(objectValueByNames(item, ["stopnjaDdv", "stopnjaDDV", "StopnjaDdv", "StopnjaDDV"])),
+    _sourceOrder: sourceOrderLabelFrom(order),
+    _articleName: itemNameFrom(item),
+  });
+};
+
+const deliveryGroupKeyFrom = (order) =>
+  [
+    objectValueByNames(order, ["partner", "Partner"]),
+    objectValueByNames(order, ["skladisce", "skladišče", "Skladisce", "SkladisceZaloge"]),
+    objectValueByNames(order, ["prodajalna", "Prodajalna"]),
+    objectValueByNames(order, ["komercialist", "Komercialist"]),
+    objectValueByNames(order, ["potnik", "Potnik"]),
+    objectValueByNames(order, ["komisionar", "Komisionar"]),
+  ]
+    .map((value) => String(value ?? "").trim())
+    .join("|");
+
+const deliveryDocumentsFromRows = (rows, body = {}) => {
+  const date = normalizeDateTime(body.deliveryDate || body.datum || body.datumDobavnice || todayDateTime());
+  const groups = new Map();
+
+  rows.forEach((row, index) => {
+    const partnerRaw = objectValueByNames(row.order, ["partner", "Partner"]);
+    const partner = requiredInteger(partnerRaw, "Partner");
+    const key = deliveryGroupKeyFrom(row.order);
+    const current = groups.get(key) || {
+      order: row.order,
+      partner,
+      postavke: [],
+      sourceOrders: new Set(),
+      sourceCustomers: new Set(),
+    };
+
+    const line = deliveryLineFrom(row, index);
+    if (line._sourceOrder) current.sourceOrders.add(line._sourceOrder);
+    const customer = orderCustomerNameFrom(row.order);
+    if (customer) current.sourceCustomers.add(customer);
+    current.postavke.push(line);
+    groups.set(key, current);
+  });
+
+  return Array.from(groups.values()).map((group) => {
+    const order = group.order;
+    const request = compactObject({
+      datum: date,
+      partner: group.partner,
+      prodajalna: optionalNumber(objectValueByNames(order, ["prodajalna", "Prodajalna"])),
+      komercialist: cleanValue(objectValueByNames(order, ["komercialist", "Komercialist"])),
+      potnik: cleanValue(objectValueByNames(order, ["potnik", "Potnik"])),
+      komisionar: cleanValue(objectValueByNames(order, ["komisionar", "Komisionar"])),
+      skladisce: optionalNumber(objectValueByNames(order, ["skladisce", "skladišče", "Skladisce", "SkladisceZaloge"])),
+      rabat1: optionalNumber(objectValueByNames(order, ["rabat1", "Rabat1", "rabat"])),
+      postavke: group.postavke.map(({ _sourceOrder, _articleName, ...line }) => line),
+    });
+
+    return {
+      request,
+      summary: {
+        partner: group.partner,
+        nazivKupca: Array.from(group.sourceCustomers).join("; "),
+        sourceOrders: Array.from(group.sourceOrders).join(", "),
+        itemCount: request.postavke.length,
+        quantity: formatQuantity(request.postavke.reduce((sum, item) => sum + parseDecimal(item.kolicina), 0)),
+      },
+    };
+  });
+};
+
+const createVascoDeliveryNotes = async (body) => {
+  const rows = selectedDeliveryRowsFrom(body);
+  const documents = deliveryDocumentsFromRows(rows, body);
+
+  if (body.dryRun) {
+    return {
+      ok: true,
+      dryRun: true,
+      count: documents.length,
+      documents,
+    };
+  }
+
+  const token = await resolveVascoToken(body);
+  if (!token) {
+    throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
+  }
+
+  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/dobavnica`);
+  const created = [];
+
+  for (const document of documents) {
+    const response = await postVascoJson(url, token, document.request, "Dobavnice ni bilo mogoče ustvariti.");
+    created.push({
+      ...document.summary,
+      response,
+      stevilka: response?.stevilka || response?.Stevilka || "",
+      leto: response?.leto || response?.Leto || "",
+    });
+  }
+
+  return {
+    ok: true,
+    count: created.length,
+    created,
+  };
+};
+
+const selectedSupplierOrderRowsFrom = (body) => {
+  const rows = Array.isArray(body.rows) ? body.rows : Array.isArray(body.stockRows) ? body.stockRows : [];
+
+  if (!rows.length) {
+    throw createHttpError(400, "Označi vsaj eno vrstico v Planu naročanja.");
+  }
+
+  return rows.filter((row) => row && typeof row === "object");
+};
+
+const supplierFromStockRow = (row) =>
+  cleanValue(objectValueByNames(row, ["sifraDobavitelja", "dobavitelj", "partnerDobavitelj", "partner"]));
+
+const quantityToOrderFromStockRow = (row) => {
+  const preferred = objectValueByNames(row, ["kolicinaZaNarociti", "kolicinaNarocila", "zaNarociti", "zaPripravo", "manjkaZaNarociti"]);
+  if (preferred !== "") return formatQuantity(preferred);
+  return formatQuantity(objectValueByNames(row, ["seDobaviti", "potrebnaKolicina", "kolicina"]));
+};
+
+const singleWarehouseFrom = (value) => {
+  const parts = String(value ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return parts.length === 1 ? optionalNumber(parts[0]) : "";
+};
+
+const supplierOrderDocumentsFromRows = (rows, body = {}) => {
+  const date = normalizeDateTime(body.orderDate || body.datum || body.datumNarocila || todayDateTime());
+  const missingSupplier = [];
+  const invalidQuantity = [];
+  const groups = new Map();
+
+  rows.forEach((row) => {
+    const sifra = cleanValue(objectValueByNames(row, ["sifra", "Sifra"]));
+    const supplier = supplierFromStockRow(row);
+    const quantity = quantityToOrderFromStockRow(row);
+
+    if (!sifra) return;
+    if (!supplier || !isSingleIntegerText(supplier)) {
+      missingSupplier.push([sifra, objectValueByNames(row, ["nazivArtikla", "naziv"])].filter(Boolean).join(" - "));
+      return;
+    }
+
+    if (!quantity || quantity <= 0) {
+      invalidQuantity.push(sifra);
+      return;
+    }
+
+    const warehouse = singleWarehouseFrom(objectValueByNames(row, ["skladisce", "skladisceZaloge", "skladisca"]));
+    const key = [supplier, warehouse].join("|");
+    const current = groups.get(key) || {
+      supplier,
+      warehouse,
+      rows: [],
+      postavke: [],
+    };
+
+    current.rows.push(row);
+    current.postavke.push(
+      compactObject({
+        sifra,
+        naziv: cleanValue(objectValueByNames(row, ["nazivArtikla", "naziv"])),
+        enota: cleanValue(objectValueByNames(row, ["enota", "Enota"])),
+        kolicina: quantity,
+        nabavnaCena: optionalNumber(objectValueByNames(row, ["nabavnaCena", "NabavnaCena"])),
+      })
+    );
+    groups.set(key, current);
+  });
+
+  if (missingSupplier.length) {
+    throw createHttpError(400, `Za te artikle manjka šifra dobavitelja: ${missingSupplier.slice(0, 8).join("; ")}${missingSupplier.length > 8 ? " ..." : ""}`);
+  }
+
+  if (invalidQuantity.length) {
+    throw createHttpError(400, `Te vrstice nimajo količine za naročiti: ${invalidQuantity.slice(0, 8).join(", ")}${invalidQuantity.length > 8 ? " ..." : ""}`);
+  }
+
+  const documents = Array.from(groups.values()).map((group) => ({
+    request: compactObject({
+      tipStevilcenja: 0,
+      datum: date,
+      partner: requiredInteger(group.supplier, "Dobavitelj"),
+      skladisce: group.warehouse,
+      postavke: group.postavke,
+    }),
+    summary: {
+      partner: requiredInteger(group.supplier, "Dobavitelj"),
+      skladisce: group.warehouse,
+      itemCount: group.postavke.length,
+      quantity: formatQuantity(group.postavke.reduce((sum, item) => sum + parseDecimal(item.kolicina), 0)),
+      articles: group.postavke.map((item) => item.sifra).join(", "),
+    },
+  }));
+
+  if (!documents.length) {
+    throw createHttpError(400, "Ni veljavnih vrstic za naročilo dobavitelju.");
+  }
+
+  return documents;
+};
+
+const createVascoSupplierOrders = async (body) => {
+  const rows = selectedSupplierOrderRowsFrom(body);
+  const documents = supplierOrderDocumentsFromRows(rows, body);
+
+  if (body.dryRun) {
+    return {
+      ok: true,
+      dryRun: true,
+      count: documents.length,
+      documents,
+    };
+  }
+
+  const token = await resolveVascoToken(body);
+  if (!token) {
+    throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
+  }
+
+  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloDobavitelju`);
+  const created = [];
+
+  for (const document of documents) {
+    const response = await postVascoJson(url, token, document.request, "Naročila dobavitelju ni bilo mogoče ustvariti.");
+    created.push({
+      ...document.summary,
+      response,
+      stevilka: response?.stevilka || response?.Stevilka || "",
+      leto: response?.leto || response?.Leto || "",
+    });
+  }
+
+  return {
+    ok: true,
+    count: created.length,
+    created,
+  };
+};
+
+const planningEntryFor = (planningData, groupName, articleKey) => {
+  const group = planningData?.[groupName];
+  if (!group || !articleKey) return null;
+  if (group instanceof Map) return group.get(articleKey) || null;
+  return group[articleKey] || null;
+};
+
+const stockPlanRowsFromGroups = (groups, stockByArticle = new Map(), planningData = {}) => {
+  const rows = Array.from(groups.values()).sort((a, b) => {
+    const articleSort = a.sifra.localeCompare(b.sifra, "sl", { numeric: true });
+    if (articleSort) return articleSort;
+    return (a.datumDobave || "9999-99-99").localeCompare(b.datumDobave || "9999-99-99");
+  });
+
+  const cumulativeByArticle = new Map();
+  return rows.map((row) => {
+    const neededQuantity = row.seDobaviti !== undefined ? row.seDobaviti : row.potrebnaKolicina;
+    const cumulative = formatQuantity((cumulativeByArticle.get(row.articleKey) || 0) + neededQuantity);
+    cumulativeByArticle.set(row.articleKey, cumulative);
+
+    const hasStock = stockByArticle.has(row.articleKey);
+    const stockEntry = planningEntryFor(planningData, "stockByArticle", row.articleKey) || (hasStock ? stockByArticle.get(row.articleKey) : null);
+    const supplierEntry = planningEntryFor(planningData, "supplierByArticle", row.articleKey);
+    const articleEntry = planningEntryFor(planningData, "articleByArticle", row.articleKey);
+    const hasVascoStock = Boolean(stockEntry);
+    const stock = hasVascoStock ? parseDecimal(stockEntry.zaloga) : "";
+    const reserved = hasVascoStock && stockEntry.rezervirano !== "" ? parseDecimal(stockEntry.rezervirano) : "";
+    const vascoCustomers = hasVascoStock && stockEntry.narKupKolicina !== "" ? parseDecimal(stockEntry.narKupKolicina) : "";
+    const supplierOrdered = supplierEntry ? parseDecimal(supplierEntry.narocenoDobaviteljem) : 0;
+    const optimalStock = articleEntry?.optimalnaZaloga !== undefined && articleEntry?.optimalnaZaloga !== ""
+      ? parseDecimal(articleEntry.optimalnaZaloga)
+      : 0;
+    const stockForCalculation = hasVascoStock ? stock : 0;
+    const targetQuantity = formatQuantity(cumulative + optimalStock);
+    const zaPripravo = hasVascoStock || supplierOrdered || optimalStock
+      ? Math.max(0, formatQuantity(targetQuantity - stockForCalculation - supplierOrdered))
+      : cumulative;
+    const status = hasVascoStock || supplierOrdered || optimalStock
+      ? (zaPripravo > 0 ? "Treba naročiti" : "Zaloga/naročeno zadostuje")
+      : "Preveri zalogo";
+
+    return {
+      oznaciNabavo: "",
+      sifra: row.sifra,
+      nazivArtikla: row.nazivArtikla,
+      datumDobave: formatDate(row.datumDobave),
+      potrebnaKolicina: formatQuantity(row.potrebnaKolicina),
+      seDobaviti: formatQuantity(neededQuantity),
+      kumulativnaPotreba: cumulative,
+      optimalnaZaloga: optimalStock ? formatQuantity(optimalStock) : "",
+      zaloga: hasVascoStock ? formatQuantity(stock) : "",
+      zalogaOst: row.zalogaOst !== undefined && row.zalogaOst !== null && row.zalogaOst !== "" ? formatQuantity(row.zalogaOst) : "",
+      rezervirano: reserved === "" ? "" : formatQuantity(reserved),
+      vascoKupci: vascoCustomers === "" ? "" : formatQuantity(vascoCustomers),
+      narocenoDobaviteljem: supplierOrdered ? formatQuantity(supplierOrdered) : "",
+      zaPripravo: formatQuantity(zaPripravo),
+      status,
+      sifraDobavitelja: articleEntry?.dobavitelj || "",
+      enota: articleEntry?.enota || "",
+      nabavnaCena: articleEntry?.nabavnaCena || "",
+      pakiranje: articleEntry?.pakiranje !== undefined && articleEntry?.pakiranje !== "" ? formatQuantity(articleEntry.pakiranje) : "",
+      skladisca: stockEntry?.skladisca || "",
+      narocila: Array.from(row.narocila).join(", "),
+      narocilaDobaviteljem: supplierEntry?.narocilaDobaviteljem || "",
+      kupci: Array.from(row.kupci).join("; "),
+      stPostavk: row.stPostavk,
+    };
+  });
+};
+
+const openCustomerOrderCodeFrom = (entry) => objectValueByNames(entry, ["sifra", "Sifra"]);
+
+const openCustomerOrderNameFrom = (entry) =>
+  joinedName(
+    objectValueByNames(entry, ["naziv", "Naziv", "nazivArtikla"]),
+    objectValueByNames(entry, ["naziv2", "Naziv2"])
+  );
+
+const openCustomerOrderQuantityFrom = (entry) => {
+  const openQuantity = objectValueByNames(entry, ["seDobaviti", "SeDobaviti"]);
+  if (openQuantity !== "") return parseDecimal(openQuantity);
+
+  return Math.max(
+    0,
+    parseDecimal(objectValueByNames(entry, ["naroceno", "Naroceno"])) -
+      parseDecimal(objectValueByNames(entry, ["dobavljeno", "Dobavljeno"]))
+  );
+};
+
+const openCustomerOrderNumberFrom = (entry) => {
+  const orderNumber = [
+    objectValueByNames(entry, ["stevilka", "Stevilka"]),
+    objectValueByNames(entry, ["leto", "Leto"]),
+  ]
+    .filter((value) => value !== undefined && value !== null && value !== "")
+    .join(".");
+  const customerNumber = objectValueByNames(entry, ["stevilkaNarocila", "StevilkaNarocila"]);
+
+  return customerNumber && orderNumber ? `${orderNumber} (${customerNumber})` : orderNumber || customerNumber;
+};
+
+const stockPlanRowsFromOpenCustomerOrders = (openCustomerOrders, planningData = {}) => {
+  const groups = new Map();
+  const stockByArticle = new Map();
+  const customerLabel = planningData.openCustomerPartnerLabel || planningData.openCustomerPartner || "";
+
+  openCustomerOrders.forEach((entry) => {
+    if (!entry || typeof entry !== "object") return;
+
+    const sifra = String(openCustomerOrderCodeFrom(entry) || "BREZ ŠIFRE").trim();
+    const articleKey = normalizeKey(sifra);
+    const deliveryKey = dateKeyFrom(objectValueByNames(entry, ["predvidenaDobava", "PredvidenaDobava", "datum", "Datum"]));
+    const quantity = openCustomerOrderQuantityFrom(entry);
+    if (!quantity) return;
+
+    const stockRaw = objectValueByNames(entry, ["zaloga", "Zaloga"]);
+    if (stockRaw !== "" && !stockByArticle.has(articleKey)) {
+      stockByArticle.set(articleKey, {
+        zaloga: parseDecimal(stockRaw),
+        narKupKolicina: "",
+        rezervirano: "",
+        skladisca: "",
+      });
+    }
+
+    const stockLeftRaw = objectValueByNames(entry, ["zalogaOst", "ZalogaOst"]);
+    const stockLeft = stockLeftRaw === "" ? null : parseDecimal(stockLeftRaw);
+    const groupKey = `${articleKey}||${deliveryKey || "brez-datuma"}`;
+    const current = groups.get(groupKey) || {
+      articleKey,
+      sifra,
+      nazivArtikla: openCustomerOrderNameFrom(entry),
+      datumDobave: deliveryKey,
+      potrebnaKolicina: 0,
+      seDobaviti: 0,
+      zalogaOst: stockLeft,
+      narocila: new Set(),
+      kupci: new Set(),
+      stPostavk: 0,
+    };
+
+    current.nazivArtikla = current.nazivArtikla || openCustomerOrderNameFrom(entry);
+    current.potrebnaKolicina += parseDecimal(objectValueByNames(entry, ["naroceno", "Naroceno"])) || quantity;
+    current.seDobaviti += quantity;
+    current.stPostavk += 1;
+    if (stockLeft !== null) current.zalogaOst = current.zalogaOst === null ? stockLeft : Math.min(current.zalogaOst, stockLeft);
+    const orderNumber = openCustomerOrderNumberFrom(entry);
+    if (orderNumber) current.narocila.add(orderNumber);
+    if (customerLabel) current.kupci.add(customerLabel);
+    groups.set(groupKey, current);
+  });
+
+  return stockPlanRowsFromGroups(groups, stockByArticle, planningData);
+};
+
+const stockPlanRowsForExcel = (orders, planningData = {}) => {
+  const openCustomerOrders = Array.isArray(planningData.openCustomerOrders) ? planningData.openCustomerOrders : [];
+  if (openCustomerOrders.length) {
+    return stockPlanRowsFromOpenCustomerOrders(openCustomerOrders, planningData);
+  }
+
+  const groups = new Map();
+  const stockByArticle = new Map();
+
+  orders.forEach((order) => {
+    (Array.isArray(order.postavke) ? order.postavke : []).forEach((item) => {
+      const sifra = String(itemCodeFrom(item) || "BREZ ŠIFRE").trim();
+      const articleKey = normalizeKey(sifra);
+      const deliveryRaw = itemDeliveryFrom(item) || order.datum;
+      const deliveryKey = dateKeyFrom(deliveryRaw);
+      const quantity = parseDecimal(itemQuantityFrom(item));
+      if (!quantity) return;
+
+      const stockRaw = itemStockFrom(item);
+      if (stockRaw !== "" && !stockByArticle.has(articleKey)) {
+        stockByArticle.set(articleKey, {
+          zaloga: parseDecimal(stockRaw),
+          narKupKolicina: "",
+          rezervirano: "",
+          skladisca: "",
+        });
+      }
+
+      const groupKey = `${articleKey}||${deliveryKey || "brez-datuma"}`;
+      const current = groups.get(groupKey) || {
+        articleKey,
+        sifra,
+        nazivArtikla: itemNameFrom(item),
+        datumDobave: deliveryKey,
+        potrebnaKolicina: 0,
+        narocila: new Set(),
+        kupci: new Set(),
+        stPostavk: 0,
+      };
+
+      current.nazivArtikla = current.nazivArtikla || itemNameFrom(item);
+      current.potrebnaKolicina += quantity;
+      current.stPostavk += 1;
+      if (order.stevilka) current.narocila.add([order.stevilka, order.leto].filter(Boolean).join("."));
+      if (order.partner) current.kupci.add([order.partner, orderCustomerNameFrom(order)].filter(Boolean).join(" - "));
+      groups.set(groupKey, current);
+    });
+  });
+
+  return stockPlanRowsFromGroups(groups, stockByArticle, planningData);
+};
+
+const uniqueCleanValues = (values) => {
+  const seen = new Set();
+  const unique = [];
+
+  values.forEach((value) => {
+    const clean = String(value ?? "").trim();
+    const key = normalizeKey(clean);
+    if (!clean || seen.has(key)) return;
+    seen.add(key);
+    unique.push(clean);
+  });
+
+  return unique;
+};
+
+const chunkValues = (values, size = 100) => {
+  const chunks = [];
+  for (let index = 0; index < values.length; index += size) {
+    chunks.push(values.slice(index, index + size));
+  }
+  return chunks;
+};
+
+const arrayFromVascoPayload = (payload) => {
+  if (Array.isArray(payload)) return payload;
+  if (!payload || typeof payload !== "object") return null;
+
+  for (const key of ["data", "items", "value", "result", "results"]) {
+    if (Array.isArray(payload[key])) return payload[key];
+  }
+
+  return null;
+};
+
+const joinedName = (...values) => {
+  const parts = uniqueCleanValues(values);
+  return parts.join(" ");
+};
+
+const articleNameFrom = (article) =>
+  joinedName(
+    objectValueByNames(article, ["naziv", "Naziv", "nazivArtikla", "opis"]),
+    objectValueByNames(article, ["naziv2", "Naziv2"])
+  );
+
+const objectOrExtraValueByNames = (object, names) => {
+  const directValue = objectValueByNames(object, names);
+  if (directValue !== "") return directValue;
+
+  for (const name of names) {
+    const extraValue = extraFieldValue(object?.dodatnaPolja, name);
+    if (extraValue !== "") return extraValue;
+  }
+
+  return "";
+};
+
+const monthFieldNames = (baseNames) => {
+  const month = new Date().getMonth() + 1;
+  const monthText = String(month);
+  const monthPadded = monthText.padStart(2, "0");
+  const suffixes = [monthText, monthPadded, `M${monthText}`, `M${monthPadded}`, `MESEC${monthText}`, `MESEC${monthPadded}`];
+
+  return baseNames.flatMap((name) => [
+    name,
+    ...suffixes.flatMap((suffix) => [`${name}${suffix}`, `${name}_${suffix}`, `${suffix}_${name}`]),
+  ]);
+};
+
+const articleOptimalStockFrom = (article) =>
+  objectOrExtraValueByNames(
+    article,
+    monthFieldNames([
+      "optimalnaZaloga",
+      "optimalna_zaloga",
+      "OPTIMALNA_ZALOGA",
+      "optZaloga",
+      "OPT_ZALOGA",
+      "zalogaOptimalna",
+      "ZALOGA_OPTIMALNA",
+      "ciljnaZaloga",
+      "CILJNA_ZALOGA",
+      "mesecnaZaloga",
+      "MESECNA_ZALOGA",
+      "minZaloga",
+      "MIN_ZALOGA",
+      "minimalnaZaloga",
+      "MINIMALNA_ZALOGA",
+    ])
+  );
+
+const articlePackSizeFrom = (article) =>
+  objectOrExtraValueByNames(article, [
+    "pakiranje",
+    "Pakiranje",
+    "PAKIRANJE",
+    "kolicinaPakiranja",
+    "količinaPakiranja",
+    "KOLICINA_PAKIRANJA",
+    "pakirnaKolicina",
+    "PAKIRNA_KOLICINA",
+    "narocilnaKolicina",
+    "NAROCILNA_KOLICINA",
+    "minimalnoNarocilo",
+    "MINIMALNO_NAROCILO",
+    "minimalnaKolicinaNarocila",
+    "MIN_KOL_NAROCILA",
+  ]);
+
+const partnerNameFrom = (partner) =>
+  joinedName(
+    objectValueByNames(partner, ["naziv", "Naziv"]),
+    objectValueByNames(partner, ["naziv2", "Naziv2"])
+  );
+
+const catalogKeyFrom = (entry) => objectValueByNames(entry, ["sifra", "Sifra", "code", "id"]);
+
+const fetchCatalogMap = async ({ token, pathName, codes, valueFrom, label }) => {
+  const map = new Map();
+  const batches = chunkValues(uniqueCleanValues(codes), 100);
+
+  for (const batch of batches) {
+    const url = new URL(`${vascoBaseUrl()}${pathName}`);
+    url.searchParams.set("Sifra", batch.join(","));
+    const payload = await fetchVascoJson(url, token, `${label} ni bilo mogoče prebrati.`);
+    const entries = arrayFromVascoPayload(payload);
+
+    if (!entries) {
+      throw createHttpError(502, `${label} je vrnil nepričakovano obliko podatkov.`, payload);
+    }
+
+    entries.forEach((entry) => {
+      const key = catalogKeyFrom(entry);
+      const value = valueFrom(entry);
+      if (key !== "" && value !== "") {
+        map.set(normalizeKey(key), value);
+      }
+    });
+  }
+
+  return map;
+};
+
+const fetchArticleMap = (token, codes) =>
+  fetchCatalogMap({
+    token,
+    pathName: "/api/v1/FASifranti/artikel",
+    codes,
+    valueFrom: articleNameFrom,
+    label: "Šifrant artiklov",
+  });
+
+const fetchArticleDetailsByArticle = async (token, codes) => {
+  const map = new Map();
+  const batches = chunkValues(uniqueCleanValues(codes), 100);
+
+  for (const batch of batches) {
+    const url = new URL(`${vascoBaseUrl()}/api/v1/FASifranti/artikel`);
+    url.searchParams.set("Sifra", batch.join(","));
+    const payload = await fetchVascoJson(url, token, "Šifranta artiklov ni bilo mogoče prebrati.");
+    const entries = arrayFromVascoPayload(payload);
+
+    if (!entries) {
+      throw createHttpError(502, "Šifrant artiklov je vrnil nepričakovano obliko podatkov.", payload);
+    }
+
+    entries.forEach((entry) => {
+      const code = catalogKeyFrom(entry);
+      if (!code) return;
+
+      map.set(normalizeKey(code), {
+        sifra: code,
+        nazivArtikla: articleNameFrom(entry),
+        dobavitelj: objectValueByNames(entry, ["dobavitelj", "Dobavitelj", "sifraDobavitelja", "SifraDobavitelja"]),
+        enota: objectValueByNames(entry, ["enota", "Enota", "em"]),
+        nabavnaCena: objectValueByNames(entry, ["nabavnaCena", "NabavnaCena", "NABAVNA_CENA"]),
+        optimalnaZaloga: articleOptimalStockFrom(entry),
+        pakiranje: articlePackSizeFrom(entry),
+      });
+    });
+  }
+
+  return map;
+};
+
+const fetchPartnerMap = (token, codes) =>
+  fetchCatalogMap({
+    token,
+    pathName: "/api/v1/SkupniSifranti/partner",
+    codes,
+    valueFrom: partnerNameFrom,
+    label: "Šifrant partnerjev",
+  });
+
+const mapToPlainObject = (map) =>
+  Object.fromEntries(Array.from(map.entries()).map(([key, value]) => [key, value]));
+
+const planningOptionsFrom = (body) => {
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : body;
+
+  return {
+    skladisceZaloge: cleanValue(filters.skladisceZaloge || filters.SkladisceZaloge || ""),
+    datumDobaviteljaOd: normalizeDateTime(filters.datumDobaviteljaOd || filters.DatumDobaviteljaOd || filters.datumOd || filters.DatumOd || ""),
+    datumDobaviteljaDo: normalizeDateTime(filters.datumDobaviteljaDo || filters.DatumDobaviteljaDo || filters.datumDo || filters.DatumDo || ""),
+  };
+};
+
+const fetchStockByArticle = async (token, codes, options = {}) => {
+  const map = new Map();
+  const batches = chunkValues(uniqueCleanValues(codes), 100);
+
+  for (const batch of batches) {
+    const url = new URL(`${vascoBaseUrl()}/api/v1/FASifranti/zaloga`);
+    url.searchParams.set("Sifra", batch.join(","));
+    if (options.skladisceZaloge) url.searchParams.set("Skladisce", options.skladisceZaloge);
+
+    const payload = await fetchVascoJson(url, token, "Zaloge artiklov ni bilo mogoče prebrati.");
+    const entries = arrayFromVascoPayload(payload);
+    if (!entries) {
+      throw createHttpError(502, "Zaloga artiklov je vrnila nepričakovano obliko podatkov.", payload);
+    }
+
+    entries.forEach((entry) => {
+      const code = objectValueByNames(entry, ["sifra", "Sifra"]);
+      if (!code) return;
+
+      const key = normalizeKey(code);
+      const current = map.get(key) || {
+        zaloga: 0,
+        narKupKolicina: 0,
+        rezervirano: 0,
+        skladisca: new Set(),
+      };
+
+      current.zaloga += parseDecimal(objectValueByNames(entry, ["zaloga", "Zaloga"]));
+      current.narKupKolicina += parseDecimal(objectValueByNames(entry, ["narKupKolicina", "NarKupKolicina"]));
+      current.rezervirano += parseDecimal(objectValueByNames(entry, ["rezervirano", "Rezervirano"]));
+      const skladisce = objectValueByNames(entry, ["skladisce", "Skladisce"]);
+      if (skladisce !== "") current.skladisca.add(String(skladisce));
+      map.set(key, current);
+    });
+  }
+
+  map.forEach((value) => {
+    value.zaloga = formatQuantity(value.zaloga);
+    value.narKupKolicina = formatQuantity(value.narKupKolicina);
+    value.rezervirano = formatQuantity(value.rezervirano);
+    value.skladisca = Array.from(value.skladisca).join(",");
+  });
+
+  return map;
+};
+
+const fetchSupplierOrdersByArticle = async (token, codes, options = {}) => {
+  const map = new Map();
+  if (!options.datumDobaviteljaOd && !options.datumDobaviteljaDo) {
+    return map;
+  }
+
+  const wanted = new Set(uniqueCleanValues(codes).map(normalizeKey));
+  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloDobavitelju`);
+  if (options.datumDobaviteljaOd) url.searchParams.set("DatumOd", options.datumDobaviteljaOd);
+  if (options.datumDobaviteljaDo) url.searchParams.set("DatumDo", options.datumDobaviteljaDo);
+  url.searchParams.set("VrniPostavke", "1");
+
+  const payload = await fetchVascoJson(url, token, "Naročil dobaviteljem ni bilo mogoče prebrati.");
+  const orders = arrayFromVascoPayload(payload);
+  if (!orders) {
+    throw createHttpError(502, "Naročila dobaviteljem so vrnila nepričakovano obliko podatkov.", payload);
+  }
+
+  orders.forEach((order) => {
+    (Array.isArray(order.postavke) ? order.postavke : []).forEach((item) => {
+      const code = itemCodeFrom(item);
+      const key = normalizeKey(code);
+      if (!key || !wanted.has(key)) return;
+
+      const current = map.get(key) || {
+        narocenoDobaviteljem: 0,
+        narocilaDobaviteljem: new Set(),
+      };
+
+      current.narocenoDobaviteljem += parseDecimal(itemQuantityFrom(item));
+      if (order.stevilka) current.narocilaDobaviteljem.add([order.stevilka, order.leto].filter(Boolean).join("."));
+      map.set(key, current);
+    });
+  });
+
+  map.forEach((value) => {
+    value.narocenoDobaviteljem = formatQuantity(value.narocenoDobaviteljem);
+    value.narocilaDobaviteljem = Array.from(value.narocilaDobaviteljem).join(", ");
+  });
+
+  return map;
+};
+
+const openCustomerOptionsFrom = (body) => {
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : body;
+  const partner = cleanValue(filters.partner || filters.Partner || "");
+
+  return {
+    partner,
+    prodajalna: cleanValue(filters.prodajalna || filters.Prodajalna || ""),
+  };
+};
+
+const isSingleIntegerText = (value) => /^\d+$/.test(String(value ?? "").trim());
+
+const fetchOpenCustomerOrders = async (token, body, warnings = []) => {
+  const options = openCustomerOptionsFrom(body);
+  if (!options.partner) return [];
+
+  if (!isSingleIntegerText(options.partner)) {
+    return [];
+  }
+
+  const buildUrl = (includeStore = true) => {
+    const url = new URL(`${vascoBaseUrl()}/api/v1/FA/odpritaNarocilaKupca`);
+    url.searchParams.set("Partner", String(options.partner));
+    if (includeStore && options.prodajalna !== "") url.searchParams.set("Prodajalna", String(options.prodajalna));
+    return url;
+  };
+
+  let payload;
+  try {
+    payload = await fetchVascoJson(buildUrl(true), token, "Odprtih naročil kupca ni bilo mogoče prebrati.");
+  } catch (error) {
+    if (!options.prodajalna) throw error;
+    payload = await fetchVascoJson(buildUrl(false), token, "Odprtih naročil kupca ni bilo mogoče prebrati.");
+  }
+  const rows = arrayFromVascoPayload(payload);
+  if (!rows) {
+    throw createHttpError(502, "Odprta naročila kupca so vrnila nepričakovano obliko podatkov.", payload);
+  }
+
+  return rows;
+};
+
+const fetchOrderStatesForOrders = async (orders, token, warnings = []) => {
+  const candidates = orders.filter((order) => order?.stevilka && order?.leto);
+  const maxRequests = 80;
+  let failedCount = 0;
+  let firstError = "";
+
+  const fetchOneState = async (order) => {
+    const url = new URL(
+      `${vascoBaseUrl()}/api/v1/FA/narociloKupca/stanje/${encodeURIComponent(order.stevilka)}/${encodeURIComponent(order.leto)}`
+    );
+
+    try {
+      const payload = await fetchVascoJson(url, token, "Stanja naročila kupca ni bilo mogoče prebrati.");
+      const stateRows = arrayFromVascoPayload(payload) || (payload && typeof payload === "object" ? [payload] : null);
+      if (!stateRows) {
+        throw createHttpError(502, "Stanje naročila kupca je vrnilo nepričakovano obliko podatkov.", payload);
+      }
+
+      order.stanjeNarocila = stateRows;
+      order.dobave = stateRows.flatMap((state) => (Array.isArray(state?.dobava) ? state.dobava : []));
+    } catch (error) {
+      failedCount += 1;
+      if (!firstError) firstError = error.message;
+    }
+  };
+
+  for (const batch of chunkValues(candidates.slice(0, maxRequests), 6)) {
+    await Promise.all(batch.map(fetchOneState));
+  }
+
+  if (candidates.length > maxRequests) {
+    warnings.push(`Stanje naročila je dopolnjeno za prvih ${maxRequests} naročil od ${candidates.length}.`);
+  }
+
+  if (failedCount) {
+    warnings.push(`Stanja ${failedCount} naročil ni bilo mogoče dopolniti: ${firstError}`);
+  }
+};
+
+const fetchVascoPlanningData = async (orders, token, body, warnings = []) => {
+  const planningData = {
+    stockByArticle: {},
+    supplierByArticle: {},
+    articleByArticle: {},
+    openCustomerOrders: [],
+  };
+
+  try {
+    planningData.openCustomerOrders = await fetchOpenCustomerOrders(token, body, warnings);
+  } catch (error) {
+    planningData.openCustomerOrders = [];
+    planningData.openCustomerOrdersWarning = error.message;
+  }
+
+  const openCustomerOptions = openCustomerOptionsFrom(body);
+  planningData.openCustomerPartner = openCustomerOptions.partner;
+  const matchingOrder = orders.find((order) => normalizeKey(order.partner) === normalizeKey(openCustomerOptions.partner));
+  const customerName = matchingOrder ? orderCustomerNameFrom(matchingOrder) : "";
+  planningData.openCustomerPartnerLabel = [openCustomerOptions.partner, customerName].filter(Boolean).join(" - ");
+
+  const articleCodes = uniqueCleanValues([
+    ...orders.flatMap((order) => (Array.isArray(order.postavke) ? order.postavke : []).map(itemCodeFrom)),
+    ...planningData.openCustomerOrders.map(openCustomerOrderCodeFrom),
+  ]);
+
+  if (!articleCodes.length) return planningData;
+
+  const options = planningOptionsFrom(body);
+
+  try {
+    planningData.stockByArticle = mapToPlainObject(await fetchStockByArticle(token, articleCodes, options));
+  } catch (error) {
+    warnings.push(`Zaloge iz Vasca ni bilo mogoče dopolniti: ${error.message}`);
+  }
+
+  try {
+    planningData.supplierByArticle = mapToPlainObject(await fetchSupplierOrdersByArticle(token, articleCodes, options));
+    if (!options.datumDobaviteljaOd && !options.datumDobaviteljaDo) {
+      warnings.push("Naročila dobaviteljem niso vključena, ker ni vnesen datum od/do.");
+    }
+  } catch (error) {
+    warnings.push(`Naročil dobaviteljem ni bilo mogoče dopolniti: ${error.message}`);
+  }
+
+  try {
+    planningData.articleByArticle = mapToPlainObject(await fetchArticleDetailsByArticle(token, articleCodes));
+  } catch (error) {
+    warnings.push(`Dobaviteljev artiklov ni bilo mogoče dopolniti: ${error.message}`);
+  }
+
+  return planningData;
+};
+
+const enrichOrdersFromCatalogs = async (orders, token) => {
+  const warnings = [];
+  const partnerCodes = uniqueCleanValues(orders.map((order) => order.partner));
+  const articleCodes = uniqueCleanValues(
+    orders.flatMap((order) => (Array.isArray(order.postavke) ? order.postavke : []).map(itemCodeFrom))
+  );
+
+  let partnerMap = new Map();
+  let articleMap = new Map();
+
+  if (partnerCodes.length) {
+    try {
+      partnerMap = await fetchPartnerMap(token, partnerCodes);
+    } catch (error) {
+      warnings.push(`Nazivov kupcev ni bilo mogoče dopolniti: ${error.message}`);
+    }
+  }
+
+  if (articleCodes.length) {
+    try {
+      articleMap = await fetchArticleMap(token, articleCodes);
+    } catch (error) {
+      warnings.push(`Nazivov artiklov ni bilo mogoče dopolniti: ${error.message}`);
+    }
+  }
+
+  orders.forEach((order) => {
+    const partnerName = partnerMap.get(normalizeKey(order.partner));
+    if (!orderCustomerNameFrom(order) && partnerName) {
+      order.nazivKupca = partnerName;
+    }
+
+    (Array.isArray(order.postavke) ? order.postavke : []).forEach((item) => {
+      const articleName = articleMap.get(normalizeKey(itemCodeFrom(item)));
+      if (!itemArticleNameFrom(item) && articleName) {
+        item.nazivArtikla = articleName;
+      }
+    });
+  });
+
+  return warnings;
+};
+
 const orderRowsForExcel = (orders) =>
   orders.map((order) => ({
     stevilka: order.stevilka,
     leto: order.leto,
     datum: formatDate(order.datum),
     partner: order.partner,
+    nazivKupca: orderCustomerNameFrom(order),
     komercialist: order.komercialist,
     znesek: order.znesek,
     znesekZDDV: order.znesekZDDV,
@@ -472,27 +2125,39 @@ const orderRowsForExcel = (orders) =>
     besedilo: order.besedilo,
     popravljaDokument: order.popravljaDokument,
     priloge: Array.isArray(order.dokIdPriloge) ? order.dokIdPriloge.length : 0,
+    stDobav: orderDeliveriesFrom(order).length,
+    dobave: orderDeliveriesTextFrom(order),
     dodatnaPolja: formatExtraFields(order.dodatnaPolja),
   }));
 
-const itemRowsForExcel = (orders) =>
+const itemRowsForExcel = (orders, extraFieldNames = []) =>
   orders.flatMap((order) =>
-    (Array.isArray(order.postavke) ? order.postavke : []).map((item) => ({
-      narocilo: order.stevilka,
-      leto: order.leto,
-      datum: formatDate(order.datum),
-      partner: order.partner,
-      zs: item.zs,
-      sifra: firstValue(item, ["sifra", "sifraArtikla", "sifra_artikla", "artikel"]),
-      nazivArtikla: firstValue(item, ["naziv_artikla", "nazivArtikla", "nazivArt", "naziv", "opisArtikla", "opis_artikla"]),
-      kolicina: firstValue(item, ["kolicina", "količina", "kol"]),
-      cena: firstValue(item, ["cena", "prodajnaCena", "prodajna_cena", "prodajnaCenaZDDV", "prodajnaCenaZDdv"]),
-      rabat1: item.rabat1,
-      zaprto: item.zaprto,
-      zaprtoPos: item.zaprtoPos,
-      datumVeljavnosti: formatDate(item.datumVeljavnosti),
-      dodatnaPolja: formatExtraFields(item.dodatnaPolja),
-    }))
+    (Array.isArray(order.postavke) ? order.postavke : []).map((item) => {
+      const row = {
+        narocilo: order.stevilka,
+        leto: order.leto,
+        datum: formatDate(order.datum),
+        partner: order.partner,
+        nazivKupca: orderCustomerNameFrom(order),
+        zs: item.zs,
+        sifra: itemCodeFrom(item),
+        nazivArtikla: itemNameFrom(item),
+        kolicina: itemQuantityFrom(item),
+        cena: itemPriceFrom(item),
+        predvidenaDobava: formatDate(itemDeliveryFrom(item)),
+        rabat1: item.rabat1,
+        zaprto: item.zaprto,
+        zaprtoPos: item.zaprtoPos,
+        datumVeljavnosti: formatDate(item.datumVeljavnosti),
+        dodatnaPolja: formatExtraFields(item.dodatnaPolja),
+      };
+
+      extraFieldNames.forEach((name, index) => {
+        row[`extra_${index}`] = itemFieldValue(item, name);
+      });
+
+      return row;
+    })
   );
 
 const summaryRowsForExcel = (orders) => {
@@ -502,12 +2167,14 @@ const summaryRowsForExcel = (orders) => {
     const key = String(order.partner ?? "");
     const current = byPartner.get(key) || {
       partner: key,
+      nazivKupca: "",
       stNarocil: 0,
       stPostavk: 0,
       znesek: 0,
       znesekZDDV: 0,
     };
 
+    current.nazivKupca = current.nazivKupca || orderCustomerNameFrom(order);
     current.stNarocil += 1;
     current.stPostavk += Array.isArray(order.postavke) ? order.postavke.length : 0;
     current.znesek += asNumber(order.znesek);
@@ -518,6 +2185,7 @@ const summaryRowsForExcel = (orders) => {
   const rows = Array.from(byPartner.values()).sort((a, b) => a.partner.localeCompare(b.partner, "sl"));
   rows.push({
     partner: "SKUPAJ",
+    nazivKupca: "",
     stNarocil: orders.length,
     stPostavk: rows.reduce((sum, row) => sum + row.stPostavk, 0),
     znesek: rows.reduce((sum, row) => sum + row.znesek, 0),
@@ -723,12 +2391,15 @@ const zipFiles = (files) => {
   return Buffer.concat([...localParts, ...centralParts, end]);
 };
 
-const createOrdersWorkbook = (orders) => {
+const createOrdersWorkbook = (orders, options = {}) => {
+  const extraFieldNames = displayExtraFieldNames(Array.isArray(options.extraFieldNames) ? options.extraFieldNames : []);
+  const planningData = options.planningData || {};
   const orderHeaders = [
     { key: "stevilka", label: "Številka" },
     { key: "leto", label: "Leto" },
     { key: "datum", label: "Datum" },
     { key: "partner", label: "Partner" },
+    { key: "nazivKupca", label: "Naziv kupca" },
     { key: "komercialist", label: "Komercialist" },
     { key: "znesek", label: "Znesek brez DDV" },
     { key: "znesekZDDV", label: "Znesek z DDV" },
@@ -737,6 +2408,8 @@ const createOrdersWorkbook = (orders) => {
     { key: "besedilo", label: "Besedilo" },
     { key: "popravljaDokument", label: "Popravlja dokument" },
     { key: "priloge", label: "Št. prilog" },
+    { key: "stDobav", label: "Št. dobav" },
+    { key: "dobave", label: "Dobave" },
     { key: "dodatnaPolja", label: "Dodatna polja" },
   ];
 
@@ -745,24 +2418,52 @@ const createOrdersWorkbook = (orders) => {
     { key: "leto", label: "Leto" },
     { key: "datum", label: "Datum" },
     { key: "partner", label: "Partner" },
+    { key: "nazivKupca", label: "Naziv kupca" },
     { key: "zs", label: "ZS" },
     { key: "sifra", label: "Šifra" },
     { key: "nazivArtikla", label: "Naziv artikla" },
     { key: "kolicina", label: "Količina" },
     { key: "cena", label: "Cena" },
+    { key: "predvidenaDobava", label: "Predvidena dobava" },
     { key: "rabat1", label: "Rabat 1" },
     { key: "zaprto", label: "Zaprto" },
     { key: "zaprtoPos", label: "Zaprto POS" },
     { key: "datumVeljavnosti", label: "Datum veljavnosti" },
+    ...extraFieldNames.map((name, index) => ({ key: `extra_${index}`, label: name })),
     { key: "dodatnaPolja", label: "Dodatna polja" },
   ];
 
   const summaryHeaders = [
     { key: "partner", label: "Partner" },
+    { key: "nazivKupca", label: "Naziv kupca" },
     { key: "stNarocil", label: "Št. naročil" },
     { key: "stPostavk", label: "Št. postavk" },
     { key: "znesek", label: "Znesek brez DDV" },
     { key: "znesekZDDV", label: "Znesek z DDV" },
+  ];
+
+  const stockPlanHeaders = [
+    { key: "oznaciNabavo", label: "Označi" },
+    { key: "sifra", label: "Šifra" },
+    { key: "nazivArtikla", label: "Naziv artikla" },
+    { key: "datumDobave", label: "Potrebno do" },
+    { key: "potrebnaKolicina", label: "Naročeno kupcem" },
+    { key: "seDobaviti", label: "Še dobaviti" },
+    { key: "kumulativnaPotreba", label: "Kumulativno" },
+    { key: "optimalnaZaloga", label: "Optimalna zaloga" },
+    { key: "zaloga", label: "Zaloga" },
+    { key: "zalogaOst", label: "Zaloga po dobavi" },
+    { key: "rezervirano", label: "Rezervirano" },
+    { key: "vascoKupci", label: "Odprto pri kupcih" },
+    { key: "narocenoDobaviteljem", label: "Naročeno dobaviteljem" },
+    { key: "zaPripravo", label: "Manjka za naročiti" },
+    { key: "sifraDobavitelja", label: "Dobavitelj" },
+    { key: "pakiranje", label: "Pakiranje" },
+    { key: "status", label: "Status" },
+    { key: "narocila", label: "Naročila" },
+    { key: "narocilaDobaviteljem", label: "Naročila dobaviteljem" },
+    { key: "kupci", label: "Kupci" },
+    { key: "stPostavk", label: "Št. postavk" },
   ];
 
   const sheets = [
@@ -770,19 +2471,25 @@ const createOrdersWorkbook = (orders) => {
       name: "Naročila",
       headers: orderHeaders,
       rows: orderRowsForExcel(orders),
-      widths: [14, 9, 13, 12, 14, 18, 16, 11, 11, 36, 22, 11, 42],
+      widths: [14, 9, 13, 12, 30, 14, 18, 16, 11, 11, 36, 22, 11, 10, 34, 42],
     },
     {
       name: "Postavke",
       headers: itemHeaders,
-      rows: itemRowsForExcel(orders),
-      widths: [14, 9, 13, 12, 10, 16, 34, 12, 14, 11, 10, 12, 18, 42],
+      rows: itemRowsForExcel(orders, extraFieldNames),
+      widths: [14, 9, 13, 12, 30, 10, 16, 34, 12, 14, 18, 11, 10, 12, 18, ...extraFieldNames.map(() => 18), 42],
+    },
+    {
+      name: "Plan zaloge",
+      headers: stockPlanHeaders,
+      rows: stockPlanRowsForExcel(orders, planningData),
+      widths: [10, 16, 34, 14, 18, 14, 21, 16, 12, 13, 14, 16, 22, 20, 14, 12, 22, 28, 30, 42, 12],
     },
     {
       name: "Povzetek",
       headers: summaryHeaders,
       rows: summaryRowsForExcel(orders),
-      widths: [14, 12, 13, 18, 16],
+      widths: [14, 30, 12, 13, 18, 16],
     },
   ];
 
@@ -799,6 +2506,90 @@ const createOrdersWorkbook = (orders) => {
   ]);
 };
 
+const workbookDownloads = new Map();
+const workbookDownloadTtlMs = 10 * 60 * 1000;
+
+const safeWorkbookFileName = (fileName) => {
+  const cleanName = path.basename(String(fileName || "vasco-narocila.xlsx"))
+    .replace(/[<>:"/\\|?*\x00-\x1f]/g, "_")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return cleanName || "vasco-narocila.xlsx";
+};
+
+const uniqueWorkbookPath = async (dir, fileName) => {
+  const safeName = safeWorkbookFileName(fileName);
+  const extension = path.extname(safeName);
+  const stem = safeName.slice(0, safeName.length - extension.length) || "vasco-narocila";
+
+  for (let index = 0; index < 200; index += 1) {
+    const suffix = index === 0 ? "" : `-${index + 1}`;
+    const candidate = path.join(dir, `${stem}${suffix}${extension || ".xlsx"}`);
+
+    try {
+      await fs.access(candidate);
+    } catch (error) {
+      return candidate;
+    }
+  }
+
+  return path.join(dir, `${stem}-${Date.now()}${extension || ".xlsx"}`);
+};
+
+const saveWorkbookLocalFile = async (workbook, fileName) => {
+  const dir = path.join(vascoAppRoot(), "prenosi");
+  await fs.mkdir(dir, { recursive: true });
+
+  const filePath = await uniqueWorkbookPath(dir, fileName);
+  await fs.writeFile(filePath, workbook);
+  return filePath;
+};
+
+const saveWorkbookDownload = async (workbook, fileName, options = {}) => {
+  const id = crypto.randomUUID();
+  workbookDownloads.set(id, {
+    workbook,
+    fileName,
+    expiresAt: Date.now() + workbookDownloadTtlMs,
+  });
+
+  const cleanup = setTimeout(() => workbookDownloads.delete(id), workbookDownloadTtlMs);
+  if (typeof cleanup.unref === "function") cleanup.unref();
+
+  const result = {
+    ok: true,
+    fileName,
+    downloadUrl: `/api/vasco/download/${id}`,
+  };
+
+  if (options.saveLocal) {
+    try {
+      result.savedPath = await saveWorkbookLocalFile(workbook, fileName);
+    } catch (error) {
+      result.saveWarning = `Excel je pripravljen, vendar ga ni bilo mogoče shraniti v mapo prenosi: ${error.message}`;
+    }
+  }
+
+  return result;
+};
+
+const sendWorkbook = async (res, workbook, fileName, body = {}) => {
+  if (body.returnLink) {
+    send(res, 200, await saveWorkbookDownload(workbook, fileName, { saveLocal: true }), {
+      "Cache-Control": "no-store, max-age=0",
+      "Content-Type": "application/json; charset=utf-8",
+    });
+    return;
+  }
+
+  send(res, 200, workbook, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Disposition": `attachment; filename="${fileName}"`,
+    "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+};
+
 const countOrderItems = (orders) =>
   orders.reduce((count, order) => count + (Array.isArray(order.postavke) ? order.postavke.length : 0), 0);
 
@@ -811,6 +2602,8 @@ const handleVascoOrdersRead = async (req, res) => {
     count: result.orders.length,
     itemCount: countOrderItems(result.orders),
     source: result.source,
+    warnings: result.warnings,
+    stockPlan: stockPlanRowsForExcel(result.orders, result.planningData),
     orders: result.orders,
   }, {
     "Cache-Control": "no-store, max-age=0",
@@ -821,17 +2614,16 @@ const handleVascoOrdersRead = async (req, res) => {
 const handleVascoOrdersExcel = async (req, res) => {
   const body = await parseJsonBody(req);
   const result = await fetchVascoOrders(body);
-  const workbook = createOrdersWorkbook(result.orders);
+  const workbook = createOrdersWorkbook(result.orders, {
+    extraFieldNames: extraFieldNamesFrom(body, result.orders),
+    planningData: result.planningData,
+  });
   const filters = body.filters && typeof body.filters === "object" ? body.filters : body;
   const partner = cleanValue(filters.partner || filters.Partner || "vsi") || "vsi";
   const safePartner = String(partner).replace(/[^a-z0-9_-]+/gi, "_").slice(0, 32);
   const fileName = `vasco-narocila-${safePartner}-${new Date().toISOString().slice(0, 10)}.xlsx`;
 
-  send(res, 200, workbook, {
-    "Cache-Control": "no-store, max-age=0",
-    "Content-Disposition": `attachment; filename="${fileName}"`,
-    "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  });
+  await sendWorkbook(res, workbook, fileName, body);
 };
 
 const ordersFromBody = (body) => {
@@ -847,79 +2639,93 @@ const ordersFromBody = (body) => {
 const handleVascoOrdersJsonExcel = async (req, res) => {
   const body = await parseJsonBody(req);
   const orders = ordersFromBody(body);
-  const workbook = createOrdersWorkbook(orders);
+  const workbook = createOrdersWorkbook(orders, {
+    extraFieldNames: extraFieldNamesFrom(body, orders),
+  });
   const fileName = `vasco-narocila-json-${new Date().toISOString().slice(0, 10)}.xlsx`;
 
-  send(res, 200, workbook, {
+  await sendWorkbook(res, workbook, fileName, body);
+};
+
+const handleVascoWorkbookDownload = async (url, res) => {
+  const id = decodeURIComponent(url.pathname.replace(/^\/api\/vasco\/download\//, ""));
+  const download = /^[a-f0-9-]{36}$/i.test(id) ? workbookDownloads.get(id) : null;
+
+  if (!download || download.expiresAt < Date.now()) {
+    if (download) workbookDownloads.delete(id);
+    send(res, 404, "Excel povezava je potekla. Klikni Excel še enkrat.");
+    return;
+  }
+
+  send(res, 200, download.workbook, {
     "Cache-Control": "no-store, max-age=0",
-    "Content-Disposition": `attachment; filename="${fileName}"`,
+    "Content-Disposition": `attachment; filename="${download.fileName}"`,
     "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   });
 };
 
-const createSmtpTransport = () =>
-  nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT || 587),
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
-
-const handleContactForm = async (req, res) => {
+const handleVascoOrderItemFieldsRead = async (req, res) => {
   const body = await parseJsonBody(req);
+  const fields = await fetchVascoOrderItemFields(body);
 
-  const name = (body.name || "").toString().trim();
-  const email = (body.email || "").toString().trim();
-  const phone = (body.phone || "").toString().trim();
-  const company = (body.company || "").toString().trim();
-  const interest = (body.interest || "").toString().trim();
-  const preferredDate = (body.preferredDate || "").toString().trim();
-  const message = (body.message || "").toString().trim();
-  const isTestRequest = body.isTestRequest === true || body.isTestRequest === "true";
+  send(res, 200, {
+    ok: true,
+    count: fields.length,
+    fields,
+  }, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
 
-  if (!name || !email) {
-    send(res, 400, { ok: false, message: "Ime in e-pošta sta obvezna." });
+const handleVascoDeliveryNotesCreate = async (req, res) => {
+  const body = await parseJsonBody(req);
+  const result = await createVascoDeliveryNotes(body);
+
+  send(res, 200, result, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
+const handleVascoSupplierOrdersCreate = async (req, res) => {
+  const body = await parseJsonBody(req);
+  const result = await createVascoSupplierOrders(body);
+
+  send(res, 200, result, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
+const serveVascoStatic = async (req, res) => {
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const baseRoot = path.resolve(vascoAppRoot());
+  const relativePath = decodeURIComponent(url.pathname.replace(/^\/vasco\/?/, "/") || "/index.html");
+  const cleanPath = relativePath === "/" ? "/index.html" : relativePath;
+  const fullPath = path.resolve(baseRoot, `.${cleanPath}`);
+
+  if (!fullPath.startsWith(baseRoot)) {
+    send(res, 403, "Forbidden");
     return;
   }
 
-  if (!process.env.EMAIL_HOST || !process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjkajo EMAIL_HOST, EMAIL_USER ali EMAIL_PASSWORD)." });
+  let filePath = fullPath;
+  const stat = await fs.stat(filePath).catch(() => null);
+
+  if (stat?.isDirectory()) {
+    filePath = path.join(filePath, "index.html");
+  }
+
+  const file = await fs.readFile(filePath).catch(() => null);
+  if (!file) {
+    send(res, 404, "Not found");
     return;
   }
 
-  const bodyLines = [
-    `Ime: ${name}`,
-    `E-pošta: ${email}`,
-    phone ? `Telefon: ${phone}` : null,
-    `Podjetje: ${company || "-"}`,
-    `Zanimanje: ${interest}`,
-    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-    "",
-    message,
-  ].filter((line) => line !== null);
-
-  const subject = `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`;
-  const text = bodyLines.join("\n");
-
-  try {
-    const transporter = createSmtpTransport();
-await transporter.sendMail({
-  from: `"TU-VAL" <${process.env.EMAIL_USER}>`,
-  to: "sales@tu-val.si",
-  replyTo: email,
-  subject,
-  text,
-});
-
-    console.log(`[handleContactForm] Email sent via SiOL SMTP: ${subject} (from ${email})`);
-    send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
-  } catch (error) {
-    console.error(`[handleContactForm] SMTP error: ${error.message}`);
-    send(res, 500, { ok: false, message: "Pošiljanje sporočila ni uspelo. Prosimo, poskusite znova." });
-  }
+  send(res, 200, file, {
+    "Content-Type": mimeTypes[path.extname(filePath)] || "application/octet-stream",
+  });
 };
 
 const serveStatic = async (req, res) => {
@@ -990,8 +2796,18 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === "POST" && url.pathname === "/api/contact") {
+      await handleContactEmail(req, res);
+      return;
+    }
+
     if (req.method === "POST" && url.pathname === "/api/vasco/narocila-kupca") {
       await handleVascoOrdersRead(req, res);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/vasco/narocila-kupca/postavke/polja") {
+      await handleVascoOrderItemFieldsRead(req, res);
       return;
     }
 
@@ -1005,8 +2821,23 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    if (req.method === "POST" && url.pathname === "/api/contact") {
-      await handleContactForm(req, res);
+    if (req.method === "POST" && url.pathname === "/api/vasco/dobavnica") {
+      await handleVascoDeliveryNotesCreate(req, res);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/vasco/narocilo-dobavitelju") {
+      await handleVascoSupplierOrdersCreate(req, res);
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname.startsWith("/api/vasco/download/")) {
+      await handleVascoWorkbookDownload(url, res);
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname.startsWith("/vasco/")) {
+      await serveVascoStatic(req, res);
       return;
     }
 

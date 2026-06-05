@@ -768,13 +768,10 @@ const focusEditable = (key) => {
 };
 
 const injectCustomBlocksIntoPreview = (doc) => {
-  console.log("injectCustomBlocksIntoPreview() called");
   const main = doc.querySelector("main");
-  console.log("main element found:", !!main);
   if (!main) return;
 
   const blocks = customBlocksForPage();
-  console.log("blocks count:", blocks.length);
   const validIds = new Set(blocks.map((block) => ensureCustomBlockId(block)));
 
   doc.querySelectorAll("[data-custom-block]").forEach((blockElement) => {
@@ -789,13 +786,11 @@ const injectCustomBlocksIntoPreview = (doc) => {
     return;
   }
 
-  console.log("Creating section for custom blocks");
   if (!section) {
     section = doc.createElement("section");
     section.className = "section custom-content-section";
     section.setAttribute("data-custom-blocks", "");
     main.append(section);
-    console.log("Section appended to main");
   }
 
   let grid = section.querySelector(".custom-content-grid");
@@ -839,9 +834,7 @@ const preparePreview = () => {
   const doc = elements.preview.contentDocument;
   if (!doc || !content) return;
 
-  console.log("About to inject custom blocks");
   injectCustomBlocksIntoPreview(doc);
-  console.log("Custom blocks injection complete");
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
   discoverEditableTexts(doc);
@@ -930,7 +923,6 @@ const preparePreview = () => {
 };
 
 const loadPreview = () => {
-  console.log("loadPreview() called");
   elements.currentPage.textContent = selectedPage.label;
   activeKey = "";
   activeImageKey = "";
@@ -1084,7 +1076,6 @@ const init = async () => {
   });
 
   elements.preview.addEventListener("load", () => {
-    console.log("iframe loaded, doc ready");
     window.setTimeout(preparePreview, 600);
   });
 

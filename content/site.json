@@ -374,12 +374,12 @@
     {
       "label": "Kontakt - gumb poslji",
       "selector": ".contact-form button",
-      "text": "Odpri e-pošto za pošiljanje"
+      "text": "Pošlji povpraševanje"
     },
     {
       "label": "Kontakt - opomba obrazca",
       "selector": ".form-note",
-      "text": "Ob oddaji se pripravi e-poštno sporočilo na sales@tu-val.si. Pošiljanje potrdite v svojem e-poštnem programu."
+      "text": "Ob oddaji se podatki pošljejo na agenttuval@gmail.com."
     },
     {
       "label": "Kontakt - lokacija naslov",
@@ -426,7 +426,7 @@
     {
       "label": "Test - kartica opis 2",
       "selector": ".contact-card p:nth-of-type(2)",
-      "text": "Za dejansko pošiljanje potrdite e-pošto v svojem e-poštnem programu."
+      "text": "Po oddaji se podatki samodejno pošljejo na agenttuval@gmail.com."
     },
     {
       "label": "Test - obrazec nadnaslov",
@@ -441,12 +441,12 @@
     {
       "label": "Test - gumb",
       "selector": ".contact-form button",
-      "text": "Pripravi e-pošto za naročilo testa"
+      "text": "Pošlji naročilo testa"
     },
     {
       "label": "Test - opomba",
       "selector": ".form-note",
-      "text": "Ob oddaji se pripravi e-poštno sporočilo na sales@tu-val.si. Pošiljanje nato potrdite v svojem e-poštnem programu."
+      "text": "Ob oddaji se podatki pošljejo na agenttuval@gmail.com."
     }
   ],
   "cleanspace_work": [

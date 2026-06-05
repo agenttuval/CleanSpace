@@ -4,8 +4,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "nodemailer": "latest"
   }
 }

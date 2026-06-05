@@ -791,7 +791,7 @@ if (contactForm) {
   const fileInput = contactForm.querySelector("[data-file-input]");
   const fileList = contactForm.querySelector("[data-file-list]");
 
-  fileInput?.addEventListener("change", () => {
+  on(fileInput, "change", () => {
     const names = [...fileInput.files].map((file) => file.name);
     if (fileList) {
       fileList.textContent = names.length ? names.join(", ") : "Ni izbranih datotek.";
@@ -814,18 +814,17 @@ if (contactForm) {
     }
 
     if (formNote) {
-      formNote.textContent = `Izbran model: ${requestedInterest}. Ob oddaji se pripravi e-poštno sporočilo na sales@tu-val.si, pošiljanje pa potrdite v svojem e-poštnem programu.`;
+      formNote.textContent = `Izbran model: ${requestedInterest}. Ob oddaji se podatki pošljejo na agenttuval@gmail.com.`;
     }
   }
 }
 
-contactForm?.addEventListener("submit", async (event) => {
+on(contactForm, "submit", async (event) => {
   event.preventDefault();
 
-  const submitButton = contactForm.querySelector("button[type=submit], button:not([type])");
-  if (submitButton) submitButton.disabled = true;
-
   const formData = new FormData(contactForm);
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton?.textContent || "";
   const name = formData.get("name")?.toString().trim() || "";
   const email = formData.get("email")?.toString().trim() || "";
   const phone = formData.get("phone")?.toString().trim() || "";
@@ -836,11 +835,16 @@ contactForm?.addEventListener("submit", async (event) => {
   const isTestRequest = contactForm.dataset.formType === "test";
   const attachmentNames = formData
     .getAll("attachments")
-    .filter((file) => file instanceof File && file.name)
+    .filter((file) => typeof File !== "undefined" && file instanceof File && file.name)
     .map((file) => file.name);
 
   if (formNote) {
-    formNote.textContent = "Pošiljanje sporočila …";
+    formNote.textContent = "Pošiljam sporočilo...";
+  }
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Pošiljam...";
   }
 
   try {
@@ -848,6 +852,7 @@ contactForm?.addEventListener("submit", async (event) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        formType: isTestRequest ? "test" : "contact",
         name,
         email,
         phone,
@@ -855,31 +860,31 @@ contactForm?.addEventListener("submit", async (event) => {
         interest,
         preferredDate,
         message,
-        isTestRequest,
-        attachmentNames,
+        attachments: attachmentNames,
+        page: window.location.href,
       }),
     });
-
     const result = await response.json();
 
-    if (formNote) {
-      if (result.ok) {
-        formNote.textContent = attachmentNames.length
-          ? "Sporočilo je bilo poslano. Priponke pošljite ločeno na sales@tu-val.si."
-          : "Sporočilo je bilo uspešno poslano. Kmalu se vam oglasimo.";
-      } else {
-        formNote.textContent = result.message || "Pošiljanje ni uspelo. Prosimo, poskusite znova ali nas kontaktirajte po telefonu.";
-      }
+    if (!response.ok || !result.ok) {
+      throw new Error(result.message || "Pošiljanje ni uspelo.");
     }
 
-    if (result.ok) {
-      contactForm.reset();
+    contactForm.reset();
+    if (fileList) {
+      fileList.textContent = "Ni izbranih datotek.";
+    }
+    if (formNote) {
+      formNote.textContent = "Sporočilo je bilo poslano na agenttuval@gmail.com.";
     }
   } catch (error) {
     if (formNote) {
-      formNote.textContent = "Napaka pri pošiljanju. Preverite internetno povezavo ali nas kontaktirajte po telefonu.";
+      formNote.textContent = `Pošiljanje ni uspelo: ${error.message}`;
     }
   } finally {
-    if (submitButton) submitButton.disabled = false;
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
   }
 });
