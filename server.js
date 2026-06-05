@@ -1023,3 +1023,21 @@ const server = http.createServer(async (req, res) => {
 server.listen(port, () => {
   console.log(`Tu-Val CleanSpace site running on port ${port}`);
 });
+
+const env = (key, fallback = "") =>
+  (process.env[key] || fallback).toString().trim().replace(/^["']|["']$/g, "");
+
+const createSmtpTransport = () => {
+  const emailPort = Number(env("EMAIL_PORT", "465"));
+
+  return nodemailer.createTransport({
+    host: env("EMAIL_HOST"),
+    port: emailPort,
+    secure: emailPort === 465,
+    requireTLS: emailPort === 587,
+    auth: {
+      user: env("EMAIL_USER"),
+      pass: env("EMAIL_PASSWORD"),
+    },
+  });
+};
