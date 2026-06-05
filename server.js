@@ -3,6 +3,7 @@ const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
+const tls = require("node:tls");
 
 const root = __dirname;
 
@@ -856,6 +857,150 @@ const handleVascoOrdersJsonExcel = async (req, res) => {
   });
 };
 
+const smtpConfig = () => ({
+  host: process.env.EMAIL_HOST || "smtp.siol.net",
+  port: Number(process.env.EMAIL_PORT || 465),
+  user: process.env.EMAIL_USER || "sale@tu-val.si",
+  pass: process.env.EMAIL_PASS || "",
+  to: process.env.EMAIL_TO || "sales@tu-val.si",
+});
+
+const smtpCommand = (socket, command) =>
+  new Promise((resolve, reject) => {
+    socket.once("data", (data) => {
+      const response = data.toString();
+      if (/^[45]/.test(response.trim())) {
+        reject(new Error(`SMTP error: ${response.trim()}`));
+      } else {
+        resolve(response);
+      }
+    });
+    socket.write(`${command}\r\n`);
+  });
+
+const waitForGreeting = (socket) =>
+  new Promise((resolve, reject) => {
+    let buffer = "";
+    const onData = (data) => {
+      buffer += data.toString();
+      if (buffer.includes("\r\n") || buffer.includes("\n")) {
+        socket.removeListener("data", onData);
+        if (/^[45]/.test(buffer.trim())) {
+          reject(new Error(`SMTP greeting error: ${buffer.trim()}`));
+        } else {
+          resolve(buffer);
+        }
+      }
+    };
+    socket.on("data", onData);
+  });
+
+const base64 = (str) => Buffer.from(str, "utf8").toString("base64");
+
+const buildMimeMessage = ({ from, to, subject, text }) => {
+  const encodedSubject = `=?UTF-8?B?${base64(subject)}?=`;
+  return [
+    `From: ${from}`,
+    `To: ${to}`,
+    `Subject: ${encodedSubject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=UTF-8`,
+    `Content-Transfer-Encoding: base64`,
+    ``,
+    base64(text),
+    `.`,
+  ].join("\r\n");
+};
+
+const sendSmtpEmail = ({ from, to, subject, text }) =>
+  new Promise((resolve, reject) => {
+    const cfg = smtpConfig();
+    const effectiveFrom = from || cfg.user;
+    const effectiveTo = to || cfg.to;
+
+    const socket = tls.connect(
+      { host: cfg.host, port: cfg.port, servername: cfg.host },
+      async () => {
+        try {
+          await waitForGreeting(socket);
+          await smtpCommand(socket, `EHLO ${cfg.host}`);
+          await smtpCommand(socket, "AUTH LOGIN");
+          await smtpCommand(socket, base64(cfg.user));
+          await smtpCommand(socket, base64(cfg.pass));
+          await smtpCommand(socket, `MAIL FROM:<${effectiveFrom}>`);
+          await smtpCommand(socket, `RCPT TO:<${effectiveTo}>`);
+          await smtpCommand(socket, "DATA");
+
+          const message = buildMimeMessage({ from: effectiveFrom, to: effectiveTo, subject, text });
+          await smtpCommand(socket, message);
+          await smtpCommand(socket, "QUIT");
+
+          socket.destroy();
+          resolve();
+        } catch (error) {
+          socket.destroy();
+          reject(error);
+        }
+      }
+    );
+
+    socket.on("error", (error) => reject(error));
+  });
+
+const handleContactForm = async (req, res) => {
+  const body = await parseJsonBody(req);
+
+  const name = (body.name || "").toString().trim();
+  const email = (body.email || "").toString().trim();
+  const phone = (body.phone || "").toString().trim();
+  const company = (body.company || "").toString().trim();
+  const interest = (body.interest || "").toString().trim();
+  const preferredDate = (body.preferredDate || "").toString().trim();
+  const message = (body.message || "").toString().trim();
+  const isTestRequest = body.isTestRequest === true || body.isTestRequest === "true";
+
+  if (!name || !email) {
+    send(res, 400, { ok: false, message: "Ime in e-pošta sta obvezna." });
+    return;
+  }
+
+  const cfg = smtpConfig();
+
+  if (!cfg.pass) {
+    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjka EMAIL_PASS)." });
+    return;
+  }
+
+  const bodyLines = [
+    `Ime: ${name}`,
+    `E-pošta: ${email}`,
+    phone ? `Telefon: ${phone}` : null,
+    `Podjetje: ${company || "-"}`,
+    `Zanimanje: ${interest}`,
+    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
+    "",
+    message,
+  ].filter((line) => line !== null);
+
+  const subject = `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`;
+  const text = bodyLines.join("\n");
+
+  try {
+    await sendSmtpEmail({
+      from: cfg.user,
+      to: cfg.to,
+      subject,
+      text,
+    });
+
+    console.log(`[handleContactForm] Email sent: ${subject} (from ${email})`);
+    send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
+  } catch (error) {
+    console.error(`[handleContactForm] SMTP error: ${error.message}`);
+    send(res, 500, { ok: false, message: "Pošiljanje sporočila ni uspelo. Prosimo, poskusite znova." });
+  }
+};
+
 const serveStatic = async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const cleanPath = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
@@ -936,6 +1081,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === "POST" && url.pathname === "/api/vasco/narocila-kupca/excel-json") {
       await handleVascoOrdersJsonExcel(req, res);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/contact") {
+      await handleContactForm(req, res);
       return;
     }
 

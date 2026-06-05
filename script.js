@@ -819,8 +819,11 @@ if (contactForm) {
   }
 }
 
-contactForm?.addEventListener("submit", (event) => {
+contactForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  const submitButton = contactForm.querySelector("button[type=submit], button:not([type])");
+  if (submitButton) submitButton.disabled = true;
 
   const formData = new FormData(contactForm);
   const name = formData.get("name")?.toString().trim() || "";
@@ -836,32 +839,47 @@ contactForm?.addEventListener("submit", (event) => {
     .filter((file) => file instanceof File && file.name)
     .map((file) => file.name);
 
-  const bodyLines = [
-    `Ime: ${name}`,
-    `E-pošta: ${email}`,
-    phone ? `Telefon: ${phone}` : null,
-    `Podjetje: ${company || "-"}`,
-    `Zanimanje: ${interest}`,
-    preferredDate ? `Želeni termin testiranja: ${preferredDate}` : null,
-    attachmentNames.length ? `Datoteke za pripenjanje: ${attachmentNames.join(", ")}` : null,
-    "",
-    message,
-  ].filter((line) => line !== null);
-
-  const body = bodyLines.join("\n");
-
-  const mailto = new URL("mailto:sales@tu-val.si");
-  mailto.searchParams.set(
-    "subject",
-    `${isTestRequest ? "Naročilo maske na test" : "Povpraševanje CleanSpace"} - ${interest}`
-  );
-  mailto.searchParams.set("body", body);
-
-  window.location.href = mailto.toString();
-
   if (formNote) {
-    formNote.textContent = attachmentNames.length
-      ? "E-poštno sporočilo je pripravljeno. Izbrane datoteke dodajte kot priponke in kliknite Pošlji v svojem e-poštnem programu."
-      : "E-poštno sporočilo je pripravljeno. Za dejansko pošiljanje kliknite Pošlji v svojem e-poštnem programu.";
+    formNote.textContent = "Pošiljanje sporočila …";
+  }
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        company,
+        interest,
+        preferredDate,
+        message,
+        isTestRequest,
+        attachmentNames,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (formNote) {
+      if (result.ok) {
+        formNote.textContent = attachmentNames.length
+          ? "Sporočilo je bilo poslano. Priponke pošljite ločeno na sales@tu-val.si."
+          : "Sporočilo je bilo uspešno poslano. Kmalu se vam oglasimo.";
+      } else {
+        formNote.textContent = result.message || "Pošiljanje ni uspelo. Prosimo, poskusite znova ali nas kontaktirajte po telefonu.";
+      }
+    }
+
+    if (result.ok) {
+      contactForm.reset();
+    }
+  } catch (error) {
+    if (formNote) {
+      formNote.textContent = "Napaka pri pošiljanju. Preverite internetno povezavo ali nas kontaktirajte po telefonu.";
+    }
+  } finally {
+    if (submitButton) submitButton.disabled = false;
   }
 });
