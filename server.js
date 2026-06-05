@@ -906,13 +906,13 @@ const handleContactForm = async (req, res) => {
 
   try {
     const transporter = createSmtpTransport();
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "sales@tu-val.si",
-      replyTo: email,
-      subject,
-      text,
-    });
+await transporter.sendMail({
+  from: `"TU-VAL" <${process.env.EMAIL_USER}>`,
+  to: "sales@tu-val.si",
+  replyTo: email,
+  subject,
+  text,
+});
 
     console.log(`[handleContactForm] Email sent via SiOL SMTP: ${subject} (from ${email})`);
     send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
