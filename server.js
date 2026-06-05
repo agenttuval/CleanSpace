@@ -3,7 +3,7 @@ const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const root = __dirname;
 
@@ -857,15 +857,7 @@ const handleVascoOrdersJsonExcel = async (req, res) => {
   });
 };
 
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || "smtp.siol.net",
-  port: Number(process.env.EMAIL_PORT || 587),
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER || "sale@tu-val.si",
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const handleContactForm = async (req, res) => {
   const body = await parseJsonBody(req);
@@ -884,8 +876,8 @@ const handleContactForm = async (req, res) => {
     return;
   }
 
-  if (!process.env.EMAIL_PASS) {
-    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjka EMAIL_PASS)." });
+  if (!process.env.RESEND_API_KEY) {
+    send(res, 500, { ok: false, message: "E-poštni strežnik ni konfiguriran (manjka RESEND_API_KEY)." });
     return;
   }
 
@@ -904,9 +896,9 @@ const handleContactForm = async (req, res) => {
   const text = bodyLines.join("\n");
 
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER || "sale@tu-val.si",
-      to: process.env.EMAIL_TO || "sales@tu-val.si",
+    await resend.emails.send({
+      from: "CleanSpace <onboarding@resend.dev>",
+      to: "sales@tu-val.si",
       replyTo: email,
       subject,
       text,
@@ -915,7 +907,7 @@ const handleContactForm = async (req, res) => {
     console.log(`[handleContactForm] Email sent: ${subject} (from ${email})`);
     send(res, 200, { ok: true, message: "Sporočilo je bilo uspešno poslano." });
   } catch (error) {
-    console.error(`[handleContactForm] SMTP error: ${error.message}`);
+    console.error(`[handleContactForm] Resend error: ${error.message}`);
     send(res, 500, { ok: false, message: "Pošiljanje sporočila ni uspelo. Prosimo, poskusite znova." });
   }
 };
