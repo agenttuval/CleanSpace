@@ -268,7 +268,7 @@
     {
       "label": "Domov - certifikati opis",
       "selector": ".certification-section .section-heading p:not(.eyebrow)",
-      "text": "CleanSpace navaja certifikate za različne modele in konfiguracije. Končno izbiro preverimo glede na masko, filter in delovno okolje."
+      "text": ""
     },
     {
       "label": "Domov - certifikat EN12942 naslov",
