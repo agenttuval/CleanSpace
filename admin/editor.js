@@ -705,6 +705,92 @@ const setImageStyleValue = (property, value) => {
   updateImageControls();
 };
 
+const dragEdgeSize = 18;
+
+const isPointerOnElementEdge = (event, target) => {
+  const rect = target.getBoundingClientRect();
+  if (!rect.width || !rect.height) return false;
+
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const edge = Math.min(dragEdgeSize, Math.max(10, Math.min(rect.width, rect.height) / 3));
+
+  return x <= edge || y <= edge || rect.width - x <= edge || rect.height - y <= edge;
+};
+
+const setEntryDragPosition = (key, target, x, y) => {
+  const entry = findEntryByKey(key);
+  if (!entry) return;
+
+  const style = ensureEntryStyle(entry);
+  style.x = x;
+  style.y = y;
+  applyEntryStyleToTarget(target, getEntryStyle(entry));
+  elements.styleX.value = x;
+  elements.styleY.value = y;
+};
+
+const setImageDragPosition = (key, target, x, y) => {
+  const entry = findImageEntryByKey(key);
+  if (!entry) return;
+
+  entry.style = entry.style && typeof entry.style === "object" ? entry.style : {};
+  entry.style.x = x;
+  entry.style.y = y;
+  applyImageEntryToTarget(target, entry);
+  elements.imageX.value = x;
+  elements.imageY.value = y;
+};
+
+const startEdgeDrag = (event, target, type, key) => {
+  if (event.button !== 0 || !isPointerOnElementEdge(event, target)) return false;
+
+  const doc = target.ownerDocument;
+  const entry = type === "image" ? findImageEntryByKey(key) : findEntryByKey(key);
+  if (!entry) return false;
+
+  const style = type === "image" ? entry.style || {} : getEntryStyle(entry);
+  const startPointerX = event.clientX;
+  const startPointerY = event.clientY;
+  const startX = Number(style.x) || 0;
+  const startY = Number(style.y) || 0;
+  let moved = false;
+
+  event.preventDefault();
+  event.stopPropagation();
+  target.classList.add("editor-dragging");
+
+  const onMove = (moveEvent) => {
+    const nextX = Math.round(startX + moveEvent.clientX - startPointerX);
+    const nextY = Math.round(startY + moveEvent.clientY - startPointerY);
+    moved = true;
+
+    if (type === "image") {
+      setImageDragPosition(key, target, nextX, nextY);
+    } else {
+      setEntryDragPosition(key, target, nextX, nextY);
+    }
+  };
+
+  const onEnd = () => {
+    doc.removeEventListener("pointermove", onMove, true);
+    doc.removeEventListener("pointerup", onEnd, true);
+    doc.removeEventListener("pointercancel", onEnd, true);
+    target.classList.remove("editor-dragging");
+
+    if (moved) {
+      markDirty();
+      updateStyleControls();
+      updateImageControls();
+    }
+  };
+
+  doc.addEventListener("pointermove", onMove, true);
+  doc.addEventListener("pointerup", onEnd, true);
+  doc.addEventListener("pointercancel", onEnd, true);
+  return true;
+};
+
 const applyEntryStyleToTarget = (target, style = {}) => {
   if (!target) return;
 
@@ -721,6 +807,8 @@ const applyEntryStyleToTarget = (target, style = {}) => {
 
   if (hasMove && (x || y)) {
     target.style.position = "relative";
+  } else if (target.style.position === "relative") {
+    target.style.position = "";
   }
 };
 
@@ -810,6 +898,7 @@ const injectEditorStyles = (doc) => {
       outline: 3px solid rgba(1, 69, 126, 0.55) !important;
       outline-offset: 4px !important;
       cursor: text !important;
+      touch-action: none !important;
     }
     [data-editor-key]:hover,
     [data-editor-key].editor-active {
@@ -819,12 +908,18 @@ const injectEditorStyles = (doc) => {
     [data-image-key] {
       outline: 3px solid rgba(6, 79, 62, 0.62) !important;
       outline-offset: 4px !important;
-      cursor: pointer !important;
+      cursor: move !important;
+      touch-action: none !important;
     }
     [data-image-key]:hover,
     [data-image-key].editor-active-image {
       outline-color: rgba(220, 165, 95, 0.95) !important;
       box-shadow: 0 0 0 6px rgba(220, 165, 95, 0.18) !important;
+    }
+    [data-editor-key].editor-dragging,
+    [data-image-key].editor-dragging {
+      cursor: grabbing !important;
+      opacity: 0.92 !important;
     }
   `;
   doc.head.append(style);
@@ -1059,6 +1154,13 @@ const preparePreview = () => {
     });
 
     target.addEventListener("pointerdown", activateTarget, true);
+    target.addEventListener(
+      "pointerdown",
+      (event) => {
+        startEdgeDrag(event, target, "text", key);
+      },
+      true
+    );
     target.addEventListener("click", activateTarget, true);
 
     target.addEventListener("blur", () => {
@@ -1084,6 +1186,24 @@ const preparePreview = () => {
     target.dataset.imageKey = key;
     target.tabIndex = 0;
     applyImageEntryToTarget(target, entry);
+
+    target.addEventListener(
+      "pointerdown",
+      (event) => {
+        activeImageKey = key;
+        activeKey = "";
+        doc
+          .querySelectorAll(".editor-active-image")
+          .forEach((node) => node.classList.remove("editor-active-image"));
+        doc.querySelectorAll(".editor-active").forEach((node) => node.classList.remove("editor-active"));
+        target.classList.add("editor-active-image");
+        renderFields();
+        updateStyleControls();
+        updateImageControls();
+        startEdgeDrag(event, target, "image", key);
+      },
+      true
+    );
 
     target.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
