@@ -45,7 +45,7 @@
     {
       "label": "Domov - nadnaslov",
       "selector": ".hero-content .eyebrow",
-      "text": "Respiratorna zaščita prihodnosti"
+      "text": "NAPREDNA ZAŠČIT DIHAL"
     },
     {
       "label": "Domov - glavni naslov",
@@ -55,7 +55,7 @@
     {
       "label": "Domov - uvodni opis",
       "selector": ".hero-content .lead",
-      "text": "Kompaktni respiratorji z aktivnim dovajanjem filtriranega zraka pri Tu-Valu, brez pasov in cevi, zasnovani za delo v zahtevnih okoljih."
+      "text": "CleanSpace respiratorji so kompaktni pozitivno-tlačni respiratorji z aktivnim dovodom filtriranega zraka. Namenjeni so podjetjem, kjer zaposleni potrebujejo zanesljivo, udobno in učinkovito zaščito dihal pri delu s prahom, dimom, aerosoli, delci ali izbranimi kemičnimi tveganji.TU-VAL d.o.o. iz Domžal podjetjem v Sloveniji pomaga pri izbiri ustreznega CleanSpace modela, filtra in maske glede na delovno okolje, vrsto izpostavljenosti in način uporabe."
     },
     {
       "label": "Domov - gumb maske",
@@ -95,12 +95,12 @@
     {
       "label": "Domov - Tu-Val naslov",
       "selector": ".intro-band .section-copy h2",
-      "text": "Inženirski partner za varnejše delovno okolje"
+      "text": "inženirski partner za varnejšo zaščito dihal"
     },
     {
       "label": "Domov - Tu-Val opis",
       "selector": ".intro-band .section-copy > p:not(.eyebrow)",
-      "text": "Tu-Val je razvojni dobavitelj iz Domžal, ki povezuje tehnično svetovanje, distribucijo, proizvodnjo in poprodajno podporo. Program CleanSpace dopolnjuje področja varjenja, industrije, medicine in vzdrževanja z naprednimi rešitvami za zaščito dihal."
+      "text": "TU-VAL IN CLEANSPACETU-VAL d.o.o. iz Domžal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
     },
     {
       "label": "Domov - kartica 01 naslov",
@@ -110,7 +110,7 @@
     {
       "label": "Domov - kartica 01 opis",
       "selector": ".capability-grid article:nth-child(1) p",
-      "text": "Izbira respiratorja, maske in filtra glede na okolje, izpostavljenost in način dela."
+      "text": "Skupaj preverimo vaše delovno okolje, vrsto izpostavljenosti in način dela ter izberemo primeren CleanSpace respirator, masko in filter. Tako dobite rešitev za zaščito dihal, ki ustreza vašim zaposlenim, tveganjem na delovnem mestu in zahtevam varnosti pri delu."
     },
     {
       "label": "Domov - kartica 02 naslov",
@@ -120,7 +120,7 @@
     {
       "label": "Domov - kartica 02 opis",
       "selector": ".capability-grid article:nth-child(2) p",
-      "text": "Rešitve za varjenje, prah, farmacijo, laboratorije, dezinficiranje in eksplozijsko ogrožena območja."
+      "text": "Program CleanSpace pokriva zahtevna delovna okolja v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih, vzdrževanju in eksplozijsko ogroženih območjih. Rešitve so namenjene delavcem, ki potrebujejo zanesljivo zaščito pred prahom, dimom, aerosoli, delci ali plini."
     },
     {
       "label": "Domov - kartica 03 naslov",
@@ -130,7 +130,7 @@
     {
       "label": "Domov - kartica 03 opis",
       "selector": ".capability-grid article:nth-child(3) p",
-      "text": "Kontakt, dodatki, filtri, nadomestni deli in pomoč pri pravilni uporabi opreme."
+      "text": "Z nakupom respiratorja se podpora ne konča. Pomagamo pri izbiri filtrov, dodatkov in nadomestnih delov, svetujemo pri pravilni uporabi opreme ter poskrbimo, da CleanSpace respiratorji ostanejo učinkovita in zanesljiva zaščita dihal pri vsakodnevnem delu."
     },
     {
       "label": "Domov - pregled nadnaslov",
@@ -140,7 +140,10 @@
     {
       "label": "Domov - pregled naslov",
       "selector": ".products-preview .section-heading h2",
-      "text": "Kratek pregled CleanSpace mask"
+      "text": "Kratek pregled CleanSpace respiratorji",
+      "style": {
+        "fontSize": 60
+      }
     },
     {
       "label": "Domov - WORK oznaka",
@@ -740,7 +743,19 @@
     }
   ],
   "customBlocks": {
-    "index": [],
+    "index": [
+      {
+        "id": "block-mq54zbo3-bkyugm",
+        "title": "Nov besedilni okvir",
+        "text": "Vpiši dodatno besedilo za ta okvir.",
+        "titleStyle": {
+          "color": "#01457e"
+        },
+        "textStyle": {
+          "color": "#01457e"
+        }
+      }
+    ],
     "maske": [],
     "videi": [],
     "test": [],
