@@ -314,23 +314,6 @@ const resolveMailRecipient = () => {
   return configuredRecipient && configuredRecipient !== defaultMailUser ? configuredRecipient : defaultMailRecipient;
 };
 
-const readLocalSecret = (fileName) => {
-  try {
-    const value = fsSync.readFileSync(path.join(root, fileName), "utf8").trim();
-    return value || "";
-  } catch (error) {
-    return "";
-  }
-};
-
-const resendConfig = () => ({
-  apiKey: smtpEnvValue("RESEND_API_KEY", "RESEND_TOKEN") || readLocalSecret("resend token.txt"),
-  from:
-    smtpEnvValue("RESEND_FROM", "RESEND_EMAIL_FROM") ||
-    `Tu-Val CleanSpace <${defaultMailRecipient}>`,
-  to: resolveMailRecipient(),
-});
-
 const smtpConfig = () => {
   const host = smtpEnvValue("SMTP_HOST", "EMAIL_HOST", "MAIL_HOST") || "smtp.gmail.com";
   const port = Number(smtpEnvValue("SMTP_PORT", "EMAIL_PORT", "MAIL_PORT") || 587);
@@ -367,43 +350,6 @@ const mailWebhookConfig = () => ({
   url: smtpEnvValue("MAIL_WEBHOOK_URL", "EMAIL_WEBHOOK_URL", "GOOGLE_SCRIPT_WEBHOOK_URL", "GOOGLE_APPS_SCRIPT_URL"),
   secret: smtpEnvValue("MAIL_WEBHOOK_SECRET", "EMAIL_WEBHOOK_SECRET", "GOOGLE_SCRIPT_SECRET"),
 });
-
-const sendResendMail = async (config, { subject, text, replyTo }) => {
-  const payload = {
-    from: config.from,
-    to: [extractEmailAddress(config.to)],
-    subject,
-    text,
-  };
-
-  const cleanReplyTo = extractEmailAddress(replyTo || "");
-  if (cleanReplyTo) {
-    payload.reply_to = cleanReplyTo;
-  }
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${config.apiKey}`,
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  const rawResult = await response.text();
-  let result = null;
-
-  try {
-    result = rawResult ? JSON.parse(rawResult) : null;
-  } catch (error) {
-    result = null;
-  }
-
-  if (!response.ok) {
-    const message = result?.message || result?.error || rawResult || `HTTP ${response.status}`;
-    throw new Error(`Pošiljanje prek Resend ni uspelo: ${message}`);
-  }
-};
 
 const sanitizeHeader = (value = "") => String(value).replace(/[\r\n]+/g, " ").trim();
 
@@ -649,14 +595,8 @@ const smtpFriendlyError = (error, config) => {
 };
 
 const sendSmtpMail = async ({ subject, text, replyTo }) => {
-  const resend = resendConfig();
   const config = smtpConfig();
   const webhookConfig = mailWebhookConfig();
-
-  if (resend.apiKey) {
-    await sendResendMail(resend, { subject, text, replyTo });
-    return;
-  }
 
   if (webhookConfig.url) {
     await sendMailWebhook(webhookConfig, config, { subject, text, replyTo });
@@ -665,7 +605,7 @@ const sendSmtpMail = async ({ subject, text, replyTo }) => {
 
   if (!config.pass) {
     throw new Error(
-      "Manjka nastavitev za pošiljanje. Dodaj RESEND_API_KEY, MAIL_WEBHOOK_URL ali SMTP/Gmail app geslo."
+      "Manjka nastavitev za pošiljanje. Dodaj MAIL_WEBHOOK_URL ali SMTP/Gmail app geslo."
     );
   }
 
@@ -693,16 +633,13 @@ const sendSmtpMail = async ({ subject, text, replyTo }) => {
 };
 
 const handleMailStatus = (res) => {
-  const resend = resendConfig();
   const mailConfig = smtpConfig();
   const webhookConfig = mailWebhookConfig();
-  const mode = resend.apiKey ? "resend" : webhookConfig.url ? "webhook" : mailConfig.pass ? "smtp" : "not_configured";
+  const mode = webhookConfig.url ? "webhook" : mailConfig.pass ? "smtp" : "not_configured";
 
   send(res, 200, {
     ok: true,
     mode,
-    hasResendApiKey: Boolean(resend.apiKey),
-    resendFrom: resend.from,
     hasWebhookUrl: Boolean(webhookConfig.url),
     hasWebhookSecret: Boolean(webhookConfig.secret),
     hasSmtpPassword: Boolean(mailConfig.pass),
