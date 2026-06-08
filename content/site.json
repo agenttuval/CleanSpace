@@ -100,7 +100,7 @@
     {
       "label": "Domov - Tu-Val opis",
       "selector": ".intro-band .section-copy > p:not(.eyebrow)",
-      "text": "TU-VAL d.o.o. iz Domžal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
+      "text": "TU-VAL IN CLEANSPACETU-VAL d.o.o. iz Domžal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
     },
     {
       "label": "Domov - kartica 01 naslov",
@@ -743,19 +743,7 @@
     }
   ],
   "customBlocks": {
-    "index": [
-      {
-        "id": "block-mq5718i8-vw1pjf",
-        "title": "Prednosti CleanSpace respiratorjev",
-        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.Brez cevi in pasovPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.Lažje dihanje pri deluAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.Udobje pri daljši uporabiLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.Rešitve za različna okoljaNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.Pameten nadzor uporabeIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.Podpora TU-VAL v SlovenijiPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
-        "titleStyle": {
-          "color": "#01457e"
-        },
-        "textStyle": {
-          "color": "#01457e"
-        }
-      }
-    ],
+    "index": [],
     "maske": [],
     "videi": [],
     "test": [],

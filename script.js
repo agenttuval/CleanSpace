@@ -123,6 +123,58 @@ const renderCustomBlocks = (content = {}) => {
   main.append(section);
 };
 
+const customImageEntriesForCurrentPage = (content = {}) => {
+  const groups = content.images || {};
+  if (!groups || typeof groups !== "object" || Array.isArray(groups)) return [];
+
+  const groupFor = (key) => (Array.isArray(groups[key]) ? groups[key] : []);
+  return [...groupFor(currentPageName()), ...groupFor(currentContentKey())].filter((entry) => entry?.customImage);
+};
+
+const applyEditableImageStyle = (image, style = {}) => {
+  if (!image || !style) return;
+
+  const width = Number(style.width) || 0;
+  const x = Number(style.x) || 0;
+  const y = Number(style.y) || 0;
+
+  image.style.width = width ? `${width}px` : "";
+  image.style.maxWidth = width ? "100%" : "";
+  image.style.left = x ? `${x}px` : "";
+  image.style.top = y ? `${y}px` : "";
+  image.style.position = x || y ? "relative" : "";
+};
+
+const renderCustomImages = (content = {}) => {
+  const images = customImageEntriesForCurrentPage(content);
+  const main = document.querySelector("main");
+  if (!main || !images.length) return;
+
+  const section = document.createElement("section");
+  section.setAttribute("class", "section custom-image-section");
+  section.setAttribute("data-custom-images", "");
+
+  const grid = document.createElement("div");
+  grid.setAttribute("class", "custom-image-grid");
+
+  images.forEach((entry, index) => {
+    const figure = document.createElement("figure");
+    figure.setAttribute("class", "custom-image-item reveal is-visible");
+    figure.setAttribute("data-custom-image", entry.id || `custom-image-${index + 1}`);
+
+    const image = document.createElement("img");
+    image.src = entry.src;
+    image.alt = entry.alt || "Dodana slika";
+    applyEditableImageStyle(image, entry.style);
+
+    figure.append(image);
+    grid.append(figure);
+  });
+
+  section.append(grid);
+  main.append(section);
+};
+
 const applyEditableTexts = (content = {}) => {
   const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, content);
   if (!Object.keys(textGroups).length) return;
@@ -180,10 +232,13 @@ const applyEditableImages = (content = {}) => {
       image.alt = entry.alt;
       image.setAttribute("alt", entry.alt);
     }
+
+    applyEditableImageStyle(image, entry.style);
   });
 };
 
 renderCustomBlocks(siteContent);
+renderCustomImages(siteContent);
 applyEditableTexts(siteContent);
 applyEditableImages(siteContent);
 

@@ -36,9 +36,16 @@ const elements = {
   styleY: document.querySelector("[data-style-y]"),
   styleReset: document.querySelector("[data-style-reset]"),
   customColor: document.querySelector("[data-custom-color]"),
+  newImageSrc: document.querySelector("[data-new-image-src]"),
+  newImageAlt: document.querySelector("[data-new-image-alt]"),
+  newImageAdd: document.querySelector("[data-new-image-add]"),
+  customImageList: document.querySelector("[data-custom-image-list]"),
   imageLabel: document.querySelector("[data-active-image-label]"),
   imageSrc: document.querySelector("[data-image-src]"),
   imageAlt: document.querySelector("[data-image-alt]"),
+  imageWidth: document.querySelector("[data-image-width]"),
+  imageX: document.querySelector("[data-image-x]"),
+  imageY: document.querySelector("[data-image-y]"),
   imageReset: document.querySelector("[data-image-reset]"),
   videoManager: document.querySelector("[data-video-manager]"),
   videoMask: document.querySelector("[data-video-mask]"),
@@ -56,6 +63,7 @@ let activeKey = "";
 let activeImageKey = "";
 let authenticated = false;
 let pendingCustomBlockId = "";
+let pendingCustomImageId = "";
 
 const videoMasks = [
   { value: "work", label: "CleanSpace WORK" },
@@ -151,6 +159,10 @@ const imageEntries = () => {
     : [];
   return content.images[selectedPage.key];
 };
+
+const customImageEntries = () => imageEntries().filter((entry) => entry.customImage);
+
+const selectorForCustomImage = (id) => `[data-custom-image="${id}"] img`;
 
 const normalizeVideoUrl = (value = "") => {
   const iframeMatch = value.match(/src=["']([^"']+)["']/i);
@@ -369,6 +381,82 @@ const addVideo = () => {
   loadPreview();
 };
 
+const renderCustomImageManager = () => {
+  if (!elements.customImageList || !content) return;
+
+  const images = customImageEntries();
+  elements.customImageList.textContent = "";
+
+  if (!images.length) {
+    const empty = document.createElement("p");
+    empty.className = "custom-admin-empty";
+    empty.textContent = "Na tej strani še ni dodanih slik.";
+    elements.customImageList.append(empty);
+    return;
+  }
+
+  images.forEach((image) => {
+    const item = document.createElement("div");
+    item.className = "custom-admin-item";
+
+    const copy = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = image.alt || "Dodana slika";
+    const url = document.createElement("span");
+    url.textContent = truncate(image.src || "", 58);
+    copy.append(title, url);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "secondary light";
+    deleteButton.textContent = "Odstrani";
+    deleteButton.addEventListener("click", () => {
+      const index = imageEntries().indexOf(image);
+      if (index >= 0) imageEntries().splice(index, 1);
+      activeImageKey = "";
+      markDirty();
+      renderCustomImageManager();
+      loadPreview();
+    });
+
+    item.append(copy, deleteButton);
+    elements.customImageList.append(item);
+  });
+};
+
+const addCustomImage = () => {
+  if (!content) return;
+
+  const src = elements.newImageSrc.value.trim();
+  if (!src) {
+    setStatus("Najprej vpiši URL slike.", "error");
+    return;
+  }
+
+  const alt = elements.newImageAlt.value.trim() || "Dodana slika";
+  const id = makeCustomBlockId();
+
+  imageEntries().push({
+    id,
+    customImage: true,
+    label: `Dodana slika - ${truncate(alt, 36)}`,
+    selector: selectorForCustomImage(id),
+    src,
+    alt,
+    style: {
+      width: 520,
+    },
+  });
+
+  elements.newImageSrc.value = "";
+  elements.newImageAlt.value = "";
+  activeImageKey = "";
+  pendingCustomImageId = id;
+  markDirty();
+  renderCustomImageManager();
+  loadPreview();
+};
+
 const renderCustomBlockManager = () => {
   if (!elements.customList || !content) return;
 
@@ -543,13 +631,34 @@ const applyImageEntryToTarget = (target, entry = {}) => {
     target.alt = entry.alt;
     target.setAttribute("alt", entry.alt);
   }
+
+  applyImageStyleToTarget(target, entry.style);
+};
+
+const applyImageStyleToTarget = (target, style = {}) => {
+  if (!target) return;
+
+  const width = Number(style?.width) || 0;
+  const x = Number(style?.x) || 0;
+  const y = Number(style?.y) || 0;
+
+  target.style.width = width ? `${width}px` : "";
+  target.style.maxWidth = width ? "100%" : "";
+  target.style.left = x ? `${x}px` : "";
+  target.style.top = y ? `${y}px` : "";
+
+  if (x || y) {
+    target.style.position = "relative";
+  } else {
+    target.style.position = "";
+  }
 };
 
 const updateImageControls = () => {
   const entry = activeImageEntry();
   const disabled = !entry;
 
-  [elements.imageSrc, elements.imageAlt, elements.imageReset].forEach((control) => {
+  [elements.imageSrc, elements.imageAlt, elements.imageWidth, elements.imageX, elements.imageY, elements.imageReset].forEach((control) => {
     control.disabled = disabled;
   });
 
@@ -558,6 +667,9 @@ const updateImageControls = () => {
     : "Najprej klikni sliko v predogledu.";
   elements.imageSrc.value = entry?.src || "";
   elements.imageAlt.value = entry?.alt || "";
+  elements.imageWidth.value = entry?.style?.width || "";
+  elements.imageX.value = entry?.style?.x ?? "";
+  elements.imageY.value = entry?.style?.y ?? "";
 };
 
 const setImageEntryValue = (property, value) => {
@@ -565,6 +677,29 @@ const setImageEntryValue = (property, value) => {
   if (!entry) return;
 
   entry[property] = value.trim();
+  applyImageEntryToTarget(activeImage(), entry);
+  markDirty();
+  updateImageControls();
+};
+
+const setImageStyleValue = (property, value) => {
+  const entry = activeImageEntry();
+  if (!entry) return;
+
+  entry.style = entry.style && typeof entry.style === "object" ? entry.style : {};
+
+  if (value === "") {
+    delete entry.style[property];
+  } else {
+    const numericValue = Number(value);
+    if (Number.isNaN(numericValue)) return;
+    entry.style[property] = numericValue;
+  }
+
+  if (!Object.keys(entry.style).length) {
+    delete entry.style;
+  }
+
   applyImageEntryToTarget(activeImage(), entry);
   markDirty();
   updateImageControls();
@@ -830,11 +965,65 @@ const injectCustomBlocksIntoPreview = (doc) => {
   });
 };
 
+const injectCustomImagesIntoPreview = (doc) => {
+  const main = doc.querySelector("main");
+  if (!main) return;
+
+  const images = customImageEntries();
+  const validIds = new Set(images.map((image) => image.id).filter(Boolean));
+
+  doc.querySelectorAll("[data-custom-image]").forEach((imageElement) => {
+    if (!validIds.has(imageElement.getAttribute("data-custom-image") || "")) {
+      imageElement.remove();
+    }
+  });
+
+  let section = doc.querySelector("[data-custom-images]");
+  if (!images.length) {
+    section?.remove();
+    return;
+  }
+
+  if (!section) {
+    section = doc.createElement("section");
+    section.className = "section custom-image-section";
+    section.setAttribute("data-custom-images", "");
+    main.append(section);
+  }
+
+  let grid = section.querySelector(".custom-image-grid");
+  if (!grid) {
+    grid = doc.createElement("div");
+    grid.className = "custom-image-grid";
+    section.append(grid);
+  }
+
+  images.forEach((entry) => {
+    let figure = doc.querySelector(`[data-custom-image="${CSS.escape(entry.id)}"]`);
+
+    if (!figure) {
+      figure = doc.createElement("figure");
+      figure.className = "custom-image-item reveal is-visible";
+      figure.setAttribute("data-custom-image", entry.id);
+      grid.append(figure);
+    }
+
+    let image = figure.querySelector("img");
+    if (!image) {
+      image = doc.createElement("img");
+      figure.append(image);
+    }
+
+    applyImageEntryToTarget(image, entry);
+  });
+};
+
 const preparePreview = () => {
   const doc = elements.preview.contentDocument;
   if (!doc || !content) return;
 
   injectCustomBlocksIntoPreview(doc);
+  injectCustomImagesIntoPreview(doc);
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
   discoverEditableTexts(doc);
@@ -903,6 +1092,21 @@ const preparePreview = () => {
     });
   });
 
+  if (pendingCustomImageId) {
+    const image = doc.querySelector(`[data-custom-image="${CSS.escape(pendingCustomImageId)}"] img`);
+    const key = image?.dataset.imageKey;
+
+    if (image) {
+      image.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+
+    if (key) {
+      focusImage(key);
+    }
+
+    pendingCustomImageId = "";
+  }
+
   if (pendingCustomBlockId) {
     const block = doc.querySelector(`[data-custom-block="${CSS.escape(pendingCustomBlockId)}"]`);
     const title = block?.querySelector("h2");
@@ -930,6 +1134,7 @@ const loadPreview = () => {
   updateStyleControls();
   updateImageControls();
   renderCustomBlockManager();
+  renderCustomImageManager();
   renderVideoManager();
   elements.preview.src = `../${selectedPage.file}?editor=${Date.now()}`;
 };
@@ -1088,9 +1293,13 @@ const init = async () => {
   elements.saveGithub.addEventListener("click", saveToGithub);
   elements.videoAdd.addEventListener("click", addVideo);
   elements.customAdd.addEventListener("click", addCustomBlock);
+  elements.newImageAdd.addEventListener("click", addCustomImage);
   elements.styleColor.addEventListener("input", () => setEntryStyleValue("color", elements.styleColor.value));
   elements.imageSrc.addEventListener("input", () => setImageEntryValue("src", elements.imageSrc.value));
   elements.imageAlt.addEventListener("input", () => setImageEntryValue("alt", elements.imageAlt.value));
+  elements.imageWidth.addEventListener("input", () => setImageStyleValue("width", elements.imageWidth.value));
+  elements.imageX.addEventListener("input", () => setImageStyleValue("x", elements.imageX.value));
+  elements.imageY.addEventListener("input", () => setImageStyleValue("y", elements.imageY.value));
   elements.imageReset.addEventListener("click", () => {
     const indexText = activeImageKey.split("|").pop();
     const index = Number(indexText);

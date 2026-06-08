@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tu-Val CleanSpace urejevalnik</title>
-    <link rel="stylesheet" href="editor.css?v=5">
+    <link rel="stylesheet" href="editor.css?v=6">
   </head>
   <body>
     <header class="editor-header">
@@ -96,6 +96,17 @@
             <strong>Izbrana slika</strong>
             <span data-active-image-label>Najprej klikni sliko v predogledu.</span>
           </div>
+          <div class="image-add-box">
+            <label>
+              URL nove slike
+              <textarea data-new-image-src rows="3" placeholder="https://..."></textarea>
+            </label>
+            <label>
+              Opis nove slike
+              <input data-new-image-alt type="text" placeholder="Npr. CleanSpace pri uporabi">
+            </label>
+            <button class="primary" type="button" data-new-image-add>Dodaj sliko</button>
+          </div>
           <label>
             URL slike
             <textarea data-image-src rows="3" placeholder="https://..."></textarea>
@@ -104,7 +115,22 @@
             Opis slike
             <input data-image-alt type="text" placeholder="Opis za sliko">
           </label>
-          <button class="secondary light" type="button" data-image-reset>Ponastavi sliko</button>
+          <div class="style-grid">
+            <label>
+              Širina slike
+              <input data-image-width type="number" min="80" max="1400" step="10" placeholder="px">
+            </label>
+            <label>
+              Premik levo/desno
+              <input data-image-x type="number" min="-600" max="600" step="1" placeholder="0">
+            </label>
+            <label>
+              Premik gor/dol
+              <input data-image-y type="number" min="-600" max="600" step="1" placeholder="0">
+            </label>
+          </div>
+          <button class="secondary light" type="button" data-image-reset>Odstrani ali ponastavi sliko</button>
+          <div class="custom-admin-list" data-custom-image-list></div>
         </div>
         <div class="video-manager" data-video-manager hidden>
           <div class="style-panel-head">
@@ -142,7 +168,8 @@
       </section>
     </main>
 
-    <script src="editor.js?v=9"></script>
+    <script src="editor.js?v=10"></script>
   </body>
 </html>
+
 
