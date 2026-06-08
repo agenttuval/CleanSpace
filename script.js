@@ -814,7 +814,7 @@ if (contactForm) {
     }
 
     if (formNote) {
-      formNote.textContent = `Izbran model: ${requestedInterest}. Ob oddaji se podatki pošljejo na agenttuval@gmail.com.`;
+      formNote.textContent = `Izbran model: ${requestedInterest}. Ob oddaji se podatki pošljejo na sales@tu-val.si.`;
     }
   }
 }
@@ -883,7 +883,7 @@ on(contactForm, "submit", async (event) => {
       submitFileList.textContent = "Ni izbranih datotek.";
     }
     if (formNote) {
-      formNote.textContent = "Sporočilo je bilo poslano na agenttuval@gmail.com.";
+      formNote.textContent = "Sporočilo je bilo poslano na sales@tu-val.si.";
     }
   } catch (error) {
     if (formNote) {

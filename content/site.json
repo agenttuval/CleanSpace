@@ -379,7 +379,7 @@
     {
       "label": "Kontakt - opomba obrazca",
       "selector": ".form-note",
-      "text": "Ob oddaji se podatki pošljejo na agenttuval@gmail.com."
+      "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
     },
     {
       "label": "Kontakt - lokacija naslov",
@@ -426,7 +426,7 @@
     {
       "label": "Test - kartica opis 2",
       "selector": ".contact-card p:nth-of-type(2)",
-      "text": "Po oddaji se podatki samodejno pošljejo na agenttuval@gmail.com."
+      "text": "Po oddaji se podatki samodejno pošljejo na sales@tu-val.si."
     },
     {
       "label": "Test - obrazec nadnaslov",
@@ -446,7 +446,7 @@
     {
       "label": "Test - opomba",
       "selector": ".form-note",
-      "text": "Ob oddaji se podatki pošljejo na agenttuval@gmail.com."
+      "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
     }
   ],
   "cleanspace_work": [
