@@ -104,7 +104,7 @@ const renderCustomBlocks = (content = {}) => {
 
   blocks.forEach((block, index) => {
     const article = document.createElement("article");
-    article.setAttribute("class", "custom-text-card reveal");
+    article.setAttribute("class", "custom-text-card reveal is-visible");
     article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
 
     const title = document.createElement("h2");

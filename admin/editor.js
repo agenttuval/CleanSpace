@@ -806,7 +806,7 @@ const injectCustomBlocksIntoPreview = (doc) => {
 
     if (!article) {
       article = doc.createElement("article");
-      article.className = "custom-text-card reveal";
+      article.className = "custom-text-card reveal is-visible";
       article.setAttribute("data-custom-block", id);
       grid.append(article);
     }
