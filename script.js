@@ -199,23 +199,23 @@ const videoPage = document.querySelector("[data-video-page]");
 const heroRotatorSlides = [
   {
     model: "CleanSpace WORK",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CleanSpace-WORK-Welding.jpg-uCrTLnLFWTgLT44u8oGRNKkdRBMwL3.jpeg",
   },
   {
     model: "CleanSpace CST PRO",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg",
   },
   {
     model: "CleanSpace CST ULTRA",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
   },
   {
     model: "CleanSpace EX",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-00.png",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2021/03/17-CleanSpace-EX-with-Full-Face-Mask-and-Coverall-Filter.jpg",
   },
   {
     model: "CleanSpace HALO",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
   },
 ];
 
@@ -481,6 +481,629 @@ const setDataValue = (element, key, value) => {
   }
 };
 
+const languageStorageKey = "tuval-cleanspace-language";
+const supportedLanguages = ["sl", "en", "hr"];
+const languageLabels = {
+  sl: "SL",
+  en: "EN",
+  hr: "HR",
+};
+
+const languageNames = {
+  sl: "Slovenščina",
+  en: "English",
+  hr: "Hrvatski",
+};
+
+const languageTranslations = {
+  en: {
+    common: [
+      { selector: ".site-nav a:nth-child(1)", text: "Home" },
+      { selector: ".site-nav a:nth-child(2)", text: "Masks" },
+      { selector: ".site-nav a:nth-child(3)", text: "Test" },
+      { selector: ".site-nav a:nth-child(4)", text: "Contact" },
+      { selector: ".menu-toggle", attribute: "aria-label", text: "Open navigation" },
+      { selector: ".choice-actions .details", text: "Details", all: true },
+      { selector: ".choice-actions .ghost.dark", text: "Contact", all: true },
+    ],
+    "index.html": [
+      { selector: ".hero-content .eyebrow", text: "Respiratory protection for the future" },
+      { selector: ".hero-content h1", text: "CleanSpace respirators" },
+      {
+        selector: ".hero-content .lead",
+        text: "Compact powered air-purifying respirators from Tu-Val, designed without belts and hoses for demanding working environments.",
+      },
+      { selector: ".hero-actions .primary", text: "View masks" },
+      { selector: ".hero-actions .ghost", text: "Send inquiry" },
+      { selector: ".hero-panel .panel-label", text: "Key benefits" },
+      { selector: ".metric-grid div:nth-child(1) span", text: "% filtration" },
+      { selector: ".metric-grid div:nth-child(2) span", text: "light unit" },
+      { selector: ".metric-grid div:nth-child(3) span", text: "runtime" },
+      { selector: ".intro-band .section-copy h2", text: "Engineering partner for a safer workplace" },
+      {
+        selector: ".intro-band .section-copy > p:not(.eyebrow)",
+        text: "Tu-Val is a technical supplier from Domžale combining consulting, distribution, production and after-sales support. The CleanSpace program supports welding, industry, medicine and maintenance with advanced respiratory protection solutions.",
+      },
+      { selector: ".capability-grid article:nth-child(1) h3", text: "Selection support" },
+      {
+        selector: ".capability-grid article:nth-child(1) p",
+        text: "Respirator, mask and filter selection based on the environment, exposure and type of work.",
+      },
+      { selector: ".capability-grid article:nth-child(2) h3", text: "Professional use" },
+      {
+        selector: ".capability-grid article:nth-child(2) p",
+        text: "Solutions for welding, dust, pharmaceutical work, laboratories, disinfection and potentially explosive areas.",
+      },
+      { selector: ".capability-grid article:nth-child(3) h3", text: "After-sales support" },
+      {
+        selector: ".capability-grid article:nth-child(3) p",
+        text: "Contact, accessories, filters, spare parts and help with correct equipment use.",
+      },
+      { selector: ".products-preview .section-heading .eyebrow", text: "Product range" },
+      { selector: ".products-preview .section-heading h2", text: "Short overview of CleanSpace masks" },
+      { selector: ".product-card:nth-child(1) .tag", text: "Dust and workshop" },
+      {
+        selector: ".product-card:nth-child(1) div > p:last-child",
+        text: "The lightest industrial powered air-purifying respirator for high-dust environments, woodworking, concrete and welding.",
+      },
+      { selector: ".product-card:nth-child(2) .tag", text: "Industry" },
+      {
+        selector: ".product-card:nth-child(2) div > p:last-child",
+        text: "A durable connected system for demanding tasks, with Bluetooth connection to the CleanSpace app.",
+      },
+      { selector: ".product-card:nth-child(3) .tag", text: "Decontamination" },
+      {
+        selector: ".product-card:nth-child(3) div > p:last-child",
+        text: "Advanced powered respiratory protection for environments where IP65 protection, usage data and compliance monitoring matter.",
+      },
+      { selector: ".product-card:nth-child(4) .tag", text: "Hazardous areas" },
+      {
+        selector: ".product-card:nth-child(4) div > p:last-child",
+        text: "Intrinsically safe powered respiratory protection for explosive atmospheres, chemical handling, petrochemicals, oil and gas.",
+      },
+      { selector: ".product-card:nth-child(5) .tag", text: "Healthcare" },
+      {
+        selector: ".product-card:nth-child(5) div > p:last-child",
+        text: "For healthcare, pharmaceutical and laboratory environments where comfort and decontamination are critical.",
+      },
+      { selector: ".center-action .button", text: "Compare models" },
+      { selector: ".difference-copy .eyebrow", text: "AirSensit technology" },
+      { selector: ".difference-copy h2", text: "Breathing support that responds to the wearer" },
+      {
+        selector: ".difference-copy > p:not(.eyebrow)",
+        text: "CleanSpace systems are positive-pressure powered air-purifying respirators. AirSensit technology responds to the wearer’s breathing and adjusts the flow of fresh filtered air, reducing effort during longer use.",
+      },
+      { selector: ".check-list li:nth-child(1)", text: "No belts, hoses or battery backpacks." },
+      { selector: ".check-list li:nth-child(2)", text: "Audible and visual alarms for safer work." },
+      { selector: ".check-list li:nth-child(3)", text: "Half-mask or full-face-mask options on selected models." },
+      { selector: ".certification-section .section-heading .eyebrow", text: "Official certifications" },
+      { selector: ".certification-section .section-heading h2", text: "Standards and approvals" },
+      {
+        selector: ".certification-section .section-heading p:not(.eyebrow)",
+        text: "CleanSpace lists approvals for different models and configurations. Final selection depends on the mask, filter and work environment.",
+      },
+      { selector: ".certification-card:nth-child(1) h3", text: "European respiratory standard" },
+      {
+        selector: ".certification-card:nth-child(1) p",
+        text: "EN12942 for powered air-purifying respirators.",
+      },
+      { selector: ".certification-card:nth-child(2) h3", text: "NIOSH approval" },
+      {
+        selector: ".certification-card:nth-child(2) p",
+        text: "Approved for selected complete respirator assemblies and filters.",
+      },
+      { selector: ".certification-card:nth-child(3) h3", text: "Australia/New Zealand standard" },
+      {
+        selector: ".certification-card:nth-child(3) p",
+        text: "AS/NZS 1716 for certified CleanSpace respirator systems.",
+      },
+      { selector: ".certification-card:nth-child(4) h3", text: "IECEx and ATEX" },
+      {
+        selector: ".certification-card:nth-child(4) p",
+        text: "For selected intrinsically safe versions in EX areas.",
+      },
+      { selector: ".certification-card:nth-child(5) h3", text: "Dust and water protection" },
+      {
+        selector: ".certification-card:nth-child(5) p",
+        text: "IP66 marks equipment protection against dust and powerful water jets.",
+      },
+      { selector: ".certification-card:nth-child(6) h3", text: "Quality management system" },
+      {
+        selector: ".certification-card:nth-child(6) p",
+        text: "ISO 9001 for development, production and support.",
+      },
+      { selector: ".certification-note .button", text: "CleanSpace comparison" },
+    ],
+    "maske.html": [
+      { selector: ".page-hero-copy .eyebrow", text: "Choose a model" },
+      { selector: ".page-hero-copy h1", text: "Masks" },
+      {
+        selector: ".page-hero-copy .lead",
+        text: "Choose a CleanSpace model and quickly compare which respirator is best suited for each type of use.",
+      },
+      { selector: ".mask-overview-section .section-heading .eyebrow", text: "Overview" },
+      { selector: ".mask-overview-section .section-heading h2", text: "Choose a respirator" },
+      { selector: ".mask-choice-card:nth-child(1) .tag", text: "Dust and workshop" },
+      {
+        selector: ".mask-choice-card:nth-child(1) .mask-summary",
+        text: "A light respirator for dust, fumes and particles in workshops, grinding, cutting and welding. Designed for half-mask use and fast filter changes.",
+      },
+      { selector: ".mask-choice-card:nth-child(2) .tag", text: "Industry" },
+      {
+        selector: ".mask-choice-card:nth-child(2) .mask-summary",
+        text: "A universal industrial model for longer shifts, particulate or combination filters, and use with a half mask or full-face mask.",
+      },
+      { selector: ".mask-choice-card:nth-child(3) .tag", text: "Decontamination" },
+      {
+        selector: ".mask-choice-card:nth-child(3) .mask-summary",
+        text: "A more robust version for demanding environments where cleaning and reliable operation with CST filters are important.",
+      },
+      { selector: ".mask-choice-card:nth-child(4) .tag", text: "Hazardous areas" },
+      {
+        selector: ".mask-choice-card:nth-child(4) .mask-summary",
+        text: "A model for explosive atmospheres and industrial processes requiring special EX filters, accessories and a higher level of safety.",
+      },
+      { selector: ".mask-choice-card:nth-child(5) .tag", text: "Healthcare" },
+      {
+        selector: ".mask-choice-card:nth-child(5) .mask-summary",
+        text: "A respirator for healthcare, laboratories and pharmaceutical work, with half-mask or full-face-mask options and HEPA/Bio filtration.",
+      },
+    ],
+    "kontakt.html": [
+      { selector: ".contact-copy .eyebrow", text: "Contact" },
+      { selector: ".contact-copy h1", text: "Let’s discuss respiratory protection for your company" },
+      {
+        selector: ".contact-copy .lead",
+        text: "Send an inquiry for CleanSpace respirators, filters, masks or technical support in selecting equipment for your workplace.",
+      },
+      { selector: ".contact-card p:nth-of-type(1)", text: "Mon. - Fri.: 8:00 - 15:00" },
+      { selector: ".contact-card p:nth-of-type(2)", text: "Sat. - Sun.: closed" },
+      { selector: ".form-heading .eyebrow", text: "Inquiry" },
+      { selector: ".form-heading h2", text: "Send your details" },
+      { selector: ".contact-form label:nth-of-type(1)", text: "Full name" },
+      { selector: ".contact-form label:nth-of-type(2)", text: "Email" },
+      { selector: ".contact-form label:nth-of-type(3)", text: "Company" },
+      { selector: ".contact-form label:nth-of-type(4)", text: "I am interested in" },
+      { selector: ".contact-form label:nth-of-type(5)", text: "Message" },
+      { selector: ".contact-form select option:last-child", text: "I am not sure yet, I need advice" },
+      { selector: ".contact-form button", text: "Send inquiry" },
+      { selector: ".form-note", text: "When submitted, the details are sent to sales@tu-val.si." },
+      { selector: ".location-details h2", text: "Where to find us" },
+      {
+        selector: ".location-details p",
+        text: "Tu-Val is located in Domžale, at Breznikova ulica 26. Please arrange visits, pickup or technical consulting in advance by phone or email.",
+      },
+      { selector: ".location-details .button", text: "Open map" },
+    ],
+    "test.html": [
+      { selector: ".contact-copy .eyebrow", text: "Test mask request" },
+      { selector: ".contact-copy h1", text: "Request a CleanSpace mask for testing" },
+      {
+        selector: ".contact-copy .lead",
+        text: "Fill in the basic details and Tu-Val will help select a suitable CleanSpace respirator for testing in your working environment.",
+      },
+      { selector: ".contact-card h2", text: "What happens after submission?" },
+      { selector: ".contact-card p:nth-of-type(1)", text: "The Tu-Val team receives your test request details." },
+      { selector: ".contact-card p:nth-of-type(2)", text: "After submission, the data is automatically sent to sales@tu-val.si." },
+      { selector: ".contact-card .button", text: "Call Tu-Val" },
+      { selector: ".form-heading .eyebrow", text: "Equipment test" },
+      { selector: ".form-heading h2", text: "I want to test a mask" },
+      { selector: ".contact-form label:nth-of-type(1)", text: "Full name" },
+      { selector: ".contact-form label:nth-of-type(2)", text: "Email" },
+      { selector: ".contact-form label:nth-of-type(3)", text: "Phone" },
+      { selector: ".contact-form label:nth-of-type(4)", text: "Company" },
+      { selector: ".contact-form label:nth-of-type(5)", text: "Which mask would you like to test?" },
+      { selector: ".contact-form label:nth-of-type(6)", text: "Preferred testing date" },
+      { selector: ".contact-form input[name='preferredDate']", attribute: "placeholder", text: "e.g. next week, morning" },
+      { selector: ".contact-form label:nth-of-type(7)", text: "Description of the working environment" },
+      {
+        selector: ".contact-form textarea[name='message']",
+        attribute: "placeholder",
+        text: "Where would the mask be used, what dust/gases are present, how many users would like to test it ...",
+      },
+      { selector: ".contact-form label:nth-of-type(8)", text: "Files" },
+      { selector: ".file-upload-button", text: "Add files" },
+      { selector: ".file-upload-list", text: "No files selected." },
+      { selector: ".contact-form select option:last-child", text: "I am not sure yet, I need advice" },
+      { selector: ".contact-form button", text: "Send test request" },
+      { selector: ".form-note", text: "When submitted, the details are sent to sales@tu-val.si." },
+      { selector: ".test-side-panel .location-details h2", text: "It is easier to choose after a trial" },
+      {
+        selector: ".test-side-panel .location-details p",
+        text: "Testing helps check comfort, mask fit, filter selection and suitability for real company conditions.",
+      },
+      { selector: ".test-side-panel .location-details .button", text: "View models" },
+    ],
+    "videi.html": [
+      { selector: ".video-hero .eyebrow", text: "Videos" },
+      { selector: ".video-hero h1", text: "CleanSpace videos" },
+    ],
+  },
+  hr: {
+    common: [
+      { selector: ".site-nav a:nth-child(1)", text: "Početna" },
+      { selector: ".site-nav a:nth-child(2)", text: "Maske" },
+      { selector: ".site-nav a:nth-child(3)", text: "Test" },
+      { selector: ".site-nav a:nth-child(4)", text: "Kontakt" },
+      { selector: ".menu-toggle", attribute: "aria-label", text: "Otvori navigaciju" },
+      { selector: ".choice-actions .details", text: "Detalji", all: true },
+      { selector: ".choice-actions .ghost.dark", text: "Kontakt", all: true },
+    ],
+    "index.html": [
+      { selector: ".hero-content .eyebrow", text: "Respiratorna zaštita budućnosti" },
+      { selector: ".hero-content h1", text: "CleanSpace respiratori" },
+      {
+        selector: ".hero-content .lead",
+        text: "Kompaktni respiratori s aktivnim dovodom filtriranog zraka pri Tu-Valu, bez pojaseva i cijevi, namijenjeni za zahtjevna radna okruženja.",
+      },
+      { selector: ".hero-actions .primary", text: "Pogledaj maske" },
+      { selector: ".hero-actions .ghost", text: "Upit" },
+      { selector: ".hero-panel .panel-label", text: "Ključne prednosti" },
+      { selector: ".metric-grid div:nth-child(1) span", text: "% filtracija" },
+      { selector: ".metric-grid div:nth-child(2) span", text: "lagana jedinica" },
+      { selector: ".metric-grid div:nth-child(3) span", text: "rada" },
+      { selector: ".intro-band .section-copy h2", text: "Inženjerski partner za sigurnije radno okruženje" },
+      {
+        selector: ".intro-band .section-copy > p:not(.eyebrow)",
+        text: "Tu-Val je tehnički dobavljač iz Domžala koji povezuje savjetovanje, distribuciju, proizvodnju i podršku nakon kupnje. Program CleanSpace nadopunjuje zavarivanje, industriju, medicinu i održavanje naprednim rješenjima za zaštitu dišnih puteva.",
+      },
+      { selector: ".capability-grid article:nth-child(1) h3", text: "Savjetovanje pri odabiru" },
+      {
+        selector: ".capability-grid article:nth-child(1) p",
+        text: "Odabir respiratora, maske i filtra prema okruženju, izloženosti i načinu rada.",
+      },
+      { selector: ".capability-grid article:nth-child(2) h3", text: "Profesionalna uporaba" },
+      {
+        selector: ".capability-grid article:nth-child(2) p",
+        text: "Rješenja za zavarivanje, prašinu, farmaciju, laboratorije, dezinfekciju i eksplozijski ugrožena područja.",
+      },
+      { selector: ".capability-grid article:nth-child(3) h3", text: "Podrška nakon kupnje" },
+      {
+        selector: ".capability-grid article:nth-child(3) p",
+        text: "Kontakt, dodaci, filtri, rezervni dijelovi i pomoć pri pravilnoj uporabi opreme.",
+      },
+      { selector: ".products-preview .section-heading .eyebrow", text: "Pregled linije" },
+      { selector: ".products-preview .section-heading h2", text: "Kratki pregled CleanSpace maski" },
+      { selector: ".product-card:nth-child(1) .tag", text: "Prašina i radionica" },
+      {
+        selector: ".product-card:nth-child(1) div > p:last-child",
+        text: "Najlakši industrijski respirator s aktivnim dovodom zraka za prašnjava okruženja, obradu drva, beton i zavarivanje.",
+      },
+      { selector: ".product-card:nth-child(2) .tag", text: "Industrija" },
+      {
+        selector: ".product-card:nth-child(2) div > p:last-child",
+        text: "Izdržljiv i povezan sustav za zahtjevne zadatke, s Bluetooth vezom na CleanSpace aplikaciju.",
+      },
+      { selector: ".product-card:nth-child(3) .tag", text: "Dekontaminacija" },
+      {
+        selector: ".product-card:nth-child(3) div > p:last-child",
+        text: "Napredni respirator s aktivnim dovodom zraka za okruženja gdje su važni IP65 zaštita, podaci o uporabi i nadzor usklađenosti.",
+      },
+      { selector: ".product-card:nth-child(4) .tag", text: "Opasna područja" },
+      {
+        selector: ".product-card:nth-child(4) div > p:last-child",
+        text: "Intrinzično siguran respirator s aktivnim dovodom zraka za eksplozijski ugrožena područja, kemiju, petrokemiju te naftu i plin.",
+      },
+      { selector: ".product-card:nth-child(5) .tag", text: "Zdravstvo" },
+      {
+        selector: ".product-card:nth-child(5) div > p:last-child",
+        text: "Za zdravstvena, farmaceutska i laboratorijska okruženja gdje su udobnost i dekontaminacija ključni.",
+      },
+      { selector: ".center-action .button", text: "Usporedi modele" },
+      { selector: ".difference-copy .eyebrow", text: "AirSensit tehnologija" },
+      { selector: ".difference-copy h2", text: "Disanje koje sustav prepoznaje i podržava" },
+      {
+        selector: ".difference-copy > p:not(.eyebrow)",
+        text: "CleanSpace sustavi su respiratori s pozitivnim tlakom. AirSensit tehnologija reagira na disanje korisnika i prilagođava protok svježeg filtriranog zraka, što smanjuje napor pri duljoj uporabi.",
+      },
+      { selector: ".check-list li:nth-child(1)", text: "Bez pojaseva, cijevi i baterijskih naprtnjača." },
+      { selector: ".check-list li:nth-child(2)", text: "Zvučna i vizualna upozorenja za sigurniji rad." },
+      { selector: ".check-list li:nth-child(3)", text: "Opcije polumaski ili maski za cijelo lice kod odabranih modela." },
+      { selector: ".certification-section .section-heading .eyebrow", text: "Službeni certifikati" },
+      { selector: ".certification-section .section-heading h2", text: "Standardi i odobrenja" },
+      {
+        selector: ".certification-section .section-heading p:not(.eyebrow)",
+        text: "CleanSpace navodi odobrenja za različite modele i konfiguracije. Konačni odabir ovisi o maski, filtru i radnom okruženju.",
+      },
+      { selector: ".certification-card:nth-child(1) h3", text: "Europski respiratorni standard" },
+      {
+        selector: ".certification-card:nth-child(1) p",
+        text: "EN12942 za respiratore s aktivnim dovodom filtriranog zraka.",
+      },
+      { selector: ".certification-card:nth-child(2) h3", text: "NIOSH odobrenje" },
+      {
+        selector: ".certification-card:nth-child(2) p",
+        text: "Odobreno za odabrane kompletne sklopove i filtre.",
+      },
+      { selector: ".certification-card:nth-child(3) h3", text: "Australski i novozelandski standard" },
+      {
+        selector: ".certification-card:nth-child(3) p",
+        text: "AS/NZS 1716 za certificirane CleanSpace sustave.",
+      },
+      { selector: ".certification-card:nth-child(4) h3", text: "IECEx i ATEX" },
+      {
+        selector: ".certification-card:nth-child(4) p",
+        text: "Za odabrane intrinzično sigurne izvedbe u EX područjima.",
+      },
+      { selector: ".certification-card:nth-child(5) h3", text: "Zaštita od prašine i vode" },
+      {
+        selector: ".certification-card:nth-child(5) p",
+        text: "IP66 označuje zaštitu opreme od prašine i jakih mlazova vode.",
+      },
+      { selector: ".certification-card:nth-child(6) h3", text: "Sustav upravljanja kvalitetom" },
+      {
+        selector: ".certification-card:nth-child(6) p",
+        text: "ISO 9001 za razvoj, proizvodnju i podršku.",
+      },
+      { selector: ".certification-note .button", text: "CleanSpace usporedba" },
+    ],
+    "maske.html": [
+      { selector: ".page-hero-copy .eyebrow", text: "Odaberi model" },
+      { selector: ".page-hero-copy h1", text: "Maske" },
+      {
+        selector: ".page-hero-copy .lead",
+        text: "Odaberite CleanSpace model i brzo usporedite za koju je uporabu pojedini respirator najprikladniji.",
+      },
+      { selector: ".mask-overview-section .section-heading .eyebrow", text: "Pregled" },
+      { selector: ".mask-overview-section .section-heading h2", text: "Odaberite respirator" },
+      { selector: ".mask-choice-card:nth-child(1) .tag", text: "Prašina i radionica" },
+      {
+        selector: ".mask-choice-card:nth-child(1) .mask-summary",
+        text: "Lagani respirator za prašinu, dim i čestice u radionicama, pri brušenju, rezanju i zavarivanju. Namijenjen je uporabi s polumaskom i brzoj zamjeni filtra.",
+      },
+      { selector: ".mask-choice-card:nth-child(2) .tag", text: "Industrija" },
+      {
+        selector: ".mask-choice-card:nth-child(2) .mask-summary",
+        text: "Univerzalni industrijski model za dulje smjene, čestične ili kombinirane filtre te uporabu s polumaskom ili maskom za cijelo lice.",
+      },
+      { selector: ".mask-choice-card:nth-child(3) .tag", text: "Dekontaminacija" },
+      {
+        selector: ".mask-choice-card:nth-child(3) .mask-summary",
+        text: "Robusnija izvedba za zahtjevnija okruženja gdje su važni čišćenje opreme i pouzdan rad s različitim CST filtrima.",
+      },
+      { selector: ".mask-choice-card:nth-child(4) .tag", text: "Opasna područja" },
+      {
+        selector: ".mask-choice-card:nth-child(4) .mask-summary",
+        text: "Model za eksplozijski opasna područja i industrijske postupke gdje su potrebni posebni EX filtri, dodaci i viša razina sigurnosti.",
+      },
+      { selector: ".mask-choice-card:nth-child(5) .tag", text: "Zdravstvo" },
+      {
+        selector: ".mask-choice-card:nth-child(5) .mask-summary",
+        text: "Respirator za zdravstvo, laboratorije i farmaciju, s mogućnošću polumaske ili maske za cijelo lice te HEPA/Bio filtracijom.",
+      },
+    ],
+    "kontakt.html": [
+      { selector: ".contact-copy .eyebrow", text: "Kontakt" },
+      { selector: ".contact-copy h1", text: "Razgovarajmo o zaštiti dišnih puteva u vašoj tvrtki" },
+      {
+        selector: ".contact-copy .lead",
+        text: "Pošaljite upit za CleanSpace respiratore, filtre, maske ili savjetovanje pri odabiru opreme za vaše radno okruženje.",
+      },
+      { selector: ".contact-card p:nth-of-type(1)", text: "Pon. - Pet.: 8:00 - 15:00" },
+      { selector: ".contact-card p:nth-of-type(2)", text: "Sub. - Ned.: zatvoreno" },
+      { selector: ".form-heading .eyebrow", text: "Upit" },
+      { selector: ".form-heading h2", text: "Pošaljite osnovne podatke" },
+      { selector: ".contact-form label:nth-of-type(1)", text: "Ime i prezime" },
+      { selector: ".contact-form label:nth-of-type(2)", text: "E-pošta" },
+      { selector: ".contact-form label:nth-of-type(3)", text: "Tvrtka" },
+      { selector: ".contact-form label:nth-of-type(4)", text: "Zanimam se za" },
+      { selector: ".contact-form label:nth-of-type(5)", text: "Poruka" },
+      { selector: ".contact-form select option:last-child", text: "Još ne znam, trebam savjetovanje" },
+      { selector: ".contact-form button", text: "Pošalji upit" },
+      { selector: ".form-note", text: "Nakon slanja podaci se šalju na sales@tu-val.si." },
+      { selector: ".location-details h2", text: "Gdje nas možete naći" },
+      {
+        selector: ".location-details p",
+        text: "Tu-Val se nalazi u Domžalama, na Breznikovoj ulici 26. Za posjet, preuzimanje ili tehničko savjetovanje prethodno se dogovorite telefonom ili e-poštom.",
+      },
+      { selector: ".location-details .button", text: "Otvori kartu" },
+    ],
+    "test.html": [
+      { selector: ".contact-copy .eyebrow", text: "Narudžba testne maske" },
+      { selector: ".contact-copy h1", text: "Naručite CleanSpace masku za testiranje" },
+      {
+        selector: ".contact-copy .lead",
+        text: "Ispunite osnovne podatke i Tu-Val će vam pomoći odabrati odgovarajući CleanSpace respirator za testiranje u vašem radnom okruženju.",
+      },
+      { selector: ".contact-card h2", text: "Što se događa nakon slanja?" },
+      { selector: ".contact-card p:nth-of-type(1)", text: "Tim Tu-Val prima poruku s podacima za test." },
+      { selector: ".contact-card p:nth-of-type(2)", text: "Nakon slanja podaci se automatski šalju na sales@tu-val.si." },
+      { selector: ".contact-card .button", text: "Nazovi Tu-Val" },
+      { selector: ".form-heading .eyebrow", text: "Test opreme" },
+      { selector: ".form-heading h2", text: "Naručujem masku za test" },
+      { selector: ".contact-form label:nth-of-type(1)", text: "Ime i prezime" },
+      { selector: ".contact-form label:nth-of-type(2)", text: "E-pošta" },
+      { selector: ".contact-form label:nth-of-type(3)", text: "Telefon" },
+      { selector: ".contact-form label:nth-of-type(4)", text: "Tvrtka" },
+      { selector: ".contact-form label:nth-of-type(5)", text: "Koju masku želite testirati?" },
+      { selector: ".contact-form label:nth-of-type(6)", text: "Željeni termin testiranja" },
+      { selector: ".contact-form input[name='preferredDate']", attribute: "placeholder", text: "npr. sljedeći tjedan, prijepodne" },
+      { selector: ".contact-form label:nth-of-type(7)", text: "Opis radnog okruženja" },
+      {
+        selector: ".contact-form textarea[name='message']",
+        attribute: "placeholder",
+        text: "Gdje biste koristili masku, kakva prašina/plinovi su prisutni, koliko korisnika je želi testirati ...",
+      },
+      { selector: ".contact-form label:nth-of-type(8)", text: "Datoteke" },
+      { selector: ".file-upload-button", text: "Dodaj datoteke" },
+      { selector: ".file-upload-list", text: "Nema odabranih datoteka." },
+      { selector: ".contact-form select option:last-child", text: "Još ne znam, trebam savjetovanje" },
+      { selector: ".contact-form button", text: "Pošalji narudžbu testa" },
+      { selector: ".form-note", text: "Nakon slanja podaci se šalju na sales@tu-val.si." },
+      { selector: ".test-side-panel .location-details h2", text: "Lakše je odabrati nakon testiranja" },
+      {
+        selector: ".test-side-panel .location-details p",
+        text: "Testiranje pomaže provjeriti udobnost, prianjanje maske, odabir filtra i prikladnost sustava za stvarne uvjete u tvrtki.",
+      },
+      { selector: ".test-side-panel .location-details .button", text: "Pogledaj modele" },
+    ],
+    "videi.html": [
+      { selector: ".video-hero .eyebrow", text: "Videozapisi" },
+      { selector: ".video-hero h1", text: "CleanSpace videozapisi" },
+    ],
+  },
+};
+
+const readStoredLanguage = () => {
+  try {
+    const savedLanguage = window.localStorage?.getItem(languageStorageKey);
+    return supportedLanguages.includes(savedLanguage) ? savedLanguage : "sl";
+  } catch (error) {
+    return "sl";
+  }
+};
+
+const writeStoredLanguage = (language) => {
+  try {
+    window.localStorage?.setItem(languageStorageKey, language);
+  } catch (error) {
+    // Language choice is still applied for the current page.
+  }
+};
+
+const originalAttributeDataName = (attribute) =>
+  `data-original-${attribute.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+
+const rememberOriginalValue = (element, attribute) => {
+  if (!element) return;
+
+  if (attribute) {
+    const dataName = originalAttributeDataName(attribute);
+    if (!element.hasAttribute(dataName)) {
+      element.setAttribute(dataName, element.getAttribute(attribute) || "");
+    }
+    return;
+  }
+
+  if (!element.dataset?.originalText) {
+    element.dataset.originalText = element.textContent || "";
+  }
+};
+
+const directTextNode = (element) =>
+  [...element.childNodes].find((node) => node.nodeType === 3 && node.textContent.trim());
+
+const setTranslatedText = (element, text) => {
+  if (!element) return;
+
+  const textNode = element.children.length ? directTextNode(element) : null;
+  if (textNode) {
+    if (!element.hasAttribute("data-original-direct-text")) {
+      element.setAttribute("data-original-direct-text", textNode.textContent);
+    }
+
+    const leading = textNode.textContent.match(/^\s*/)?.[0] || "";
+    const trailing = textNode.textContent.match(/\s*$/)?.[0] || "";
+    textNode.textContent = `${leading}${text}${trailing}`;
+    return;
+  }
+
+  rememberOriginalValue(element);
+  element.textContent = text;
+};
+
+const restoreOriginalLanguageText = () => {
+  document.querySelectorAll("[data-original-direct-text]").forEach((element) => {
+    const textNode = directTextNode(element);
+    if (textNode) {
+      textNode.textContent = element.getAttribute("data-original-direct-text") || "";
+    }
+  });
+
+  document.querySelectorAll("[data-original-text]").forEach((element) => {
+    element.textContent = element.dataset.originalText || "";
+  });
+
+  ["placeholder", "aria-label", "title"].forEach((attribute) => {
+    const dataName = originalAttributeDataName(attribute);
+    document.querySelectorAll(`[${dataName}]`).forEach((element) => {
+      element.setAttribute(attribute, element.getAttribute(dataName) || "");
+    });
+  });
+};
+
+const entriesForLanguage = (language) => {
+  const translations = languageTranslations[language] || {};
+  const pageName = currentPageName();
+  const contentKey = currentContentKey();
+
+  return [
+    ...(translations.common || []),
+    ...(translations[pageName] || []),
+    ...(translations[contentKey] || []),
+  ];
+};
+
+const applyLanguageEntry = (entry) => {
+  if (!entry?.selector || typeof entry.text !== "string") return;
+
+  const elements = entry.all
+    ? document.querySelectorAll(entry.selector)
+    : [document.querySelector(entry.selector)];
+
+  elements.forEach((element) => {
+    if (!element) return;
+
+    if (entry.attribute) {
+      rememberOriginalValue(element, entry.attribute);
+      element.setAttribute(entry.attribute, entry.text);
+      return;
+    }
+
+    setTranslatedText(element, entry.text);
+  });
+};
+
+const updateLanguageButtons = (language) => {
+  document.querySelectorAll("[data-language-option]").forEach((button) => {
+    const isActive = button.getAttribute("data-language-option") === language;
+    toggleClass(button, "is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+};
+
+const applySiteLanguage = (language, persist = true) => {
+  const selectedLanguage = supportedLanguages.includes(language) ? language : "sl";
+  restoreOriginalLanguageText();
+  document.documentElement.lang = selectedLanguage === "hr" ? "hr" : selectedLanguage;
+
+  if (selectedLanguage !== "sl") {
+    entriesForLanguage(selectedLanguage).forEach(applyLanguageEntry);
+  }
+
+  updateLanguageButtons(selectedLanguage);
+
+  if (persist) {
+    writeStoredLanguage(selectedLanguage);
+  }
+};
+
+const setupLanguageSwitcher = () => {
+  if (!nav || nav.querySelector("[data-language-switcher]")) return;
+
+  const switcher = document.createElement("div");
+  switcher.className = "language-switcher";
+  switcher.setAttribute("data-language-switcher", "");
+  switcher.setAttribute("aria-label", "Izbira jezika");
+
+  supportedLanguages.forEach((language) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = languageLabels[language];
+    button.setAttribute("data-language-option", language);
+    button.setAttribute("aria-label", languageNames[language]);
+    button.setAttribute("aria-pressed", "false");
+
+    on(button, "click", () => {
+      applySiteLanguage(language);
+    });
+
+    switcher.append(button);
+  });
+
+  nav.append(switcher);
+};
+
 const setHeaderState = () => {
   if (!header) return;
   toggleClass(header, "is-scrolled", window.scrollY > 24);
@@ -498,6 +1121,9 @@ on(nav, "click", (event) => {
     removeClass(document.body, "nav-open");
   }
 });
+
+setupLanguageSwitcher();
+applySiteLanguage(readStoredLanguage(), false);
 
 if (heroRotator) {
   let heroSlideIndex = 0;

@@ -7,7 +7,7 @@ window.TUVAL_TEXTS = {
   common: [
     { label: "Navigacija - domov", selector: ".site-nav a:nth-child(1)", text: "Domov" },
     { label: "Navigacija - maske", selector: ".site-nav a:nth-child(2)", text: "Maske" },
-    { label: "Navigacija - naroci test", selector: ".site-nav a:nth-child(3)", text: "Naroči test" },
+    { label: "Navigacija - naroci test", selector: ".site-nav a:nth-child(3)", text: "Test" },
     { label: "Navigacija - kontakt", selector: ".site-nav a:nth-child(4)", text: "Kontakt" },
     { label: "Noga - podjetje", selector: ".site-footer strong", text: "Tu-Val d.o.o." },
     { label: "Noga - naslov", selector: ".site-footer p", text: "Breznikova ulica 26, 1230 Domžale" },
@@ -103,6 +103,50 @@ window.TUVAL_TEXTS = {
       selector: ".difference-copy > p:not(.eyebrow)",
       text: "CleanSpace sistemi so zasnovani kot pozitivno-tlačni respiratorji. AirSensit tehnologija se odziva na uporabnikovo dihanje in prilagaja pretok svežega filtriranega zraka, kar zmanjša občutek napora pri daljši uporabi.",
     },
+    { label: "Domov - certifikati nadnaslov", selector: ".certification-section .section-heading .eyebrow", text: "Uradni certifikati" },
+    { label: "Domov - certifikati naslov", selector: ".certification-section .section-heading h2", text: "Standardi in odobritve" },
+    {
+      label: "Domov - certifikati opis",
+      selector: ".certification-section .section-heading p:not(.eyebrow)",
+      text: "CleanSpace navaja certifikate za različne modele in konfiguracije. Končno izbiro preverimo glede na masko, filter in delovno okolje.",
+    },
+    { label: "Domov - certifikat EN12942 naslov", selector: ".certification-card:nth-child(1) h3", text: "Evropski respiratorni standard" },
+    {
+      label: "Domov - certifikat EN12942 opis",
+      selector: ".certification-card:nth-child(1) p",
+      text: "EN12942 za respiratorje z aktivnim dovajanjem filtriranega zraka.",
+    },
+    { label: "Domov - certifikat NIOSH naslov", selector: ".certification-card:nth-child(2) h3", text: "NIOSH odobritev" },
+    {
+      label: "Domov - certifikat NIOSH opis",
+      selector: ".certification-card:nth-child(2) p",
+      text: "Odobreno za določene kompletne respiratorne sklope in filtre.",
+    },
+    { label: "Domov - certifikat ASNZS naslov", selector: ".certification-card:nth-child(3) h3", text: "Avstralski in novozelandski standard" },
+    {
+      label: "Domov - certifikat ASNZS opis",
+      selector: ".certification-card:nth-child(3) p",
+      text: "AS/NZS 1716 za certificirane CleanSpace respiratorne sisteme.",
+    },
+    { label: "Domov - certifikat EX naslov", selector: ".certification-card:nth-child(4) h3", text: "IECEx in ATEX" },
+    {
+      label: "Domov - certifikat EX opis",
+      selector: ".certification-card:nth-child(4) p",
+      text: "Za izbrane intrinzično varne izvedbe v EX območjih.",
+    },
+    { label: "Domov - certifikat IP66 naslov", selector: ".certification-card:nth-child(5) h3", text: "Zaščita pred prahom in vodo" },
+    {
+      label: "Domov - certifikat IP66 opis",
+      selector: ".certification-card:nth-child(5) p",
+      text: "IP66 označuje zaščito opreme pred prahom in močnimi curki vode.",
+    },
+    { label: "Domov - certifikat ISO naslov", selector: ".certification-card:nth-child(6) h3", text: "Sistem vodenja kakovosti" },
+    {
+      label: "Domov - certifikat ISO opis",
+      selector: ".certification-card:nth-child(6) p",
+      text: "ISO 9001 za razvoj, proizvodnjo in podporo respiratornih rešitev.",
+    },
+    { label: "Domov - certifikati gumb", selector: ".certification-note .button", text: "CleanSpace primerjava" },
   ],
 
   "maske.html": [
