@@ -309,10 +309,7 @@ const smtpBoolean = (value, fallback) => {
 const defaultMailUser = "agenttuval@gmail.com";
 const defaultMailRecipient = "sales@tu-val.si";
 
-const resolveMailRecipient = () => {
-  const configuredRecipient = smtpEnvValue("MAIL_TO", "EMAIL_TO", "SMTP_TO", "CONTACT_EMAIL_TO");
-  return configuredRecipient && configuredRecipient !== defaultMailUser ? configuredRecipient : defaultMailRecipient;
-};
+const resolveMailRecipient = () => defaultMailRecipient;
 
 const smtpConfig = () => {
   const host = smtpEnvValue("SMTP_HOST", "EMAIL_HOST", "MAIL_HOST") || "smtp.gmail.com";
