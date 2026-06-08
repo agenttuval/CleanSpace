@@ -482,16 +482,14 @@ const setDataValue = (element, key, value) => {
 };
 
 const languageStorageKey = "tuval-cleanspace-language";
-const supportedLanguages = ["sl", "en", "hr"];
+const supportedLanguages = ["sl", "hr"];
 const languageLabels = {
   sl: "SL",
-  en: "EN",
   hr: "HR",
 };
 
 const languageNames = {
   sl: "Slovenščina",
-  en: "English",
   hr: "Hrvatski",
 };
 
