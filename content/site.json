@@ -743,7 +743,16 @@
     }
   ],
   "customBlocks": {
-    "index": [],
+    "index": [
+      {
+        "id": "block-mq588gm4-vknest",
+        "title": "ZAKAJ CLEANSPACE?",
+        "text": "Prednosti CleanSpace respiratorjevCleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.Brez cevi in pasovPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.Lažje dihanje pri deluAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.Udobje pri daljši uporabiLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.Rešitve za različna okoljaNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.Pameten nadzor uporabeIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.Podpora TU-VAL v SlovenijiPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
+        "titleStyle": {
+          "color": "#01457e"
+        }
+      }
+    ],
     "maske": [],
     "videi": [],
     "test": [],
@@ -809,6 +818,32 @@
         "selector": "main > section.section.difference-band:nth-of-type(4) > div.difference-visual:nth-of-type(1) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
         "alt": "CleanSpace respirator pri delu na terenu"
+      },
+      {
+        "id": "block-mq588ynx-a7btdt",
+        "customImage": true,
+        "label": "Dodana slika - Dodana slika",
+        "selector": "[data-custom-image=\"block-mq588ynx-a7btdt\"] img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-WORK-Welding-Image-02-Thumbnail.jpg",
+        "alt": "Dodana slika",
+        "style": {
+          "width": 430,
+          "x": 733,
+          "y": -1065
+        }
+      },
+      {
+        "id": "block-mq58azz8-8o1i51",
+        "customImage": true,
+        "label": "Dodana slika - Dodana slika",
+        "selector": "[data-custom-image=\"block-mq58azz8-8o1i51\"] img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
+        "alt": "Dodana slika",
+        "style": {
+          "width": 520,
+          "x": 137,
+          "y": -550
+        }
       }
     ],
     "maske": [],
