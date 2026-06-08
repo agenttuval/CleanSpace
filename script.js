@@ -878,8 +878,9 @@ on(contactForm, "submit", async (event) => {
     }
 
     contactForm.reset();
-    if (fileList) {
-      fileList.textContent = "Ni izbranih datotek.";
+    const submitFileList = contactForm.querySelector("[data-file-list]");
+    if (submitFileList) {
+      submitFileList.textContent = "Ni izbranih datotek.";
     }
     if (formNote) {
       formNote.textContent = "Sporočilo je bilo poslano na agenttuval@gmail.com.";
