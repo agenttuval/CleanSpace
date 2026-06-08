@@ -828,8 +828,8 @@
         "alt": "Dodana slika",
         "style": {
           "width": 430,
-          "x": 733,
-          "y": -1065
+          "x": 741,
+          "y": -985
         }
       },
       {
@@ -840,9 +840,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 520,
-          "x": 137,
-          "y": -550
+          "width": 420,
+          "x": 142,
+          "y": -583
         }
       }
     ],
