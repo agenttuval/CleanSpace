@@ -864,10 +864,17 @@ on(contactForm, "submit", async (event) => {
         page: window.location.href,
       }),
     });
-    const result = await response.json();
+    const responseText = await response.text();
+    let result = {};
+
+    try {
+      result = responseText ? JSON.parse(responseText) : {};
+    } catch (error) {
+      result = {};
+    }
 
     if (!response.ok || !result.ok) {
-      throw new Error(result.message || "Pošiljanje ni uspelo.");
+      throw new Error(result.message || responseText || "Pošiljanje ni uspelo.");
     }
 
     contactForm.reset();

@@ -308,7 +308,7 @@ const smtpBoolean = (value, fallback) => {
 
 const smtpConfig = () => {
   const host = smtpEnvValue("SMTP_HOST", "EMAIL_HOST", "MAIL_HOST") || "smtp.gmail.com";
-  const port = Number(smtpEnvValue("SMTP_PORT", "EMAIL_PORT", "MAIL_PORT") || 465);
+  const port = Number(smtpEnvValue("SMTP_PORT", "EMAIL_PORT", "MAIL_PORT") || 587);
   const user =
     smtpEnvValue("SMTP_USER", "EMAIL_USER", "MAIL_USER", "GMAIL_USER", "GMAIL_EMAIL") ||
     "agenttuval@gmail.com";
@@ -323,18 +323,25 @@ const smtpConfig = () => {
     "GMAIL_PASSWORD"
   );
   const secure = smtpBoolean(smtpEnvValue("SMTP_SECURE", "EMAIL_SECURE", "MAIL_SECURE"), port === 465);
+  const timeoutMs = Number(smtpEnvValue("SMTP_TIMEOUT_MS", "EMAIL_TIMEOUT_MS", "MAIL_TIMEOUT_MS") || 15000);
 
   return {
     host,
     port,
     secure,
     starttls: smtpBoolean(smtpEnvValue("SMTP_STARTTLS", "EMAIL_STARTTLS", "MAIL_STARTTLS"), !secure),
+    timeoutMs: Number.isFinite(timeoutMs) && timeoutMs >= 5000 ? timeoutMs : 15000,
     user,
     pass,
     from: smtpEnvValue("MAIL_FROM", "EMAIL_FROM", "SMTP_FROM") || "agenttuval@gmail.com",
     to: smtpEnvValue("MAIL_TO", "EMAIL_TO", "SMTP_TO", "CONTACT_EMAIL_TO") || "agenttuval@gmail.com",
   };
 };
+
+const mailWebhookConfig = () => ({
+  url: smtpEnvValue("MAIL_WEBHOOK_URL", "EMAIL_WEBHOOK_URL", "GOOGLE_SCRIPT_WEBHOOK_URL", "GOOGLE_APPS_SCRIPT_URL"),
+  secret: smtpEnvValue("MAIL_WEBHOOK_SECRET", "EMAIL_WEBHOOK_SECRET", "GOOGLE_SCRIPT_SECRET"),
+});
 
 const sanitizeHeader = (value = "") => String(value).replace(/[\r\n]+/g, " ").trim();
 
@@ -408,12 +415,12 @@ const writeSmtp = (socket, value) =>
     });
   });
 
-const smtpCommand = async (socket, command, expectedCodes) => {
+const smtpCommand = async (socket, command, expectedCodes, label = command.split(" ")[0]) => {
   await writeSmtp(socket, `${command}\r\n`);
   const response = await readSmtpResponse(socket);
 
   if (!expectedCodes.includes(response.code)) {
-    throw new Error(`SMTP napaka pri ukazu ${command.split(" ")[0]}: ${response.message}`);
+    throw new Error(`SMTP napaka pri ukazu ${label}: ${response.message}`);
   }
 
   return response;
@@ -426,14 +433,36 @@ const connectSmtpSocket = (config) =>
       port: config.port,
       servername: config.host,
     };
-    const onError = (error) => reject(error);
-    const onConnect = () => {
+    let settled = false;
+    const cleanup = () => {
       socket.off("error", onError);
+      socket.off("timeout", onTimeout);
+    };
+    const onError = (error) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      error.smtpStage = "connect";
+      reject(error);
+    };
+    const onTimeout = () => {
+      const error = new Error(`SMTP povezava do ${config.host}:${config.port} se ni odprla pravočasno.`);
+      error.code = "SMTP_CONNECT_TIMEOUT";
+      error.smtpStage = "connect";
+      onError(error);
+      socket.destroy();
+    };
+    const onConnect = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
       resolve(socket);
     };
     const socket = config.secure ? tls.connect(options, onConnect) : net.connect(options, onConnect);
 
     socket.once("error", onError);
+    socket.once("timeout", onTimeout);
+    socket.setTimeout(config.timeoutMs);
   });
 
 const upgradeToTls = (socket, config) =>
@@ -453,15 +482,7 @@ const upgradeToTls = (socket, config) =>
     secureSocket.once("error", reject);
   });
 
-const sendSmtpMail = async ({ subject, text, replyTo }) => {
-  const config = smtpConfig();
-
-  if (!config.pass) {
-    throw new Error(
-      "Manjka SMTP geslo. V Railway dodaj SMTP_PASS ali GMAIL_APP_PASSWORD za agenttuval@gmail.com."
-    );
-  }
-
+const sendSmtpMailWithConfig = async (config, { subject, text, replyTo }) => {
   let socket = await connectSmtpSocket(config);
 
   try {
@@ -475,8 +496,8 @@ const sendSmtpMail = async ({ subject, text, replyTo }) => {
     }
 
     await smtpCommand(socket, "AUTH LOGIN", [334]);
-    await smtpCommand(socket, Buffer.from(config.user, "utf8").toString("base64"), [334]);
-    await smtpCommand(socket, Buffer.from(config.pass, "utf8").toString("base64"), [235]);
+    await smtpCommand(socket, Buffer.from(config.user, "utf8").toString("base64"), [334], "SMTP uporabnik");
+    await smtpCommand(socket, Buffer.from(config.pass, "utf8").toString("base64"), [235], "SMTP geslo");
 
     await smtpCommand(socket, `MAIL FROM:<${extractEmailAddress(config.from)}>`, [250]);
     await smtpCommand(socket, `RCPT TO:<${extractEmailAddress(config.to)}>`, [250, 251]);
@@ -509,6 +530,120 @@ const sendSmtpMail = async ({ subject, text, replyTo }) => {
   } finally {
     socket.end();
   }
+};
+
+const sendMailWebhook = async (webhookConfig, mailConfig, { subject, text, replyTo }) => {
+  const response = await fetch(webhookConfig.url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify({
+      secret: webhookConfig.secret,
+      from: extractEmailAddress(mailConfig.from),
+      to: extractEmailAddress(mailConfig.to),
+      subject,
+      text,
+      replyTo: extractEmailAddress(replyTo || ""),
+    }),
+  });
+
+  const rawResult = await response.text();
+  let result = null;
+
+  try {
+    result = rawResult ? JSON.parse(rawResult) : null;
+  } catch (error) {
+    result = null;
+  }
+
+  if (!response.ok || result?.ok === false) {
+    const message = result?.message || rawResult || `HTTP ${response.status}`;
+    throw new Error(`Pošiljanje prek Google webhooka ni uspelo: ${message}`);
+  }
+};
+
+const shouldRetrySmtpOn587 = (config, error) => {
+  const host = String(config.host || "").toLowerCase();
+  const retryableCodes = new Set(["ETIMEDOUT", "SMTP_CONNECT_TIMEOUT", "ECONNRESET", "EHOSTUNREACH"]);
+  const isTlsModeMismatch = String(error?.code || "").startsWith("ERR_SSL");
+  const needsGmailStartTlsMode = config.port !== 587 || config.secure || !config.starttls;
+  return (
+    host.includes("gmail") &&
+    needsGmailStartTlsMode &&
+    error?.smtpStage === "connect" &&
+    (retryableCodes.has(error.code) || isTlsModeMismatch)
+  );
+};
+
+const smtpFriendlyError = (error, config) => {
+  if (["ETIMEDOUT", "SMTP_CONNECT_TIMEOUT", "EHOSTUNREACH"].includes(error?.code)) {
+    return new Error(
+      `SMTP povezava do ${config.host}:${config.port} se ni odprla. Railway na tem planu blokira SMTP, zato dodaj MAIL_WEBHOOK_URL za pošiljanje prek HTTPS.`
+    );
+  }
+
+  return error;
+};
+
+const sendSmtpMail = async ({ subject, text, replyTo }) => {
+  const config = smtpConfig();
+  const webhookConfig = mailWebhookConfig();
+
+  if (webhookConfig.url) {
+    await sendMailWebhook(webhookConfig, config, { subject, text, replyTo });
+    return;
+  }
+
+  if (!config.pass) {
+    throw new Error(
+      "Manjka nastavitev za pošiljanje. Ker Railway blokira SMTP na Free/Hobby planu, dodaj MAIL_WEBHOOK_URL za Google Apps Script webhook."
+    );
+  }
+
+  try {
+    await sendSmtpMailWithConfig(config, { subject, text, replyTo });
+    return;
+  } catch (error) {
+    if (!shouldRetrySmtpOn587(config, error)) {
+      throw smtpFriendlyError(error, config);
+    }
+  }
+
+  const fallbackConfig = {
+    ...config,
+    port: 587,
+    secure: false,
+    starttls: true,
+  };
+
+  try {
+    await sendSmtpMailWithConfig(fallbackConfig, { subject, text, replyTo });
+  } catch (error) {
+    throw smtpFriendlyError(error, fallbackConfig);
+  }
+};
+
+const handleMailStatus = (res) => {
+  const mailConfig = smtpConfig();
+  const webhookConfig = mailWebhookConfig();
+  const mode = webhookConfig.url ? "webhook" : mailConfig.pass ? "smtp" : "not_configured";
+
+  send(res, 200, {
+    ok: true,
+    mode,
+    hasWebhookUrl: Boolean(webhookConfig.url),
+    hasWebhookSecret: Boolean(webhookConfig.secret),
+    hasSmtpPassword: Boolean(mailConfig.pass),
+    from: mailConfig.from,
+    to: mailConfig.to,
+    smtpHost: mailConfig.host,
+    smtpPort: mailConfig.port,
+    smtpSecure: mailConfig.secure,
+    smtpStarttls: mailConfig.starttls,
+  }, {
+    "Cache-Control": "no-store, max-age=0",
+  });
 };
 
 const handleContactEmail = async (req, res) => {
@@ -2801,6 +2936,11 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === "GET" && url.pathname === "/api/mail-status") {
+      handleMailStatus(res);
+      return;
+    }
+
     if (req.method === "POST" && url.pathname === "/api/vasco/narocila-kupca") {
       await handleVascoOrdersRead(req, res);
       return;
@@ -2843,6 +2983,7 @@ const server = http.createServer(async (req, res) => {
 
     await serveStatic(req, res);
   } catch (error) {
+    console.error(`[${new Date().toISOString()}] ${req.method} ${req.url}`, error);
     send(res, error.status || 500, {
       ok: false,
       message: error.message || "Napaka serverja.",
