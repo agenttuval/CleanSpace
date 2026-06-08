@@ -238,7 +238,7 @@
     {
       "label": "Domov - tehnologija opis",
       "selector": ".difference-copy > p:not(.eyebrow)",
-      "text": "CleanSpace sistemi so zasnovani kot pozitivno-tlačni respiratorji. AirSensit tehnologija se odziva na uporabnikovo dihanje in prilagaja pretok svežega filtriranega zraka, kar zmanjša občutek napora pri daljši uporabi."
+      "text": "CleanSpace respiratorji so pozitivno-tlačni sistemi za zaščito dihal z aktivnim dovodom filtriranega zraka. AirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok zraka, zato je dihanje lažje, uporaba pa udobnejša tudi pri daljšem delu v zahtevnih industrijskih, zdravstvenih in laboratorijskih okoljih."
     },
     {
       "label": "Besedilo - Brez pasov, cevi in baterijskih nahrbtnik...",
@@ -743,19 +743,7 @@
     }
   ],
   "customBlocks": {
-    "index": [
-      {
-        "id": "block-mq54zbo3-bkyugm",
-        "title": "Nov besedilni okvir",
-        "text": "Vpiši dodatno besedilo za ta okvir.",
-        "titleStyle": {
-          "color": "#01457e"
-        },
-        "textStyle": {
-          "color": "#01457e"
-        }
-      }
-    ],
+    "index": [],
     "maske": [],
     "videi": [],
     "test": [],
