@@ -148,7 +148,7 @@
     {
       "label": "Domov - WORK oznaka",
       "selector": ".product-card:nth-child(1) .tag",
-      "text": "Prah in delavnica"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Domov - WORK naslov",
@@ -158,12 +158,12 @@
     {
       "label": "Domov - WORK opis",
       "selector": ".product-card:nth-child(1) div > p:last-child",
-      "text": "Najlažji industrijski respirator z aktivnim dovajanjem zraka za visoko prašna okolja, lesarstvo, beton in varjenje."
+      "text": "Najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pri delu s prahom. Primeren za delavnice, gradbeništvo, obdelavo betona in kamna, lesarstvo, čiščenje ter vzdrževanje."
     },
     {
       "label": "Domov - CST PRO oznaka",
       "selector": ".product-card:nth-child(2) .tag",
-      "text": "Industrija"
+      "text": "ZAHTEVNA INDUSTRIJA"
     },
     {
       "label": "Domov - CST PRO naslov",
@@ -173,12 +173,12 @@
     {
       "label": "Domov - CST PRO opis",
       "selector": ".product-card:nth-child(2) div > p:last-child",
-      "text": "Vzdržljiv in povezan sistem za zahtevna opravila, z Bluetooth povezavo v CleanSpace aplikacijo."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Domov - CST ULTRA oznaka",
       "selector": ".product-card:nth-child(3) .tag",
-      "text": "Dekontaminacija"
+      "text": "ZAHTEVNA OKOLJA IN NADZOR"
     },
     {
       "label": "Domov - CST ULTRA naslov",
@@ -188,12 +188,12 @@
     {
       "label": "Domov - CST ULTRA opis",
       "selector": ".product-card:nth-child(3) div > p:last-child",
-      "text": "Napreden respirator z aktivnim dovajanjem zraka za okolja, kjer so pomembni IP65 zaščita, podatki o uporabi in nadzor skladnosti."
+      "text": "Napreden industrijski respirator za zahtevna delovna okolja, kjer so ključni dekontaminacija, čiščenje opreme, sledljivost uporabe in poročanje o skladnosti. Primeren za odstranjevanje azbesta, rudarstvo, kamnolome ter kemična ali biološka tveganja."
     },
     {
       "label": "Domov - EX oznaka",
       "selector": ".product-card:nth-child(4) .tag",
-      "text": "Nevarna območja"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "Domov - EX naslov",
@@ -203,12 +203,12 @@
     {
       "label": "Domov - EX opis",
       "selector": ".product-card:nth-child(4) div > p:last-child",
-      "text": "Intrinzično varen respirator z aktivnim dovajanjem zraka za eksplozijsko ogrožena okolja, kemijo, petrokemijo ter nafto in plin."
+      "text": "ATEX respirator za zaščito dihal v eksplozijsko ogroženih območjih, kjer je potrebna intrinzično varna oprema. Namenjen je uporabi v kemijski industriji, petrokemiji, rafinerijah, energetiki ter industriji nafte in plina."
     },
     {
       "label": "Domov - HALO oznaka",
       "selector": ".product-card:nth-child(5) .tag",
-      "text": "Zdravstvo"
+      "text": "ZDRAVSTVO, FARMACIJA IN LABORATORIJI"
     },
     {
       "label": "Domov - HALO naslov",
@@ -218,7 +218,7 @@
     {
       "label": "Domov - HALO opis",
       "selector": ".product-card:nth-child(5) div > p:last-child",
-      "text": "Za zdravstvena, farmacevtska in laboratorijska okolja, kjer sta udobje in dekontaminacija ključna."
+      "text": "CleanSpace respirator za zdravstvena, farmacevtska in laboratorijska okolja, kjer so pomembni udobje pri dolgotrajni uporabi, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal."
     },
     {
       "label": "Domov - primerjava gumb",
