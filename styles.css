@@ -1153,35 +1153,45 @@ h3 {
   width: 100%;
   max-width: none;
   margin-inline: 0;
+  margin-top: 18px;
+  padding-block: 86px 118px;
   padding-inline: max(16px, calc((100vw - var(--max)) / 2));
-  background: var(--soft-2);
+  background:
+    linear-gradient(180deg, rgba(1, 69, 126, 0.045), rgba(248, 249, 250, 0.96));
+  border-top: 1px solid rgba(1, 69, 126, 0.1);
+  overflow: visible;
 }
 
 .custom-content-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  gap: 28px 42px;
+  align-items: start;
 }
 
 .custom-text-card {
   display: grid;
   gap: 12px;
-  padding: 10px 0;
+  min-height: 150px;
+  padding: 20px 0 34px;
   color: var(--brand);
   background: transparent;
   border: 0;
   box-shadow: none;
+  overflow: visible;
 }
 
 .custom-text-card h2 {
   margin: 0;
   font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1.14;
 }
 
 .custom-text-card p {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+  max-width: 72ch;
 }
 
 .choice-actions {
@@ -2474,6 +2484,17 @@ body.reveal-ready .reveal.is-visible {
   .section {
     width: min(calc(100% - 28px), var(--max));
     padding: 68px 0;
+  }
+
+  .custom-content-section {
+    width: 100%;
+    padding-block: 62px 86px;
+    padding-inline: 18px;
+  }
+
+  .custom-text-card {
+    min-height: 124px;
+    padding-bottom: 24px;
   }
 
   .section-heading {
