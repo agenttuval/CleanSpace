@@ -37,7 +37,7 @@ const loadDotEnv = () => {
 
 loadDotEnv();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const repo = process.env.GITHUB_REPO || "agenttuval/CleanSpace";
 const branch = process.env.GITHUB_BRANCH || "main";
 const contentPath = "content/site.json";
@@ -2997,6 +2997,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(port, () => {
+server.listen(port, "0.0.0.0", () => {
   console.log(`Tu-Val CleanSpace site running on port ${port}`);
 });
