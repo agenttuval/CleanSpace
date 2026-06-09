@@ -218,7 +218,11 @@
     {
       "label": "Domov - HALO opis",
       "selector": ".product-card:nth-child(5) div > p:last-child",
-      "text": "CleanSpace respirator za zdravstvena, farmacevtska in laboratorijska okolja, kjer so pomembni udobje pri dolgotrajni uporabi, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal."
+      "text": "CleanSpace respirator za zdravstvena, farmacevtska in laboratorijska okolja, kjer so pomembni udobje pri dolgotrajni uporabi, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal.",
+      "style": {
+        "x": -1,
+        "y": 0
+      }
     },
     {
       "label": "Domov - primerjava gumb",
@@ -345,12 +349,19 @@
     {
       "label": "Maske - naslov",
       "selector": ".page-hero-copy h1",
-      "text": "Maske"
+      "text": "Maske",
+      "style": {
+        "fontSize": 59
+      }
     },
     {
       "label": "Maske - uvodni opis",
       "selector": ".page-hero-copy .lead",
-      "text": "Izberite CleanSpace model in hitro primerjajte, za katero uporabo je posamezen respirator najbolj primeren."
+      "text": "Izberite CleanSpace model in hitro primerjajte, za katero uporabo je posamezen respirator najbolj primeren.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Maske - pregled nadnaslov",
@@ -365,7 +376,7 @@
     {
       "label": "Maske - WORK opis",
       "selector": ".mask-choice-card:nth-child(1) .mask-summary",
-      "text": "Lahek respirator za prah, dim in delce v delavnicah, pri brušenju, rezanju in varjenju. Namenjen je uporabi s polmasko in hitri menjavi filtra."
+      "text": "Najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pri delu s prahom. Primeren za delavnice, gradbeništvo, obdelavo betona in kamna, lesarstvo, čiščenje ter vzdrževanje."
     },
     {
       "label": "Maske - WORK gumb podrobnosti",
@@ -375,7 +386,7 @@
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Univerzalen industrijski model za daljše izmene, delčne ali kombinirane filtre ter uporabo s polmasko ali celoobrazno masko."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Maske - CST PRO gumb podrobnosti",
@@ -385,7 +396,7 @@
     {
       "label": "Maske - CST ULTRA opis",
       "selector": ".mask-choice-card:nth-child(3) .mask-summary",
-      "text": "Robustnejša izvedba za zahtevnejša okolja, kjer sta pomembna čiščenje opreme in zanesljivo delovanje z različnimi CST filtri."
+      "text": "Napreden industrijski respirator za zahtevna delovna okolja, kjer so ključni dekontaminacija, čiščenje opreme, sledljivost uporabe in poročanje o skladnosti. Primeren za odstranjevanje azbesta, rudarstvo, kamnolome ter kemična ali biološka tveganja."
     },
     {
       "label": "Maske - CST ULTRA gumb podrobnosti",
@@ -395,7 +406,7 @@
     {
       "label": "Maske - EX opis",
       "selector": ".mask-choice-card:nth-child(4) .mask-summary",
-      "text": "Model za eksplozijsko nevarna območja in industrijske postopke, kjer so potrebni posebni EX filtri, dodatki in višja stopnja varnosti."
+      "text": "ATEX respirator za zaščito dihal v eksplozijsko ogroženih območjih, kjer je potrebna intrinzično varna oprema. Namenjen je uporabi v kemijski industriji, petrokemiji, rafinerijah, energetiki ter industriji nafte in plina."
     },
     {
       "label": "Maske - EX gumb podrobnosti",
@@ -405,7 +416,7 @@
     {
       "label": "Maske - HALO opis",
       "selector": ".mask-choice-card:nth-child(5) .mask-summary",
-      "text": "Respirator za zdravstvo, laboratorije in farmacijo, z možnostjo polmaske ali celoobrazne maske ter HEPA/Bio filtracijo."
+      "text": "CleanSpace respirator za zdravstvena, farmacevtska in laboratorijska okolja, kjer so pomembni udobje pri dolgotrajni uporabi, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal."
     },
     {
       "label": "Maske - HALO gumb podrobnosti",
@@ -415,7 +426,7 @@
     {
       "label": "Besedilo - Prah in delavnica",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > p.tag:nth-of-type(1)",
-      "text": "Prah in delavnica"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Besedilo - CleanSpace WORK",
@@ -430,7 +441,7 @@
     {
       "label": "Besedilo - Industrija",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(2) > div > p.tag:nth-of-type(1)",
-      "text": "Industrija"
+      "text": "ZAHTEVNA INDUSTRIJA"
     },
     {
       "label": "Besedilo - CleanSpace CST PRO",
@@ -445,7 +456,7 @@
     {
       "label": "Besedilo - Dekontaminacija",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(3) > div > p.tag:nth-of-type(1)",
-      "text": "Dekontaminacija"
+      "text": "ZAHTEVNA OKOLJA IN NADZOR"
     },
     {
       "label": "Besedilo - CleanSpace CST ULTRA",
@@ -460,7 +471,7 @@
     {
       "label": "Besedilo - Nevarna območja",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > p.tag:nth-of-type(1)",
-      "text": "Nevarna območja"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "Besedilo - CleanSpace EX",
@@ -475,7 +486,7 @@
     {
       "label": "Besedilo - Zdravstvo",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > div > p.tag:nth-of-type(1)",
-      "text": "Zdravstvo"
+      "text": "ZDRAVSTVO, FARMACIJA IN LABORATORIJI"
     },
     {
       "label": "Besedilo - CleanSpace HALO",
