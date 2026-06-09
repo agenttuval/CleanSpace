@@ -622,17 +622,21 @@
     {
       "label": "WORK - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "Prah in delavnica"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA",
+      "style": {
+        "x": -1,
+        "y": -1
+      }
     },
     {
       "label": "WORK - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Najlažji industrijski respirator z aktivnim dovajanjem filtriranega zraka za delovna mesta, kjer je glavno tveganje prah: delavnice, beton, lesarstvo, čiščenje in varjenje."
+      "text": "Najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za delovna mesta, kjer je glavno tveganje prah. Primeren za delavnice, gradbeništvo, obdelavo betona in kamna, lesarstvo, čiščenje, vzdrževanje in izbrana varilska dela."
     },
     {
       "label": "WORK - kontakt gumb",
       "selector": ".hero-actions .primary",
-      "text": "Kontaktiraj za WORK"
+      "text": "Povprašaj za WORK"
     },
     {
       "label": "WORK - galerija naslov",
@@ -657,7 +661,11 @@
     {
       "label": "WORK - opis respiratorja",
       "selector": ".family-story p",
-      "text": "WORK je najbolj neposredna izbira za prašna industrijska okolja. Sistem sedi za vratom, zato uporabnik nima pasu, cevi ali težke enote na hrbtu."
+      "text": "CleanSpace WORK je lahek pozitivno-tlačni respirator z aktivnim dovodom filtriranega zraka za prašna delovna okolja. Namenjen je zaščiti dihal pri delu s prahom in delci v delavnicah, gradbeništvu, lesarstvu, čiščenju in vzdrževanju. Pihalna enota je nameščena za vratom, zato uporabnik ne potrebuje pasu, cevi ali težke enote na hrbtu.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - CleanSpace WORK",
@@ -672,7 +680,7 @@
     {
       "label": "Besedilo - Celoobrazna maska: ne",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
-      "text": "Celoobrazna maska: ne"
+      "text": "Celoobrazna maska: da"
     },
     {
       "label": "Besedilo - do 8 h",
@@ -682,7 +690,7 @@
     {
       "label": "Besedilo - Nazaj na maske",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
-      "text": "Nazaj na maske"
+      "text": "Nazaj na modele"
     },
     {
       "label": "Besedilo - Slike",
@@ -697,17 +705,21 @@
     {
       "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "AirSensit tehnologija prilagaja pretok zraka dihanju uporabnika."
+      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.• TM3 P R SL zaščita pred delci po standardu EN 12942.• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom.• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.• Kompaktna enota pod 350 g, brez pasu in cevi",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - TM3 delčna filtracija za prah in delce.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "TM3 delčna filtracija za prah in delce."
+      "text": ""
     },
     {
       "label": "Besedilo - Usmerjen v uporabo s polmasko in hitro me...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Usmerjen v uporabo s polmasko in hitro menjavo filtra."
+      "text": ""
     },
     {
       "label": "Besedilo - Obrazni deli",
