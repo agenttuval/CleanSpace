@@ -37,7 +37,7 @@ const loadDotEnv = () => {
 
 loadDotEnv();
 
-const port = Number(process.env.PORT || 4173);
+const port = 3000;
 const repo = process.env.GITHUB_REPO || "agenttuval/CleanSpace";
 const branch = process.env.GITHUB_BRANCH || "main";
 const contentPath = "content/site.json";

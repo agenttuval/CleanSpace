@@ -90,6 +90,93 @@ const customBlocksForCurrentPage = (content = {}) => {
   return [...groupFor(currentPageName()), ...groupFor(currentContentKey())];
 };
 
+const parseMarkdown = (plainText) => {
+  if (!plainText) return "";
+  
+  const lines = plainText.split(/\r?\n/);
+  const html = [];
+  
+  let inList = false;
+  let listItems = [];
+  let currentParagraphLines = [];
+  let currentListItemLines = [];
+
+  const flushParagraph = () => {
+    if (currentParagraphLines.length > 0) {
+      let content = currentParagraphLines.join("<br>");
+      content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      html.push(`<p class="custom-p">${content}</p>`);
+      currentParagraphLines = [];
+    }
+  };
+
+  const flushListItem = () => {
+    if (currentListItemLines.length > 0) {
+      let content = currentListItemLines.join("<br>");
+      content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      listItems.push(`<li class="custom-list-item">${content}</li>`);
+      currentListItemLines = [];
+    }
+  };
+
+  const flushList = () => {
+    flushListItem();
+    if (listItems.length > 0) {
+      html.push(`<ul class="custom-bullet-list">${listItems.join("")}</ul>`);
+      listItems = [];
+    }
+    inList = false;
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const trimmed = rawLine.trim();
+
+    if (trimmed.startsWith("*") || trimmed.startsWith("-")) {
+      flushParagraph();
+      if (inList) {
+        flushListItem();
+      } else {
+        inList = true;
+      }
+      let content = trimmed.replace(/^\s*[*|\-]\s+/, "").trim();
+      currentListItemLines.push(content);
+    } else if (trimmed === "") {
+      let nextIsListItem = false;
+      for (let j = i + 1; j < lines.length; j++) {
+        const nextTrimmed = lines[j].trim();
+        if (nextTrimmed !== "") {
+          if (nextTrimmed.startsWith("*") || nextTrimmed.startsWith("-")) {
+            nextIsListItem = true;
+          }
+          break;
+        }
+      }
+
+      if (inList) {
+        if (nextIsListItem) {
+          flushListItem();
+        } else {
+          flushList();
+        }
+      } else {
+        flushParagraph();
+      }
+    } else {
+      if (inList) {
+        currentListItemLines.push(trimmed);
+      } else {
+        currentParagraphLines.push(rawLine);
+      }
+    }
+  }
+
+  flushParagraph();
+  flushList();
+
+  return html.join("\n");
+};
+
 const renderCustomBlocks = (content = {}) => {
   const blocks = customBlocksForCurrentPage(content);
   const main = document.querySelector("main");
@@ -108,11 +195,12 @@ const renderCustomBlocks = (content = {}) => {
     article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
 
     const title = document.createElement("h2");
-    title.textContent = block.title || "Dodaten opis";
+    title.innerText = block.title || "Dodaten opis";
     applyEditableStyle(title, block.titleStyle);
 
-    const text = document.createElement("p");
-    text.textContent = block.text || "Dodajte besedilo za ta okvir.";
+    const text = document.createElement("div");
+    text.setAttribute("class", "custom-text-body");
+    text.innerHTML = parseMarkdown(block.text || "Dodajte besedilo za ta okvir.");
     applyEditableStyle(text, block.textStyle);
 
     article.append(title, text);
@@ -175,6 +263,22 @@ const renderCustomImages = (content = {}) => {
   main.append(section);
 };
 
+const ensureUnifiedLayout = (doc = document) => {
+  const contentSection = doc.querySelector(".custom-content-section");
+  const imageSection = doc.querySelector(".custom-image-section");
+  if (contentSection && imageSection) {
+    let wrapper = doc.querySelector(".custom-unified-wrapper");
+    if (!wrapper) {
+      wrapper = doc.createElement("div");
+      wrapper.className = "custom-unified-wrapper";
+      contentSection.parentNode.insertBefore(wrapper, contentSection);
+    }
+    wrapper.appendChild(contentSection);
+    wrapper.appendChild(imageSection);
+  }
+};
+window.ensureUnifiedLayout = ensureUnifiedLayout;
+
 const applyEditableTexts = (content = {}) => {
   const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, content);
   if (!Object.keys(textGroups).length) return;
@@ -201,7 +305,7 @@ const applyEditableTexts = (content = {}) => {
         return;
       }
 
-      element.textContent = entry.text;
+      element.innerText = entry.text;
       applyEditableStyle(element, entry.style);
     });
   });
@@ -239,6 +343,7 @@ const applyEditableImages = (content = {}) => {
 
 renderCustomBlocks(siteContent);
 renderCustomImages(siteContent);
+ensureUnifiedLayout(document);
 applyEditableTexts(siteContent);
 applyEditableImages(siteContent);
 
@@ -1029,7 +1134,7 @@ const rememberOriginalValue = (element, attribute) => {
   }
 
   if (!element.dataset?.originalText) {
-    element.dataset.originalText = element.textContent || "";
+    element.dataset.originalText = element.innerText || "";
   }
 };
 
@@ -1052,7 +1157,7 @@ const setTranslatedText = (element, text) => {
   }
 
   rememberOriginalValue(element);
-  element.textContent = text;
+  element.innerText = text;
 };
 
 const restoreOriginalLanguageText = () => {
@@ -1064,7 +1169,7 @@ const restoreOriginalLanguageText = () => {
   });
 
   document.querySelectorAll("[data-original-text]").forEach((element) => {
-    element.textContent = element.dataset.originalText || "";
+    element.innerText = element.dataset.originalText || "";
   });
 
   ["placeholder", "aria-label", "title"].forEach((attribute) => {
