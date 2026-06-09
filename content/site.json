@@ -651,7 +651,7 @@
     {
       "label": "WORK - slika 2 napis",
       "selector": ".detail-gallery figure:nth-of-type(2) figcaption",
-      "text": "Komplet in filter"
+      "text": "Celoobrazna maska"
     },
     {
       "label": "WORK - slika 3 napis",
@@ -1187,12 +1187,6 @@
         "alt": "CleanSpace WORK pri varjenju"
       },
       {
-        "label": "Slika - CleanSpace WORK komplet in filter",
-        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-Halo-WORK-Stack-03.png",
-        "alt": "CleanSpace WORK komplet in filter"
-      },
-      {
         "label": "Slika - CleanSpace WORK stranski pogled",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
@@ -1215,6 +1209,12 @@
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
         "alt": "CleanSpace polnilnik"
+      },
+      {
+        "label": "Slika - CleanSpace WORK komplet in filter",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/03/CleanSpace-CS3006WORK-CS3007WORK-Full-Face-Mask-Image-01-Thumbnail.png",
+        "alt": "CleanSpace WORK celoobrazna maska"
       }
     ],
     "cleanspace_cst_pro": [],
