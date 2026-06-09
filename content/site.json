@@ -705,11 +705,7 @@
     {
       "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.• TM3 P R SL zaščita pred delci po standardu EN 12942.• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom.• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.• Kompaktna enota pod 350 g, brez pasu in cevi",
-      "style": {
-        "x": 0,
-        "y": 0
-      }
+      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.• TM3 P R SL zaščita pred delci po standardu EN 12942.• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom.• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.• Kompaktna enota pod 350 g, brez pasu in cevi"
     },
     {
       "label": "Besedilo - TM3 delčna filtracija za prah in delce.",
@@ -719,7 +715,11 @@
     {
       "label": "Besedilo - Usmerjen v uporabo s polmasko in hitro me...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": ""
+      "text": "",
+      "style": {
+        "x": 1,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Obrazni deli",
