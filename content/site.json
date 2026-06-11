@@ -70,7 +70,7 @@
     {
       "label": "Domov - prednosti naslov",
       "selector": ".hero-panel .panel-label",
-      "text": "Ključne prednosti"
+      "text": "KLJUČNE PREDNOSTI"
     },
     {
       "label": "Domov - metrika 1",
@@ -90,12 +90,16 @@
     {
       "label": "Domov - Tu-Val nadnaslov",
       "selector": ".intro-band .section-copy .eyebrow",
-      "text": "Tu-Val d.o.o."
+      "text": "TU-VAL D.O.O."
     },
     {
       "label": "Domov - Tu-Val naslov",
       "selector": ".intro-band .section-copy h2",
-      "text": "Inženirski partner za varnejšo zaščito dihal"
+      "text": "Inženirski partner za varnejšo zaščito dihal",
+      "style": {
+        "width": 527,
+        "minHeight": 175
+      }
     },
     {
       "label": "Domov - Tu-Val opis",
@@ -135,7 +139,7 @@
     {
       "label": "Domov - pregled nadnaslov",
       "selector": ".products-preview .section-heading .eyebrow",
-      "text": "Pregled linije"
+      "text": "PREGLED LINIJE"
     },
     {
       "label": "Domov - pregled naslov",
@@ -221,7 +225,9 @@
       "text": "CleanSpace respirator za zdravstvena, farmacevtska in laboratorijska okolja, kjer so pomembni udobje pri dolgotrajni uporabi, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal.",
       "style": {
         "x": -1,
-        "y": 0
+        "y": 0,
+        "width": 220,
+        "minHeight": 273
       }
     },
     {
@@ -232,7 +238,7 @@
     {
       "label": "Domov - tehnologija nadnaslov",
       "selector": ".difference-copy .eyebrow",
-      "text": "AirSensit tehnologija"
+      "text": "AIRSENSIT TEHNOLOGIJA"
     },
     {
       "label": "Domov - tehnologija naslov",
@@ -262,7 +268,7 @@
     {
       "label": "Domov - certifikati nadnaslov",
       "selector": ".certification-section .section-heading .eyebrow",
-      "text": "Uradni certifikati"
+      "text": "URADNI CERTIFIKATI"
     },
     {
       "label": "Domov - certifikati naslov",
@@ -338,6 +344,43 @@
       "label": "Domov - certifikati gumb",
       "selector": ".certification-note .button",
       "text": "CleanSpace primerjava"
+    },
+    {
+      "label": "Besedilo - Deljene ekipe",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p.tag:nth-of-type(1)",
+      "text": "DELJENE EKIPE",
+      "style": {
+        "x": 2,
+        "y": -72
+      }
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > h3",
+      "text": "CleanSpace AGILE",
+      "style": {
+        "x": 3,
+        "y": -70
+      }
+    },
+    {
+      "label": "Besedilo - Nov lahki respirator za delce z ohlapnim ...",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p:nth-of-type(2)",
+      "text": "Nov lahki respirator za delce z ohlapnim obraznim delom, primeren tam, kjer fit testiranje ni praktično in opremo uporablja več ljudi.",
+      "style": {
+        "x": 2,
+        "y": -68
+      }
+    },
+    {
+      "label": "Besedilo - Dodana slika",
+      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(1) > figcaption",
+      "text": "Dodana slika"
+    },
+    {
+      "label": "Besedilo - Dodana slika",
+      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
+      "text": "Dodana slika"
     }
   ],
   "maske": [
@@ -1023,7 +1066,8 @@
     "cleanspace_cst_pro": [],
     "cleanspace_cst_ultra": [],
     "cleanspace_ex": [],
-    "cleanspace_halo": []
+    "cleanspace_halo": [],
+    "cleanspace_agile": []
   },
   "images": {
     "index": [
@@ -1106,6 +1150,12 @@
           "x": 142,
           "y": -583
         }
+      },
+      {
+        "label": "Slika - CleanSpace AGILE respirator",
+        "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
+        "alt": "CleanSpace AGILE respirator"
       }
     ],
     "maske": [
@@ -1220,8 +1270,53 @@
     "cleanspace_cst_pro": [],
     "cleanspace_cst_ultra": [],
     "cleanspace_ex": [],
-    "cleanspace_halo": []
+    "cleanspace_halo": [],
+    "cleanspace_agile": []
   },
   "videos": [],
-  "videi": []
+  "videi": [],
+  "mediaBlocks": {
+    "index": [],
+    "maske": [],
+    "videi": [],
+    "test": [],
+    "kontakt": [],
+    "cleanspace_agile": [],
+    "cleanspace_work": [],
+    "cleanspace_cst_pro": [],
+    "cleanspace_cst_ultra": [],
+    "cleanspace_ex": [],
+    "cleanspace_halo": []
+  },
+  "blockOrder": {
+    "index": [
+      "text:block-mq588gm4-vknest",
+      "image:block-mq588ynx-a7btdt",
+      "image:block-mq58azz8-8o1i51"
+    ],
+    "maske": [],
+    "videi": [],
+    "test": [],
+    "kontakt": [],
+    "cleanspace_agile": [],
+    "cleanspace_work": [],
+    "cleanspace_cst_pro": [],
+    "cleanspace_cst_ultra": [],
+    "cleanspace_ex": [],
+    "cleanspace_halo": []
+  },
+  "customCss": {
+    "index": "",
+    "maske": "",
+    "videi": "",
+    "test": "",
+    "kontakt": "",
+    "cleanspace_agile": "",
+    "cleanspace_work": "",
+    "cleanspace_cst_pro": "",
+    "cleanspace_cst_ultra": "",
+    "cleanspace_ex": "",
+    "cleanspace_halo": ""
+  },
+  "cleanspace_agile": []
 }
