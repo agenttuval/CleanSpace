@@ -36,15 +36,15 @@
         </label>
         <div class="block-editor-panel" data-block-editor>
           <div class="style-panel-head">
-            <strong>Bloki strani</strong>
-            <span>Dodane okvirje, slike in medije lahko prestaviš, urediš ali odstraniš.</span>
+            <strong>Dodani elementi na strani</strong>
+            <span>Tukaj vidiš vse, kar si dodal na izbrano stran. Klik na kartico te premakne do elementa v predogledu.</span>
           </div>
           <div class="block-list" data-block-list></div>
         </div>
         <div class="custom-panel" data-custom-panel>
           <div class="style-panel-head">
-            <strong>Dodaj besedilni okvir</strong>
-            <span>Okvir se doda na trenutno izbrano stran in ga lahko urediš v predogledu.</span>
+            <strong>Dodaj novo besedilo</strong>
+            <span>To ustvari nov tekstovni blok na trenutni strani, ki ga potem urediš v predogledu.</span>
           </div>
           <label>
             Barva črk
@@ -59,7 +59,6 @@
             <textarea data-custom-text rows="3" placeholder="Vpiši besedilo, ki ga želiš dodati na stran."></textarea>
           </label>
           <button class="primary" type="button" data-custom-add>Dodaj okvir</button>
-          <div class="custom-admin-list" data-custom-list></div>
         </div>
         <div class="style-panel" data-style-panel>
           <div class="style-panel-head">
@@ -113,8 +112,8 @@
         </div>
         <div class="image-panel" data-image-panel>
           <div class="style-panel-head">
-            <strong>Izbrana slika</strong>
-            <span data-active-image-label>Najprej klikni sliko v predogledu.</span>
+            <strong>Slike</strong>
+            <span data-active-image-label>Najprej klikni sliko v predogledu ali spodaj dodaj novo.</span>
           </div>
           <div class="image-add-box">
             <label>
@@ -163,12 +162,11 @@
           </div>
           <button class="secondary danger" type="button" data-image-remove>Odstrani izbrano sliko</button>
           <button class="secondary light" type="button" data-image-reset>Odstrani ali ponastavi sliko</button>
-          <div class="custom-admin-list" data-custom-image-list></div>
         </div>
         <div class="media-panel" data-media-panel>
           <div class="style-panel-head">
-            <strong>Dodaj medij</strong>
-            <span>Naloži ali prilepi URL za sliko, video, audio, PDF ali drug dokument.</span>
+            <strong>Dodaj video, audio ali dokument</strong>
+            <span>Naloži datoteko ali dodaj povezavo do videa, zvoka, PDF-ja ali drugega dokumenta.</span>
           </div>
           <label>
             Datoteka
@@ -197,16 +195,6 @@
             <textarea data-media-description rows="3" placeholder="Opis medija za obiskovalce"></textarea>
           </label>
           <button class="primary" type="button" data-media-add>Dodaj medijski blok</button>
-        </div>
-        <div class="css-panel" data-css-panel>
-          <div class="style-panel-head">
-            <strong>Dodatni CSS za stran</strong>
-            <span>Sem lahko vpišeš svoje dodatne stile za trenutno stran.</span>
-          </div>
-          <label>
-            CSS
-            <textarea data-page-css rows="8" placeholder=".custom-text-card { transform: rotate(-1deg); }"></textarea>
-          </label>
         </div>
         <div class="video-manager" data-video-manager hidden>
           <div class="style-panel-head">

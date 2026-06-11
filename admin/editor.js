@@ -896,26 +896,44 @@ const renderBlockList = () => {
 
   items.forEach((item, index) => {
     const row = document.createElement("div");
-    row.className = "block-row";
+    row.className = "block-card";
     row.draggable = true;
     row.dataset.blockToken = item.token;
+
+    const top = document.createElement("div");
+    top.className = "block-card-top";
 
     const drag = document.createElement("button");
     drag.type = "button";
     drag.className = "drag-handle";
-    drag.textContent = "::::";
-    drag.title = "Povleci za premik";
-
-    const copy = document.createElement("button");
-    copy.type = "button";
-    copy.className = "block-row-copy";
-    copy.innerHTML = `<strong>${item.title}</strong><span>${item.type === "media" ? `${item.mediaType || "medij"} - ` : ""}${item.description || "Brez opisa."}</span>`;
-    copy.addEventListener("click", () => focusBlockItem(item));
+    drag.textContent = "Premakni";
+    drag.title = "Povleci kartico za premik";
 
     const badge = document.createElement("span");
     badge.className = "block-badge";
     badge.textContent =
-      item.type === "text" ? "Besedilo" : item.type === "image" ? "Slika" : `Medij`;
+      item.type === "text" ? "Besedilo" : item.type === "image" ? "Slika" : "Medij";
+
+    const order = document.createElement("span");
+    order.className = "block-order";
+    order.textContent = `${index + 1}. element`;
+
+    top.append(drag, badge, order);
+
+    const copy = document.createElement("button");
+    copy.type = "button";
+    copy.className = "block-card-copy";
+    copy.innerHTML = `<strong>${item.title}</strong><span>${item.type === "media" ? `${item.mediaType || "medij"} - ` : ""}${item.description || "Brez opisa."}</span>`;
+    copy.addEventListener("click", () => focusBlockItem(item));
+
+    const actions = document.createElement("div");
+    actions.className = "block-card-actions";
+
+    const open = document.createElement("button");
+    open.type = "button";
+    open.className = "secondary light block-mini";
+    open.textContent = "Odpri";
+    open.addEventListener("click", () => focusBlockItem(item));
 
     const up = document.createElement("button");
     up.type = "button";
@@ -937,7 +955,8 @@ const renderBlockList = () => {
     remove.textContent = "Izbriši";
     remove.addEventListener("click", () => removeBlockItem(item));
 
-    row.append(drag, copy, badge, up, down, remove);
+    actions.append(open, up, down, remove);
+    row.append(top, copy, actions);
 
     row.addEventListener("dragstart", () => {
       blockDragToken = item.token;
@@ -2127,13 +2146,15 @@ const init = async () => {
     markDirty();
     updateStyleControls();
   });
-  elements.pageCss.addEventListener("input", () => {
-    setPageCssForCurrentPage(elements.pageCss.value);
-    markDirty();
-    if (elements.preview.contentDocument) {
-      applyPageCssToPreview(elements.preview.contentDocument);
-    }
-  });
+  if (elements.pageCss) {
+    elements.pageCss.addEventListener("input", () => {
+      setPageCssForCurrentPage(elements.pageCss.value);
+      markDirty();
+      if (elements.preview.contentDocument) {
+        applyPageCssToPreview(elements.preview.contentDocument);
+      }
+    });
+  }
   updateStyleControls();
   updateImageControls();
 

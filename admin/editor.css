@@ -189,7 +189,6 @@ body.is-authenticated .repo-panel label {
 .image-panel,
 .custom-panel,
 .media-panel,
-.css-panel,
 .block-editor-panel {
   display: grid;
   gap: 12px;
@@ -252,7 +251,6 @@ body.is-authenticated .repo-panel label {
 .media-panel input,
 .media-panel select,
 .media-panel textarea,
-.css-panel textarea,
 .video-manager input,
 .video-manager select,
 .video-manager textarea {
@@ -264,7 +262,6 @@ body.is-authenticated .repo-panel label {
 .image-panel button,
 .custom-panel button,
 .media-panel button,
-.css-panel button,
 .block-editor-panel button {
   min-height: 38px;
   width: 100%;
@@ -339,24 +336,29 @@ button.danger {
   gap: 8px;
 }
 
-.block-row {
+.block-card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto auto auto;
-  gap: 8px;
-  align-items: center;
-  padding: 10px;
+  gap: 10px;
+  padding: 12px;
   background: #fff;
   border: 1px solid rgba(1, 69, 126, 0.12);
   border-radius: 8px;
 }
 
-.block-row.is-dragging {
+.block-card.is-dragging {
   opacity: 0.62;
 }
 
-.block-row.is-drop-target {
+.block-card.is-drop-target {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(220, 165, 95, 0.18);
+}
+
+.block-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .drag-handle,
@@ -373,7 +375,7 @@ button.danger {
   cursor: grab;
 }
 
-.block-row-copy {
+.block-card-copy {
   display: grid;
   gap: 3px;
   width: 100%;
@@ -385,17 +387,17 @@ button.danger {
   text-align: left;
 }
 
-.block-row-copy strong,
-.block-row-copy span {
+.block-card-copy strong,
+.block-card-copy span {
   display: block;
 }
 
-.block-row-copy strong {
+.block-card-copy strong {
   color: var(--brand-dark);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
 }
 
-.block-row-copy span {
+.block-card-copy span {
   color: #426f96;
   font-size: 0.76rem;
   line-height: 1.35;
@@ -414,6 +416,18 @@ button.danger {
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.block-order {
+  color: #426f96;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.block-card-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .video-admin-item {
@@ -521,5 +535,9 @@ iframe {
 
   .preview-panel {
     height: 72vh;
+  }
+
+  .block-card-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
