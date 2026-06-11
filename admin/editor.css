@@ -233,6 +233,12 @@ body.is-authenticated .repo-panel label {
   gap: 10px;
 }
 
+.style-action-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
 .image-add-box {
   display: grid;
   gap: 10px;

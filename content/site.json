@@ -70,7 +70,7 @@
     {
       "label": "Domov - prednosti naslov",
       "selector": ".hero-panel .panel-label",
-      "text": "KLJUČNE PREDNOSTI"
+      "text": "Ključne prednosti"
     },
     {
       "label": "Domov - metrika 1",
@@ -90,7 +90,7 @@
     {
       "label": "Domov - Tu-Val nadnaslov",
       "selector": ".intro-band .section-copy .eyebrow",
-      "text": "TU-VAL D.O.O."
+      "text": "Tu-Val d.o.o."
     },
     {
       "label": "Domov - Tu-Val naslov",
@@ -135,7 +135,7 @@
     {
       "label": "Domov - pregled nadnaslov",
       "selector": ".products-preview .section-heading .eyebrow",
-      "text": "PREGLED LINIJE"
+      "text": "Pregled linije"
     },
     {
       "label": "Domov - pregled naslov",
@@ -232,7 +232,7 @@
     {
       "label": "Domov - tehnologija nadnaslov",
       "selector": ".difference-copy .eyebrow",
-      "text": "AIRSENSIT TEHNOLOGIJA"
+      "text": "AirSensit tehnologija"
     },
     {
       "label": "Domov - tehnologija naslov",
@@ -262,7 +262,7 @@
     {
       "label": "Domov - certifikati nadnaslov",
       "selector": ".certification-section .section-heading .eyebrow",
-      "text": "URADNI CERTIFIKATI"
+      "text": "Uradni certifikati"
     },
     {
       "label": "Domov - certifikati naslov",
@@ -338,18 +338,6 @@
       "label": "Domov - certifikati gumb",
       "selector": ".certification-note .button",
       "text": "CleanSpace primerjava"
-    },
-    {
-      "label": "Besedilo - Dodana slika",
-      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(1) > figcaption",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Dodana slika",
-      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
-      "text": "",
-      "hidden": true
     }
   ],
   "maske": [
@@ -1102,8 +1090,8 @@
         "alt": "Dodana slika",
         "style": {
           "width": 430,
-          "x": 34,
-          "y": 260
+          "x": 741,
+          "y": -985
         }
       },
       {
@@ -1115,8 +1103,8 @@
         "alt": "Dodana slika",
         "style": {
           "width": 420,
-          "x": -360,
-          "y": 17
+          "x": 142,
+          "y": -583
         }
       }
     ],
@@ -1235,45 +1223,5 @@
     "cleanspace_halo": []
   },
   "videos": [],
-  "videi": [],
-  "mediaBlocks": {
-    "index": [],
-    "maske": [],
-    "videi": [],
-    "test": [],
-    "kontakt": [],
-    "cleanspace_work": [],
-    "cleanspace_cst_pro": [],
-    "cleanspace_cst_ultra": [],
-    "cleanspace_ex": [],
-    "cleanspace_halo": []
-  },
-  "blockOrder": {
-    "index": [
-      "text:block-mq588gm4-vknest",
-      "image:block-mq588ynx-a7btdt",
-      "image:block-mq58azz8-8o1i51"
-    ],
-    "maske": [],
-    "videi": [],
-    "test": [],
-    "kontakt": [],
-    "cleanspace_work": [],
-    "cleanspace_cst_pro": [],
-    "cleanspace_cst_ultra": [],
-    "cleanspace_ex": [],
-    "cleanspace_halo": []
-  },
-  "customCss": {
-    "index": "",
-    "maske": "",
-    "videi": "",
-    "test": "",
-    "kontakt": "",
-    "cleanspace_work": "",
-    "cleanspace_cst_pro": "",
-    "cleanspace_cst_ultra": "",
-    "cleanspace_ex": "",
-    "cleanspace_halo": ""
-  }
+  "videi": []
 }

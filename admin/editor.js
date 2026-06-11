@@ -38,6 +38,9 @@ const elements = {
   styleBorderWidth: document.querySelector("[data-style-border-width]"),
   styleBorderColor: document.querySelector("[data-style-border-color]"),
   styleBorderRadius: document.querySelector("[data-style-border-radius]"),
+  styleBulletsDisc: document.querySelector("[data-style-bullets-disc]"),
+  styleBulletsSquare: document.querySelector("[data-style-bullets-square]"),
+  styleBulletsNone: document.querySelector("[data-style-bullets-none]"),
   styleRemove: document.querySelector("[data-style-remove]"),
   styleReset: document.querySelector("[data-style-reset]"),
   customColor: document.querySelector("[data-custom-color]"),
@@ -119,6 +122,12 @@ const applyTextWithLineBreaks = (target, text = "") => {
   target.textContent = text;
   target.style.whiteSpace = text.includes("\n") ? "pre-line" : "";
 };
+
+const stripListMarkers = (text = "") =>
+  normalizeEditableText(text)
+    .split("\n")
+    .map((line) => line.replace(/^\s*[•■]\s+/, ""))
+    .join("\n");
 
 const makeCustomBlockId = () =>
   `block-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
@@ -1214,6 +1223,31 @@ const setImageStyleValue = (property, value) => {
   updateImageControls();
 };
 
+const applyListMarkerToActiveEntry = (marker = "") => {
+  const entry = activeEntry();
+  const target = activeEditable();
+  if (!entry || !target) return;
+
+  const lines = stripListMarkers(entry.text || "")
+    .split("\n")
+    .map((line) => line.trim());
+
+  const nextText = lines
+    .map((line) => {
+      if (!line) return "";
+      return marker ? `${marker} ${line}` : line;
+    })
+    .join("\n")
+    .trim();
+
+  setEntryText(entry, nextText);
+  applyTextWithLineBreaks(target, nextText);
+  markDirty();
+  renderFields();
+  renderBlockList();
+  updateStyleControls();
+};
+
 const removeActiveEntry = () => {
   const entry = activeEntry();
   if (!entry) return;
@@ -1263,15 +1297,21 @@ const removeActiveImage = () => {
 
 const dragEdgeSize = 18;
 
-const isPointerOnElementEdge = (event, target) => {
+const pointerEdgeState = (event, target) => {
   const rect = target.getBoundingClientRect();
-  if (!rect.width || !rect.height) return false;
+  if (!rect.width || !rect.height) return { onEdge: false, mode: "move" };
 
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
   const edge = Math.min(dragEdgeSize, Math.max(10, Math.min(rect.width, rect.height) / 3));
+  const nearLeft = x <= edge;
+  const nearTop = y <= edge;
+  const nearRight = rect.width - x <= edge;
+  const nearBottom = rect.height - y <= edge;
+  const onEdge = nearLeft || nearTop || nearRight || nearBottom;
+  const mode = nearRight || nearBottom ? "resize" : "move";
 
-  return x <= edge || y <= edge || rect.width - x <= edge || rect.height - y <= edge;
+  return { onEdge, mode };
 };
 
 const setEntryDragPosition = (key, target, x, y) => {
@@ -1298,8 +1338,31 @@ const setImageDragPosition = (key, target, x, y) => {
   elements.imageY.value = y;
 };
 
+const setEntryResizeValue = (key, target, fontSize) => {
+  const entry = findEntryByKey(key);
+  if (!entry) return;
+
+  const style = ensureEntryStyle(entry);
+  const nextFontSize = Math.max(10, Math.min(120, Math.round(fontSize)));
+  style.fontSize = nextFontSize;
+  applyEntryStyleToTarget(target, getEntryStyle(entry));
+  elements.styleFontSize.value = nextFontSize;
+};
+
+const setImageResizeValue = (key, target, width) => {
+  const entry = findImageEntryByKey(key);
+  if (!entry) return;
+
+  entry.style = entry.style && typeof entry.style === "object" ? entry.style : {};
+  const nextWidth = Math.max(80, Math.min(1400, Math.round(width)));
+  entry.style.width = nextWidth;
+  applyImageEntryToTarget(target, entry);
+  elements.imageWidth.value = nextWidth;
+};
+
 const startEdgeDrag = (event, target, type, key) => {
-  if (event.button !== 0 || !isPointerOnElementEdge(event, target)) return false;
+  const edgeState = pointerEdgeState(event, target);
+  if (event.button !== 0 || !edgeState.onEdge) return false;
 
   const doc = target.ownerDocument;
   const entry = type === "image" ? findImageEntryByKey(key) : findEntryByKey(key);
@@ -1310,6 +1373,9 @@ const startEdgeDrag = (event, target, type, key) => {
   const startPointerY = event.clientY;
   const startX = Number(style.x) || 0;
   const startY = Number(style.y) || 0;
+  const computedStyle = target.ownerDocument.defaultView.getComputedStyle(target);
+  const startFontSize = Number(style.fontSize) || Math.round(parseFloat(computedStyle.fontSize) || 16);
+  const startWidth = Number(style.width) || Math.round(target.getBoundingClientRect().width || 320);
   let moved = false;
 
   event.preventDefault();
@@ -1317,14 +1383,25 @@ const startEdgeDrag = (event, target, type, key) => {
   target.classList.add("editor-dragging");
 
   const onMove = (moveEvent) => {
-    const nextX = Math.round(startX + moveEvent.clientX - startPointerX);
-    const nextY = Math.round(startY + moveEvent.clientY - startPointerY);
+    const deltaX = moveEvent.clientX - startPointerX;
+    const deltaY = moveEvent.clientY - startPointerY;
     moved = true;
 
-    if (type === "image") {
-      setImageDragPosition(key, target, nextX, nextY);
+    if (edgeState.mode === "resize") {
+      if (type === "image") {
+        setImageResizeValue(key, target, startWidth + deltaX);
+      } else {
+        setEntryResizeValue(key, target, startFontSize + (deltaX + deltaY) / 8);
+      }
     } else {
-      setEntryDragPosition(key, target, nextX, nextY);
+      const nextX = Math.round(startX + deltaX);
+      const nextY = Math.round(startY + deltaY);
+
+      if (type === "image") {
+        setImageDragPosition(key, target, nextX, nextY);
+      } else {
+        setEntryDragPosition(key, target, nextX, nextY);
+      }
     }
   };
 
@@ -1388,6 +1465,9 @@ const updateStyleControls = () => {
     elements.styleBorderWidth,
     elements.styleBorderColor,
     elements.styleBorderRadius,
+    elements.styleBulletsDisc,
+    elements.styleBulletsSquare,
+    elements.styleBulletsNone,
     elements.styleRemove,
     elements.styleReset,
   ].forEach((control) => {
@@ -1396,7 +1476,7 @@ const updateStyleControls = () => {
 
   elements.styleLabel.textContent = entry
     ? entry.label || truncate(entry.text || "", 44)
-    : "Najprej klikni besedilo v predogledu.";
+    : "Najprej klikni besedilo v predogledu. Levi ali zgornji rob premika, desni ali spodnji pa spreminja velikost.";
   elements.styleColor.value = style.color || "#01457e";
   elements.styleFontSize.value = style.fontSize || "";
   elements.styleFontFamily.value = style.fontFamily || "";
@@ -2102,6 +2182,9 @@ const init = async () => {
   elements.styleBorderRadius.addEventListener("input", () =>
     setEntryStyleValue("borderRadius", elements.styleBorderRadius.value)
   );
+  elements.styleBulletsDisc.addEventListener("click", () => applyListMarkerToActiveEntry("•"));
+  elements.styleBulletsSquare.addEventListener("click", () => applyListMarkerToActiveEntry("■"));
+  elements.styleBulletsNone.addEventListener("click", () => applyListMarkerToActiveEntry(""));
   elements.imageSrc.addEventListener("input", () => setImageEntryValue("src", elements.imageSrc.value));
   elements.imageAlt.addEventListener("input", () => setImageEntryValue("alt", elements.imageAlt.value));
   elements.imageWidth.addEventListener("input", () => setImageStyleValue("width", elements.imageWidth.value));
