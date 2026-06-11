@@ -37,7 +37,7 @@ const loadDotEnv = () => {
 
 loadDotEnv();
 
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT || 4173);
 const repo = process.env.GITHUB_REPO || "agenttuval/CleanSpace";
 const branch = process.env.GITHUB_BRANCH || "main";
 const contentPath = "content/site.json";
@@ -45,14 +45,24 @@ let runtimeContent = null;
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
+  ".doc": "application/msword",
+  ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ".gif": "image/gif",
   ".html": "text/html; charset=utf-8",
   ".ico": "image/x-icon",
+  ".jpeg": "image/jpeg",
+  ".jpg": "image/jpeg",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".m4a": "audio/mp4",
+  ".mp3": "audio/mpeg",
   ".mp4": "video/mp4",
   ".ogg": "video/ogg",
+  ".pdf": "application/pdf",
   ".png": "image/png",
   ".svg": "image/svg+xml",
+  ".txt": "text/plain; charset=utf-8",
+  ".wav": "audio/wav",
   ".webm": "video/webm",
   ".webp": "image/webp",
   ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -88,6 +98,15 @@ const normalizeContent = (content) => {
     common: Array.isArray(content.common) ? content.common : [],
     customBlocks: content.customBlocks && typeof content.customBlocks === "object" && !Array.isArray(content.customBlocks)
       ? content.customBlocks
+      : {},
+    mediaBlocks: content.mediaBlocks && typeof content.mediaBlocks === "object" && !Array.isArray(content.mediaBlocks)
+      ? content.mediaBlocks
+      : {},
+    blockOrder: content.blockOrder && typeof content.blockOrder === "object" && !Array.isArray(content.blockOrder)
+      ? content.blockOrder
+      : {},
+    customCss: content.customCss && typeof content.customCss === "object" && !Array.isArray(content.customCss)
+      ? content.customCss
       : {},
     images: content.images && typeof content.images === "object" && !Array.isArray(content.images)
       ? content.images
@@ -276,6 +295,48 @@ const handleContentRead = async (res) => {
   send(res, 200, content, {
     "Cache-Control": "no-store, max-age=0",
     "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
+const sanitizeUploadName = (fileName = "") => {
+  const ext = path.extname(fileName).toLowerCase();
+  const base = path.basename(fileName, ext).toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
+  const safeBase = base || "datoteka";
+  return `${Date.now().toString(36)}-${safeBase}${ext}`;
+};
+
+const parseDataUrl = (value = "") => {
+  const match = String(value || "").match(/^data:([^;]+);base64,(.+)$/);
+  if (!match) return null;
+  return {
+    mimeType: match[1],
+    buffer: Buffer.from(match[2], "base64"),
+  };
+};
+
+const handleUpload = async (req, res) => {
+  const session = requireAdmin(req, res);
+  if (!session) return;
+
+  const body = await parseJsonBody(req);
+  const parsed = parseDataUrl(body.dataUrl || "");
+  if (!parsed) {
+    send(res, 400, { ok: false, message: "Manjka veljavna datoteka za nalaganje." });
+    return;
+  }
+
+  const uploadsDir = path.join(root, "assets", "uploads");
+  const fileName = sanitizeUploadName(body.fileName || "datoteka");
+  const fullPath = path.join(uploadsDir, fileName);
+
+  await fs.mkdir(uploadsDir, { recursive: true });
+  await fs.writeFile(fullPath, parsed.buffer);
+
+  send(res, 200, {
+    ok: true,
+    url: `/assets/uploads/${fileName}`,
+    fileName,
+    mimeType: parsed.mimeType,
   });
 };
 
@@ -2936,6 +2997,11 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === "POST" && url.pathname === "/api/upload") {
+      await handleUpload(req, res);
+      return;
+    }
+
     if (req.method === "POST" && url.pathname === "/api/contact") {
       await handleContactEmail(req, res);
       return;
@@ -2997,6 +3063,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(port, "0.0.0.0", () => {
+server.listen(port, () => {
   console.log(`Tu-Val CleanSpace site running on port ${port}`);
 });

@@ -187,7 +187,10 @@ body.is-authenticated .repo-panel label {
 
 .style-panel,
 .image-panel,
-.custom-panel {
+.custom-panel,
+.media-panel,
+.css-panel,
+.block-editor-panel {
   display: grid;
   gap: 12px;
   padding: 12px;
@@ -246,6 +249,10 @@ body.is-authenticated .repo-panel label {
 .custom-panel textarea,
 .image-panel input,
 .image-panel textarea,
+.media-panel input,
+.media-panel select,
+.media-panel textarea,
+.css-panel textarea,
 .video-manager input,
 .video-manager select,
 .video-manager textarea {
@@ -255,7 +262,10 @@ body.is-authenticated .repo-panel label {
 
 .style-panel button,
 .image-panel button,
-.custom-panel button {
+.custom-panel button,
+.media-panel button,
+.css-panel button,
+.block-editor-panel button {
   min-height: 38px;
   width: 100%;
 }
@@ -316,6 +326,94 @@ button.light {
   min-height: 34px;
   width: auto;
   padding-inline: 10px;
+}
+
+button.danger {
+  color: #7a241f;
+  background: #fff2ee;
+  border-color: #f3c1b7;
+}
+
+.block-list {
+  display: grid;
+  gap: 8px;
+}
+
+.block-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.12);
+  border-radius: 8px;
+}
+
+.block-row.is-dragging {
+  opacity: 0.62;
+}
+
+.block-row.is-drop-target {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220, 165, 95, 0.18);
+}
+
+.drag-handle,
+.block-mini {
+  min-height: 34px;
+  width: auto;
+  padding-inline: 10px;
+}
+
+.drag-handle {
+  color: #426f96;
+  background: #eef5fb;
+  border-color: var(--line);
+  cursor: grab;
+}
+
+.block-row-copy {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+}
+
+.block-row-copy strong,
+.block-row-copy span {
+  display: block;
+}
+
+.block-row-copy strong {
+  color: var(--brand-dark);
+  font-size: 0.82rem;
+}
+
+.block-row-copy span {
+  color: #426f96;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.block-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 10px;
+  color: var(--brand-dark);
+  background: #eef5fb;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .video-admin-item {

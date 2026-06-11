@@ -20,6 +20,7 @@ const elements = {
   logout: document.querySelector("[data-logout]"),
   saveGithub: document.querySelector("[data-save-github]"),
   pageSelect: document.querySelector("[data-page-select]"),
+  blockList: document.querySelector("[data-block-list]"),
   customTitle: document.querySelector("[data-custom-title]"),
   customText: document.querySelector("[data-custom-text]"),
   customAdd: document.querySelector("[data-custom-add]"),
@@ -34,6 +35,10 @@ const elements = {
   styleFontFamily: document.querySelector("[data-style-font-family]"),
   styleX: document.querySelector("[data-style-x]"),
   styleY: document.querySelector("[data-style-y]"),
+  styleBorderWidth: document.querySelector("[data-style-border-width]"),
+  styleBorderColor: document.querySelector("[data-style-border-color]"),
+  styleBorderRadius: document.querySelector("[data-style-border-radius]"),
+  styleRemove: document.querySelector("[data-style-remove]"),
   styleReset: document.querySelector("[data-style-reset]"),
   customColor: document.querySelector("[data-custom-color]"),
   newImageSrc: document.querySelector("[data-new-image-src]"),
@@ -46,7 +51,19 @@ const elements = {
   imageWidth: document.querySelector("[data-image-width]"),
   imageX: document.querySelector("[data-image-x]"),
   imageY: document.querySelector("[data-image-y]"),
+  imageBorderWidth: document.querySelector("[data-image-border-width]"),
+  imageBorderColor: document.querySelector("[data-image-border-color]"),
+  imageBorderRadius: document.querySelector("[data-image-border-radius]"),
+  imageRemove: document.querySelector("[data-image-remove]"),
   imageReset: document.querySelector("[data-image-reset]"),
+  mediaFile: document.querySelector("[data-media-file]"),
+  mediaUpload: document.querySelector("[data-media-upload]"),
+  mediaType: document.querySelector("[data-media-type]"),
+  mediaTitle: document.querySelector("[data-media-title]"),
+  mediaUrl: document.querySelector("[data-media-url]"),
+  mediaDescription: document.querySelector("[data-media-description]"),
+  mediaAdd: document.querySelector("[data-media-add]"),
+  pageCss: document.querySelector("[data-page-css]"),
   videoManager: document.querySelector("[data-video-manager]"),
   videoMask: document.querySelector("[data-video-mask]"),
   videoTitle: document.querySelector("[data-video-title]"),
@@ -64,6 +81,8 @@ let activeImageKey = "";
 let authenticated = false;
 let pendingCustomBlockId = "";
 let pendingCustomImageId = "";
+let pendingMediaBlockId = "";
+let blockDragToken = "";
 
 const videoMasks = [
   { value: "work", label: "CleanSpace WORK" },
@@ -79,11 +98,27 @@ const setStatus = (message, type = "") => {
 };
 
 const truncate = (text, length = 92) => {
-  const normalized = text.replace(/\s+/g, " ").trim();
+  const normalized = String(text || "").replace(/\s+/g, " ").trim();
   return normalized.length > length ? `${normalized.slice(0, length - 1)}...` : normalized;
 };
 
-const cleanText = (text = "") => text.replace(/\s+/g, " ").trim();
+const normalizeEditableText = (text = "") =>
+  String(text || "")
+    .replace(/\r/g, "")
+    .replace(/\u00A0/g, " ")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+const cleanText = (text = "") => normalizeEditableText(text).replace(/\n+/g, " ").trim();
+
+const applyTextWithLineBreaks = (target, text = "") => {
+  if (!target) return;
+  target.textContent = text;
+  target.style.whiteSpace = text.includes("\n") ? "pre-line" : "";
+};
 
 const makeCustomBlockId = () =>
   `block-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
@@ -137,7 +172,9 @@ const customBlockEntries = () =>
   });
 
 const pageEntries = () =>
-  content ? [...(content.common || []), ...(content[selectedPage.key] || []), ...customBlockEntries()] : [];
+  content
+    ? [...(content.common || []), ...(content[selectedPage.key] || []), ...customBlockEntries(), ...customMediaEntries()]
+    : [];
 
 const getPageSpecificEntries = () => {
   if (!content) return [];
@@ -164,9 +201,216 @@ const customImageEntries = () => imageEntries().filter((entry) => entry.customIm
 
 const selectorForCustomImage = (id) => `[data-custom-image="${id}"] img`;
 
+const mediaBlocksForPage = () => {
+  if (!content) return [];
+  content.mediaBlocks =
+    content.mediaBlocks && typeof content.mediaBlocks === "object" && !Array.isArray(content.mediaBlocks)
+      ? content.mediaBlocks
+      : {};
+  content.mediaBlocks[selectedPage.key] = Array.isArray(content.mediaBlocks[selectedPage.key])
+    ? content.mediaBlocks[selectedPage.key]
+    : [];
+  return content.mediaBlocks[selectedPage.key];
+};
+
+const ensureMediaBlockId = (block) => {
+  const current = String(block?.id || "");
+  if (/^[a-zA-Z0-9_-]+$/.test(current)) return current;
+  block.id = makeCustomBlockId();
+  return block.id;
+};
+
+const findMediaBlock = (id) => mediaBlocksForPage().find((block) => block.id === id);
+
+const mediaSelector = (id, field) => `[data-custom-media="${id}"] ${field === "description" ? "p" : "h3"}`;
+
+const customMediaEntries = () =>
+  mediaBlocksForPage().flatMap((block, index) => {
+    const id = ensureMediaBlockId(block);
+    const labelBase = `Medij ${index + 1}`;
+
+    return [
+      {
+        label: `${labelBase} - naslov`,
+        selector: mediaSelector(id, "title"),
+        text: block.title || "",
+        mediaBlockId: id,
+        mediaBlockField: "title",
+        mediaBlockStyleField: "titleStyle",
+        style: block.titleStyle,
+      },
+      {
+        label: `${labelBase} - opis`,
+        selector: mediaSelector(id, "description"),
+        text: block.description || "",
+        mediaBlockId: id,
+        mediaBlockField: "description",
+        mediaBlockStyleField: "descriptionStyle",
+        style: block.descriptionStyle,
+      },
+    ];
+  });
+
+const pageCssForCurrentPage = () => {
+  if (!content) return "";
+  content.customCss =
+    content.customCss && typeof content.customCss === "object" && !Array.isArray(content.customCss)
+      ? content.customCss
+      : {};
+  if (typeof content.customCss[selectedPage.key] !== "string") {
+    content.customCss[selectedPage.key] = "";
+  }
+  return content.customCss[selectedPage.key];
+};
+
+const setPageCssForCurrentPage = (value) => {
+  if (!content) return;
+  content.customCss =
+    content.customCss && typeof content.customCss === "object" && !Array.isArray(content.customCss)
+      ? content.customCss
+      : {};
+  content.customCss[selectedPage.key] = value;
+};
+
+const blockToken = (type, id) => `${type}:${id}`;
+
+const parseBlockToken = (token) => {
+  const [type, ...rest] = String(token || "").split(":");
+  return { type, id: rest.join(":") };
+};
+
+const ensureBlockOrder = () => {
+  if (!content) return [];
+
+  content.blockOrder =
+    content.blockOrder && typeof content.blockOrder === "object" && !Array.isArray(content.blockOrder)
+      ? content.blockOrder
+      : {};
+
+  const tokens = [
+    ...customBlocksForPage().map((block) => blockToken("text", ensureCustomBlockId(block))),
+    ...customImageEntries().map((entry) => blockToken("image", entry.id || (entry.id = makeCustomBlockId()))),
+    ...mediaBlocksForPage().map((block) => blockToken("media", ensureMediaBlockId(block))),
+  ];
+  const valid = new Set(tokens);
+  const existing = Array.isArray(content.blockOrder[selectedPage.key]) ? content.blockOrder[selectedPage.key] : [];
+  const normalized = [];
+
+  existing.forEach((item) => {
+    const token =
+      typeof item === "string" ? item : item?.type && item?.id ? blockToken(item.type, item.id) : "";
+    if (token && valid.has(token) && !normalized.includes(token)) {
+      normalized.push(token);
+    }
+  });
+
+  tokens.forEach((token) => {
+    if (!normalized.includes(token)) normalized.push(token);
+  });
+
+  content.blockOrder[selectedPage.key] = normalized;
+  return normalized;
+};
+
+const removeFromBlockOrder = (type, id) => {
+  if (!content?.blockOrder?.[selectedPage.key]) return;
+  const token = blockToken(type, id);
+  content.blockOrder[selectedPage.key] = content.blockOrder[selectedPage.key].filter((entry) => entry !== token);
+};
+
+const orderedBlockItems = () => {
+  const textMap = new Map(
+    customBlocksForPage().map((block, index) => {
+      const id = ensureCustomBlockId(block);
+      return [
+        blockToken("text", id),
+        {
+          type: "text",
+          id,
+          title: block.title || `Okvir ${index + 1}`,
+          description: truncate(block.text || "Brez besedila.", 72),
+          raw: block,
+        },
+      ];
+    })
+  );
+  const imageMap = new Map(
+    customImageEntries().map((entry, index) => [
+      blockToken("image", entry.id || (entry.id = makeCustomBlockId())),
+      {
+        type: "image",
+        id: entry.id,
+        title: entry.alt || `Slika ${index + 1}`,
+        description: truncate(entry.src || "", 72),
+        raw: entry,
+      },
+    ])
+  );
+  const mediaMap = new Map(
+    mediaBlocksForPage().map((block, index) => {
+      const id = ensureMediaBlockId(block);
+      return [
+        blockToken("media", id),
+        {
+          type: "media",
+          id,
+          title: block.title || `Medij ${index + 1}`,
+          description: truncate(block.description || block.url || "", 72),
+          mediaType: block.type || "document",
+          raw: block,
+        },
+      ];
+    })
+  );
+  const all = new Map([...textMap, ...imageMap, ...mediaMap]);
+  return ensureBlockOrder()
+    .map((token) => ({ token, ...all.get(token) }))
+    .filter((item) => item?.type);
+};
+
 const normalizeVideoUrl = (value = "") => {
   const iframeMatch = value.match(/src=["']([^"']+)["']/i);
   return (iframeMatch ? iframeMatch[1] : value).trim();
+};
+
+const mediaEmbedInfo = (type = "document", rawUrl = "") => {
+  const normalizedUrl = normalizeVideoUrl(rawUrl);
+  const mediaType = type || "document";
+
+  try {
+    const url = new URL(normalizedUrl, window.location.origin);
+    const host = url.hostname.replace(/^www\./, "");
+
+    if (mediaType === "image") return { type: "image", src: url.href };
+    if (mediaType === "audio") return { type: "audio", src: url.href };
+
+    if (mediaType === "video") {
+      if (host === "youtu.be") {
+        return { type: "iframe", src: `https://www.youtube.com/embed/${url.pathname.replace("/", "")}` };
+      }
+
+      if (host.includes("youtube.com")) {
+        const videoId = url.searchParams.get("v") || url.pathname.split("/").filter(Boolean).pop();
+        if (videoId) return { type: "iframe", src: `https://www.youtube.com/embed/${videoId}` };
+      }
+
+      if (host.includes("vimeo.com")) {
+        const videoId = url.pathname.split("/").filter(Boolean).pop();
+        if (videoId) return { type: "iframe", src: `https://player.vimeo.com/video/${videoId}` };
+      }
+
+      if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url.pathname)) {
+        return { type: "video", src: url.href };
+      }
+    }
+
+    return { type: "link", src: url.href };
+  } catch (error) {
+    if (mediaType === "image") return { type: "image", src: normalizedUrl };
+    if (mediaType === "audio") return { type: "audio", src: normalizedUrl };
+    if (mediaType === "video") return { type: "video", src: normalizedUrl };
+    return { type: "link", src: normalizedUrl };
+  }
 };
 
 const videoMaskLabel = (value) =>
@@ -413,8 +657,10 @@ const renderCustomImageManager = () => {
     deleteButton.addEventListener("click", () => {
       const index = imageEntries().indexOf(image);
       if (index >= 0) imageEntries().splice(index, 1);
+      removeFromBlockOrder("image", image.id);
       activeImageKey = "";
       markDirty();
+      renderBlockList();
       renderCustomImageManager();
       loadPreview();
     });
@@ -453,6 +699,8 @@ const addCustomImage = () => {
   activeImageKey = "";
   pendingCustomImageId = id;
   markDirty();
+  ensureBlockOrder();
+  renderBlockList();
   renderCustomImageManager();
   loadPreview();
 };
@@ -488,8 +736,10 @@ const renderCustomBlockManager = () => {
     deleteButton.textContent = "Odstrani";
     deleteButton.addEventListener("click", () => {
       blocks.splice(index, 1);
+      removeFromBlockOrder("text", ensureCustomBlockId(block));
       activeKey = "";
       markDirty();
+      renderBlockList();
       renderCustomBlockManager();
       loadPreview();
     });
@@ -520,14 +770,213 @@ const addCustomBlock = () => {
   activeKey = "";
   pendingCustomBlockId = id;
   markDirty();
+  ensureBlockOrder();
+  renderBlockList();
   renderCustomBlockManager();
   loadPreview();
+};
+
+const addMediaBlock = () => {
+  if (!content) return;
+
+  const url = normalizeVideoUrl(elements.mediaUrl.value.trim());
+  if (!url) {
+    setStatus("Za medij dodaj URL ali najprej naloži datoteko.", "error");
+    return;
+  }
+
+  const id = makeCustomBlockId();
+  mediaBlocksForPage().push({
+    id,
+    type: elements.mediaType.value || "document",
+    title: elements.mediaTitle.value.trim() || "Nov medijski blok",
+    description: elements.mediaDescription.value.trim() || "",
+    url,
+  });
+
+  elements.mediaTitle.value = "";
+  elements.mediaUrl.value = "";
+  elements.mediaDescription.value = "";
+  pendingMediaBlockId = id;
+  markDirty();
+  ensureBlockOrder();
+  renderBlockList();
+  loadPreview();
+};
+
+const moveBlockToken = (token, direction) => {
+  const order = ensureBlockOrder();
+  const index = order.indexOf(token);
+  if (index < 0) return;
+
+  const targetIndex = direction === "up" ? index - 1 : index + 1;
+  if (targetIndex < 0 || targetIndex >= order.length) return;
+
+  const [entry] = order.splice(index, 1);
+  order.splice(targetIndex, 0, entry);
+  content.blockOrder[selectedPage.key] = order;
+  markDirty();
+  renderBlockList();
+  loadPreview();
+};
+
+const removeBlockItem = (item) => {
+  if (!item) return;
+
+  if (item.type === "text") {
+    const blocks = customBlocksForPage();
+    const index = blocks.findIndex((block) => ensureCustomBlockId(block) === item.id);
+    if (index >= 0) blocks.splice(index, 1);
+  }
+
+  if (item.type === "image") {
+    const images = imageEntries();
+    const index = images.findIndex((entry) => entry.id === item.id);
+    if (index >= 0) images.splice(index, 1);
+  }
+
+  if (item.type === "media") {
+    const media = mediaBlocksForPage();
+    const index = media.findIndex((entry) => ensureMediaBlockId(entry) === item.id);
+    if (index >= 0) media.splice(index, 1);
+  }
+
+  removeFromBlockOrder(item.type, item.id);
+  activeKey = "";
+  activeImageKey = "";
+  markDirty();
+  renderBlockList();
+  renderCustomBlockManager();
+  renderCustomImageManager();
+  loadPreview();
+};
+
+const focusBlockItem = (item) => {
+  if (!item) return;
+  const doc = elements.preview.contentDocument;
+  if (!doc) return;
+
+  if (item.type === "text") {
+    const block = doc.querySelector(`[data-custom-block="${CSS.escape(item.id)}"] h2`);
+    if (block?.dataset.editorKey) {
+      focusEditable(block.dataset.editorKey);
+    }
+    return;
+  }
+
+  if (item.type === "image") {
+    const image = doc.querySelector(`[data-custom-image="${CSS.escape(item.id)}"] img`);
+    if (image?.dataset.imageKey) {
+      focusImage(image.dataset.imageKey);
+    }
+    return;
+  }
+
+  if (item.type === "media") {
+    const heading = doc.querySelector(`[data-custom-media="${CSS.escape(item.id)}"] h3`);
+    if (heading?.dataset.editorKey) {
+      focusEditable(heading.dataset.editorKey);
+    }
+  }
+};
+
+const renderBlockList = () => {
+  if (!elements.blockList || !content) return;
+
+  const items = orderedBlockItems();
+  elements.blockList.textContent = "";
+
+  if (!items.length) {
+    const empty = document.createElement("p");
+    empty.className = "custom-admin-empty";
+    empty.textContent = "Na tej strani še ni dodanih blokov ali medijev.";
+    elements.blockList.append(empty);
+    return;
+  }
+
+  items.forEach((item, index) => {
+    const row = document.createElement("div");
+    row.className = "block-row";
+    row.draggable = true;
+    row.dataset.blockToken = item.token;
+
+    const drag = document.createElement("button");
+    drag.type = "button";
+    drag.className = "drag-handle";
+    drag.textContent = "::::";
+    drag.title = "Povleci za premik";
+
+    const copy = document.createElement("button");
+    copy.type = "button";
+    copy.className = "block-row-copy";
+    copy.innerHTML = `<strong>${item.title}</strong><span>${item.type === "media" ? `${item.mediaType || "medij"} - ` : ""}${item.description || "Brez opisa."}</span>`;
+    copy.addEventListener("click", () => focusBlockItem(item));
+
+    const badge = document.createElement("span");
+    badge.className = "block-badge";
+    badge.textContent =
+      item.type === "text" ? "Besedilo" : item.type === "image" ? "Slika" : `Medij`;
+
+    const up = document.createElement("button");
+    up.type = "button";
+    up.className = "secondary light block-mini";
+    up.textContent = "Gor";
+    up.disabled = index === 0;
+    up.addEventListener("click", () => moveBlockToken(item.token, "up"));
+
+    const down = document.createElement("button");
+    down.type = "button";
+    down.className = "secondary light block-mini";
+    down.textContent = "Dol";
+    down.disabled = index === items.length - 1;
+    down.addEventListener("click", () => moveBlockToken(item.token, "down"));
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "secondary danger block-mini";
+    remove.textContent = "Izbriši";
+    remove.addEventListener("click", () => removeBlockItem(item));
+
+    row.append(drag, copy, badge, up, down, remove);
+
+    row.addEventListener("dragstart", () => {
+      blockDragToken = item.token;
+      row.classList.add("is-dragging");
+    });
+    row.addEventListener("dragend", () => {
+      blockDragToken = "";
+      row.classList.remove("is-dragging");
+      elements.blockList.querySelectorAll(".is-drop-target").forEach((node) => node.classList.remove("is-drop-target"));
+    });
+    row.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      row.classList.add("is-drop-target");
+    });
+    row.addEventListener("dragleave", () => row.classList.remove("is-drop-target"));
+    row.addEventListener("drop", (event) => {
+      event.preventDefault();
+      row.classList.remove("is-drop-target");
+      if (!blockDragToken || blockDragToken === item.token) return;
+
+      const order = ensureBlockOrder().filter((token) => token !== blockDragToken);
+      const targetIndex = order.indexOf(item.token);
+      if (targetIndex < 0) return;
+      order.splice(targetIndex, 0, blockDragToken);
+      content.blockOrder[selectedPage.key] = order;
+      markDirty();
+      renderBlockList();
+      loadPreview();
+    });
+
+    elements.blockList.append(row);
+  });
 };
 
 const renderFields = () => {
   elements.fieldList.textContent = "";
 
   pageEntries().forEach((entry, index) => {
+    if (entry.hidden) return;
     const key = `${entry.selector}|${index}`;
     const card = document.createElement("button");
     card.type = "button";
@@ -550,6 +999,10 @@ const findEntryByKey = (key) => {
 
 const getEntryStyle = (entry) => {
   if (!entry) return {};
+  if (entry.mediaBlockId) {
+    const block = findMediaBlock(entry.mediaBlockId);
+    return block?.[entry.mediaBlockStyleField] || {};
+  }
   if (!entry.customBlockId) return entry.style || {};
 
   const block = findCustomBlock(entry.customBlockId);
@@ -558,6 +1011,13 @@ const getEntryStyle = (entry) => {
 
 const ensureEntryStyle = (entry) => {
   if (!entry) return {};
+  if (entry.mediaBlockId) {
+    const block = findMediaBlock(entry.mediaBlockId);
+    if (!block) return {};
+    block[entry.mediaBlockStyleField] = block[entry.mediaBlockStyleField] || {};
+    entry.style = block[entry.mediaBlockStyleField];
+    return block[entry.mediaBlockStyleField];
+  }
   if (!entry.customBlockId) {
     entry.style = entry.style || {};
     return entry.style;
@@ -573,6 +1033,13 @@ const ensureEntryStyle = (entry) => {
 const clearEntryStyle = (entry) => {
   if (!entry) return;
 
+  if (entry.mediaBlockId) {
+    const block = findMediaBlock(entry.mediaBlockId);
+    if (block) delete block[entry.mediaBlockStyleField];
+    delete entry.style;
+    return;
+  }
+
   if (entry.customBlockId) {
     const block = findCustomBlock(entry.customBlockId);
     if (block) delete block[entry.customBlockStyleField];
@@ -585,6 +1052,11 @@ const clearEntryStyle = (entry) => {
 
 const setEntryText = (entry, text) => {
   if (!entry) return;
+
+  if (entry.mediaBlockId) {
+    const block = findMediaBlock(entry.mediaBlockId);
+    if (block) block[entry.mediaBlockField] = text;
+  }
 
   if (entry.customBlockId) {
     const block = findCustomBlock(entry.customBlockId);
@@ -641,11 +1113,15 @@ const applyImageStyleToTarget = (target, style = {}) => {
   const width = Number(style?.width) || 0;
   const x = Number(style?.x) || 0;
   const y = Number(style?.y) || 0;
+  const borderWidth = Number(style?.borderWidth) || 0;
+  const borderRadius = Number(style?.borderRadius) || 0;
 
   target.style.width = width ? `${width}px` : "";
   target.style.maxWidth = width ? "100%" : "";
   target.style.left = x ? `${x}px` : "";
   target.style.top = y ? `${y}px` : "";
+  target.style.border = borderWidth ? `${borderWidth}px solid ${style?.borderColor || "#01457e"}` : "";
+  target.style.borderRadius = borderRadius ? `${borderRadius}px` : "";
 
   if (x || y) {
     target.style.position = "relative";
@@ -658,8 +1134,19 @@ const updateImageControls = () => {
   const entry = activeImageEntry();
   const disabled = !entry;
 
-  [elements.imageSrc, elements.imageAlt, elements.imageWidth, elements.imageX, elements.imageY, elements.imageReset].forEach((control) => {
-    control.disabled = disabled;
+  [
+    elements.imageSrc,
+    elements.imageAlt,
+    elements.imageWidth,
+    elements.imageX,
+    elements.imageY,
+    elements.imageBorderWidth,
+    elements.imageBorderColor,
+    elements.imageBorderRadius,
+    elements.imageReset,
+    elements.imageRemove,
+  ].forEach((control) => {
+    if (control) control.disabled = disabled;
   });
 
   elements.imageLabel.textContent = entry
@@ -670,6 +1157,9 @@ const updateImageControls = () => {
   elements.imageWidth.value = entry?.style?.width || "";
   elements.imageX.value = entry?.style?.x ?? "";
   elements.imageY.value = entry?.style?.y ?? "";
+  elements.imageBorderWidth.value = entry?.style?.borderWidth || "";
+  elements.imageBorderColor.value = entry?.style?.borderColor || "#01457e";
+  elements.imageBorderRadius.value = entry?.style?.borderRadius || "";
 };
 
 const setImageEntryValue = (property, value) => {
@@ -703,6 +1193,53 @@ const setImageStyleValue = (property, value) => {
   applyImageEntryToTarget(activeImage(), entry);
   markDirty();
   updateImageControls();
+};
+
+const removeActiveEntry = () => {
+  const entry = activeEntry();
+  if (!entry) return;
+
+  if (entry.customBlockId) {
+    const blocks = customBlocksForPage();
+    const index = blocks.findIndex((block) => ensureCustomBlockId(block) === entry.customBlockId);
+    if (index >= 0) blocks.splice(index, 1);
+    removeFromBlockOrder("text", entry.customBlockId);
+  } else if (entry.mediaBlockId) {
+    const blocks = mediaBlocksForPage();
+    const index = blocks.findIndex((block) => ensureMediaBlockId(block) === entry.mediaBlockId);
+    if (index >= 0) blocks.splice(index, 1);
+    removeFromBlockOrder("media", entry.mediaBlockId);
+  } else {
+    entry.text = "";
+    entry.hidden = true;
+  }
+
+  activeKey = "";
+  markDirty();
+  renderFields();
+  renderBlockList();
+  renderCustomBlockManager();
+  loadPreview();
+};
+
+const removeActiveImage = () => {
+  const entry = activeImageEntry();
+  if (!entry) return;
+
+  if (entry.customImage) {
+    const images = imageEntries();
+    const index = images.findIndex((image) => image.id === entry.id);
+    if (index >= 0) images.splice(index, 1);
+    removeFromBlockOrder("image", entry.id);
+  } else {
+    entry.hidden = true;
+  }
+
+  activeImageKey = "";
+  markDirty();
+  renderBlockList();
+  renderCustomImageManager();
+  loadPreview();
 };
 
 const dragEdgeSize = 18;
@@ -797,6 +1334,12 @@ const applyEntryStyleToTarget = (target, style = {}) => {
   target.style.color = style.color || "";
   target.style.fontSize = style.fontSize ? `${Number(style.fontSize)}px` : "";
   target.style.fontFamily = style.fontFamily || "";
+  target.style.border = style.borderWidth
+    ? `${Number(style.borderWidth)}px solid ${style.borderColor || "#01457e"}`
+    : "";
+  target.style.borderRadius = style.borderRadius ? `${Number(style.borderRadius)}px` : "";
+  target.style.padding =
+    style.borderWidth || style.borderRadius ? "0.35em 0.5em" : "";
 
   const hasMove = style.x !== undefined || style.y !== undefined;
   const x = Number(style.x) || 0;
@@ -817,11 +1360,20 @@ const updateStyleControls = () => {
   const style = getEntryStyle(entry);
   const disabled = !entry;
 
-  [elements.styleColor, elements.styleFontSize, elements.styleFontFamily, elements.styleX, elements.styleY, elements.styleReset].forEach(
-    (control) => {
-      control.disabled = disabled;
-    }
-  );
+  [
+    elements.styleColor,
+    elements.styleFontSize,
+    elements.styleFontFamily,
+    elements.styleX,
+    elements.styleY,
+    elements.styleBorderWidth,
+    elements.styleBorderColor,
+    elements.styleBorderRadius,
+    elements.styleRemove,
+    elements.styleReset,
+  ].forEach((control) => {
+    if (control) control.disabled = disabled;
+  });
 
   elements.styleLabel.textContent = entry
     ? entry.label || truncate(entry.text || "", 44)
@@ -831,6 +1383,9 @@ const updateStyleControls = () => {
   elements.styleFontFamily.value = style.fontFamily || "";
   elements.styleX.value = style.x ?? "";
   elements.styleY.value = style.y ?? "";
+  elements.styleBorderWidth.value = style.borderWidth || "";
+  elements.styleBorderColor.value = style.borderColor || "#01457e";
+  elements.styleBorderRadius.value = style.borderRadius || "";
 };
 
 const setEntryStyleValue = (property, value) => {
@@ -861,11 +1416,12 @@ const setEntryStyleValue = (property, value) => {
 const updateEntryText = (key, value) => {
   const entry = findEntryByKey(key);
   if (!entry) return;
-  const nextText = cleanText(value);
+  const nextText = normalizeEditableText(value);
   if (entry.text === nextText) return;
   setEntryText(entry, nextText);
   markDirty();
   renderFields();
+  renderBlockList();
 };
 
 const syncPreviewTexts = () => {
@@ -878,7 +1434,7 @@ const syncPreviewTexts = () => {
     const entry = findEntryByKey(editable.dataset.editorKey || "");
     if (!entry) return;
 
-    const nextText = cleanText(editable.textContent || "");
+    const nextText = normalizeEditableText(editable.innerText || editable.textContent || "");
     if (entry.text === nextText) return;
 
     setEntryText(entry, nextText);
@@ -888,6 +1444,7 @@ const syncPreviewTexts = () => {
   if (changed) {
     dirty = true;
     renderFields();
+    renderBlockList();
   }
 };
 
@@ -993,137 +1550,145 @@ const focusEditable = (key) => {
     editable.scrollIntoView({ block: "center", behavior: "smooth" });
     editable.focus();
     renderFields();
+    updateStyleControls();
     updateImageControls();
   }
 };
 
-const injectCustomBlocksIntoPreview = (doc) => {
+const injectCustomContentIntoPreview = (doc) => {
   const main = doc.querySelector("main");
   if (!main) return;
 
-  const blocks = customBlocksForPage();
-  const validIds = new Set(blocks.map((block) => ensureCustomBlockId(block)));
+  doc.querySelectorAll("[data-custom-blocks], [data-custom-images], [data-custom-content]").forEach((node) => node.remove());
 
-  doc.querySelectorAll("[data-custom-block]").forEach((blockElement) => {
-    if (!validIds.has(blockElement.getAttribute("data-custom-block") || "")) {
-      blockElement.remove();
-    }
-  });
+  const items = orderedBlockItems();
+  if (!items.length) return;
 
-  let section = doc.querySelector("[data-custom-blocks]");
-  if (!blocks.length) {
-    section?.remove();
-    return;
-  }
+  const section = doc.createElement("section");
+  section.className = "section custom-content-section";
+  section.setAttribute("data-custom-content", "");
 
-  if (!section) {
-    section = doc.createElement("section");
-    section.className = "section custom-content-section";
-    section.setAttribute("data-custom-blocks", "");
-    main.append(section);
-  }
+  const grid = doc.createElement("div");
+  grid.className = "custom-content-grid";
 
-  let grid = section.querySelector(".custom-content-grid");
-  if (!grid) {
-    grid = doc.createElement("div");
-    grid.className = "custom-content-grid";
-    section.append(grid);
-  }
-
-  blocks.forEach((block, index) => {
-    const id = ensureCustomBlockId(block);
-    let article = doc.querySelector(`[data-custom-block="${id}"]`);
-
-    if (!article) {
-      article = doc.createElement("article");
+  items.forEach((item, index) => {
+    if (item.type === "text") {
+      const article = doc.createElement("article");
       article.className = "custom-text-card reveal is-visible";
-      article.setAttribute("data-custom-block", id);
+      article.setAttribute("data-custom-block", item.id);
+
+      const title = doc.createElement("h2");
+      const text = doc.createElement("p");
+      applyTextWithLineBreaks(title, item.raw.title || `Okvir ${index + 1}`);
+      applyTextWithLineBreaks(text, item.raw.text || "Vpiši dodatno besedilo za ta okvir.");
+      applyEntryStyleToTarget(title, item.raw.titleStyle);
+      applyEntryStyleToTarget(text, item.raw.textStyle);
+      article.append(title, text);
       grid.append(article);
+      return;
     }
 
-    let title = article.querySelector("h2");
-    if (!title) {
-      title = doc.createElement("h2");
-      article.prepend(title);
+    if (item.type === "image") {
+      const figure = doc.createElement("figure");
+      figure.className = "custom-image-item reveal is-visible";
+      figure.setAttribute("data-custom-image", item.id);
+
+      const image = doc.createElement("img");
+      applyImageEntryToTarget(image, item.raw);
+      figure.append(image);
+
+      if (item.raw.alt) {
+        const caption = doc.createElement("figcaption");
+        applyTextWithLineBreaks(caption, item.raw.alt);
+        figure.append(caption);
+      }
+
+      grid.append(figure);
+      return;
     }
 
-    let text = article.querySelector("p");
-    if (!text) {
-      text = doc.createElement("p");
-      article.append(text);
+    const article = doc.createElement("article");
+    article.className = "custom-media-card reveal is-visible";
+    article.setAttribute("data-custom-media", item.id);
+
+    const mediaWrap = doc.createElement("div");
+    mediaWrap.className = "custom-media-surface";
+    const embed = mediaEmbedInfo(item.raw.type, item.raw.url);
+
+    if (embed.type === "image") {
+      const image = doc.createElement("img");
+      image.src = embed.src;
+      image.alt = item.raw.title || "Dodani medij";
+      mediaWrap.append(image);
+    } else if (embed.type === "iframe") {
+      const iframe = doc.createElement("iframe");
+      iframe.src = embed.src;
+      iframe.title = item.raw.title || "Dodani video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      mediaWrap.append(iframe);
+    } else if (embed.type === "video") {
+      const video = doc.createElement("video");
+      video.src = embed.src;
+      video.controls = true;
+      video.preload = "metadata";
+      mediaWrap.append(video);
+    } else if (embed.type === "audio") {
+      const audio = doc.createElement("audio");
+      audio.src = embed.src;
+      audio.controls = true;
+      mediaWrap.append(audio);
+    } else {
+      const link = doc.createElement("a");
+      link.href = embed.src;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.className = "button secondary";
+      link.textContent = "Odpri dokument";
+      mediaWrap.append(link);
     }
 
-    title.textContent = block.title || `Okvir ${index + 1}`;
-    text.textContent = block.text || "Vpiši dodatno besedilo za ta okvir.";
-    applyEntryStyleToTarget(title, block.titleStyle);
-    applyEntryStyleToTarget(text, block.textStyle);
+    const title = doc.createElement("h3");
+    const description = doc.createElement("p");
+    applyTextWithLineBreaks(title, item.raw.title || "Nov medijski blok");
+    applyTextWithLineBreaks(description, item.raw.description || "Dodaj opis za ta medij.");
+    applyEntryStyleToTarget(title, item.raw.titleStyle);
+    applyEntryStyleToTarget(description, item.raw.descriptionStyle);
+
+    article.append(mediaWrap, title, description);
+    grid.append(article);
   });
+
+  section.append(grid);
+  main.append(section);
 };
 
-const injectCustomImagesIntoPreview = (doc) => {
-  const main = doc.querySelector("main");
-  if (!main) return;
+const applyPageCssToPreview = (doc) => {
+  const styleId = "tuval-custom-page-css";
+  doc.getElementById(styleId)?.remove();
 
-  const images = customImageEntries();
-  const validIds = new Set(images.map((image) => image.id).filter(Boolean));
+  const css = pageCssForCurrentPage();
+  if (!css.trim()) return;
 
-  doc.querySelectorAll("[data-custom-image]").forEach((imageElement) => {
-    if (!validIds.has(imageElement.getAttribute("data-custom-image") || "")) {
-      imageElement.remove();
-    }
-  });
-
-  let section = doc.querySelector("[data-custom-images]");
-  if (!images.length) {
-    section?.remove();
-    return;
-  }
-
-  if (!section) {
-    section = doc.createElement("section");
-    section.className = "section custom-image-section";
-    section.setAttribute("data-custom-images", "");
-    main.append(section);
-  }
-
-  let grid = section.querySelector(".custom-image-grid");
-  if (!grid) {
-    grid = doc.createElement("div");
-    grid.className = "custom-image-grid";
-    section.append(grid);
-  }
-
-  images.forEach((entry) => {
-    let figure = doc.querySelector(`[data-custom-image="${CSS.escape(entry.id)}"]`);
-
-    if (!figure) {
-      figure = doc.createElement("figure");
-      figure.className = "custom-image-item reveal is-visible";
-      figure.setAttribute("data-custom-image", entry.id);
-      grid.append(figure);
-    }
-
-    let image = figure.querySelector("img");
-    if (!image) {
-      image = doc.createElement("img");
-      figure.append(image);
-    }
-
-    applyImageEntryToTarget(image, entry);
-  });
+  const style = doc.createElement("style");
+  style.id = styleId;
+  style.textContent = css;
+  doc.head.append(style);
 };
 
 const preparePreview = () => {
   const doc = elements.preview.contentDocument;
   if (!doc || !content) return;
 
-  injectCustomBlocksIntoPreview(doc);
-  injectCustomImagesIntoPreview(doc);
+  injectCustomContentIntoPreview(doc);
+  applyPageCssToPreview(doc);
   injectEditorStyles(doc);
   preventPreviewNavigation(doc);
   discoverEditableTexts(doc);
   discoverEditableImages(doc);
   renderFields();
+  renderBlockList();
 
   pageEntries().forEach((entry, index) => {
     if (!entry.selector || typeof entry.text !== "string" || entry.attribute) return;
@@ -1134,7 +1699,9 @@ const preparePreview = () => {
     target.dataset.editorKey = key;
     target.contentEditable = "true";
     target.spellcheck = true;
-    applyEntryStyleToTarget(target, entry.style);
+    target.hidden = Boolean(entry.hidden);
+    applyTextWithLineBreaks(target, entry.text);
+    applyEntryStyleToTarget(target, getEntryStyle(entry));
 
     const activateTarget = () => {
       activeKey = key;
@@ -1165,15 +1732,8 @@ const preparePreview = () => {
 
     target.addEventListener("blur", () => {
       target.classList.remove("editor-active");
-      updateEntryText(key, target.textContent);
+      updateEntryText(key, target.innerText || target.textContent);
       updateStyleControls();
-    });
-
-    target.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        target.blur();
-      }
     });
   });
 
@@ -1185,6 +1745,7 @@ const preparePreview = () => {
 
     target.dataset.imageKey = key;
     target.tabIndex = 0;
+    target.hidden = Boolean(entry.hidden);
     applyImageEntryToTarget(target, entry);
 
     target.addEventListener(
@@ -1242,6 +1803,21 @@ const preparePreview = () => {
     pendingCustomBlockId = "";
   }
 
+  if (pendingMediaBlockId) {
+    const block = doc.querySelector(`[data-custom-media="${CSS.escape(pendingMediaBlockId)}"]`);
+    const title = block?.querySelector("h3");
+
+    if (block) {
+      block.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+
+    if (title?.dataset.editorKey) {
+      focusEditable(title.dataset.editorKey);
+    }
+
+    pendingMediaBlockId = "";
+  }
+
   updateStyleControls();
   updateImageControls();
 };
@@ -1253,6 +1829,10 @@ const loadPreview = () => {
   renderFields();
   updateStyleControls();
   updateImageControls();
+  if (elements.pageCss) {
+    elements.pageCss.value = pageCssForCurrentPage();
+  }
+  renderBlockList();
   renderCustomBlockManager();
   renderCustomImageManager();
   renderVideoManager();
@@ -1282,6 +1862,18 @@ const loadContent = async () => {
       ? content.customBlocks
       : {};
   content.images = content.images && typeof content.images === "object" ? content.images : {};
+  content.mediaBlocks =
+    content.mediaBlocks && typeof content.mediaBlocks === "object" && !Array.isArray(content.mediaBlocks)
+      ? content.mediaBlocks
+      : {};
+  content.blockOrder =
+    content.blockOrder && typeof content.blockOrder === "object" && !Array.isArray(content.blockOrder)
+      ? content.blockOrder
+      : {};
+  content.customCss =
+    content.customCss && typeof content.customCss === "object" && !Array.isArray(content.customCss)
+      ? content.customCss
+      : {};
   content.videos = Array.isArray(content.videos) ? content.videos : [];
   pageMap.forEach((page) => {
     content[page.key] = content[page.key] || [];
@@ -1291,6 +1883,13 @@ const loadContent = async () => {
     content.images[page.key] = Array.isArray(content.images[page.key])
       ? content.images[page.key]
       : [];
+    content.mediaBlocks[page.key] = Array.isArray(content.mediaBlocks[page.key])
+      ? content.mediaBlocks[page.key]
+      : [];
+    content.blockOrder[page.key] = Array.isArray(content.blockOrder[page.key])
+      ? content.blockOrder[page.key]
+      : [];
+    content.customCss[page.key] = typeof content.customCss[page.key] === "string" ? content.customCss[page.key] : "";
   });
 };
 
@@ -1370,6 +1969,64 @@ const saveToGithub = async () => {
   setStatus(result.message || "Shranjeno. Stran je osvežena.", "success");
 };
 
+const uploadMediaFile = async () => {
+  const file = elements.mediaFile?.files?.[0];
+  if (!file) {
+    setStatus("Najprej izberi datoteko za nalaganje.", "error");
+    return;
+  }
+
+  if (!authenticated) {
+    setStatus("Najprej se prijavi z admin računom.", "error");
+    return;
+  }
+
+  setStatus("Nalagam datoteko na strežnik...");
+
+  const dataUrl = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ""));
+    reader.onerror = () => reject(new Error("Datoteke ni bilo mogoče prebrati."));
+    reader.readAsDataURL(file);
+  });
+
+  const response = await fetch("../api/upload", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fileName: file.name,
+      dataUrl,
+    }),
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    setStatus(result.message || "Nalaganje ni uspelo.", "error");
+    return;
+  }
+
+  elements.mediaUrl.value = result.url || "";
+  if ((result.mimeType || "").startsWith("image/")) {
+    elements.mediaType.value = "image";
+    elements.newImageSrc.value = result.url || "";
+    if (!elements.newImageAlt.value.trim()) {
+      elements.newImageAlt.value = file.name.replace(/\.[^.]+$/, "");
+    }
+  } else if ((result.mimeType || "").startsWith("video/")) {
+    elements.mediaType.value = "video";
+  } else if ((result.mimeType || "").startsWith("audio/")) {
+    elements.mediaType.value = "audio";
+  } else {
+    elements.mediaType.value = "document";
+  }
+
+  if (!elements.mediaTitle.value.trim()) {
+    elements.mediaTitle.value = file.name.replace(/\.[^.]+$/, "");
+  }
+
+  setStatus("Datoteka je naložena. Zdaj jo lahko dodaš kot blok ali sliko.", "success");
+};
+
 const init = async () => {
   const initialParams = new URLSearchParams(window.location.search);
   const requestedPage = initialParams.get("page");
@@ -1414,13 +2071,35 @@ const init = async () => {
   elements.videoAdd.addEventListener("click", addVideo);
   elements.customAdd.addEventListener("click", addCustomBlock);
   elements.newImageAdd.addEventListener("click", addCustomImage);
+  elements.mediaAdd.addEventListener("click", addMediaBlock);
+  elements.mediaUpload.addEventListener("click", uploadMediaFile);
   elements.styleColor.addEventListener("input", () => setEntryStyleValue("color", elements.styleColor.value));
+  elements.styleBorderWidth.addEventListener("input", () =>
+    setEntryStyleValue("borderWidth", elements.styleBorderWidth.value)
+  );
+  elements.styleBorderColor.addEventListener("input", () =>
+    setEntryStyleValue("borderColor", elements.styleBorderColor.value)
+  );
+  elements.styleBorderRadius.addEventListener("input", () =>
+    setEntryStyleValue("borderRadius", elements.styleBorderRadius.value)
+  );
   elements.imageSrc.addEventListener("input", () => setImageEntryValue("src", elements.imageSrc.value));
   elements.imageAlt.addEventListener("input", () => setImageEntryValue("alt", elements.imageAlt.value));
   elements.imageWidth.addEventListener("input", () => setImageStyleValue("width", elements.imageWidth.value));
   elements.imageX.addEventListener("input", () => setImageStyleValue("x", elements.imageX.value));
   elements.imageY.addEventListener("input", () => setImageStyleValue("y", elements.imageY.value));
+  elements.imageBorderWidth.addEventListener("input", () =>
+    setImageStyleValue("borderWidth", elements.imageBorderWidth.value)
+  );
+  elements.imageBorderColor.addEventListener("input", () =>
+    setImageStyleValue("borderColor", elements.imageBorderColor.value)
+  );
+  elements.imageBorderRadius.addEventListener("input", () =>
+    setImageStyleValue("borderRadius", elements.imageBorderRadius.value)
+  );
+  elements.imageRemove.addEventListener("click", removeActiveImage);
   elements.imageReset.addEventListener("click", () => {
+    if (!activeImageKey) return;
     const indexText = activeImageKey.split("|").pop();
     const index = Number(indexText);
     if (Number.isNaN(index)) return;
@@ -1439,6 +2118,7 @@ const init = async () => {
   );
   elements.styleX.addEventListener("input", () => setEntryStyleValue("x", elements.styleX.value));
   elements.styleY.addEventListener("input", () => setEntryStyleValue("y", elements.styleY.value));
+  elements.styleRemove.addEventListener("click", removeActiveEntry);
   elements.styleReset.addEventListener("click", () => {
     const entry = activeEntry();
     if (!entry) return;
@@ -1446,6 +2126,13 @@ const init = async () => {
     applyEntryStyleToTarget(activeEditable(), {});
     markDirty();
     updateStyleControls();
+  });
+  elements.pageCss.addEventListener("input", () => {
+    setPageCssForCurrentPage(elements.pageCss.value);
+    markDirty();
+    if (elements.preview.contentDocument) {
+      applyPageCssToPreview(elements.preview.contentDocument);
+    }
   });
   updateStyleControls();
   updateImageControls();

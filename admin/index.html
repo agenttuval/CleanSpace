@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tu-Val CleanSpace urejevalnik</title>
-    <link rel="stylesheet" href="editor.css?v=6">
+    <link rel="stylesheet" href="editor.css?v=7">
   </head>
   <body>
     <header class="editor-header">
@@ -34,6 +34,13 @@
           Stran
           <select data-page-select></select>
         </label>
+        <div class="block-editor-panel" data-block-editor>
+          <div class="style-panel-head">
+            <strong>Bloki strani</strong>
+            <span>Dodane okvirje, slike in medije lahko prestaviš, urediš ali odstraniš.</span>
+          </div>
+          <div class="block-list" data-block-list></div>
+        </div>
         <div class="custom-panel" data-custom-panel>
           <div class="style-panel-head">
             <strong>Dodaj besedilni okvir</strong>
@@ -88,7 +95,20 @@
               Premik gor/dol
               <input data-style-y type="number" min="-260" max="260" step="1" placeholder="0">
             </label>
+            <label>
+              Rob
+              <input data-style-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-style-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-style-border-radius type="number" min="0" max="80" step="1" placeholder="px">
+            </label>
           </div>
+          <button class="secondary danger" type="button" data-style-remove>Odstrani izbrano besedilo</button>
           <button class="secondary light" type="button" data-style-reset>Ponastavi obliko</button>
         </div>
         <div class="image-panel" data-image-panel>
@@ -128,9 +148,65 @@
               Premik gor/dol
               <input data-image-y type="number" min="-600" max="600" step="1" placeholder="0">
             </label>
+            <label>
+              Rob
+              <input data-image-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-image-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-image-border-radius type="number" min="0" max="120" step="1" placeholder="px">
+            </label>
           </div>
+          <button class="secondary danger" type="button" data-image-remove>Odstrani izbrano sliko</button>
           <button class="secondary light" type="button" data-image-reset>Odstrani ali ponastavi sliko</button>
           <div class="custom-admin-list" data-custom-image-list></div>
+        </div>
+        <div class="media-panel" data-media-panel>
+          <div class="style-panel-head">
+            <strong>Dodaj medij</strong>
+            <span>Naloži ali prilepi URL za sliko, video, audio, PDF ali drug dokument.</span>
+          </div>
+          <label>
+            Datoteka
+            <input data-media-file type="file">
+          </label>
+          <button class="secondary light" type="button" data-media-upload>Naloži datoteko</button>
+          <label>
+            Tip medija
+            <select data-media-type>
+              <option value="image">Slika</option>
+              <option value="video">Video</option>
+              <option value="audio">Audio</option>
+              <option value="document">Dokument ali povezava</option>
+            </select>
+          </label>
+          <label>
+            Naslov
+            <input data-media-title type="text" placeholder="Npr. Navodila za uporabo">
+          </label>
+          <label>
+            URL ali embed koda
+            <textarea data-media-url rows="3" placeholder="https://..."></textarea>
+          </label>
+          <label>
+            Kratek opis
+            <textarea data-media-description rows="3" placeholder="Opis medija za obiskovalce"></textarea>
+          </label>
+          <button class="primary" type="button" data-media-add>Dodaj medijski blok</button>
+        </div>
+        <div class="css-panel" data-css-panel>
+          <div class="style-panel-head">
+            <strong>Dodatni CSS za stran</strong>
+            <span>Sem lahko vpišeš svoje dodatne stile za trenutno stran.</span>
+          </div>
+          <label>
+            CSS
+            <textarea data-page-css rows="8" placeholder=".custom-text-card { transform: rotate(-1deg); }"></textarea>
+          </label>
         </div>
         <div class="video-manager" data-video-manager hidden>
           <div class="style-panel-head">
@@ -168,7 +244,7 @@
       </section>
     </main>
 
-    <script src="editor.js?v=11"></script>
+    <script src="editor.js?v=12"></script>
   </body>
 </html>
 

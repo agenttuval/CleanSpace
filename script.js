@@ -60,6 +60,22 @@ const currentPageName = () => window.location.pathname.split("/").pop() || "inde
 
 const currentContentKey = () => contentPageNames[currentPageName()] || currentPageName();
 
+const normalizeEditableText = (text = "") =>
+  String(text || "")
+    .replace(/\r/g, "")
+    .replace(/\u00A0/g, " ")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+const applyTextWithLineBreaks = (element, text = "") => {
+  if (!element) return;
+  element.textContent = text;
+  element.style.whiteSpace = text.includes("\n") ? "pre-line" : "";
+};
+
 const applyEditableStyle = (element, style = {}) => {
   if (!element || !style) return;
 
@@ -74,6 +90,15 @@ const applyEditableStyle = (element, style = {}) => {
   if (style.fontFamily) {
     element.style.fontFamily = style.fontFamily;
   }
+
+  if (style.borderWidth) {
+    element.style.border = `${Number(style.borderWidth)}px solid ${style.borderColor || "#01457e"}`;
+    element.style.padding = "0.35em 0.5em";
+  } else {
+    element.style.border = "";
+    element.style.padding = "";
+  }
+  element.style.borderRadius = style.borderRadius ? `${Number(style.borderRadius)}px` : "";
 
   if (style.x || style.y) {
     element.style.position = element.style.position || "relative";
@@ -90,127 +115,6 @@ const customBlocksForCurrentPage = (content = {}) => {
   return [...groupFor(currentPageName()), ...groupFor(currentContentKey())];
 };
 
-const parseMarkdown = (plainText) => {
-  if (!plainText) return "";
-  
-  const lines = plainText.split(/\r?\n/);
-  const html = [];
-  
-  let inList = false;
-  let listItems = [];
-  let currentParagraphLines = [];
-  let currentListItemLines = [];
-
-  const flushParagraph = () => {
-    if (currentParagraphLines.length > 0) {
-      let content = currentParagraphLines.join("<br>");
-      content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-      html.push(`<p class="custom-p">${content}</p>`);
-      currentParagraphLines = [];
-    }
-  };
-
-  const flushListItem = () => {
-    if (currentListItemLines.length > 0) {
-      let content = currentListItemLines.join("<br>");
-      content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-      listItems.push(`<li class="custom-list-item">${content}</li>`);
-      currentListItemLines = [];
-    }
-  };
-
-  const flushList = () => {
-    flushListItem();
-    if (listItems.length > 0) {
-      html.push(`<ul class="custom-bullet-list">${listItems.join("")}</ul>`);
-      listItems = [];
-    }
-    inList = false;
-  };
-
-  for (let i = 0; i < lines.length; i++) {
-    const rawLine = lines[i];
-    const trimmed = rawLine.trim();
-
-    if (trimmed.startsWith("*") || trimmed.startsWith("-")) {
-      flushParagraph();
-      if (inList) {
-        flushListItem();
-      } else {
-        inList = true;
-      }
-      let content = trimmed.replace(/^\s*[*|\-]\s+/, "").trim();
-      currentListItemLines.push(content);
-    } else if (trimmed === "") {
-      let nextIsListItem = false;
-      for (let j = i + 1; j < lines.length; j++) {
-        const nextTrimmed = lines[j].trim();
-        if (nextTrimmed !== "") {
-          if (nextTrimmed.startsWith("*") || nextTrimmed.startsWith("-")) {
-            nextIsListItem = true;
-          }
-          break;
-        }
-      }
-
-      if (inList) {
-        if (nextIsListItem) {
-          flushListItem();
-        } else {
-          flushList();
-        }
-      } else {
-        flushParagraph();
-      }
-    } else {
-      if (inList) {
-        currentListItemLines.push(trimmed);
-      } else {
-        currentParagraphLines.push(rawLine);
-      }
-    }
-  }
-
-  flushParagraph();
-  flushList();
-
-  return html.join("\n");
-};
-
-const renderCustomBlocks = (content = {}) => {
-  const blocks = customBlocksForCurrentPage(content);
-  const main = document.querySelector("main");
-  if (!main || !blocks.length) return;
-
-  const section = document.createElement("section");
-  section.setAttribute("class", "section custom-content-section");
-  section.setAttribute("data-custom-blocks", "");
-
-  const grid = document.createElement("div");
-  grid.setAttribute("class", "custom-content-grid");
-
-  blocks.forEach((block, index) => {
-    const article = document.createElement("article");
-    article.setAttribute("class", "custom-text-card reveal is-visible");
-    article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
-
-    const title = document.createElement("h2");
-    title.innerText = block.title || "Dodaten opis";
-    applyEditableStyle(title, block.titleStyle);
-
-    const text = document.createElement("div");
-    text.setAttribute("class", "custom-text-body");
-    text.innerHTML = parseMarkdown(block.text || "Dodajte besedilo za ta okvir.");
-    applyEditableStyle(text, block.textStyle);
-
-    article.append(title, text);
-    grid.append(article);
-  });
-
-  section.append(grid);
-  main.append(section);
-};
-
 const customImageEntriesForCurrentPage = (content = {}) => {
   const groups = content.images || {};
   if (!groups || typeof groups !== "object" || Array.isArray(groups)) return [];
@@ -219,67 +123,226 @@ const customImageEntriesForCurrentPage = (content = {}) => {
   return [...groupFor(currentPageName()), ...groupFor(currentContentKey())].filter((entry) => entry?.customImage);
 };
 
+const mediaBlocksForCurrentPage = (content = {}) => {
+  const groups = content.mediaBlocks || {};
+  if (!groups || typeof groups !== "object" || Array.isArray(groups)) return [];
+
+  const groupFor = (key) => (Array.isArray(groups[key]) ? groups[key] : []);
+  return [...groupFor(currentPageName()), ...groupFor(currentContentKey())];
+};
+
+const blockOrderForCurrentPage = (content = {}) => {
+  const groups = content.blockOrder || {};
+  if (!groups || typeof groups !== "object" || Array.isArray(groups)) return [];
+
+  const order = [
+    ...(Array.isArray(groups[currentPageName()]) ? groups[currentPageName()] : []),
+    ...(Array.isArray(groups[currentContentKey()]) ? groups[currentContentKey()] : []),
+  ];
+
+  return [...new Set(order.filter(Boolean))];
+};
+
 const applyEditableImageStyle = (image, style = {}) => {
   if (!image || !style) return;
 
   const width = Number(style.width) || 0;
   const x = Number(style.x) || 0;
   const y = Number(style.y) || 0;
+  const borderWidth = Number(style.borderWidth) || 0;
+  const borderRadius = Number(style.borderRadius) || 0;
 
   image.style.width = width ? `${width}px` : "";
   image.style.maxWidth = width ? "100%" : "";
   image.style.left = x ? `${x}px` : "";
   image.style.top = y ? `${y}px` : "";
+  image.style.border = borderWidth ? `${borderWidth}px solid ${style.borderColor || "#01457e"}` : "";
+  image.style.borderRadius = borderRadius ? `${borderRadius}px` : "";
   image.style.position = x || y ? "relative" : "";
 };
 
-const renderCustomImages = (content = {}) => {
+const normalizeMediaUrl = (value = "") => {
+  const iframeMatch = value.match(/src=["']([^"']+)["']/i);
+  return (iframeMatch ? iframeMatch[1] : value).trim();
+};
+
+const mediaEmbedInfo = (type = "document", rawUrl = "") => {
+  const normalizedUrl = normalizeMediaUrl(rawUrl);
+  const mediaType = type || "document";
+
+  try {
+    const url = new URL(normalizedUrl, window.location.href);
+    const host = url.hostname.replace(/^www\./, "");
+
+    if (mediaType === "image") return { type: "image", src: url.href };
+    if (mediaType === "audio") return { type: "audio", src: url.href };
+
+    if (mediaType === "video") {
+      if (host === "youtu.be") {
+        return { type: "iframe", src: `https://www.youtube.com/embed/${url.pathname.replace("/", "")}` };
+      }
+
+      if (host.includes("youtube.com")) {
+        const videoId = url.searchParams.get("v") || url.pathname.split("/").filter(Boolean).pop();
+        if (videoId) return { type: "iframe", src: `https://www.youtube.com/embed/${videoId}` };
+      }
+
+      if (host.includes("vimeo.com")) {
+        const videoId = url.pathname.split("/").filter(Boolean).pop();
+        if (videoId) return { type: "iframe", src: `https://player.vimeo.com/video/${videoId}` };
+      }
+
+      if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url.pathname)) {
+        return { type: "video", src: url.href };
+      }
+    }
+
+    return { type: "link", src: url.href };
+  } catch (error) {
+    if (mediaType === "image") return { type: "image", src: normalizedUrl };
+    if (mediaType === "audio") return { type: "audio", src: normalizedUrl };
+    if (mediaType === "video") return { type: "video", src: normalizedUrl };
+    return { type: "link", src: normalizedUrl };
+  }
+};
+
+const renderCustomContent = (content = {}) => {
+  const blocks = customBlocksForCurrentPage(content);
   const images = customImageEntriesForCurrentPage(content);
+  const mediaBlocks = mediaBlocksForCurrentPage(content);
   const main = document.querySelector("main");
-  if (!main || !images.length) return;
+  if (!main) return;
+
+  document.querySelectorAll("[data-custom-blocks], [data-custom-images], [data-custom-content]").forEach((node) => node.remove());
+
+  const textMap = new Map(blocks.map((block) => [`text:${block.id}`, block]));
+  const imageMap = new Map(images.map((entry) => [`image:${entry.id}`, entry]));
+  const mediaMap = new Map(mediaBlocks.map((entry) => [`media:${entry.id}`, entry]));
+  const fallbackOrder = [
+    ...blocks.map((block) => `text:${block.id}`),
+    ...images.map((entry) => `image:${entry.id}`),
+    ...mediaBlocks.map((entry) => `media:${entry.id}`),
+  ];
+  const order = blockOrderForCurrentPage(content);
+  const finalOrder = order.length ? [...order, ...fallbackOrder.filter((token) => !order.includes(token))] : fallbackOrder;
+
+  if (!finalOrder.length) return;
 
   const section = document.createElement("section");
-  section.setAttribute("class", "section custom-image-section");
-  section.setAttribute("data-custom-images", "");
+  section.className = "section custom-content-section";
+  section.setAttribute("data-custom-content", "");
 
   const grid = document.createElement("div");
-  grid.setAttribute("class", "custom-image-grid");
+  grid.className = "custom-content-grid";
 
-  images.forEach((entry, index) => {
-    const figure = document.createElement("figure");
-    figure.setAttribute("class", "custom-image-item reveal is-visible");
-    figure.setAttribute("data-custom-image", entry.id || `custom-image-${index + 1}`);
+  finalOrder.forEach((token, index) => {
+    if (token.startsWith("text:")) {
+      const block = textMap.get(token);
+      if (!block) return;
 
-    const image = document.createElement("img");
-    image.src = entry.src;
-    image.alt = entry.alt || "Dodana slika";
-    applyEditableImageStyle(image, entry.style);
+      const article = document.createElement("article");
+      article.className = "custom-text-card reveal is-visible";
+      article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
 
-    figure.append(image);
-    grid.append(figure);
+      const title = document.createElement("h2");
+      applyTextWithLineBreaks(title, normalizeEditableText(block.title || "Dodaten opis"));
+      applyEditableStyle(title, block.titleStyle);
+
+      const text = document.createElement("p");
+      applyTextWithLineBreaks(text, normalizeEditableText(block.text || "Dodajte besedilo za ta okvir."));
+      applyEditableStyle(text, block.textStyle);
+
+      article.append(title, text);
+      grid.append(article);
+      return;
+    }
+
+    if (token.startsWith("image:")) {
+      const entry = imageMap.get(token);
+      if (!entry) return;
+
+      const figure = document.createElement("figure");
+      figure.className = "custom-image-item reveal is-visible";
+      figure.setAttribute("data-custom-image", entry.id || `custom-image-${index + 1}`);
+
+      const image = document.createElement("img");
+      image.src = entry.src;
+      image.alt = entry.alt || "Dodana slika";
+      applyEditableImageStyle(image, entry.style);
+      figure.append(image);
+
+      if (entry.alt) {
+        const caption = document.createElement("figcaption");
+        applyTextWithLineBreaks(caption, normalizeEditableText(entry.alt));
+        figure.append(caption);
+      }
+
+      grid.append(figure);
+      return;
+    }
+
+    const entry = mediaMap.get(token);
+    if (!entry) return;
+
+    const article = document.createElement("article");
+    article.className = "custom-media-card reveal is-visible";
+    article.setAttribute("data-custom-media", entry.id || `custom-media-${index + 1}`);
+
+    const surface = document.createElement("div");
+    surface.className = "custom-media-surface";
+    const embed = mediaEmbedInfo(entry.type, entry.url);
+
+    if (embed.type === "image") {
+      const image = document.createElement("img");
+      image.src = embed.src;
+      image.alt = entry.title || "Dodani medij";
+      surface.append(image);
+    } else if (embed.type === "iframe") {
+      const iframe = document.createElement("iframe");
+      iframe.src = embed.src;
+      iframe.title = entry.title || "Video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      surface.append(iframe);
+    } else if (embed.type === "video") {
+      const video = document.createElement("video");
+      video.src = embed.src;
+      video.controls = true;
+      video.preload = "metadata";
+      surface.append(video);
+    } else if (embed.type === "audio") {
+      const audio = document.createElement("audio");
+      audio.src = embed.src;
+      audio.controls = true;
+      surface.append(audio);
+    } else {
+      const link = document.createElement("a");
+      link.href = embed.src;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.className = "button";
+      link.textContent = "Odpri dokument";
+      surface.append(link);
+    }
+
+    const title = document.createElement("h3");
+    applyTextWithLineBreaks(title, normalizeEditableText(entry.title || "Nov medijski blok"));
+    applyEditableStyle(title, entry.titleStyle);
+
+    const description = document.createElement("p");
+    applyTextWithLineBreaks(description, normalizeEditableText(entry.description || "Dodaj opis za ta medij."));
+    applyEditableStyle(description, entry.descriptionStyle);
+
+    article.append(surface, title, description);
+    grid.append(article);
   });
 
   section.append(grid);
   main.append(section);
 };
 
-const ensureUnifiedLayout = (doc = document) => {
-  const contentSection = doc.querySelector(".custom-content-section");
-  const imageSection = doc.querySelector(".custom-image-section");
-  if (contentSection && imageSection) {
-    let wrapper = doc.querySelector(".custom-unified-wrapper");
-    if (!wrapper) {
-      wrapper = doc.createElement("div");
-      wrapper.className = "custom-unified-wrapper";
-      contentSection.parentNode.insertBefore(wrapper, contentSection);
-    }
-    wrapper.appendChild(contentSection);
-    wrapper.appendChild(imageSection);
-  }
-};
-window.ensureUnifiedLayout = ensureUnifiedLayout;
-
-const applyEditableTexts = (content = {}) => {
+const applyEditableTexts = (content = siteContent) => {
   const textGroups = mergeTextGroups(window.TUVAL_TEXTS || {}, content);
   if (!Object.keys(textGroups).length) return;
 
@@ -305,13 +368,16 @@ const applyEditableTexts = (content = {}) => {
         return;
       }
 
-      element.innerText = entry.text;
+      element.hidden = Boolean(entry.hidden);
+      if (entry.hidden) return;
+
+      applyTextWithLineBreaks(element, normalizeEditableText(entry.text));
       applyEditableStyle(element, entry.style);
     });
   });
 };
 
-const applyEditableImages = (content = {}) => {
+const applyEditableImages = (content = siteContent) => {
   const imageGroups = content.images || {};
   if (!imageGroups || typeof imageGroups !== "object") return;
 
@@ -324,10 +390,13 @@ const applyEditableImages = (content = {}) => {
   ];
 
   entries.forEach((entry) => {
-    if (!entry?.selector || !entry.src) return;
+    if (!entry?.selector || (!entry.src && !entry.hidden)) return;
 
     const image = document.querySelector(entry.selector);
     if (!image) return;
+
+    image.hidden = Boolean(entry.hidden);
+    if (entry.hidden) return;
 
     image.src = entry.src;
     image.setAttribute("src", entry.src);
@@ -341,9 +410,22 @@ const applyEditableImages = (content = {}) => {
   });
 };
 
-renderCustomBlocks(siteContent);
-renderCustomImages(siteContent);
-ensureUnifiedLayout(document);
+const applyCustomCss = (content = siteContent) => {
+  const cssGroups = content.customCss || {};
+  if (!cssGroups || typeof cssGroups !== "object" || Array.isArray(cssGroups)) return;
+
+  document.querySelector("[data-custom-page-css]")?.remove();
+  const css = [cssGroups[currentPageName()] || "", cssGroups[currentContentKey()] || ""].filter(Boolean).join("\n");
+  if (!css.trim()) return;
+
+  const style = document.createElement("style");
+  style.setAttribute("data-custom-page-css", "");
+  style.textContent = css;
+  document.head.append(style);
+};
+
+renderCustomContent(siteContent);
+applyCustomCss(siteContent);
 applyEditableTexts(siteContent);
 applyEditableImages(siteContent);
 
@@ -1134,7 +1216,7 @@ const rememberOriginalValue = (element, attribute) => {
   }
 
   if (!element.dataset?.originalText) {
-    element.dataset.originalText = element.innerText || "";
+    element.dataset.originalText = element.textContent || "";
   }
 };
 
@@ -1157,7 +1239,7 @@ const setTranslatedText = (element, text) => {
   }
 
   rememberOriginalValue(element);
-  element.innerText = text;
+  element.textContent = text;
 };
 
 const restoreOriginalLanguageText = () => {
@@ -1169,7 +1251,7 @@ const restoreOriginalLanguageText = () => {
   });
 
   document.querySelectorAll("[data-original-text]").forEach((element) => {
-    element.innerText = element.dataset.originalText || "";
+    element.textContent = element.dataset.originalText || "";
   });
 
   ["placeholder", "aria-label", "title"].forEach((attribute) => {
