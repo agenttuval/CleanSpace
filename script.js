@@ -92,6 +92,8 @@ const applyEditableStyle = (element, style = {}) => {
     element.style.fontFamily = style.fontFamily;
   }
 
+  element.style.fontWeight = style.fontWeight || "";
+
   element.style.width = style.width ? `${Number(style.width)}px` : "";
   element.style.minHeight = style.minHeight ? `${Number(style.minHeight)}px` : "";
   element.style.maxWidth = style.width ? "100%" : "";

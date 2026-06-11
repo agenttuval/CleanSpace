@@ -39,6 +39,7 @@ const elements = {
   styleBorderWidth: document.querySelector("[data-style-border-width]"),
   styleBorderColor: document.querySelector("[data-style-border-color]"),
   styleBorderRadius: document.querySelector("[data-style-border-radius]"),
+  styleBold: document.querySelector("[data-style-bold]"),
   styleBulletsDisc: document.querySelector("[data-style-bullets-disc]"),
   styleBulletsSquare: document.querySelector("[data-style-bullets-square]"),
   styleBulletsNone: document.querySelector("[data-style-bullets-none]"),
@@ -1432,6 +1433,7 @@ const applyEntryStyleToTarget = (target, style = {}) => {
   target.style.color = style.color || "";
   target.style.fontSize = style.fontSize ? `${Number(style.fontSize)}px` : "";
   target.style.fontFamily = style.fontFamily || "";
+  target.style.fontWeight = style.fontWeight || "";
   target.style.width = style.width ? `${Number(style.width)}px` : "";
   target.style.minHeight = style.minHeight ? `${Number(style.minHeight)}px` : "";
   target.style.maxWidth = style.width ? "100%" : "";
@@ -1472,6 +1474,7 @@ const updateStyleControls = () => {
     elements.styleBorderWidth,
     elements.styleBorderColor,
     elements.styleBorderRadius,
+    elements.styleBold,
     elements.styleBulletsDisc,
     elements.styleBulletsSquare,
     elements.styleBulletsNone,
@@ -1492,6 +1495,7 @@ const updateStyleControls = () => {
   elements.styleBorderWidth.value = style.borderWidth || "";
   elements.styleBorderColor.value = style.borderColor || "#01457e";
   elements.styleBorderRadius.value = style.borderRadius || "";
+  elements.styleBold?.classList.toggle("is-active", String(style.fontWeight || "") === "700");
 };
 
 const setEntryStyleValue = (property, value) => {
@@ -1502,7 +1506,7 @@ const setEntryStyleValue = (property, value) => {
 
   if (value === "") {
     delete style[property];
-  } else if (property === "fontFamily" || property === "color") {
+  } else if (property === "fontFamily" || property === "color" || property === "fontWeight") {
     style[property] = value;
   } else {
     const numericValue = Number(value);
@@ -2189,6 +2193,12 @@ const init = async () => {
   elements.styleBorderRadius.addEventListener("input", () =>
     setEntryStyleValue("borderRadius", elements.styleBorderRadius.value)
   );
+  elements.styleBold.addEventListener("click", () => {
+    const entry = activeEntry();
+    if (!entry) return;
+    const style = getEntryStyle(entry);
+    setEntryStyleValue("fontWeight", String(style.fontWeight || "") === "700" ? "" : "700");
+  });
   elements.styleBulletsDisc.addEventListener("click", () => applyListMarkerToActiveEntry("•"));
   elements.styleBulletsSquare.addEventListener("click", () => applyListMarkerToActiveEntry("■"));
   elements.styleBulletsNone.addEventListener("click", () => applyListMarkerToActiveEntry(""));
