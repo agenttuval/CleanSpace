@@ -375,12 +375,18 @@
     {
       "label": "Besedilo - Dodana slika",
       "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(1) > figcaption",
-      "text": "Dodana slika"
+      "text": "",
+      "style": {
+        "width": 120,
+        "minHeight": 32
+      },
+      "hidden": true
     },
     {
       "label": "Besedilo - Dodana slika",
       "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
-      "text": "Dodana slika"
+      "text": "",
+      "hidden": true
     }
   ],
   "maske": [
@@ -1048,13 +1054,15 @@
       {
         "id": "block-mq588gm4-vknest",
         "title": "ZAKAJ CLEANSPACE?",
-        "text": "Prednosti CleanSpace respiratorjevCleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.Brez cevi in pasovPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.Lažje dihanje pri deluAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.Udobje pri daljši uporabiLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.Rešitve za različna okoljaNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.Pameten nadzor uporabeIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.Podpora TU-VAL v SlovenijiPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
+        "text": "• Prednosti CleanSpace respiratorjev\n• CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n• Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n• Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n• Udobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n• Rešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n• Pameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n• Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
         "titleStyle": {
           "color": "#01457e"
         },
         "textStyle": {
           "x": 0,
-          "y": 0
+          "y": 0,
+          "width": 656,
+          "minHeight": 399
         }
       }
     ],
@@ -1133,9 +1141,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-WORK-Welding-Image-02-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 430,
-          "x": 741,
-          "y": -985
+          "width": 390,
+          "x": 342,
+          "y": 286
         }
       },
       {
@@ -1146,9 +1154,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 420,
-          "x": 142,
-          "y": -583
+          "width": 361,
+          "x": -63,
+          "y": 16
         }
       },
       {
