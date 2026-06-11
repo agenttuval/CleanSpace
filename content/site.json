@@ -70,7 +70,7 @@
     {
       "label": "Domov - prednosti naslov",
       "selector": ".hero-panel .panel-label",
-      "text": "Ključne prednosti"
+      "text": "KLJUČNE PREDNOSTI"
     },
     {
       "label": "Domov - metrika 1",
@@ -90,7 +90,7 @@
     {
       "label": "Domov - Tu-Val nadnaslov",
       "selector": ".intro-band .section-copy .eyebrow",
-      "text": "Tu-Val d.o.o."
+      "text": "TU-VAL D.O.O."
     },
     {
       "label": "Domov - Tu-Val naslov",
@@ -135,7 +135,7 @@
     {
       "label": "Domov - pregled nadnaslov",
       "selector": ".products-preview .section-heading .eyebrow",
-      "text": "Pregled linije"
+      "text": "PREGLED LINIJE"
     },
     {
       "label": "Domov - pregled naslov",
@@ -232,7 +232,7 @@
     {
       "label": "Domov - tehnologija nadnaslov",
       "selector": ".difference-copy .eyebrow",
-      "text": "AirSensit tehnologija"
+      "text": "AIRSENSIT TEHNOLOGIJA"
     },
     {
       "label": "Domov - tehnologija naslov",
@@ -262,7 +262,7 @@
     {
       "label": "Domov - certifikati nadnaslov",
       "selector": ".certification-section .section-heading .eyebrow",
-      "text": "Uradni certifikati"
+      "text": "URADNI CERTIFIKATI"
     },
     {
       "label": "Domov - certifikati naslov",
@@ -338,6 +338,31 @@
       "label": "Domov - certifikati gumb",
       "selector": ".certification-note .button",
       "text": "CleanSpace primerjava"
+    },
+    {
+      "label": "Besedilo - Deljene ekipe",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p.tag:nth-of-type(1)",
+      "text": "DELJENE EKIPE"
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > h3",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - Nov lahki respirator za delce z ohlapnim ...",
+      "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p:nth-of-type(2)",
+      "text": "Nov lahki respirator za delce z ohlapnim obraznim delom, primeren tam, kjer fit testiranje ni praktično in opremo uporablja več ljudi."
+    },
+    {
+      "label": "Besedilo - Dodana slika",
+      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(1) > figcaption",
+      "text": "Dodana slika"
+    },
+    {
+      "label": "Besedilo - Dodana slika",
+      "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
+      "text": "Dodana slika"
     }
   ],
   "maske": [
@@ -1005,13 +1030,15 @@
       {
         "id": "block-mq588gm4-vknest",
         "title": "ZAKAJ CLEANSPACE?",
-        "text": "Prednosti CleanSpace respiratorjevCleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.Brez cevi in pasovPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.Lažje dihanje pri deluAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.Udobje pri daljši uporabiLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.Rešitve za različna okoljaNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.Pameten nadzor uporabeIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.Podpora TU-VAL v SlovenijiPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
+        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\nBrez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\nLažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\nUdobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\nRešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\nPameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\nPodpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
         "titleStyle": {
           "color": "#01457e"
         },
         "textStyle": {
           "x": 0,
-          "y": 0
+          "y": 0,
+          "width": 730,
+          "minHeight": 684
         }
       }
     ],
@@ -1023,7 +1050,8 @@
     "cleanspace_cst_pro": [],
     "cleanspace_cst_ultra": [],
     "cleanspace_ex": [],
-    "cleanspace_halo": []
+    "cleanspace_halo": [],
+    "cleanspace_agile": []
   },
   "images": {
     "index": [
@@ -1106,6 +1134,12 @@
           "x": 142,
           "y": -583
         }
+      },
+      {
+        "label": "Slika - CleanSpace AGILE respirator",
+        "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
+        "alt": "CleanSpace AGILE respirator"
       }
     ],
     "maske": [
@@ -1220,8 +1254,53 @@
     "cleanspace_cst_pro": [],
     "cleanspace_cst_ultra": [],
     "cleanspace_ex": [],
-    "cleanspace_halo": []
+    "cleanspace_halo": [],
+    "cleanspace_agile": []
   },
   "videos": [],
-  "videi": []
+  "videi": [],
+  "mediaBlocks": {
+    "index": [],
+    "maske": [],
+    "videi": [],
+    "test": [],
+    "kontakt": [],
+    "cleanspace_agile": [],
+    "cleanspace_work": [],
+    "cleanspace_cst_pro": [],
+    "cleanspace_cst_ultra": [],
+    "cleanspace_ex": [],
+    "cleanspace_halo": []
+  },
+  "blockOrder": {
+    "index": [
+      "text:block-mq588gm4-vknest",
+      "image:block-mq588ynx-a7btdt",
+      "image:block-mq58azz8-8o1i51"
+    ],
+    "maske": [],
+    "videi": [],
+    "test": [],
+    "kontakt": [],
+    "cleanspace_agile": [],
+    "cleanspace_work": [],
+    "cleanspace_cst_pro": [],
+    "cleanspace_cst_ultra": [],
+    "cleanspace_ex": [],
+    "cleanspace_halo": []
+  },
+  "customCss": {
+    "index": "",
+    "maske": "",
+    "videi": "",
+    "test": "",
+    "kontakt": "",
+    "cleanspace_agile": "",
+    "cleanspace_work": "",
+    "cleanspace_cst_pro": "",
+    "cleanspace_cst_ultra": "",
+    "cleanspace_ex": "",
+    "cleanspace_halo": ""
+  },
+  "cleanspace_agile": []
 }
