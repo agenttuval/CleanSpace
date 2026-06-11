@@ -6,6 +6,7 @@ const pageMap = [
   { key: "videi", file: "videi.html", label: "Videi" },
   { key: "test", file: "test.html", label: "Naroči test" },
   { key: "kontakt", file: "kontakt.html", label: "Kontakt" },
+  { key: "cleanspace_agile", file: "cleanspace-agile.html", label: "CleanSpace AGILE" },
   { key: "cleanspace_work", file: "cleanspace-work.html", label: "CleanSpace WORK" },
   { key: "cleanspace_cst_pro", file: "cleanspace-cst-pro.html", label: "CleanSpace CST PRO" },
   { key: "cleanspace_cst_ultra", file: "cleanspace-cst-ultra.html", label: "CleanSpace CST ULTRA" },
@@ -88,6 +89,7 @@ let pendingMediaBlockId = "";
 let blockDragToken = "";
 
 const videoMasks = [
+  { value: "agile", label: "CleanSpace AGILE" },
   { value: "work", label: "CleanSpace WORK" },
   { value: "cst-pro", label: "CleanSpace CST PRO" },
   { value: "cst-ultra", label: "CleanSpace CST ULTRA" },
@@ -1338,15 +1340,16 @@ const setImageDragPosition = (key, target, x, y) => {
   elements.imageY.value = y;
 };
 
-const setEntryResizeValue = (key, target, fontSize) => {
+const setEntryResizeValue = (key, target, width, minHeight) => {
   const entry = findEntryByKey(key);
   if (!entry) return;
 
   const style = ensureEntryStyle(entry);
-  const nextFontSize = Math.max(10, Math.min(120, Math.round(fontSize)));
-  style.fontSize = nextFontSize;
+  const nextWidth = Math.max(120, Math.min(1400, Math.round(width)));
+  const nextMinHeight = Math.max(32, Math.min(1200, Math.round(minHeight)));
+  style.width = nextWidth;
+  style.minHeight = nextMinHeight;
   applyEntryStyleToTarget(target, getEntryStyle(entry));
-  elements.styleFontSize.value = nextFontSize;
 };
 
 const setImageResizeValue = (key, target, width) => {
@@ -1373,9 +1376,8 @@ const startEdgeDrag = (event, target, type, key) => {
   const startPointerY = event.clientY;
   const startX = Number(style.x) || 0;
   const startY = Number(style.y) || 0;
-  const computedStyle = target.ownerDocument.defaultView.getComputedStyle(target);
-  const startFontSize = Number(style.fontSize) || Math.round(parseFloat(computedStyle.fontSize) || 16);
   const startWidth = Number(style.width) || Math.round(target.getBoundingClientRect().width || 320);
+  const startHeight = Number(style.minHeight) || Math.round(target.getBoundingClientRect().height || 48);
   let moved = false;
 
   event.preventDefault();
@@ -1391,7 +1393,7 @@ const startEdgeDrag = (event, target, type, key) => {
       if (type === "image") {
         setImageResizeValue(key, target, startWidth + deltaX);
       } else {
-        setEntryResizeValue(key, target, startFontSize + (deltaX + deltaY) / 8);
+        setEntryResizeValue(key, target, startWidth + deltaX, startHeight + deltaY);
       }
     } else {
       const nextX = Math.round(startX + deltaX);
@@ -1430,6 +1432,11 @@ const applyEntryStyleToTarget = (target, style = {}) => {
   target.style.color = style.color || "";
   target.style.fontSize = style.fontSize ? `${Number(style.fontSize)}px` : "";
   target.style.fontFamily = style.fontFamily || "";
+  target.style.width = style.width ? `${Number(style.width)}px` : "";
+  target.style.minHeight = style.minHeight ? `${Number(style.minHeight)}px` : "";
+  target.style.maxWidth = style.width ? "100%" : "";
+  target.style.display = style.width || style.minHeight ? "inline-block" : "";
+  target.style.boxSizing = style.width || style.minHeight ? "border-box" : "";
   target.style.border = style.borderWidth
     ? `${Number(style.borderWidth)}px solid ${style.borderColor || "#01457e"}`
     : "";

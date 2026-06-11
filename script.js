@@ -47,6 +47,7 @@ const contentPageNames = {
   "videi.html": "videi",
   "kontakt.html": "kontakt",
   "test.html": "test",
+  "cleanspace-agile.html": "cleanspace_agile",
   "cleanspace-work.html": "cleanspace_work",
   "cleanspace-cst-pro.html": "cleanspace_cst_pro",
   "cleanspace-cst-ultra.html": "cleanspace_cst_ultra",
@@ -90,6 +91,12 @@ const applyEditableStyle = (element, style = {}) => {
   if (style.fontFamily) {
     element.style.fontFamily = style.fontFamily;
   }
+
+  element.style.width = style.width ? `${Number(style.width)}px` : "";
+  element.style.minHeight = style.minHeight ? `${Number(style.minHeight)}px` : "";
+  element.style.maxWidth = style.width ? "100%" : "";
+  element.style.display = style.width || style.minHeight ? "inline-block" : "";
+  element.style.boxSizing = style.width || style.minHeight ? "border-box" : "";
 
   if (style.borderWidth) {
     element.style.border = `${Number(style.borderWidth)}px solid ${style.borderColor || "#01457e"}`;
@@ -440,6 +447,10 @@ const videoPage = document.querySelector("[data-video-page]");
 
 const heroRotatorSlides = [
   {
+    model: "CleanSpace AGILE",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
+  },
+  {
     model: "CleanSpace WORK",
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CleanSpace-WORK-Welding.jpg-uCrTLnLFWTgLT44u8oGRNKkdRBMwL3.jpeg",
   },
@@ -465,6 +476,36 @@ const partImageFallback =
   "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png";
 
 const partImageRules = [
+  {
+    match: ["FACEPIECE", "ONE SIZE FITS ALL"],
+    image:
+      "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-01.png",
+    label: "AGILE obrazni del",
+  },
+  {
+    match: ["NECK SUPPORT"],
+    image:
+      "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-02.png",
+    label: "AGILE opora za vrat",
+  },
+  {
+    match: ["AGILE PARTICULATE FILTER", "PARTICULATE FILTER"],
+    image:
+      "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-03.png",
+    label: "AGILE delčni filter",
+  },
+  {
+    match: ["UNIVERSAL BATTERY CHARGER", "BATTERY CHARGER"],
+    image:
+      "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-04.png",
+    label: "AGILE polnilnik",
+  },
+  {
+    match: ["POWER UNIT"],
+    image:
+      "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-00.png",
+    label: "AGILE pogonska enota",
+  },
   {
     match: ["CS3002WORK"],
     image:
@@ -806,6 +847,11 @@ const languageTranslations = {
         selector: ".product-card:nth-child(5) div > p:last-child",
         text: "For healthcare, pharmaceutical and laboratory environments where comfort and decontamination are critical.",
       },
+      { selector: ".product-card:nth-child(6) .tag", text: "Shared teams" },
+      {
+        selector: ".product-card:nth-child(6) div > p:last-child",
+        text: "A loose-fitting powered respirator for particulates where fit testing is difficult and multiple workers may share equipment.",
+      },
       { selector: ".center-action .button", text: "Compare models" },
       { selector: ".difference-copy .eyebrow", text: "AirSensit technology" },
       { selector: ".difference-copy h2", text: "Breathing support that responds to the wearer" },
@@ -887,6 +933,11 @@ const languageTranslations = {
       {
         selector: ".mask-choice-card:nth-child(5) .mask-summary",
         text: "A respirator for healthcare, laboratories and pharmaceutical work, with half-mask or full-face-mask options and HEPA/Bio filtration.",
+      },
+      { selector: ".mask-choice-card:nth-child(6) .tag", text: "Shared teams" },
+      {
+        selector: ".mask-choice-card:nth-child(6) .mask-summary",
+        text: "A loose-fitting respirator for particulates, designed for easy sharing between workers, facial hair compatibility and use without fit testing.",
       },
     ],
     "kontakt.html": [
@@ -1029,6 +1080,11 @@ const languageTranslations = {
         selector: ".product-card:nth-child(5) div > p:last-child",
         text: "Za zdravstvena, farmaceutska i laboratorijska okruženja gdje su udobnost i dekontaminacija ključni.",
       },
+      { selector: ".product-card:nth-child(6) .tag", text: "Dijeljena oprema" },
+      {
+        selector: ".product-card:nth-child(6) div > p:last-child",
+        text: "Labavije prianjajući respirator za čestice, prikladan kada je teško provoditi fit testiranje i kada opremu koristi više radnika.",
+      },
       { selector: ".center-action .button", text: "Usporedi modele" },
       { selector: ".difference-copy .eyebrow", text: "AirSensit tehnologija" },
       { selector: ".difference-copy h2", text: "Disanje koje sustav prepoznaje i podržava" },
@@ -1110,6 +1166,11 @@ const languageTranslations = {
       {
         selector: ".mask-choice-card:nth-child(5) .mask-summary",
         text: "Respirator za zdravstvo, laboratorije i farmaciju, s mogućnošću polumaske ili maske za cijelo lice te HEPA/Bio filtracijom.",
+      },
+      { selector: ".mask-choice-card:nth-child(6) .tag", text: "Dijeljena oprema" },
+      {
+        selector: ".mask-choice-card:nth-child(6) .mask-summary",
+        text: "Labavije prianjajući respirator za čestice, prikladan za dijeljenje između radnika, bradu i radna mjesta bez fit testiranja.",
       },
     ],
     "kontakt.html": [
@@ -1498,6 +1559,7 @@ document.querySelectorAll(".detail-block").forEach((block) => {
 applyEditableImages();
 
 const videoMaskLabels = {
+  agile: "CleanSpace AGILE",
   work: "CleanSpace WORK",
   "cst-pro": "CleanSpace CST PRO",
   "cst-ultra": "CleanSpace CST ULTRA",
