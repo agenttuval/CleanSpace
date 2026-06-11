@@ -357,12 +357,16 @@
     {
       "label": "Besedilo - Dodana slika",
       "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(1) > figcaption",
-      "text": "Dodana slika"
+      "text": "",
+      "style": {
+        "x": 585,
+        "y": 52
+      }
     },
     {
       "label": "Besedilo - Dodana slika",
       "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
-      "text": "Dodana slika"
+      "text": ""
     }
   ],
   "maske": [
