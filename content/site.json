@@ -938,7 +938,7 @@
     {
       "label": "CST PRO - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CST PRO je univerzalen industrijski model z daljšim časom delovanja in možnostjo delčnih ali kombiniranih filtrov. Primeren je za ekipe, ki potrebujejo robusten sistem za več različnih opravil."
+      "text": "CleanSpace CST PRO je vsestranski industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Namenjen je ekipam, ki potrebujejo zanesljivo zaščito dihal pri vsakodnevni uporabi, daljši čas delovanja ter možnost uporabe delčnih ali kombiniranih filtrov. Primeren je za varjenje, obdelavo kovin, gradbeništvo, čiščenje, vzdrževanje in prehrambno industrijo."
     },
     {
       "label": "Besedilo - CleanSpace CST PRO",
@@ -978,17 +978,29 @@
     {
       "label": "Besedilo - Do 14 ur delovanja pri zmerni obremenitvi.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "Do 14 ur delovanja pri zmerni obremenitvi."
+      "text": "Daljši čas delovanja\nDo 14 ur delovanja pri zmerni obremenitvi za uporabo skozi daljše delovne procese.",
+      "style": {
+        "x": -1,
+        "y": -2
+      }
     },
     {
       "label": "Besedilo - Bluetooth povezava s CleanSpace aplikacij...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "Bluetooth povezava s CleanSpace aplikacijo."
+      "text": "Povezava z aplikacijo CleanSpace\nBluetooth povezava omogoča pregled nad uporabo, vzdrževanjem in stanjem opreme.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Možnost polmaske ali celoobrazne maske.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Možnost polmaske ali celoobrazne maske."
+      "text": "Prilagodljiva izbira maske in filtrov\nMožnost uporabe s polmasko ali celoobrazno masko ter z delčnimi ali kombiniranimi filtri.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -1078,7 +1090,10 @@
     {
       "label": "Besedilo - CST PRO pokrije največ tipičnih industrij...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CST PRO pokrije največ tipičnih industrijskih scenarijev"
+      "text": "En respirator za več industrijskih izzivov",
+      "style": {
+        "fontSize": 52
+      }
     },
     {
       "label": "Besedilo - Za koga je primeren",
