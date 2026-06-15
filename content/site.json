@@ -766,7 +766,7 @@
     {
       "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.• TM3 P R SL zaščita pred delci po standardu EN 12942.• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom.• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.• Kompaktna enota pod 350 g, brez pasu in cevi",
+      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.\n• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.\n• Kompaktna enota pod 350 g, brez pasu in cevi",
       "style": {
         "x": 0,
         "y": 0
@@ -775,12 +775,12 @@
     {
       "label": "Besedilo - TM3 delčna filtracija za prah in delce.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": ""
+      "text": "• TM3 P R SL zaščita pred delci po standardu EN 12942."
     },
     {
       "label": "Besedilo - Usmerjen v uporabo s polmasko in hitro me...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": ""
+      "text": "• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom."
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -805,7 +805,7 @@
     {
       "label": "Besedilo - CS3002WORK - CleanSpace WORK Particulate ...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card",
-      "text": "CS3002WORK - CleanSpace WORK Particulate Standard TM3 filter, pakiranje 3 kosi."
+      "text": "CS3002W ORK - CleanSpace WORK Particulate Standard TM3 filter, pakiranje 3 kosi."
     },
     {
       "label": "Besedilo - Pripomočki",
@@ -840,27 +840,33 @@
     {
       "label": "Besedilo - CleanSpace WORK je namenjen predvsem delo...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace WORK je namenjen predvsem delovnim mestom z delci in prahom. Zaradi kompaktne pogonske enote za vratom je uporaben pri brušenju, rezanju, pripravi materiala, varjenju in čiščenju, kjer uporabnik potrebuje več svobode gibanja kot pri klasičnih sistemih s pasom in cevjo."
+      "text": "CleanSpace WORK je namenjen delovnim mestom, kjer so glavno tveganje prah in delci v zraku. Zaradi lahke pihalne enote, nameščene za vratom, uporabnik nima pasu, cevi ali baterijskega nahrbtnika, zato ima pri delu več svobode gibanja.\n\nPrimeren je za delavnice, gradbeništvo, obdelavo betona in kamna, lesarstvo, brušenje, rezanje, čiščenje in vzdrževalna dela. Posebej uporaben je tam, kjer se respirator uporablja dlje časa in mora biti zaščita dihal udobna, lahka in hitro pripravljena za uporabo."
     },
     {
       "label": "Besedilo - Kupec pri izbiri najprej preveri velikost...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Kupec pri izbiri najprej preveri velikost polmaske, tip delcev v okolju in koliko časa bo respirator v uporabi v eni izmeni. Tu-Val lahko pomaga pri izboru velikosti, filtra, polnilnika in dodatkov za preverjanje prileganja maske."
+      "text": "Pri izbiri najprej preverimo velikost polmaske, vrsto delcev v okolju, trajanje uporabe in potreben filter. TU-VAL vam pomaga izbrati ustrezno konfiguracijo CleanSpace WORK respiratorja, dodatke, polnilnik in potrošni material za redno uporabo."
     },
     {
       "label": "Besedilo - Najbolj smiselna izbira za prah, beton, l...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Najbolj smiselna izbira za prah, beton, les, kovinsko obdelavo in vzdrževanje."
+      "text": "Najbolj smiselna izbira za prah, delce, beton, kamen, les, delavnice, čiščenje in vzdrževanje."
     },
     {
       "label": "Besedilo - Uporablja se s polmasko, zato ostane obra...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Uporablja se s polmasko, zato ostane obrazni del lahek in hitro pripravljen za delo."
+      "text": "Uporablja se s silikonsko polmasko ali celobrazno masko, zato je sistem lahek, kompakten in hitro pripravljen za delo.",
+      "style": {
+        "width": 568,
+        "minHeight": 50,
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Za pline, pare ali eksplozijsko ogrožena ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Za pline, pare ali eksplozijsko ogrožena območja je treba izbrati drug model in primeren filter."
+      "text": "Hitra menjava filtra in enostavna priprava respiratorja za vsakodnevno uporabo v prašnih delovnih okoljih."
     },
     {
       "label": "Besedilo - Interna video stran Videi za WORK Odpre p...",
@@ -1291,6 +1297,18 @@
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/03/CleanSpace-CS3006WORK-CS3007WORK-Full-Face-Mask-Image-01-Thumbnail.png",
         "alt": "CleanSpace WORK celoobrazna maska"
+      },
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
       }
     ],
     "cleanspace_cst_pro": [],
