@@ -533,6 +533,31 @@
       "label": "Besedilo - Kontakt",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > div > div.choice-actions > a.dark:nth-of-type(2)",
       "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - Deljene ekipe",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > p.tag:nth-of-type(1)",
+      "text": "BREZ PREIZKUSA PRILEGANJA"
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > h3",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - Ohlapno prilegajoč respirator za delce, p...",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > p.mask-summary:nth-of-type(2)",
+      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka in ohlapno prilegajočim obraznim delom za zaščito pred delci. Primeren za industrijo, gradbeništvo, logistiko, živilsko industrijo, čiščenje in vzdrževanje, kjer je pomembna hitra uvedba zaščite dihal brez preizkusa prileganja maske."
+    },
+    {
+      "label": "Besedilo - Podrobnosti",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > div.choice-actions > a.details:nth-of-type(1)",
+      "text": "Podrobnosti"
+    },
+    {
+      "label": "Besedilo - Kontakt",
+      "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > div.choice-actions > a.dark:nth-of-type(2)",
+      "text": "Kontakt"
     }
   ],
   "kontakt": [
@@ -731,12 +756,12 @@
     {
       "label": "Besedilo - Slike",
       "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
-      "text": "Slike"
+      "text": "SLIKE"
     },
     {
       "label": "Besedilo - Opis respiratorja",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
-      "text": "Opis respiratorja"
+      "text": "OPIS RESPIRATORJA"
     },
     {
       "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
@@ -760,7 +785,7 @@
     {
       "label": "Besedilo - Obrazni deli",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
-      "text": "Obrazni deli"
+      "text": "OBRAZNI DELI"
     },
     {
       "label": "Besedilo - KITCS3000WORK-S / M / L - komplet WORK s ...",
@@ -775,7 +800,7 @@
     {
       "label": "Besedilo - Filtri",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
-      "text": "Filtri"
+      "text": "FILTRI"
     },
     {
       "label": "Besedilo - CS3002WORK - CleanSpace WORK Particulate ...",
@@ -785,7 +810,7 @@
     {
       "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "Pripomočki"
+      "text": "PRIPOMOČKI"
     },
     {
       "label": "Besedilo - PAF-1043 - komplet za kvantitativno preve...",
@@ -800,7 +825,7 @@
     {
       "label": "Besedilo - Video in svetovanje",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
-      "text": "Video in svetovanje"
+      "text": "VIDEO IN SVETOVANJE"
     },
     {
       "label": "Besedilo - WORK je za ekipe, ki potrebujejo hitro za...",
@@ -1201,6 +1226,12 @@
         "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(5) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
         "alt": "CleanSpace HALO"
+      },
+      {
+        "label": "Slika - CleanSpace AGILE",
+        "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
+        "alt": "CleanSpace AGILE"
       }
     ],
     "videi": [],
