@@ -342,7 +342,7 @@
     {
       "label": "Besedilo - Deljene ekipe",
       "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p.tag:nth-of-type(1)",
-      "text": "DELJENE EKIPE"
+      "text": "BREZ PREIZKUSA PRILEGANJA"
     },
     {
       "label": "Besedilo - CleanSpace AGILE",
@@ -352,7 +352,7 @@
     {
       "label": "Besedilo - Nov lahki respirator za delce z ohlapnim ...",
       "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p:nth-of-type(2)",
-      "text": "Nov lahki respirator za delce z ohlapnim obraznim delom, primeren tam, kjer fit testiranje ni praktično in opremo uporablja več ljudi."
+      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka in ohlapno prilegajočim obraznim delom za zaščito pred delci. Primeren za industrijo, gradbeništvo, logistiko, živilsko industrijo, čiščenje in vzdrževanje, kjer je pomembna hitra uvedba zaščite dihal brez preizkusa prileganja maske."
     },
     {
       "label": "Besedilo - Dodana slika",
@@ -366,7 +366,14 @@
     {
       "label": "Besedilo - Dodana slika",
       "selector": "main > section.section.custom-content-section:nth-of-type(6) > div.custom-content-grid > figure.custom-image-item:nth-of-type(2) > figcaption",
-      "text": ""
+      "text": "",
+      "style": {
+        "width": 123,
+        "minHeight": 32,
+        "x": 415,
+        "y": 104
+      },
+      "hidden": true
     }
   ],
   "maske": [
@@ -1034,7 +1041,7 @@
       {
         "id": "block-mq588gm4-vknest",
         "title": "ZAKAJ CLEANSPACE?",
-        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\nBrez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\nLažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\nUdobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\nRešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\nPameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\nPodpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
+        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n• Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\n• Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\n• Udobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\n• Rešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\n• Pameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\n• Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
         "titleStyle": {
           "color": "#01457e"
         },
@@ -1121,9 +1128,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-WORK-Welding-Image-02-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 430,
-          "x": 741,
-          "y": -985
+          "width": 179,
+          "x": 450,
+          "y": 8
         }
       },
       {
@@ -1134,9 +1141,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 420,
-          "x": 142,
-          "y": -583
+          "width": 1100,
+          "x": -13,
+          "y": 535
         }
       },
       {
