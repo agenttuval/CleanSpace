@@ -908,12 +908,12 @@
     {
       "label": "CST PRO - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Robusten respirator z aktivnim dovajanjem filtriranega zraka za varjenje, kovinsko obdelavo, kamen, cement, čiščenje in prehrambno industrijo."
+      "text": "Robusten industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, obdelavo kamna in betona, čiščenje, vzdrževanje ter prehrambno industrijo."
     },
     {
       "label": "CST PRO - kontakt gumb",
       "selector": ".hero-actions .primary",
-      "text": "Kontaktiraj za CST PRO"
+      "text": "Povprašaj za CST PRO"
     },
     {
       "label": "CST PRO - galerija naslov",
@@ -958,7 +958,7 @@
     {
       "label": "Besedilo - pametna aplikacija",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
-      "text": "pametna aplikacija"
+      "text": "CleanSpace aplikacija"
     },
     {
       "label": "Besedilo - Nazaj na maske",
