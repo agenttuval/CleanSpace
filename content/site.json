@@ -1647,32 +1647,40 @@
     {
       "label": "Besedilo - CleanSpace EX je zasnovan za potencialno ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace EX je zasnovan za potencialno eksplozivne atmosfere, zato je njegova izbira povezana z oceno območja, snovmi v procesu in internimi varnostnimi pravili podjetja. Tipična področja so nafta in plin, petrokemija, kemično rokovanje, premogovniki in druga delovišča, kjer navadna elektronska oprema ni primerna."
+      "text": "CleanSpace EX je zasnovan za delovna mesta s potencialno eksplozivnimi atmosferami, kjer je potrebna intrinzično varna ATEX oprema za zaščito dihal. Uporablja se v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi, kjer običajna elektronska oprema ni primerna."
     },
     {
       "label": "Besedilo - Ker podpira masko za del obraza in celoob...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Ker podpira masko za del obraza in celoobrazno masko, se konfiguracija prilagodi nalogi, vidnemu polju, zahtevani zaščiti oči in načinu čiščenja. Filtri morajo biti izbrani glede na delce, pline, pare ali kombinirano izpostavljenost, zato je pri EX modelu priporočljivo pregledati tudi certifikate in delovne postopke."
+      "text": "Izbira modela EX mora temeljiti na oceni ATEX območja, nevarnih snoveh v procesu, vrsti izpostavljenosti in internih varnostnih pravilih podjetja. Sistem podpira uporabo s polmasko ali celoobrazno masko ter delčnimi ali kombiniranimi filtri, zato se konfiguracija prilagodi nalogi, vidnemu polju, potrebi po zaščiti oči in zahtevam čiščenja opreme."
     },
     {
       "label": "Besedilo - Primeren za ATEX / IECEx okolja in potenc...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Primeren za ATEX / IECEx okolja in potencialno eksplozivne atmosfere."
+      "text": "Primeren za ATEX / IECEx območja in potencialno eksplozivne atmosfere.",
+      "style": {
+        "width": 568,
+        "minHeight": 32
+      }
     },
     {
       "label": "Besedilo - Na voljo so delčni, visoko zmogljivi in k...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Na voljo so delčni, visoko zmogljivi in kombinirani filtri."
+      "text": "Podpira delčne, visoko zmogljive in kombinirane filtre glede na vrsto izpostavljenosti.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Izbira filtra naj vedno sledi oceni tvega...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Izbira filtra naj vedno sledi oceni tveganja in varnostnim listom snovi."
+      "text": "Izbira filtra naj temelji na oceni tveganja, varnostnih listih snovi in dejanskih pogojih dela."
     },
     {
       "label": "Besedilo - Interna video stranVidei za EXOdpre prazn...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
-      "text": "Interna video stranVidei za EXOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model EX."
+      "text": "Video navodila za CleanSpace EX\n\nOglejte si video vsebine za CleanSpace EX: pravilna namestitev respiratorja, izbira maske, menjava filtrov, čiščenje opreme ter uporaba v ATEX / IECEx območjih."
     },
     {
       "label": "Besedilo - Videi za EX",
@@ -1687,7 +1695,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga preveriti, ali konfiguracija EX ustreza delovnemu območju in potrebnim certifikacijam."
+      "text": "Preizkus CleanSpace EX pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace EX v vašem delovnem okolju. Ekipa TU-VAL vam pomaga preveriti, ali konfiguracija ustreza ATEX območju, vrsti izpostavljenosti, potrebnim certifikatom in internim varnostnim zahtevam."
     },
     {
       "label": "Besedilo - Naroči masko na test",
