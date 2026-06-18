@@ -1469,7 +1469,7 @@
     {
       "label": "EX - opis respiratorja",
       "selector": ".family-story p",
-      "text": "EX je izbira za delovna mesta, kjer je potrebna intrinzično varna oprema. Namenjen je območjem s potencialno eksplozivnimi atmosferami in podpira večjo družino delčnih ter kombiniranih filtrov."
+      "text": "CleanSpace EX je intrinzično varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je delovnim mestom, kjer so lahko prisotne potencialno eksplozivne atmosfere, na primer v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
     },
     {
       "label": "Besedilo - CleanSpace EX",
@@ -1513,17 +1513,21 @@
     {
       "label": "Besedilo - ATEX / IECEx / ETL certifikacije.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "ATEX / IECEx / ETL certifikacije."
+      "text": "ATEX / IECEx / ETL certifikacije.\nIntrinzično varna izvedba",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - IP66 izvedba za zahtevnejše čiščenje.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "IP66 izvedba za zahtevnejše čiščenje."
+      "text": "IP66 izvedba za zahtevnejše čiščenje.\nAktivni dovod filtriranega zraka"
     },
     {
       "label": "Besedilo - Možnost uporabe s polmasko ali celoobrazn...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Možnost uporabe s polmasko ali celoobrazno masko."
+      "text": "Možnost uporabe s polmasko ali celoobrazno masko.\nBrez pasu, cevi in baterijskega nahrbtnikaD"
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -1633,7 +1637,7 @@
     {
       "label": "Besedilo - EX je namenjen okoljem, kjer mora biti op...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "EX je namenjen okoljem, kjer mora biti oprema intrinzično varna"
+      "text": "CleanSpace EX za varno delo v ATEX območjih"
     },
     {
       "label": "Besedilo - Posebnost modela EX",
