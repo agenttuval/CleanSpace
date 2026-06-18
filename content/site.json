@@ -1494,7 +1494,11 @@
     {
       "label": "Besedilo - Nazaj na maske",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
-      "text": "Nazaj na maske"
+      "text": "Nazaj na modele",
+      "style": {
+        "width": 192,
+        "minHeight": 49
+      }
     },
     {
       "label": "Besedilo - Slike",
