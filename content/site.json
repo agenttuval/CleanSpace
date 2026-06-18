@@ -1103,27 +1103,35 @@
     {
       "label": "Besedilo - CST PRO je dobra izbira, ko podjetje potr...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CST PRO je dobra izbira, ko podjetje potrebuje en respirator za več delovišč: varjenje, kovinsko obdelavo, cement, čiščenje, prašne postopke in dela, kjer se izmenjujejo različni uporabniki. Sistem podpira polmaske in celoobrazne maske, zato ga je lažje prilagoditi nalogi, zaščitnim očalom in zahtevani stopnji zaščite obraza."
+      "text": "CleanSpace CST PRO je primeren za podjetja, ki potrebujejo en zanesljiv respirator za več različnih delovnih nalog in delovišč. Uporablja se pri varjenju, obdelavi kovin, gradbeništvu, čiščenju, vzdrževanju, prašnih postopkih in drugih zahtevnih industrijskih opravilih, kjer se lahko izmenjuje več uporabnikov ali tipov izpostavljenosti.\n\nSistem omogoča uporabo s polmasko ali celoobrazno masko, zato ga je mogoče lažje prilagoditi delovnemu okolju, potrebni stopnji zaščite dihal in zahtevam glede zaščite obraza oziroma oči.",
+      "style": {
+        "width": 554,
+        "minHeight": 136
+      }
     },
     {
       "label": "Besedilo - Pri konfiguraciji je pomembno ločiti med ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Pri konfiguraciji je pomembno ločiti med delčnimi filtri in kombiniranimi filtri. Če so prisotni samo delci, je izbor drugačen kot pri okolju z neprijetnimi vonjavami, plini ali parami. Za pravilno izbiro filtra je vedno smiselno pregledati varnostne liste snovi in realno izpostavljenost na delovnem mestu."
+      "text": "Pri konfiguraciji CleanSpace CST PRO je pomembno razlikovati med delčnimi in kombiniranimi filtri. Če so v okolju prisotni samo prah, dim ali aerosoli, je izbira filtra drugačna kot pri delu z neprijetnimi vonjavami, plini ali hlapi. Za pravilno izbiro respiratorja in filtra je priporočljivo preveriti varnostne liste snovi, dejansko izpostavljenost na delovnem mestu in trajanje uporabe."
     },
     {
       "label": "Besedilo - Podpira masko za del obraza in celoobrazn...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Podpira masko za del obraza in celoobrazno masko."
+      "text": "Podpira uporabo s polmasko ali celoobrazno masko."
     },
     {
       "label": "Besedilo - Primeren je za podjetja, ki želijo eno pl...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Primeren je za podjetja, ki želijo eno platformo za več delovnih nalog."
+      "text": "Primeren za podjetja, ki želijo eno CleanSpace platformo za več delovnih nalog.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Na voljo so standardni, visoko zmogljivi ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Na voljo so standardni, visoko zmogljivi in kombinirani filtri."
+      "text": "Na voljo so visoko zmogljivi, kombinirani in filtri trdih delcev glede na vrsto izpostavljenosti."
     },
     {
       "label": "Besedilo - Interna video stranVidei za CST PROOdpre ...",
