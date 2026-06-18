@@ -1717,12 +1717,12 @@
     {
       "label": "HALO - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Respirator z aktivnim dovajanjem filtriranega zraka za bolnišnice, farmacijo, laboratorije, urgentne ekipe in okolja, kjer so pomembni dekontaminacija, udobje in nadzor izdiha."
+      "text": "Respirator z aktivnim dovodom filtriranega zraka za zdravstvo, farmacijo, laboratorije, urgentne ekipe in okolja z visokimi zahtevami glede higiene, dekontaminacije, udobja ter nadzora izdiha."
     },
     {
       "label": "HALO - kontakt gumb",
       "selector": ".hero-actions .primary",
-      "text": "Kontaktiraj za HALO"
+      "text": "Povprašaj za HALO"
     },
     {
       "label": "HALO - galerija naslov",
@@ -1747,7 +1747,7 @@
     {
       "label": "HALO - opis respiratorja",
       "selector": ".family-story p",
-      "text": "HALO je zasnovan za zdravstvo, farmacijo in laboratorije, kjer so pomembni udobje, dekontaminacija in možnost nadzora izdiha z dodatnimi filtrskimi elementi."
+      "text": "CleanSpace HALO je respirator z aktivnim dovodom filtriranega zraka za zaščito dihal v zdravstvu, farmaciji in laboratorijih. Zasnovan je za okolja, kjer so pomembni udobje pri dolgotrajni uporabi, higiena, enostavno čiščenje, dekontaminacija ter zaščita uporabnika in okolice."
     },
     {
       "label": "Besedilo - CleanSpace HALO",
@@ -1757,7 +1757,7 @@
     {
       "label": "Besedilo - Maska za del obraza: da",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
-      "text": "Maska za del obraza: da"
+      "text": "Polobrazna maska: da"
     },
     {
       "label": "Besedilo - Celoobrazna maska: da",
@@ -1772,7 +1772,7 @@
     {
       "label": "Besedilo - Nazaj na maske",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
-      "text": "Nazaj na maske"
+      "text": "Nazaj na modele"
     },
     {
       "label": "Besedilo - Slike",
@@ -1787,17 +1787,25 @@
     {
       "label": "Besedilo - IP66 izvedba za intenzivnejše čiščenje.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "IP66 izvedba za intenzivnejše čiščenje."
+      "text": "IP66 zaščita za intenzivnejše čiščenje\nZasnovan za zdravstvena in laboratorijska okolja",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Možnost uporabe s polmasko ali celoobrazn...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "Možnost uporabe s polmasko ali celoobrazno masko."
+      "text": "Uporaba s polmasko ali celoobrazno masko\nUdobje pri dolgotrajni uporabi",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Na voljo so delčni, Bio in Steri-Plus izd...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri."
+      "text": "Delčni, Bio in Steri-Plus izdihovalni filtri"
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -1882,7 +1890,7 @@
     {
       "label": "Besedilo - HALO je zasnovan za zdravstvo, laboratori...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "HALO je zasnovan za zdravstvo, laboratorije in čista okolja"
+      "text": "CleanSpace HALO za zaščito dihal v zdravstvu, farmaciji in laboratorijih"
     },
     {
       "label": "Besedilo - Udobje, čiščenje in nadzor izdiha",
@@ -1892,32 +1900,40 @@
     {
       "label": "Besedilo - CleanSpace HALO je namenjen uporabnikom, ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace HALO je namenjen uporabnikom, ki respirator nosijo v zdravstvu, farmaciji, laboratorijih ali podobnih okoljih, kjer sta pomembna enostavno čiščenje in zanesljivo tesnjenje maske. Sistem je kompakten, brez pasu in cevi, zato uporabniku ne omejuje gibanja pri delu z bolniki, vzorci ali občutljivo opremo."
+      "text": "CleanSpace HALO je namenjen uporabnikom, ki respirator nosijo v zdravstvu, farmaciji, laboratorijih in drugih nadzorovanih okoljih, kjer so pomembni higiena, enostavno čiščenje, dekontaminacija in zanesljiva zaščita dihal. Sistem je kompakten, brez pasu in cevi, zato uporabniku omogoča več svobode gibanja pri delu z bolniki, vzorci ali občutljivo opremo."
     },
     {
       "label": "Besedilo - Pri izboru se preveri, ali uporabnik potr...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Pri izboru se preveri, ali uporabnik potrebuje masko za del obraza ali celoobrazno masko, kakšen tip filtra je potreben in ali je smiselna dodatna zaščita vizirja ali komplet za očala. Posebnost HALO programa so tudi rešitve za izdihovalne filtre, ki so uporabne pri nadzoru izdiha v občutljivih okoljih."
+      "text": "Pri izbiri konfiguracije preverimo, ali uporabnik potrebuje polmasko ali celoobrazno masko, kateri tip filtra je primeren za delovno okolje in ali je potrebna dodatna zaščita obraza ali oči. Posebnost programa HALO so tudi rešitve za filtracijo izdiha, ki pomagajo pri zaščiti uporabnika in okolice v občutljivih delovnih okoljih."
     },
     {
       "label": "Besedilo - Primeren za zdravstvo, farmacijo, laborat...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Primeren za zdravstvo, farmacijo, laboratorije in interventne ekipe."
+      "text": "Primeren za zdravstvo, farmacijo, laboratorije in nadzorovana čista okolja.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Podpira masko za del obraza in celoobrazn...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Podpira masko za del obraza in celoobrazno masko."
+      "text": "Kompaktna zasnova brez pasu in cevi omogoča več svobode gibanja pri delu."
     },
     {
       "label": "Besedilo - Na voljo so delčni, Bio in Steri-Plus izd...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri."
+      "text": "Možnost filtracije izdiha za dodatno zaščito uporabnika in okolice.",
+      "style": {
+        "width": 568,
+        "minHeight": 32
+      }
     },
     {
       "label": "Besedilo - Interna video stranVidei za HALOOdpre pra...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
-      "text": "Interna video stranVidei za HALOOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model HALO."
+      "text": "Video navodila za CleanSpace HALO\n\nOglejte si video vsebine za CleanSpace HALO: pravilna namestitev respiratorja, izbira maske, menjava filtrov, čiščenje opreme, dekontaminacija in uporaba dodatnih rešitev za filtracijo izdiha."
     },
     {
       "label": "Besedilo - Videi za HALO",
@@ -1932,7 +1948,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga izbrati velikost maske, filter in dodatke za zdravstveno ali laboratorijsko uporabo."
+      "text": "Preizkus CleanSpace HALO pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace HALO v vašem zdravstvenem, farmacevtskem ali laboratorijskem okolju. Ekipa TU-VAL vam pomaga izbrati ustrezno masko, filter in dodatke glede na način uporabe, higienske zahteve ter potrebo po zaščiti uporabnika in okolice."
     },
     {
       "label": "Besedilo - Naroči masko na test",
