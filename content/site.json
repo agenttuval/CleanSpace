@@ -1243,17 +1243,29 @@
     {
       "label": "Besedilo - IP65 izvedba za dekontaminacijske postopk...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "IP65 izvedba za dekontaminacijske postopke."
+      "text": "IP65 zaščita za čiščenje in dekontaminacijo\nZa zahtevna in nadzorovana okolja\nAirSensit tehnologija",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Do 14 ur delovanja pri zmerni obremenitvi.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "Do 14 ur delovanja pri zmerni obremenitvi."
+      "text": "Do 14 ur delovanja pri zmerni obremenitvi.\nUporaba s polmasko ali celoobrazno masko\nBrez pasu, cevi in baterijskega nahrbtnika",
+      "style": {
+        "x": 0,
+        "y": 1
+      }
     },
     {
       "label": "Besedilo - Podatki prek CleanSpace aplikacije in por...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Podatki prek CleanSpace aplikacije in portala CleanSpace Insights."
+      "text": "Podatki o uporabi in skladnosti\n\nDelčni ali kombinirani filtri",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -1343,7 +1355,7 @@
     {
       "label": "Besedilo - CST ULTRA je za zahtevne postopke, čiščen...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CST ULTRA je za zahtevne postopke, čiščenje in dokazovanje uporabe"
+      "text": "CST ULTRA je za zahtevna okolja, čiščenje in nadzor uporabe"
     },
     {
       "label": "Besedilo - Kdaj izbrati ULTRA",
@@ -1353,32 +1365,44 @@
     {
       "label": "Besedilo - CST ULTRA je namenjen okoljem, kjer respi...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CST ULTRA je namenjen okoljem, kjer respirator ni samo zaščitna oprema, ampak tudi del nadzora procesa. Uporaben je pri dekontaminaciji, azbestu, rudarstvu, intervencijah, kemičnih ali bioloških tveganjih in nalogah, kjer mora podjetje lažje spremljati uporabo opreme."
+      "text": "CleanSpace CST ULTRA je primeren za delovna okolja, kjer respirator ni samo zaščitna oprema, ampak tudi del nadzora procesa. Izberemo ga tam, kjer so pomembni redno čiščenje opreme, dekontaminacija, sledljivost uporabe in poročanje o skladnosti.\n\nUporaben je pri sanacijah in odstranjevanju azbesta, v visoko prašnih industrijskih okoljih, pri obdelavi mineralnih materialov, varjenju, industrijskem čiščenju, vzdrževanju ter pri delu s kemičnimi ali biološkimi tveganji."
     },
     {
       "label": "Besedilo - V primerjavi s standardnim industrijskim ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "V primerjavi s standardnim industrijskim modelom je poudarek na odpornejši izvedbi, čiščenju in podatkovni podpori. Uporabnik lahko izbira med masko za del obraza in celoobrazno masko, izbira filtra pa mora slediti dejanski nevarnosti: delci, kombinirana izpostavljenost ali zahteve po večji kapaciteti filtra."
+      "text": "V primerjavi s standardnim industrijskim modelom CST PRO je pri modelu CST ULTRA poudarek na odpornejši izvedbi, lažjem čiščenju in podatkovni podpori prek CleanSpace aplikacije in portala CleanSpace Insights. Uporabnik lahko izbira med polmasko in celoobrazno masko, izbira filtra pa mora slediti dejanski izpostavljenosti: delci, prah, aerosoli, dim, kombinirana tveganja ali izbrani plini in hlapi."
     },
     {
       "label": "Besedilo - Primeren za dekontaminacijske postopke in...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Primeren za dekontaminacijske postopke in zahtevnejša okolja."
+      "text": "Za okolja, kjer so pomembni čiščenje, dekontaminacija, sledljivost in skladnost.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - CleanSpace Insights pomaga pri pregledu u...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "CleanSpace Insights pomaga pri pregledu uporabe in skladnosti."
+      "text": "Primeren za sanacije, visoko prašna okolja, industrijsko čiščenje, vzdrževanje, varjenje ter kemična ali biološka tveganja.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Podpira isto CST družino mask, filtrov in...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Podpira isto CST družino mask, filtrov in dodatkov kot CST PRO."
+      "text": "Podpira polmasko ali celoobrazno masko ter delčne ali kombinirane filtre glede na vrsto izpostavljenosti.",
+      "style": {
+        "width": 568,
+        "minHeight": 32
+      }
     },
     {
       "label": "Besedilo - Interna video stranVidei za CST ULTRAOdpr...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
-      "text": "Interna video stranVidei za CST ULTRAOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model CST ULTRA."
+      "text": "Video navodila za CleanSpace CST ULTRA\n\nOglejte si video vsebine za CleanSpace CST ULTRA: pravilna namestitev respiratorja, izbira maske, menjava filtrov, čiščenje opreme, povezava z aplikacijo CleanSpace in pregled podatkov v portalu CleanSpace Insights."
     },
     {
       "label": "Besedilo - Videi za CST ULTRA",
@@ -1393,7 +1417,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejši postopek ali delovišče."
+      "text": "Preizkus CleanSpace CST ULTRA pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace CST ULTRA v vašem delovnem okolju. Ekipa TU-VAL vam pomaga preveriti, ali je ULTRA prava izbira za zahtevnejše postopke, dekontaminacijo, sledljivost uporabe in izbrano vrsto izpostavljenosti."
     },
     {
       "label": "Besedilo - Naroči masko na test",
