@@ -1434,12 +1434,12 @@
     {
       "label": "EX - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "Nevarna območja"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "EX - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Intrinzično varen respirator z aktivnim dovajanjem filtriranega zraka za eksplozijsko ogrožena okolja, nafto in plin, petrokemijo, premogovnike in kemično rokovanje."
+      "text": "Intrinzično varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je uporabi v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
     },
     {
       "label": "EX - kontakt gumb",
@@ -1470,6 +1470,226 @@
       "label": "EX - opis respiratorja",
       "selector": ".family-story p",
       "text": "EX je izbira za delovna mesta, kjer je potrebna intrinzično varna oprema. Namenjen je območjem s potencialno eksplozivnimi atmosferami in podpira večjo družino delčnih ter kombiniranih filtrov."
+    },
+    {
+      "label": "Besedilo - CleanSpace EX",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - Maska za del obraza: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
+      "text": "Polobrazna maska: da"
+    },
+    {
+      "label": "Besedilo - Celoobrazna maska: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
+      "text": "Celoobrazna maska: da"
+    },
+    {
+      "label": "Besedilo - ATEX / IECEx",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
+      "text": "ATEX / IECEx"
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - Slike",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "SLIKE"
+    },
+    {
+      "label": "Besedilo - Opis respiratorja",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
+      "text": "OPIS RESPIRATORJA"
+    },
+    {
+      "label": "Besedilo - ATEX / IECEx / ETL certifikacije.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "ATEX / IECEx / ETL certifikacije."
+    },
+    {
+      "label": "Besedilo - IP66 izvedba za zahtevnejše čiščenje.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "IP66 izvedba za zahtevnejše čiščenje."
+    },
+    {
+      "label": "Besedilo - Možnost uporabe s polmasko ali celoobrazn...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Možnost uporabe s polmasko ali celoobrazno masko."
+    },
+    {
+      "label": "Besedilo - Obrazni deli",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
+      "text": "OBRAZNI DELI"
+    },
+    {
+      "label": "Besedilo - PAF-0064 / PAF-0062 / PAF-0063 - EX polma...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(1)",
+      "text": "PAF-0064 / PAF-0062 / PAF-0063 - EX polmaska S / M / L."
+    },
+    {
+      "label": "Besedilo - PAF-0033 / PAF-1010 / PAF-0027 - polmaska...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(2)",
+      "text": "PAF-0033 / PAF-1010 / PAF-0027 - polmaska S / M / L."
+    },
+    {
+      "label": "Besedilo - PAF-1106 - celoobrazna maska S.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(3)",
+      "text": "PAF-1106 - celoobrazna maska S."
+    },
+    {
+      "label": "Besedilo - PAF-1014 - celoobrazna maska M / L.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(4)",
+      "text": "PAF-1014 - celoobrazna maska M / L."
+    },
+    {
+      "label": "Besedilo - Filtri",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
+      "text": "FILTRI"
+    },
+    {
+      "label": "Besedilo - PAF-0035 - TM3 P SL R delčni filter, paki...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "PAF-0035 - TM3 P SL R delčni filter, pakiranje 3 kosi."
+    },
+    {
+      "label": "Besedilo - PAF-0036 - pred-filter, pakiranje 10 koso...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "PAF-0036 - pred-filter, pakiranje 10 kosov."
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov."
+    },
+    {
+      "label": "Besedilo - PAF-0078 - adapter za CleanSpace EX filtr...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-0078 - adapter za CleanSpace EX filtre."
+    },
+    {
+      "label": "Besedilo - PAF-0037 - visoko zmogljiv P3 TM3 P SL R ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "PAF-0037 - visoko zmogljiv P3 TM3 P SL R filter."
+    },
+    {
+      "label": "Besedilo - PAF-0050 TM3A1P R SL, PAF-0077 TM3A2P R S...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "PAF-0050 TM3A1P R SL, PAF-0077 TM3A2P R SL, PAF-0051 TM3ABE1P R SL, PAF-0052 TM3ABEK1P R SL."
+    },
+    {
+      "label": "Besedilo - PAF-0087 - TM2AXP NR SL, PAF-0057 - pred-...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
+      "text": "PAF-0087 - TM2AXP NR SL, PAF-0057 - pred-filter za velike filtre, PAF-0049 - zaščitna prevleka."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - PAF-0060 - pogonski sistem CS EX z enoto,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "PAF-0060 - pogonski sistem CS EX z enoto, oporami za vrat, filtrom, naglavnim trakom, polnilnikom, pokrovčkom za preverjanje tesnjenja, pokrovčkom za preverjanje pretoka in torbo."
+    },
+    {
+      "label": "Besedilo - PAF-1030 - tekstilni naglavni trak za pol...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "PAF-1030 - tekstilni naglavni trak za polmasko."
+    },
+    {
+      "label": "Besedilo - PAF-1028 / PAF-1012 / PAF-1013 - opora za...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "PAF-1028 / PAF-1012 / PAF-1013 - opora za vrat S / M / L."
+    },
+    {
+      "label": "Besedilo - PAF-1043 - komplet za preverjanje prilega...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-1043 - komplet za preverjanje prileganja polmaske."
+    },
+    {
+      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
+    },
+    {
+      "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-102...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik."
+    },
+    {
+      "label": "Besedilo - Video in svetovanje",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "VIDEO IN SVETOVANJE"
+    },
+    {
+      "label": "Besedilo - EX je namenjen okoljem, kjer mora biti op...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
+      "text": "EX je namenjen okoljem, kjer mora biti oprema intrinzično varna"
+    },
+    {
+      "label": "Besedilo - Posebnost modela EX",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
+      "text": "Posebnost modela EX"
+    },
+    {
+      "label": "Besedilo - CleanSpace EX je zasnovan za potencialno ...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+      "text": "CleanSpace EX je zasnovan za potencialno eksplozivne atmosfere, zato je njegova izbira povezana z oceno območja, snovmi v procesu in internimi varnostnimi pravili podjetja. Tipična področja so nafta in plin, petrokemija, kemično rokovanje, premogovniki in druga delovišča, kjer navadna elektronska oprema ni primerna."
+    },
+    {
+      "label": "Besedilo - Ker podpira masko za del obraza in celoob...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+      "text": "Ker podpira masko za del obraza in celoobrazno masko, se konfiguracija prilagodi nalogi, vidnemu polju, zahtevani zaščiti oči in načinu čiščenja. Filtri morajo biti izbrani glede na delce, pline, pare ali kombinirano izpostavljenost, zato je pri EX modelu priporočljivo pregledati tudi certifikate in delovne postopke."
+    },
+    {
+      "label": "Besedilo - Primeren za ATEX / IECEx okolja in potenc...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
+      "text": "Primeren za ATEX / IECEx okolja in potencialno eksplozivne atmosfere."
+    },
+    {
+      "label": "Besedilo - Na voljo so delčni, visoko zmogljivi in k...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
+      "text": "Na voljo so delčni, visoko zmogljivi in kombinirani filtri."
+    },
+    {
+      "label": "Besedilo - Izbira filtra naj vedno sledi oceni tvega...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
+      "text": "Izbira filtra naj vedno sledi oceni tveganja in varnostnim listom snovi."
+    },
+    {
+      "label": "Besedilo - Interna video stranVidei za EXOdpre prazn...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
+      "text": "Interna video stranVidei za EXOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model EX."
+    },
+    {
+      "label": "Besedilo - Videi za EX",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > h3",
+      "text": "Videi za EX"
+    },
+    {
+      "label": "Besedilo - Odpre prazno interno video stran, kjer se...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
+      "text": "Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model EX."
+    },
+    {
+      "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
+      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga preveriti, ali konfiguracija EX ustreza delovnemu območju in potrebnim certifikacijam."
+    },
+    {
+      "label": "Besedilo - Naroči masko na test",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > h3",
+      "text": "Naroči masko na test"
+    },
+    {
+      "label": "Besedilo - Tu-Val pomaga preveriti, ali konfiguracij...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
+      "text": "Tu-Val pomaga preveriti, ali konfiguracija EX ustreza delovnemu območju in potrebnim certifikacijam."
     }
   ],
   "cleanspace_halo": [
@@ -1954,7 +2174,122 @@
         "alt": "Dodatki za celoobrazno masko"
       }
     ],
-    "cleanspace_ex": [],
+    "cleanspace_ex": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace EX respirator",
+        "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-EX-USA-01.jpg",
+        "alt": "CleanSpace EX respirator"
+      },
+      {
+        "label": "Slika - CleanSpace EX komplet",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-00.png",
+        "alt": "CleanSpace EX komplet"
+      },
+      {
+        "label": "Slika - PAF-0060 CleanSpace EX pogonska enota",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/09/PAF-_0060-CleanSpace-EX.jpg",
+        "alt": "PAF-0060 CleanSpace EX pogonska enota"
+      },
+      {
+        "label": "Slika - CleanSpace EX s celoobrazno masko in filt...",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2021/03/17-CleanSpace-EX-with-Full-Face-Mask-and-Coverall-Filter.jpg",
+        "alt": "CleanSpace EX s celoobrazno masko in filtrom"
+      },
+      {
+        "label": "Slika - PAF-0035 delčni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/09/CleanSpace-PAF-0035-Particulate-Filter-Image-02-1200x1200.jpg",
+        "alt": "PAF-0035 delčni filter"
+      },
+      {
+        "label": "Slika - CleanSpace pred-filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-03.png",
+        "alt": "CleanSpace pred-filter"
+      },
+      {
+        "label": "Slika - Pred-filter in zaščitna prevleka",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "Pred-filter in zaščitna prevleka"
+      },
+      {
+        "label": "Slika - CleanSpace filter adapter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/PAF-0038-CleanSpace-Filter-Adaptor.jpg",
+        "alt": "CleanSpace filter adapter"
+      },
+      {
+        "label": "Slika - PAF-0037 visoko zmogljiv filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/PAF-0037-CleanSpace-High-Capacity-HI-CAP-Particulate-P3-TM3-P-SL-R-Filter.jpg",
+        "alt": "PAF-0037 visoko zmogljiv filter"
+      },
+      {
+        "label": "Slika - CleanSpace kombinirani filtri",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-04.png",
+        "alt": "CleanSpace kombinirani filtri"
+      },
+      {
+        "label": "Slika - CleanSpace kombinirani filtri",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-04.png",
+        "alt": "CleanSpace kombinirani filtri"
+      },
+      {
+        "label": "Slika - CleanSpace EX pogonska enota",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/09/PAF-_0060-CleanSpace-EX.jpg",
+        "alt": "CleanSpace EX pogonska enota"
+      },
+      {
+        "label": "Slika - EX opore in naglavni trak",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-02.png",
+        "alt": "EX opore in naglavni trak"
+      },
+      {
+        "label": "Slika - EX opore in naglavni trak",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-02.png",
+        "alt": "EX opore in naglavni trak"
+      },
+      {
+        "label": "Slika - Half Mask Fit Testing Kit",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-PAF-1043-Half-Mask-Quantitative-Fit-Testing-Kit-Image-1200x718.png",
+        "alt": "Half Mask Fit Testing Kit"
+      },
+      {
+        "label": "Slika - CleanSpace polnilna postaja",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
+        "alt": "CleanSpace polnilna postaja"
+      },
+      {
+        "label": "Slika - CleanSpace polnilnik",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
+        "alt": "CleanSpace polnilnik"
+      }
+    ],
     "cleanspace_halo": [],
     "cleanspace_agile": []
   },
