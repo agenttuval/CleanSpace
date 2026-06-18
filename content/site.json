@@ -1168,12 +1168,12 @@
     {
       "label": "CST ULTRA - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "Dekontaminacija"
+      "text": "ZAHTEVNA OKOLJA IN NADZOR"
     },
     {
       "label": "CST ULTRA - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Napreden sistem za azbest, rudarstvo, kemična ali biološka tveganja in okolja, kjer je pomembno poročanje o skladnosti."
+      "text": "Napreden industrijski respirator za zahtevna okolja z visokimi zahtevami glede dekontaminacije, čiščenja opreme, sledljivosti uporabe in skladnosti. Primeren za sanacijska dela, visoko prašna okolja, obdelavo mineralnih materialov, varjenje ter ravnanje s kemičnimi ali biološkimi materiali."
     },
     {
       "label": "CST ULTRA - kontakt gumb",
@@ -1204,6 +1204,206 @@
       "label": "CST ULTRA - opis respiratorja",
       "selector": ".family-story p",
       "text": "CST ULTRA je primeren za zahtevnejše postopke, kjer sta pomembna dekontaminacija in nadzor podatkov o uporabi. Podpira iste CST obrazne dele in filtre kot PRO, z višjo stopnjo zaščite ohišja."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - Maska za del obraza: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
+      "text": "Maska za del obraza: da"
+    },
+    {
+      "label": "Besedilo - Celoobrazna maska: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
+      "text": "Celoobrazna maska: da"
+    },
+    {
+      "label": "Besedilo - IP65",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
+      "text": "IP65 zaščita"
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - Slike",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "SLIKE"
+    },
+    {
+      "label": "Besedilo - Opis respiratorja",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
+      "text": "OPIS RESPIRATORJA"
+    },
+    {
+      "label": "Besedilo - IP65 izvedba za dekontaminacijske postopk...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "IP65 izvedba za dekontaminacijske postopke."
+    },
+    {
+      "label": "Besedilo - Do 14 ur delovanja pri zmerni obremenitvi.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "Do 14 ur delovanja pri zmerni obremenitvi."
+    },
+    {
+      "label": "Besedilo - Podatki prek CleanSpace aplikacije in por...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Podatki prek CleanSpace aplikacije in portala CleanSpace Insights."
+    },
+    {
+      "label": "Besedilo - Obrazni deli",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
+      "text": "OBRAZNI DELI"
+    },
+    {
+      "label": "Besedilo - CST1034 / CST1035 / CST1036 - polmaska S ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(1)",
+      "text": "CST1034 / CST1035 / CST1036 - polmaska S / M / L."
+    },
+    {
+      "label": "Besedilo - CST1017 - celoobrazna maska S.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(2)",
+      "text": "CST1017 - celoobrazna maska S."
+    },
+    {
+      "label": "Besedilo - CST1018 - celoobrazna maska M / L.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(3)",
+      "text": "CST1018 - celoobrazna maska M / L."
+    },
+    {
+      "label": "Besedilo - Filtri",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
+      "text": "FILTRI"
+    },
+    {
+      "label": "Besedilo - CST1005 - standardni delčni filter.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1005 - standardni delčni filter."
+    },
+    {
+      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1004 - visoko zmogljiv delčni filter."
+    },
+    {
+      "label": "Besedilo - CST1028 TM3A1P R SL, CST1008 TM3A2P R SL,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1028 TM3A1P R SL, CST1008 TM3A2P R SL, CST1027 TM3ABE1P R SL, CST1006 TM3ABEK1P R SL."
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - CST1010 - pogonska enota CST ULTRA.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1010 - pogonska enota CST ULTRA."
+    },
+    {
+      "label": "Besedilo - CST1019 / CST1020 - opora za vrat S / M.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1019 / CST1020 - opora za vrat S / M."
+    },
+    {
+      "label": "Besedilo - CST1037 / CST1038 - tekstilni ali netekst...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1037 / CST1038 - tekstilni ali netekstilni naglavni trak."
+    },
+    {
+      "label": "Besedilo - CST1024 - čistilni in shranjevalni čep.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CST1024 - čistilni in shranjevalni čep."
+    },
+    {
+      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
+    },
+    {
+      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
+    },
+    {
+      "label": "Besedilo - Video in svetovanje",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "VIDEO IN SVETOVANJE"
+    },
+    {
+      "label": "Besedilo - CST ULTRA je za zahtevne postopke, čiščen...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
+      "text": "CST ULTRA je za zahtevne postopke, čiščenje in dokazovanje uporabe"
+    },
+    {
+      "label": "Besedilo - Kdaj izbrati ULTRA",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
+      "text": "Kdaj izbrati ULTRA"
+    },
+    {
+      "label": "Besedilo - CST ULTRA je namenjen okoljem, kjer respi...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+      "text": "CST ULTRA je namenjen okoljem, kjer respirator ni samo zaščitna oprema, ampak tudi del nadzora procesa. Uporaben je pri dekontaminaciji, azbestu, rudarstvu, intervencijah, kemičnih ali bioloških tveganjih in nalogah, kjer mora podjetje lažje spremljati uporabo opreme."
+    },
+    {
+      "label": "Besedilo - V primerjavi s standardnim industrijskim ...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+      "text": "V primerjavi s standardnim industrijskim modelom je poudarek na odpornejši izvedbi, čiščenju in podatkovni podpori. Uporabnik lahko izbira med masko za del obraza in celoobrazno masko, izbira filtra pa mora slediti dejanski nevarnosti: delci, kombinirana izpostavljenost ali zahteve po večji kapaciteti filtra."
+    },
+    {
+      "label": "Besedilo - Primeren za dekontaminacijske postopke in...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
+      "text": "Primeren za dekontaminacijske postopke in zahtevnejša okolja."
+    },
+    {
+      "label": "Besedilo - CleanSpace Insights pomaga pri pregledu u...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
+      "text": "CleanSpace Insights pomaga pri pregledu uporabe in skladnosti."
+    },
+    {
+      "label": "Besedilo - Podpira isto CST družino mask, filtrov in...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
+      "text": "Podpira isto CST družino mask, filtrov in dodatkov kot CST PRO."
+    },
+    {
+      "label": "Besedilo - Interna video stranVidei za CST ULTRAOdpr...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
+      "text": "Interna video stranVidei za CST ULTRAOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model CST ULTRA."
+    },
+    {
+      "label": "Besedilo - Videi za CST ULTRA",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > h3",
+      "text": "Videi za CST ULTRA"
+    },
+    {
+      "label": "Besedilo - Odpre prazno interno video stran, kjer se...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
+      "text": "Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model CST ULTRA."
+    },
+    {
+      "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
+      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejši postopek ali delovišče."
+    },
+    {
+      "label": "Besedilo - Naroči masko na test",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > h3",
+      "text": "Naroči masko na test"
+    },
+    {
+      "label": "Besedilo - Tu-Val pomaga preveriti, ali je ULTRA pra...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
+      "text": "Tu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejši postopek ali delovišče."
     }
   ],
   "cleanspace_ex": [
@@ -1632,7 +1832,104 @@
         "alt": "Dodatki za celoobrazno masko"
       }
     ],
-    "cleanspace_cst_ultra": [],
+    "cleanspace_cst_ultra": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace CST ULTRA pri delu",
+        "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg",
+        "alt": "CleanSpace CST ULTRA pri delu"
+      },
+      {
+        "label": "Slika - CleanSpace CST ULTRA komplet",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
+        "alt": "CleanSpace CST ULTRA komplet"
+      },
+      {
+        "label": "Slika - CST ULTRA z visoko zmogljivim filtrom",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Respirator-with-High-Capacity-Filter-Image-02-tif-thumbnail.jpg",
+        "alt": "CST ULTRA z visoko zmogljivim filtrom"
+      },
+      {
+        "label": "Slika - CleanSpace CST ULTRA zadnji pogled",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Back.jpg",
+        "alt": "CleanSpace CST ULTRA zadnji pogled"
+      },
+      {
+        "label": "Slika - CST1005 delčni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1005 delčni filter"
+      },
+      {
+        "label": "Slika - CST1004 visoko zmogljiv filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1004 visoko zmogljiv filter"
+      },
+      {
+        "label": "Slika - CST kombinirani filtri",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST kombinirani filtri"
+      },
+      {
+        "label": "Slika - Pred-filter in zaščitna prevleka",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "Pred-filter in zaščitna prevleka"
+      },
+      {
+        "label": "Slika - CST ULTRA pogonska enota",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
+        "alt": "CST ULTRA pogonska enota"
+      },
+      {
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
+      },
+      {
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
+      },
+      {
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
+      },
+      {
+        "label": "Slika - CleanSpace polnilna postaja",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
+        "alt": "CleanSpace polnilna postaja"
+      },
+      {
+        "label": "Slika - Dodatki za celoobrazno masko",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
+        "alt": "Dodatki za celoobrazno masko"
+      }
+    ],
     "cleanspace_ex": [],
     "cleanspace_halo": [],
     "cleanspace_agile": []
