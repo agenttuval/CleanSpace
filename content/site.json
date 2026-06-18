@@ -1712,7 +1712,7 @@
     {
       "label": "HALO - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "Zdravstvo"
+      "text": "ZDRAVSTVO, FARMACIJA IN LABORATORIJI"
     },
     {
       "label": "HALO - uvodni opis",
@@ -1748,6 +1748,201 @@
       "label": "HALO - opis respiratorja",
       "selector": ".family-story p",
       "text": "HALO je zasnovan za zdravstvo, farmacijo in laboratorije, kjer so pomembni udobje, dekontaminacija in možnost nadzora izdiha z dodatnimi filtrskimi elementi."
+    },
+    {
+      "label": "Besedilo - CleanSpace HALO",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace HALO"
+    },
+    {
+      "label": "Besedilo - Maska za del obraza: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
+      "text": "Maska za del obraza: da"
+    },
+    {
+      "label": "Besedilo - Celoobrazna maska: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
+      "text": "Celoobrazna maska: da"
+    },
+    {
+      "label": "Besedilo - IP66",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
+      "text": "IP66"
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - Slike",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "SLIKE"
+    },
+    {
+      "label": "Besedilo - Opis respiratorja",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
+      "text": "OPIS RESPIRATORJA"
+    },
+    {
+      "label": "Besedilo - IP66 izvedba za intenzivnejše čiščenje.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "IP66 izvedba za intenzivnejše čiščenje."
+    },
+    {
+      "label": "Besedilo - Možnost uporabe s polmasko ali celoobrazn...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "Možnost uporabe s polmasko ali celoobrazno masko."
+    },
+    {
+      "label": "Besedilo - Na voljo so delčni, Bio in Steri-Plus izd...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri."
+    },
+    {
+      "label": "Besedilo - Obrazni deli",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
+      "text": "OBRAZNI DELI"
+    },
+    {
+      "label": "Besedilo - CS3003 / CS3004 / CS3005 - HALO polmaska ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(1)",
+      "text": "CS3003 / CS3004 / CS3005 - HALO polmaska S / M / L."
+    },
+    {
+      "label": "Besedilo - CS3006 - HALO celoobrazna maska S.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(2)",
+      "text": "CS3006 - HALO celoobrazna maska S."
+    },
+    {
+      "label": "Besedilo - CS3007 - HALO celoobrazna maska M / L.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li:nth-of-type(3)",
+      "text": "CS3007 - HALO celoobrazna maska M / L."
+    },
+    {
+      "label": "Besedilo - Filtri",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
+      "text": "FILTRI"
+    },
+    {
+      "label": "Besedilo - CS3002 - HALO HEPA / P3 TM3 delčni filter...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CS3002 - HALO HEPA / P3 TM3 delčni filter P SL R, pakiranje 3 kosi."
+    },
+    {
+      "label": "Besedilo - CS3025 - HALO Bio P3 TM3 delčni filter P ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CS3025 - HALO Bio P3 TM3 delčni filter P SL R."
+    },
+    {
+      "label": "Besedilo - CS3038 / CS3039 - Steri-Plus izdihovalni ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CS3038 / CS3039 - Steri-Plus izdihovalni filter."
+    },
+    {
+      "label": "Besedilo - CS3027 - HALO BIO izdihovalni filter 95, ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CS3027 - HALO BIO izdihovalni filter 95, pakiranje 15 kosov."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - HALO pogonski sistem vključuje polnilnik,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "HALO pogonski sistem vključuje polnilnik, opore za vrat, torbo, pokrovček za preverjanje tesnjenja, filter, naglavni trak, pogonsko enoto in navodila."
+    },
+    {
+      "label": "Besedilo - CS3008 - HALO naglavni trak.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CS3008 - HALO naglavni trak."
+    },
+    {
+      "label": "Besedilo - CS3011 - HALO čistilni in shranjevalni če...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CS3011 - HALO čistilni in shranjevalni čep."
+    },
+    {
+      "label": "Besedilo - PAF-1043 - komplet za preverjanje prilega...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-1043 - komplet za preverjanje prileganja polmaske."
+    },
+    {
+      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
+    },
+    {
+      "label": "Besedilo - Video in svetovanje",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "VIDEO IN SVETOVANJE"
+    },
+    {
+      "label": "Besedilo - HALO je zasnovan za zdravstvo, laboratori...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
+      "text": "HALO je zasnovan za zdravstvo, laboratorije in čista okolja"
+    },
+    {
+      "label": "Besedilo - Udobje, čiščenje in nadzor izdiha",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
+      "text": "Udobje, čiščenje in nadzor izdiha"
+    },
+    {
+      "label": "Besedilo - CleanSpace HALO je namenjen uporabnikom, ...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+      "text": "CleanSpace HALO je namenjen uporabnikom, ki respirator nosijo v zdravstvu, farmaciji, laboratorijih ali podobnih okoljih, kjer sta pomembna enostavno čiščenje in zanesljivo tesnjenje maske. Sistem je kompakten, brez pasu in cevi, zato uporabniku ne omejuje gibanja pri delu z bolniki, vzorci ali občutljivo opremo."
+    },
+    {
+      "label": "Besedilo - Pri izboru se preveri, ali uporabnik potr...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+      "text": "Pri izboru se preveri, ali uporabnik potrebuje masko za del obraza ali celoobrazno masko, kakšen tip filtra je potreben in ali je smiselna dodatna zaščita vizirja ali komplet za očala. Posebnost HALO programa so tudi rešitve za izdihovalne filtre, ki so uporabne pri nadzoru izdiha v občutljivih okoljih."
+    },
+    {
+      "label": "Besedilo - Primeren za zdravstvo, farmacijo, laborat...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
+      "text": "Primeren za zdravstvo, farmacijo, laboratorije in interventne ekipe."
+    },
+    {
+      "label": "Besedilo - Podpira masko za del obraza in celoobrazn...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
+      "text": "Podpira masko za del obraza in celoobrazno masko."
+    },
+    {
+      "label": "Besedilo - Na voljo so delčni, Bio in Steri-Plus izd...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
+      "text": "Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri."
+    },
+    {
+      "label": "Besedilo - Interna video stranVidei za HALOOdpre pra...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
+      "text": "Interna video stranVidei za HALOOdpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model HALO."
+    },
+    {
+      "label": "Besedilo - Videi za HALO",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > h3",
+      "text": "Videi za HALO"
+    },
+    {
+      "label": "Besedilo - Odpre prazno interno video stran, kjer se...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
+      "text": "Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model HALO."
+    },
+    {
+      "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
+      "text": "Preizkus pri kupcuNaroči masko na testTu-Val pomaga izbrati velikost maske, filter in dodatke za zdravstveno ali laboratorijsko uporabo."
+    },
+    {
+      "label": "Besedilo - Naroči masko na test",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > h3",
+      "text": "Naroči masko na test"
+    },
+    {
+      "label": "Besedilo - Tu-Val pomaga izbrati velikost maske, fil...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
+      "text": "Tu-Val pomaga izbrati velikost maske, filter in dodatke za zdravstveno ali laboratorijsko uporabo."
     }
   ],
   "customBlocks": {
@@ -2306,7 +2501,98 @@
         "alt": "CleanSpace polnilnik"
       }
     ],
-    "cleanspace_halo": [],
+    "cleanspace_halo": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace HALO v laboratoriju",
+        "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
+        "alt": "CleanSpace HALO v laboratoriju"
+      },
+      {
+        "label": "Slika - CleanSpace HALO sistem",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png",
+        "alt": "CleanSpace HALO sistem"
+      },
+      {
+        "label": "Slika - CleanSpace HALO respirator",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-HALO-Respirator-USA-Image-01.jpg",
+        "alt": "CleanSpace HALO respirator"
+      },
+      {
+        "label": "Slika - CleanSpace HALO dodatki in filtrski eleme...",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
+        "alt": "CleanSpace HALO dodatki in filtrski elementi"
+      },
+      {
+        "label": "Slika - HALO HEPA filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
+        "alt": "HALO HEPA filter"
+      },
+      {
+        "label": "Slika - HALO Bio filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3025-CleanSpace-HALO-Bio-P3-TM3-Particulate-Filter-P-SL-R.jpg",
+        "alt": "HALO Bio filter"
+      },
+      {
+        "label": "Slika - Steri-Plus izdihovalni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
+        "alt": "Steri-Plus izdihovalni filter"
+      },
+      {
+        "label": "Slika - HALO BIO izdihovalni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2021/02/CS3027-CleanSpace-HALO-BIO-Exhalation-Filter-95-Pk-15.jpg",
+        "alt": "HALO BIO izdihovalni filter"
+      },
+      {
+        "label": "Slika - HALO pogonski sistem vključuje polnilnik,...",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "HALO pogonski sistem vključuje polnilnik, opore za vrat, torbo, pokrovček za preverjanje tesnjenja, filter, naglavni trak, pogonsko enoto in navodila."
+      },
+      {
+        "label": "Slika - HALO naglavni trak",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3008-CleanSpace-HALO-Head-Harness.jpg",
+        "alt": "HALO naglavni trak"
+      },
+      {
+        "label": "Slika - HALO čistilni in shranjevalni čep",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
+        "alt": "HALO čistilni in shranjevalni čep"
+      },
+      {
+        "label": "Slika - Half Mask Fit Testing Kit",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-PAF-1043-Half-Mask-Quantitative-Fit-Testing-Kit-Image-1200x718.png",
+        "alt": "Half Mask Fit Testing Kit"
+      },
+      {
+        "label": "Slika - Dodatki za celoobrazno masko",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
+        "alt": "Dodatki za celoobrazno masko"
+      }
+    ],
     "cleanspace_agile": []
   },
   "videos": [],
