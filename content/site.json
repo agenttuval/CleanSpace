@@ -1136,7 +1136,7 @@
     {
       "label": "Besedilo - Interna video stranVidei za CST PROOdpre ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
-      "text": "Oglejte si video vsebine za CleanSpace CST PRO: pravilna namestitev respiratorja, izbira maske, menjava filtrov, povezava z aplikacijo CleanSpace in osnovno vzdrževanje opreme."
+      "text": "Video navodila za CleanSpace CST PRO\n\nOglejte si video vsebine za CleanSpace CST PRO: pravilna namestitev respiratorja, izbira maske, menjava filtrov, povezava z aplikacijo CleanSpace in osnovno vzdrževanje opreme."
     },
     {
       "label": "Besedilo - Videi za CST PRO",
@@ -1151,7 +1151,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcuNaroči masko na testPoš...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Pošljite povpraševanje in dogovorite se za preizkus respiratorja CleanSpace CST PRO v vašem delovnem okolju. Ekipa TU-VAL preveri način uporabe, vrsto izpostavljenosti ter pripravi priporočilo glede maske, filtra in dodatkov."
+      "text": "Preizkus CleanSpace CST PRO pri kupcu\n\nPošljite povpraševanje in dogovorite se za preizkus respiratorja CleanSpace CST PRO v vašem delovnem okolju. Ekipa TU-VAL preveri način uporabe, vrsto izpostavljenosti ter pripravi priporočilo glede maske, filtra in dodatkov."
     },
     {
       "label": "Besedilo - Naroči masko na test",
