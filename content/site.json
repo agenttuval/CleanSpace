@@ -706,12 +706,15 @@
     {
       "label": "Besedilo - Lažje je izbrati po preizkusu",
       "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > h2",
-      "text": "Lažje je izbrati po preizkusu"
+      "text": "Lažje je izbrati po preizkusu",
+      "style": {
+        "fontSize": 40
+      }
     },
     {
       "label": "Besedilo - Test pomaga preveriti udobje, prileganje ...",
       "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > p",
-      "text": "Test pomaga preveriti udobje, prileganje maske, izbiro filtra in primernost sistema za dejanske pogoje v podjetju."
+      "text": "Preizkus CleanSpace respiratorja pomaga preveriti udobje, prileganje maske, izbiro filtra in primernost sistema za dejanske pogoje v vašem delovnem okolju."
     },
     {
       "label": "Besedilo - Poglej modele",
