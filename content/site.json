@@ -1942,7 +1942,10 @@
     {
       "label": "Besedilo - HALO je zasnovan za zdravstvo, laboratori...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CleanSpace HALO za zaščito dihal v zdravstvu, farmaciji in laboratorijih"
+      "text": "CleanSpace HALO za zaščito dihal v zdravstvu, farmaciji in laboratorijih",
+      "style": {
+        "fontSize": 50
+      }
     },
     {
       "label": "Besedilo - Udobje, čiščenje in nadzor izdiha",
