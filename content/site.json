@@ -564,17 +564,17 @@
     {
       "label": "Kontakt - nadnaslov",
       "selector": ".contact-copy .eyebrow",
-      "text": "Kontakt"
+      "text": "KONTAKT"
     },
     {
       "label": "Kontakt - naslov",
       "selector": ".contact-copy h1",
-      "text": "Pogovorimo se o zaščiti dihal v vašem podjetju"
+      "text": "Izberimo pravo zaščito dihal za vaše podjetje"
     },
     {
       "label": "Kontakt - uvodni opis",
       "selector": ".contact-copy .lead",
-      "text": "Pošljite povpraševanje za CleanSpace respiratorje, filtre, maske ali svetovanje pri izbiri opreme za vaše delovno okolje."
+      "text": "Pišite nam za CleanSpace respiratorje, filtre, dodatke ali strokovno svetovanje. TU-VAL vam pomaga izbrati ustrezno rešitev glede na delovno okolje, tveganja in način uporabe."
     },
     {
       "label": "Kontakt - kartica podjetje",
@@ -594,7 +594,7 @@
     {
       "label": "Kontakt - obrazec nadnaslov",
       "selector": ".form-heading .eyebrow",
-      "text": "Povpraševanje"
+      "text": "POVPRAŠEVANJE"
     },
     {
       "label": "Kontakt - obrazec naslov",
@@ -625,6 +625,21 @@
       "label": "Kontakt - zemljevid gumb",
       "selector": ".location-details .button",
       "text": "Odpri zemljevid"
+    },
+    {
+      "label": "Besedilo - T +386 1 721 21 23",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a:nth-of-type(1)",
+      "text": "T +386 1 721 21 23"
+    },
+    {
+      "label": "Besedilo - E sales@tu-val.si",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "E sales@tu-val.si"
+    },
+    {
+      "label": "Besedilo - Tu-Val d.o.o.",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel > div.map-frame:nth-of-type(1) > a.map-pin-label",
+      "text": "Tu-Val d.o.o."
     }
   ],
   "test": [
@@ -2210,7 +2225,20 @@
         "alt": "CleanSpace respirator za test"
       }
     ],
-    "kontakt": [],
+    "kontakt": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      }
+    ],
     "cleanspace_work": [
       {
         "label": "Slika - CleanSpace respirators",
