@@ -631,17 +631,26 @@
     {
       "label": "Test - nadnaslov",
       "selector": ".contact-copy .eyebrow",
-      "text": "Naročilo testne maske"
+      "text": "NAROČILO PREIZKUSA",
+      "style": {
+        "width": 724,
+        "minHeight": 32,
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Test - naslov",
       "selector": ".contact-copy h1",
-      "text": "Naročite CleanSpace masko na test"
+      "text": "Naročite CleanSpace respirator na preizkus",
+      "style": {
+        "fontSize": 70
+      }
     },
     {
       "label": "Test - uvodni opis",
       "selector": ".contact-copy .lead",
-      "text": "Izpolnite osnovne podatke in Tu-Val vam pomaga izbrati primeren CleanSpace respirator za preizkus v vašem delovnem okolju."
+      "text": "Izpolnite osnovne podatke in ekipa TU-VAL vam pomaga izbrati primeren CleanSpace respirator za preizkus v vašem delovnem okolju"
     },
     {
       "label": "Test - kartica naslov",
@@ -651,22 +660,33 @@
     {
       "label": "Test - kartica opis 1",
       "selector": ".contact-card p:nth-of-type(1)",
-      "text": "Ekipa Tu-Val prejme pripravljeno sporočilo s podatki za test."
+      "text": "Ekipa TU-VAL prejme vaše povpraševanje in preveri osnovne podatke za preizkus respiratorja.",
+      "style": {
+        "width": 362,
+        "minHeight": 40
+      }
     },
     {
       "label": "Test - kartica opis 2",
       "selector": ".contact-card p:nth-of-type(2)",
-      "text": "Po oddaji se podatki samodejno pošljejo na sales@tu-val.si."
+      "text": "Po oddaji se podatki samodejno pošljejo na sales@tu-val.si.",
+      "style": {
+        "width": 362,
+        "minHeight": 40
+      }
     },
     {
       "label": "Test - obrazec nadnaslov",
       "selector": ".form-heading .eyebrow",
-      "text": "Test opreme"
+      "text": "TEST OPREME"
     },
     {
       "label": "Test - obrazec naslov",
       "selector": ".form-heading h2",
-      "text": "Naročam masko na test"
+      "text": "Naročam respirator na preizkus",
+      "style": {
+        "fontSize": 40
+      }
     },
     {
       "label": "Test - gumb",
@@ -677,6 +697,26 @@
       "label": "Test - opomba",
       "selector": ".form-note",
       "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
+    },
+    {
+      "label": "Besedilo - Pokliči Tu-Val",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a.dark",
+      "text": "Pokliči Tu-Val"
+    },
+    {
+      "label": "Besedilo - Lažje je izbrati po preizkusu",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > h2",
+      "text": "Lažje je izbrati po preizkusu"
+    },
+    {
+      "label": "Besedilo - Test pomaga preveriti udobje, prileganje ...",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > p",
+      "text": "Test pomaga preveriti udobje, prileganje maske, izbiro filtra in primernost sistema za dejanske pogoje v podjetju."
+    },
+    {
+      "label": "Besedilo - Poglej modele",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > a",
+      "text": "Poglej modele"
     }
   ],
   "cleanspace_work": [
@@ -2135,7 +2175,26 @@
       }
     ],
     "videi": [],
-    "test": [],
+    "test": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace respirator za test",
+        "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg",
+        "alt": "CleanSpace respirator za test"
+      }
+    ],
     "kontakt": [],
     "cleanspace_work": [
       {
