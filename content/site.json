@@ -1686,7 +1686,10 @@
     {
       "label": "Besedilo - EX je namenjen okoljem, kjer mora biti op...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CleanSpace EX za varno delo v ATEX območjih"
+      "text": "CleanSpace EX za varno delo v ATEX območjih",
+      "style": {
+        "fontSize": 50
+      }
     },
     {
       "label": "Besedilo - Posebnost modela EX",
