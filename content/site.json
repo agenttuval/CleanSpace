@@ -2897,22 +2897,32 @@
     {
       "label": "Besedilo - Primeren za prah, delce in vsakodnevna in...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Primeren za prah, delce in vsakodnevna industrijska opravila."
+      "text": "Primeren za zaščito dihal pred prahom in delci pri vsakodnevnih industrijskih opravilih.",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Besedilo - Dobro sodeluje z drugo osebno varovalno o...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Dobro sodeluje z drugo osebno varovalno opremo, kot so čelade, očala in glušniki."
+      "text": "Združljiv z drugo osebno zaščitno opremo, kot so čelade, zaščitna očala in zaščita sluha.",
+      "style": {
+        "x": 0,
+        "y": 0,
+        "width": 568,
+        "minHeight": 50
+      }
     },
     {
       "label": "Besedilo - Ni primeren za pline, pare, okolja z malo...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Ni primeren za pline, pare, okolja z malo kisika ali EX območja."
+      "text": "Za pline, hlape, atmosfero z nizko vsebnostjo kisika ali ATEX območja je primernejši drug CleanSpace model."
     },
     {
       "label": "Besedilo - Interna video stran Videi za AGILE Odpre ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
-      "text": "Interna video stran Videi za AGILE Odpre interno video stran, kjer lahko dodajate svoje predstavitvene ali izobraževalne posnetke za model AGILE."
+      "text": "Video navodila za CleanSpace AGILE\n\nOglejte si video vsebine za CleanSpace AGILE: pravilna namestitev respiratorja, uporaba ohlapno prilegajočega obraznega dela, menjava filtra, polnjenje, čiščenje in osnovno vzdrževanje opreme."
     },
     {
       "label": "Besedilo - Videi za AGILE",
@@ -2927,7 +2937,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcu Naroči masko na test T...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Preizkus pri kupcu Naroči masko na test Tu-Val pomaga preveriti, ali AGILE ustreza vašemu delu, tipu delcev in načinu organizacije ekipe."
+      "text": "Preizkus CleanSpace AGILE pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace AGILE v vašem delovnem okolju. Ekipa TU-VAL vam pomaga preveriti, ali je AGILE prava rešitev glede na vrsto delcev, način dela, uporabo v ekipi in združljivost z drugo osebno zaščitno opremo."
     },
     {
       "label": "Besedilo - Naroči masko na test",
