@@ -2204,7 +2204,26 @@
         "alt": "CleanSpace AGILE"
       }
     ],
-    "videi": [],
+    "videi": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace video knjižnica",
+        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CleanSpace video knjižnica"
+      }
+    ],
     "test": [
       {
         "label": "Slika - CleanSpace respirators",
@@ -2775,7 +2794,53 @@
     ]
   },
   "videos": [],
-  "videi": [],
+  "videi": [
+    {
+      "label": "Besedilo - Video knjižnica",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "Video knjižnica"
+    },
+    {
+      "label": "Besedilo - CleanSpace videi",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace videi"
+    },
+    {
+      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - Dodani videi",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
+      "text": "Dodani videi"
+    },
+    {
+      "label": "Besedilo - Video galerija je trenutno prazna",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
+      "text": "Video galerija je trenutno prazna"
+    },
+    {
+      "label": "Besedilo - Video galerija je pripravljena.",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
+      "text": "Video galerija je pripravljena."
+    },
+    {
+      "label": "Besedilo - Ni še dodanih videov",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
+      "text": "Ni še dodanih videov"
+    },
+    {
+      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
+      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    }
+  ],
   "mediaBlocks": {
     "index": [],
     "maske": [],
