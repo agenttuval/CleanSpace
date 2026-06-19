@@ -2609,7 +2609,68 @@
         "alt": "Dodatki za celoobrazno masko"
       }
     ],
-    "cleanspace_agile": []
+    "cleanspace_agile": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace AGILE respirator",
+        "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
+        "alt": "CleanSpace AGILE respirator"
+      },
+      {
+        "label": "Slika - CleanSpace AGILE stranski pogled",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Side.jpg",
+        "alt": "CleanSpace AGILE stranski pogled"
+      },
+      {
+        "label": "Slika - CleanSpace AGILE zadnji pogled",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Back.jpg",
+        "alt": "CleanSpace AGILE zadnji pogled"
+      },
+      {
+        "label": "Slika - CleanSpace AGILE komplet",
+        "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-00.png",
+        "alt": "CleanSpace AGILE komplet"
+      },
+      {
+        "label": "Slika - AGILE delčni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-03.png",
+        "alt": "AGILE delčni filter"
+      },
+      {
+        "label": "Slika - AGILE polnilnik",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-04.png",
+        "alt": "AGILE polnilnik"
+      },
+      {
+        "label": "Slika - AGILE opora za vrat",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-02.png",
+        "alt": "AGILE opora za vrat"
+      },
+      {
+        "label": "Slika - AGILE pogonska enota",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-00.png",
+        "alt": "AGILE pogonska enota"
+      }
+    ]
   },
   "videos": [],
   "videi": [],
@@ -2656,5 +2717,227 @@
     "cleanspace_ex": "",
     "cleanspace_halo": ""
   },
-  "cleanspace_agile": []
+  "cleanspace_agile": [
+    {
+      "label": "Besedilo - Deljene ekipe",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "ZA HITRO UVEDBO V EKIPI",
+      "style": {
+        "width": 515,
+        "minHeight": 32
+      }
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > h1",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - Nov lahek respirator z aktivnim dovajanje...",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pred delci v industriji, gradbeništvu, skladiščih, logistiki, vzdrževanju in čiščenju. Ohlapno prilegajoč obrazni del omogoča enostavno uporabo brez preverjanja tesnjenja maske."
+    },
+    {
+      "label": "Besedilo - Maska prekriva del obraza: da",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(1)",
+      "text": "Ohlapni obrazni del"
+    },
+    {
+      "label": "Besedilo - Celoobrazna maska: ne",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(2)",
+      "text": "Celoobrazna maska: ne"
+    },
+    {
+      "label": "Besedilo - brez fit testa",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.compatibility-pills:nth-of-type(1) > span.pill:nth-of-type(3)",
+      "text": "Brez preverjanja tesnjenja maske"
+    },
+    {
+      "label": "Besedilo - Kontaktiraj za AGILE",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(1)",
+      "text": "Povprašaj za AGILE"
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > div.hero-actions:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "Nazaj na modele"
+    },
+    {
+      "label": "Besedilo - Slike",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "SLIKE"
+    },
+    {
+      "label": "Besedilo - AGILE sistem in komplet",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > h2",
+      "text": "AGILE sistem in komplet"
+    },
+    {
+      "label": "Besedilo - Stranski pogled",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > figcaption",
+      "text": "Stranski pogled"
+    },
+    {
+      "label": "Besedilo - Zadnji pogled",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(2) > figcaption",
+      "text": "Zadnji pogled"
+    },
+    {
+      "label": "Besedilo - Komplet in dodatki",
+      "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > figcaption",
+      "text": "Komplet in dodatki"
+    },
+    {
+      "label": "Besedilo - Opis respiratorja",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > h4",
+      "text": "OPIS RESPIRATORJA"
+    },
+    {
+      "label": "Besedilo - AGILE je ohlapno prilegajoč respirator z ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > p",
+      "text": "CleanSpace AGILE je lahek pozitivno-tlačni respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pred delci v industrijskih delovnih okoljih. Ohlapno prilegajoč obrazni del omogoča uporabo brez preverjanja tesnjenja maske, zato je primeren za proizvodnjo, gradbeništvo, logistiko, skladišča, vzdrževanje, čiščenje in ekipe, kjer opremo uporablja več zaposlenih"
+    },
+    {
+      "label": "Besedilo - AirSensit tehnologija sproti prilagaja pr...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "AirSensit tehnologija za lažje dihanje.\nZaščita pred delci v zraku, 99,97% filtracija delcev",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "label": "Besedilo - Ohlapen obrazni del omogoča uporabo brez ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "Ohlapno prilegajoč obrazni del.\nZdružljiv z drugo osebno zaščitno opremo",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "label": "Besedilo - Pogonska enota tehta manj kot 425 g, bate...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Pogonska enota tehta manj kot 425 g, do 7 ur delovanja baterije.\nEnostavna uporaba v ekipah",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "label": "Besedilo - Obrazni del",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
+      "text": "OBRAZNI DEL"
+    },
+    {
+      "label": "Besedilo - Facepiece - ena velikost za vse, z ohlapn...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li",
+      "text": "• Ena velikost za različne uporabnike, z ohlapnim prileganjem za udobno uporabo brez preverjanja tesnjenja maske.",
+      "style": {
+        "width": 235,
+        "minHeight": 76
+      }
+    },
+    {
+      "label": "Besedilo - Filtri",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > h4",
+      "text": "FILTRI"
+    },
+    {
+      "label": "Besedilo - AGILE Particulate Filter - 99,97 % filtra...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card",
+      "text": "AGILE DParticulate Filter - 99,97 % filtracija delcev za vsakodnevna prašna industrijska okolja."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - Universal Battery Charger - univerzalni p...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "Universal Battery Charger - univerzalni polnilnik."
+    },
+    {
+      "label": "Besedilo - Neck Support x 2 - mala in srednja opora ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "Neck Support x 2 - mala in srednja opora za vrat."
+    },
+    {
+      "label": "Besedilo - Power Unit and User Instruction - pogonsk...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Video in svetovanje",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
+      "text": "VIDEO IN SVETOVANJE"
+    },
+    {
+      "label": "Besedilo - AGILE je namenjen delovnim mestom, kjer s...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
+      "text": "CleanSpace AGILE za hitro uvedbo zaščite dihal v ekipi"
+    },
+    {
+      "label": "Besedilo - Kje se najbolje izkaže",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
+      "text": "Kje se najbolje izkaže"
+    },
+    {
+      "label": "Besedilo - Po uradni strani CleanSpace je AGILE prim...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+      "text": "CleanSpace AGILE je primeren za delovna mesta, kjer so prisotni prah in delci v zraku, hkrati pa je pomembna hitra uvedba zaščite dihal v ekipi. Uporablja se v proizvodnji, gradbeništvu, skladiščih, logistiki, živilski industriji, vzdrževanju, čiščenju, komunalnih in storitvenih dejavnostih ter splošnih industrijskih okoljih."
+    },
+    {
+      "label": "Besedilo - Posebej uporaben je tam, kjer je fit test...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+      "text": "Posebej uporaben je tam, kjer opremo uporablja več zaposlenih, kjer je preverjanje tesnjenja maske težko organizirati ali kjer obrazne značilnosti, kot je brada, otežijo uporabo tesno prilegajočih polmask. CleanSpace AGILE je namenjen zaščiti pred delci v zraku; za pline, hlape ali ATEX območja je treba izbrati drug CleanSpace model."
+    },
+    {
+      "label": "Besedilo - Primeren za prah, delce in vsakodnevna in...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
+      "text": "Primeren za prah, delce in vsakodnevna industrijska opravila."
+    },
+    {
+      "label": "Besedilo - Dobro sodeluje z drugo osebno varovalno o...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
+      "text": "Dobro sodeluje z drugo osebno varovalno opremo, kot so čelade, očala in glušniki."
+    },
+    {
+      "label": "Besedilo - Ni primeren za pline, pare, okolja z malo...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
+      "text": "Ni primeren za pline, pare, okolja z malo kisika ali EX območja."
+    },
+    {
+      "label": "Besedilo - Interna video stran Videi za AGILE Odpre ...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1)",
+      "text": "Interna video stran Videi za AGILE Odpre interno video stran, kjer lahko dodajate svoje predstavitvene ali izobraževalne posnetke za model AGILE."
+    },
+    {
+      "label": "Besedilo - Videi za AGILE",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > h3",
+      "text": "Videi za AGILE"
+    },
+    {
+      "label": "Besedilo - Odpre interno video stran, kjer lahko dod...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
+      "text": "Odpre interno video stran, kjer lahko dodajate svoje predstavitvene ali izobraževalne posnetke za model AGILE."
+    },
+    {
+      "label": "Besedilo - Preizkus pri kupcu Naroči masko na test T...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
+      "text": "Preizkus pri kupcu Naroči masko na test Tu-Val pomaga preveriti, ali AGILE ustreza vašemu delu, tipu delcev in načinu organizacije ekipe."
+    },
+    {
+      "label": "Besedilo - Naroči masko na test",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > h3",
+      "text": "Naroči masko na test"
+    },
+    {
+      "label": "Besedilo - Tu-Val pomaga preveriti, ali AGILE ustrez...",
+      "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
+      "text": "Tu-Val pomaga preveriti, ali AGILE ustreza vašemu delu, tipu delcev in načinu organizacije ekipe."
+    }
+  ]
 }
