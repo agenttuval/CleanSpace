@@ -873,7 +873,10 @@
     {
       "label": "Besedilo - WORK je za ekipe, ki potrebujejo hitro za...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CleanSpace WORK za zaščito dihal v prašnih delovnih okoljih"
+      "text": "CleanSpace WORK za zaščito dihal v prašnih delovnih okoljih",
+      "style": {
+        "fontSize": 50
+      }
     },
     {
       "label": "Besedilo - Kje se najbolje izkaže",
@@ -2939,7 +2942,11 @@
     {
       "label": "Besedilo - AGILE je namenjen delovnim mestom, kjer s...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > h2",
-      "text": "CleanSpace AGILE za hitro uvedbo zaščite dihal v ekipi"
+      "text": "CleanSpace AGILE za hitro uvedbo zaščite dihal v ekipi",
+      "style": {
+        "x": 0,
+        "fontSize": 50
+      }
     },
     {
       "label": "Besedilo - Kje se najbolje izkaže",
