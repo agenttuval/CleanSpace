@@ -1,0 +1,90 @@
+backend:
+  name: github
+  repo: agenttuval/CleanSpace
+  branch: main
+
+local_backend: true
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: site
+    label: Besedila spletne strani
+    files:
+      - name: text_content
+        label: Besedila
+        file: content/site.json
+        format: json
+        fields:
+          - label: Skupna besedila
+            name: common
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: &text_fields
+              - label: Oznaka
+                name: label
+                widget: string
+                hint: "Samo opis za lazje iskanje. Lahko ga pustis pri miru."
+              - label: CSS selector
+                name: selector
+                widget: string
+                hint: "Tega ne spreminjaj, ker pove strani, kam naj vstavi besedilo."
+              - label: Besedilo
+                name: text
+                widget: text
+          - label: Domov
+            name: index
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Maske
+            name: maske
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Kontakt
+            name: kontakt
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Naroci test
+            name: test
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace WORK
+            name: cleanspace_work
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace CST PRO
+            name: cleanspace_cst_pro
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace CST ULTRA
+            name: cleanspace_cst_ultra
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace EX
+            name: cleanspace_ex
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace HALO
+            name: cleanspace_halo
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
