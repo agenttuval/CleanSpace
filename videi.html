@@ -1,78 +1,51 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="sl">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CleanSpace videi | Tu-Val</title>
-    <meta name="description" content="Interna video knjižnica za CleanSpace respiratorje pri Tu-Valu.">
-    <link rel="stylesheet" href="styles.css?v=32">
+    <title>Tu-Val CleanSpace urejevalnik</title>
+    <link rel="stylesheet" href="editor.css">
   </head>
   <body>
-    <header class="site-header" data-header>
-      <a class="brand brand-word" href="https://cleanspacetechnology.com/" aria-label="Odpri CleanSpace Technology">
-        <img
-          class="cleanspace-logo"
-          src="https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png"
-          alt="CleanSpace respirators"
-        >
-      </a>
-      <a class="brand-logo-link" href="index.html" aria-label="Tu-Val domov">
-        <img class="brand-logo" src="https://www.tu-val.si/assets/img/logos/logo.svg" alt="Tu-Val">
-      </a>
-      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Odpri navigacijo"><span></span><span></span></button>
-      <nav class="site-nav" data-nav>
-        <a href="index.html">Domov</a>
-        <a href="maske.html">Maske</a>
-        <a href="test.html">Test</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
+    <header class="editor-header">
+      <div>
+        <p>Tu-Val CleanSpace</p>
+        <h1>Urejevalnik besedil</h1>
+      </div>
+      <form class="repo-panel" data-login-form>
+        <label>
+          Uporabnik
+          <input data-username type="text" autocomplete="username" placeholder="admin">
+        </label>
+        <label>
+          Geslo
+          <input data-password type="password" autocomplete="current-password" placeholder="Admin geslo">
+        </label>
+        <button class="secondary" type="submit" data-login>Prijava</button>
+        <button class="secondary" type="button" data-logout>Odjava</button>
+        <button class="primary" type="button" data-save-github>Shrani na GitHub</button>
+      </form>
     </header>
 
-    <main data-video-page>
-      <section class="page-hero video-hero">
-        <div class="page-hero-copy reveal">
-          <p class="eyebrow">Video knjižnica</p>
-          <h1 data-video-page-title>CleanSpace videi</h1>
-          <p class="lead" data-video-page-copy>
-            Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="maske.html">Nazaj na maske</a>
-          </div>
-        </div>
-        <div class="page-hero-image reveal">
-          <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png" alt="CleanSpace video knjižnica">
-        </div>
-      </section>
+    <main class="editor-shell">
+      <aside class="editor-sidebar">
+        <div class="status" data-status>Izberi stran in klikni besedilo v predogledu.</div>
+        <label class="page-select">
+          Stran
+          <select data-page-select></select>
+        </label>
+        <div class="field-list" data-field-list></div>
+      </aside>
 
-      <section class="section video-page-section">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow" data-video-filter-label>Dodani videi</p>
-            <h2 data-video-section-title>Video galerija je trenutno prazna</h2>
-          </div>
-          <p class="section-note" data-video-count>Video galerija je pripravljena.</p>
+      <section class="preview-panel">
+        <div class="preview-toolbar">
+          <strong data-current-page>Domov</strong>
+          <span>Besedila z modrim robom lahko klikneš in urediš.</span>
         </div>
-
-        <div class="video-empty reveal" data-video-empty>
-          <h3>Ni še dodanih videov</h3>
-          <p>Ko bodo videi dodani, se bodo prikazali tukaj.</p>
-        </div>
-
-        <div class="stored-video-grid" data-video-grid></div>
+        <iframe data-preview title="Predogled strani"></iframe>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div><strong>Tu-Val d.o.o.</strong><p>Breznikova ulica 26, 1230 Domžale</p></div>
-      <div><a href="tel:+38617212123">+386 1 721 21 23</a><a href="mailto:sales@tu-val.si">sales@tu-val.si</a></div>
-    </footer>
-    <script src="besedila.js?v=6"></script>
-    <script src="script.js?v=43"></script>
+    <script src="editor.js"></script>
   </body>
 </html>
-
-
-
-
-

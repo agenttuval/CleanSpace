@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kontakt | Tu-Val CleanSpace</title>
+    <title>Naroči test | Tu-Val CleanSpace</title>
     <meta
       name="description"
-      content="Kontaktni podatki podjetja Tu-Val za CleanSpace respiratorje in tehnično svetovanje."
+      content="Naročilo CleanSpace respiratorja na test pri podjetju Tu-Val."
     >
     <link rel="stylesheet" href="styles.css?v=32">
   </head>
@@ -31,39 +31,34 @@
       <nav class="site-nav" data-nav>
         <a href="index.html">Domov</a>
         <a href="maske.html">Maske</a>
-        <a href="test.html">Test</a>
-        <a href="kontakt.html" aria-current="page">Kontakt</a>
+        <a href="test.html" aria-current="page">Test</a>
+        <a href="kontakt.html">Kontakt</a>
       </nav>
     </header>
 
     <main>
       <section class="contact-hero">
         <div class="contact-copy reveal">
-          <p class="eyebrow">Kontakt</p>
-          <h1>Pogovorimo se o zaščiti dihal v vašem podjetju</h1>
+          <p class="eyebrow">Naročilo testne maske</p>
+          <h1>Naročite CleanSpace masko na test</h1>
           <p class="lead">
-            Pošljite povpraševanje za CleanSpace respiratorje, filtre, maske
-            ali svetovanje pri izbiri opreme za vaše delovno okolje.
+            Izpolnite osnovne podatke in Tu-Val vam pomaga izbrati primeren CleanSpace
+            respirator za preizkus v vašem delovnem okolju.
           </p>
         </div>
         <div class="contact-card reveal">
-          <h2>Tu-Val d.o.o.</h2>
-          <address>
-            Breznikova ulica 26<br>
-            1230 Domžale, Slovenija
-          </address>
-          <a href="tel:+38617212123">T +386 1 721 21 23</a>
-          <a href="mailto:sales@tu-val.si">E sales@tu-val.si</a>
-          <p>Pon. - Pet.: 8:00 - 15:00</p>
-          <p>Sob. - Ned.: zaprto</p>
+          <h2>Kaj se zgodi po oddaji?</h2>
+          <p>Ekipa Tu-Val prejme sporočilo s podatki za test.</p>
+          <p>Po oddaji se podatki samodejno pošljejo na sales@tu-val.si.</p>
+          <a class="button ghost dark" href="tel:+38617212123">Pokliči Tu-Val</a>
         </div>
       </section>
 
       <section class="section contact-section">
-        <form class="contact-form reveal" data-contact-form>
+        <form class="contact-form reveal" data-contact-form data-form-type="test">
           <div class="form-heading">
-            <p class="eyebrow">Povpraševanje</p>
-            <h2>Pošlji osnovne podatke</h2>
+            <p class="eyebrow">Test opreme</p>
+            <h2>Naročam masko na test</h2>
           </div>
           <label>
             Ime in priimek
@@ -74,11 +69,15 @@
             <input name="email" type="email" autocomplete="email" required>
           </label>
           <label>
+            Telefon
+            <input name="phone" type="tel" autocomplete="tel" required>
+          </label>
+          <label>
             Podjetje
             <input name="company" type="text" autocomplete="organization">
           </label>
           <label>
-            Zanimam se za
+            Katero masko želite testirati?
             <select name="interest">
               <option>CleanSpace AGILE</option>
               <option>CleanSpace WORK</option>
@@ -90,37 +89,37 @@
             </select>
           </label>
           <label>
-            Sporočilo
-            <textarea name="message" rows="5" required></textarea>
+            Želeni termin testiranja
+            <input name="preferredDate" type="text" placeholder="npr. naslednji teden, dopoldan">
           </label>
-          <button class="button primary" type="submit">Pošlji povpraševanje</button>
+          <label>
+            Opis delovnega okolja
+            <textarea name="message" rows="5" required placeholder="Kje bi masko uporabljali, kakšen prah/plini so prisotni, koliko uporabnikov jo želi testirati ..."></textarea>
+          </label>
+          <label class="file-upload">
+            Datoteke
+            <input name="attachments" type="file" multiple data-file-input>
+            <span class="file-upload-button">Dodaj datoteke</span>
+            <span class="file-upload-list" data-file-list>Ni izbranih datotek.</span>
+          </label>
+          <button class="button primary" type="submit">Pošlji naročilo testa</button>
           <p class="form-note" data-form-note>
             Ob oddaji se podatki pošljejo na sales@tu-val.si.
           </p>
         </form>
 
-        <div class="location-panel reveal">
-          <div class="map-frame" aria-label="Zemljevid lokacije Tu-Val v Domžalah">
-            <iframe
-              title="Tu-Val lokacija na Google zemljevidu"
-              src="https://maps.google.com/maps?q=TU-VAL%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale%2C%20Slovenia&z=16&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-            <a class="map-pin-label" href="https://www.google.com/maps/search/?api=1&query=TU-VAL%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale%2C%20Slovenia" target="_blank" rel="noreferrer">
-              Tu-Val d.o.o.
-            </a>
-          </div>
+        <div class="location-panel test-side-panel reveal">
+          <img
+            src="https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg"
+            alt="CleanSpace respirator za test"
+          >
           <div class="location-details">
-            <h2>Kje nas najdete</h2>
+            <h2>Lažje je izbrati po preizkusu</h2>
             <p>
-              Tu-Val se nahaja v Domžalah, na Breznikovi ulici 26. Za ogled,
-              prevzem ali tehnično svetovanje se predhodno dogovorite po telefonu
-              ali e-pošti.
+              Test pomaga preveriti udobje, prileganje maske, izbiro filtra in primernost
+              sistema za dejanske pogoje v podjetju.
             </p>
-            <a class="button ghost" href="https://www.google.com/maps/search/?api=1&query=Tu-Val%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale" target="_blank" rel="noreferrer">
-              Odpri zemljevid
-            </a>
+            <a class="button ghost" href="maske.html">Poglej modele</a>
           </div>
         </div>
       </section>

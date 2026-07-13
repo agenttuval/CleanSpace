@@ -1,164 +1,243 @@
-﻿<!doctype html>
-<html lang="sl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maske | Tu-Val CleanSpace</title>
-    <meta
-      name="description"
-      content="Pregled CleanSpace mask z ločenimi stranmi za vsak model, filtre in pripomočke."
-    >
-    <link rel="stylesheet" href="styles.css?v=32">
-  </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand brand-word" href="https://cleanspacetechnology.com/" aria-label="Odpri CleanSpace Technology">
-        <img
-          class="cleanspace-logo"
-          src="https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png"
-          alt="CleanSpace respirators"
-        >
-      </a>
-      <a class="brand-logo-link" href="index.html" aria-label="Tu-Val domov">
-        <img class="brand-logo" src="https://www.tu-val.si/assets/img/logos/logo.svg" alt="Tu-Val">
-      </a>
+:root {
+  color-scheme: light;
+  --brand: #01457e;
+  --brand-dark: #00345f;
+  --accent: #dca55f;
+  --line: #d8e3ed;
+  --soft: #f3f7fb;
+  --panel: #fff;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
 
-      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Odpri navigacijo">
-        <span></span>
-        <span></span>
-      </button>
+* {
+  box-sizing: border-box;
+}
 
-      <nav class="site-nav" data-nav>
-        <a href="index.html">Domov</a>
-        <a href="maske.html" aria-current="page">Maske</a>
-        <a href="test.html">Test</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
-    </header>
+body {
+  margin: 0;
+  color: var(--brand);
+  background: var(--soft);
+}
 
-    <main>
-      <section class="page-hero mask-picker-hero">
-        <div class="page-hero-copy reveal">
-          <p class="eyebrow">Izberi model</p>
-          <h1>Maske</h1>
-          <p class="lead">
-            Izberite CleanSpace model in hitro primerjajte, za katero uporabo je posamezen
-            respirator najbolj primeren.
-          </p>
-        </div>
-        <div class="page-hero-image reveal">
-          <img
-            src="https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg"
-            alt="CleanSpace CST PRO respirator"
-          >
-        </div>
-      </section>
+button,
+input,
+select {
+  font: inherit;
+}
 
-      <section class="section mask-overview-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Pregled</p>
-          <h2>Izberite respirator</h2>
-        </div>
+.editor-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(360px, 720px);
+  gap: 20px;
+  align-items: end;
+  padding: 22px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--brand), var(--brand-dark));
+}
 
-        <div class="mask-choice-grid">
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-work.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace WORK">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg" alt="CleanSpace WORK">
-            <div>
-              <p class="tag">Prah in delavnica</p>
-              <h3>CleanSpace WORK</h3>
-              <p class="mask-summary">Lahek respirator za prah, dim in delce v delavnicah, pri brušenju, rezanju in varjenju. Namenjen je uporabi s polmasko in hitri menjavi filtra.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-work.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20WORK">Kontakt</a>
-              </div>
-            </div>
-          </article>
+.editor-header p,
+.editor-header h1 {
+  margin: 0;
+}
 
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-cst-pro.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace CST PRO">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg" alt="CleanSpace CST PRO">
-            <div>
-              <p class="tag">Industrija</p>
-              <h3>CleanSpace CST PRO</h3>
-              <p class="mask-summary">Univerzalen industrijski model za daljše izmene, delčne ali kombinirane filtre ter uporabo s polmasko ali celoobrazno masko.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-cst-pro.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20CST%20PRO">Kontakt</a>
-              </div>
-            </div>
-          </article>
+.editor-header p {
+  color: #f0c17c;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-cst-ultra.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace CST ULTRA">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg" alt="CleanSpace CST ULTRA">
-            <div>
-              <p class="tag">Dekontaminacija</p>
-              <h3>CleanSpace CST ULTRA</h3>
-              <p class="mask-summary">Robustnejša izvedba za zahtevnejša okolja, kjer sta pomembna čiščenje opreme in zanesljivo delovanje z različnimi CST filtri.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-cst-ultra.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20CST%20ULTRA">Kontakt</a>
-              </div>
-            </div>
-          </article>
+.editor-header h1 {
+  margin-top: 6px;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1;
+}
 
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-ex.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace EX">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-EX-USA-01.jpg" alt="CleanSpace EX">
-            <div>
-              <p class="tag">Nevarna območja</p>
-              <h3>CleanSpace EX</h3>
-              <p class="mask-summary">Model za eksplozijsko nevarna območja in industrijske postopke, kjer so potrebni posebni EX filtri, dodatki in višja stopnja varnosti.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-ex.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20EX">Kontakt</a>
-              </div>
-            </div>
-          </article>
+.repo-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto auto;
+  gap: 10px;
+  align-items: end;
+}
 
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-halo.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace HALO">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg" alt="CleanSpace HALO">
-            <div>
-              <p class="tag">Zdravstvo</p>
-              <h3>CleanSpace HALO</h3>
-              <p class="mask-summary">Respirator za zdravstvo, laboratorije in farmacijo, z možnostjo polmaske ali celoobrazne maske ter HEPA/Bio filtracijo.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-halo.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20HALO">Kontakt</a>
-              </div>
-            </div>
-          </article>
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
 
-          <article class="mask-choice-card reveal" data-card-link="cleanspace-agile.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace AGILE">
-            <img src="https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg" alt="CleanSpace AGILE">
-            <div>
-              <p class="tag">Deljene ekipe</p>
-              <h3>CleanSpace AGILE</h3>
-              <p class="mask-summary">Ohlapno prilegajoč respirator za delce, primeren za ekipe, kjer je težko izvajati fit testiranje ali opremo uporablja več delavcev.</p>
-              <div class="choice-actions">
-                <a class="button details" href="cleanspace-agile.html">Podrobnosti</a>
-                <a class="button ghost dark" href="kontakt.html?interest=CleanSpace%20AGILE">Kontakt</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
+input,
+select {
+  min-height: 42px;
+  padding: 0 12px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 8px;
+  outline: none;
+}
 
-    <footer class="site-footer">
-      <div>
-        <strong>Tu-Val d.o.o.</strong>
-        <p>Breznikova ulica 26, 1230 Domžale</p>
-      </div>
-      <div>
-        <a href="tel:+38617212123">+386 1 721 21 23</a>
-        <a href="mailto:sales@tu-val.si">sales@tu-val.si</a>
-      </div>
-    </footer>
+button {
+  min-height: 42px;
+  padding: 0 14px;
+  color: var(--brand-dark);
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+}
 
-    <script src="besedila.js?v=6"></script>
-    <script src="script.js?v=43"></script>
-  </body>
-</html>
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
 
+button.secondary {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
 
+.editor-shell {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 18px;
+  height: calc(100vh - 118px);
+  padding: 18px;
+}
 
+.editor-sidebar,
+.preview-panel {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 54px rgba(1, 69, 126, 0.1);
+}
 
+body:not(.is-authenticated) .editor-shell {
+  opacity: 0.42;
+  pointer-events: none;
+}
 
+body:not(.is-authenticated) [data-save-github],
+body:not(.is-authenticated) [data-logout] {
+  display: none;
+}
+
+body.is-authenticated [data-login],
+body.is-authenticated [data-username],
+body.is-authenticated [data-password],
+body.is-authenticated .repo-panel label {
+  display: none;
+}
+
+.editor-sidebar {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px;
+}
+
+.status {
+  padding: 12px;
+  color: var(--brand-dark);
+  background: #eef5fb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.status.is-error {
+  color: #7a241f;
+  background: #fff2ee;
+  border-color: #f3c1b7;
+}
+
+.status.is-success {
+  color: #064f3e;
+  background: #eefaf5;
+  border-color: #bce8d5;
+}
+
+.field-list {
+  display: grid;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.field-card {
+  display: grid;
+  gap: 5px;
+  padding: 11px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.field-card.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220, 165, 95, 0.2);
+}
+
+.field-card strong {
+  font-size: 0.82rem;
+}
+
+.field-card span {
+  color: #426f96;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.preview-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.preview-toolbar span {
+  color: #426f96;
+  font-size: 0.9rem;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 0;
+}
+
+@media (max-width: 980px) {
+  .editor-header,
+  .repo-panel,
+  .editor-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-shell {
+    height: auto;
+  }
+
+  .preview-panel {
+    height: 72vh;
+  }
+}

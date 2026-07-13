@@ -1,148 +1,90 @@
-﻿<!doctype html>
-<html lang="sl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kontakt | Tu-Val CleanSpace</title>
-    <meta
-      name="description"
-      content="Kontaktni podatki podjetja Tu-Val za CleanSpace respiratorje in tehnično svetovanje."
-    >
-    <link rel="stylesheet" href="styles.css?v=32">
-  </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand brand-word" href="https://cleanspacetechnology.com/" aria-label="Odpri CleanSpace Technology">
-        <img
-          class="cleanspace-logo"
-          src="https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png"
-          alt="CleanSpace respirators"
-        >
-      </a>
-      <a class="brand-logo-link" href="index.html" aria-label="Tu-Val domov">
-        <img class="brand-logo" src="https://www.tu-val.si/assets/img/logos/logo.svg" alt="Tu-Val">
-      </a>
+backend:
+  name: github
+  repo: agenttuval/CleanSpace
+  branch: main
 
-      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Odpri navigacijo">
-        <span></span>
-        <span></span>
-      </button>
+local_backend: true
 
-      <nav class="site-nav" data-nav>
-        <a href="index.html">Domov</a>
-        <a href="maske.html">Maske</a>
-        <a href="test.html">Test</a>
-        <a href="kontakt.html" aria-current="page">Kontakt</a>
-      </nav>
-    </header>
+media_folder: assets/uploads
+public_folder: /assets/uploads
 
-    <main>
-      <section class="contact-hero">
-        <div class="contact-copy reveal">
-          <p class="eyebrow">Kontakt</p>
-          <h1>Pogovorimo se o zaščiti dihal v vašem podjetju</h1>
-          <p class="lead">
-            Pošljite povpraševanje za CleanSpace respiratorje, filtre, maske
-            ali svetovanje pri izbiri opreme za vaše delovno okolje.
-          </p>
-        </div>
-        <div class="contact-card reveal">
-          <h2>Tu-Val d.o.o.</h2>
-          <address>
-            Breznikova ulica 26<br>
-            1230 Domžale, Slovenija
-          </address>
-          <a href="tel:+38617212123">T +386 1 721 21 23</a>
-          <a href="mailto:sales@tu-val.si">E sales@tu-val.si</a>
-          <p>Pon. - Pet.: 8:00 - 15:00</p>
-          <p>Sob. - Ned.: zaprto</p>
-        </div>
-      </section>
-
-      <section class="section contact-section">
-        <form class="contact-form reveal" data-contact-form>
-          <div class="form-heading">
-            <p class="eyebrow">Povpraševanje</p>
-            <h2>Pošlji osnovne podatke</h2>
-          </div>
-          <label>
-            Ime in priimek
-            <input name="name" type="text" autocomplete="name" required>
-          </label>
-          <label>
-            E-pošta
-            <input name="email" type="email" autocomplete="email" required>
-          </label>
-          <label>
-            Podjetje
-            <input name="company" type="text" autocomplete="organization">
-          </label>
-          <label>
-            Zanimam se za
-            <select name="interest">
-              <option>CleanSpace AGILE</option>
-              <option>CleanSpace WORK</option>
-              <option>CleanSpace CST PRO</option>
-              <option>CleanSpace CST ULTRA</option>
-              <option>CleanSpace EX</option>
-              <option>CleanSpace HALO</option>
-              <option>Ne vem še, potrebujem svetovanje</option>
-            </select>
-          </label>
-          <label>
-            Sporočilo
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-          <button class="button primary" type="submit">Pošlji povpraševanje</button>
-          <p class="form-note" data-form-note>
-            Ob oddaji se podatki pošljejo na sales@tu-val.si.
-          </p>
-        </form>
-
-        <div class="location-panel reveal">
-          <div class="map-frame" aria-label="Zemljevid lokacije Tu-Val v Domžalah">
-            <iframe
-              title="Tu-Val lokacija na Google zemljevidu"
-              src="https://maps.google.com/maps?q=TU-VAL%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale%2C%20Slovenia&z=16&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-            <a class="map-pin-label" href="https://www.google.com/maps/search/?api=1&query=TU-VAL%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale%2C%20Slovenia" target="_blank" rel="noreferrer">
-              Tu-Val d.o.o.
-            </a>
-          </div>
-          <div class="location-details">
-            <h2>Kje nas najdete</h2>
-            <p>
-              Tu-Val se nahaja v Domžalah, na Breznikovi ulici 26. Za ogled,
-              prevzem ali tehnično svetovanje se predhodno dogovorite po telefonu
-              ali e-pošti.
-            </p>
-            <a class="button ghost" href="https://www.google.com/maps/search/?api=1&query=Tu-Val%20d.o.o.%2C%20Breznikova%20ulica%2026%2C%201230%20Dom%C5%BEale" target="_blank" rel="noreferrer">
-              Odpri zemljevid
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div>
-        <strong>Tu-Val d.o.o.</strong>
-        <p>Breznikova ulica 26, 1230 Domžale</p>
-      </div>
-      <div>
-        <a href="tel:+38617212123">+386 1 721 21 23</a>
-        <a href="mailto:sales@tu-val.si">sales@tu-val.si</a>
-      </div>
-    </footer>
-
-    <script src="besedila.js?v=6"></script>
-    <script src="script.js?v=43"></script>
-  </body>
-</html>
-
-
-
-
-
+collections:
+  - name: site
+    label: Besedila spletne strani
+    files:
+      - name: text_content
+        label: Besedila
+        file: content/site.json
+        format: json
+        fields:
+          - label: Skupna besedila
+            name: common
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: &text_fields
+              - label: Oznaka
+                name: label
+                widget: string
+                hint: "Samo opis za lazje iskanje. Lahko ga pustis pri miru."
+              - label: CSS selector
+                name: selector
+                widget: string
+                hint: "Tega ne spreminjaj, ker pove strani, kam naj vstavi besedilo."
+              - label: Besedilo
+                name: text
+                widget: text
+          - label: Domov
+            name: index
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Maske
+            name: maske
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Kontakt
+            name: kontakt
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: Naroci test
+            name: test
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace WORK
+            name: cleanspace_work
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace CST PRO
+            name: cleanspace_cst_pro
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace CST ULTRA
+            name: cleanspace_cst_ultra
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace EX
+            name: cleanspace_ex
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
+          - label: CleanSpace HALO
+            name: cleanspace_halo
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields: *text_fields
