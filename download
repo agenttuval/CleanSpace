@@ -42,6 +42,10 @@
           Trenutno urejaš
           <select data-page-select></select>
         </label>
+        <label class="page-select" data-video-preview-wrap hidden>
+          Predogled video strani za masko
+          <select data-video-preview-mask></select>
+        </label>
         <div class="block-editor-panel" data-block-editor>
           <div class="style-panel-head">
             <strong>Dodani elementi na strani</strong>
@@ -126,24 +130,8 @@
         </div>
         <div class="image-panel" data-image-panel>
           <div class="style-panel-head">
-            <strong>Slike</strong>
-            <span data-active-image-label>Najprej klikni sliko v predogledu ali spodaj dodaj novo. Pri novi sliki moraš izbrati, kam spada.</span>
-          </div>
-          <div class="image-add-box">
-            <p class="panel-note">Novo sliko lahko dodaš na domačo stran, stran Maske ali na posamezno masko.</p>
-            <label>
-              Kam želiš dodati sliko
-              <select data-image-target></select>
-            </label>
-            <label>
-              URL nove slike
-              <textarea data-new-image-src rows="3" placeholder="https://..."></textarea>
-            </label>
-            <label>
-              Opis nove slike
-              <input data-new-image-alt type="text" placeholder="Npr. CleanSpace pri uporabi">
-            </label>
-            <button class="primary" type="button" data-new-image-add>Dodaj sliko</button>
+            <strong>Uredi izbrano sliko</strong>
+            <span data-active-image-label>Najprej klikni sliko v predogledu. Nove slike dodajaj samo v spodnjem skupnem bloku.</span>
           </div>
           <label>
             URL slike
@@ -185,9 +173,9 @@
         <div class="media-panel" data-media-panel>
           <div class="style-panel-head">
             <strong>Video, audio in dokumenti</strong>
-            <span>Uporabi eno samo okno za dodajanje videa, zvoka, PDF-ja ali druge povezave.</span>
+            <span>Uporabi eno samo okno za dodajanje slik, videa, zvoka, PDF-ja ali druge povezave.</span>
           </div>
-          <p class="panel-note">Če dodajaš video na stran Videi, spodaj izberi še masko, pod katero se bo prikazal.</p>
+          <p class="panel-note">Pri videu izberi masko. Pri sliki, audio ali dokumentu izberi, na katero stran ali masko ga želiš dodati.</p>
           <label>
             Datoteka
             <input data-media-file type="file">
@@ -201,6 +189,10 @@
               <option value="audio">Audio</option>
               <option value="document">Dokument ali povezava</option>
             </select>
+          </label>
+          <label data-media-target-wrap>
+            Kam želiš dodati
+            <select data-media-target></select>
           </label>
           <label data-media-mask-wrap>
             Maska za video
@@ -233,7 +225,7 @@
       </section>
     </main>
 
-    <script src="editor.js?v=15"></script>
+    <script src="editor.js?v=21"></script>
   </body>
 </html>
 
