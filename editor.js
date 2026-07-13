@@ -1,73 +1,243 @@
-﻿<!doctype html>
-<html lang="sl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CleanSpace HALO | Tu-Val</title>
-    <meta name="description" content="CleanSpace HALO respirator za zdravstvo, laboratorije, filtri in pripomočki.">
-    <link rel="stylesheet" href="styles.css?v=32">
-  </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand brand-word" href="https://cleanspacetechnology.com/" aria-label="Odpri CleanSpace Technology"><img class="cleanspace-logo" src="https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png" alt="CleanSpace respirators"></a>
-      <a class="brand-logo-link" href="index.html" aria-label="Tu-Val domov"><img class="brand-logo" src="https://www.tu-val.si/assets/img/logos/logo.svg" alt="Tu-Val"></a>
-      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Odpri navigacijo"><span></span><span></span></button>
-<nav class="site-nav" data-nav><a href="index.html">Domov</a><a href="maske.html" aria-current="page">Maske</a><a href="test.html">Test</a><a href="kontakt.html">Kontakt</a></nav>
-    </header>
-    <main>
-      <section class="detail-hero">
-        <div class="detail-hero-copy reveal">
-          <p class="eyebrow">Zdravstvo</p>
-          <h1>CleanSpace HALO</h1>
-          <p class="lead">Respirator z aktivnim dovajanjem filtriranega zraka za bolnišnice, farmacijo, laboratorije, urgentne ekipe in okolja, kjer so pomembni dekontaminacija, udobje in nadzor izdiha.</p>
-          <div class="compatibility-pills"><span class="pill yes">Maska za del obraza: da</span><span class="pill yes">Celoobrazna maska: da</span><span class="pill">IP66</span></div>
-          <div class="hero-actions"><a class="button primary" href="kontakt.html?interest=CleanSpace%20HALO">Kontaktiraj za HALO</a><a class="button ghost" href="maske.html">Nazaj na maske</a></div>
-        </div>
-        <div class="detail-hero-image reveal"><img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg" alt="CleanSpace HALO v laboratoriju"></div>
-      </section>
-      <section class="section detail-gallery-section">
-        <div class="section-heading reveal"><p class="eyebrow">Slike</p><h2>HALO sistem in dodatki</h2></div>
-        <div class="asset-gallery detail-gallery reveal">
-          <figure><img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png" alt="CleanSpace HALO sistem"><figcaption>HALO sistem</figcaption></figure>
-          <figure><img src="https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-HALO-Respirator-USA-Image-01.jpg" alt="CleanSpace HALO respirator"><figcaption>HALO respirator</figcaption></figure>
-          <figure><img src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png" alt="CleanSpace HALO dodatki in filtrski elementi"><figcaption>Dodatki in filtrski elementi</figcaption></figure>
-        </div>
-      </section>
-      <section class="section detail-spec-section">
-        <div class="family-story reveal"><div><h4>Opis respiratorja</h4><p>HALO je zasnovan za zdravstvo, farmacijo in laboratorije, kjer so pomembni udobje, dekontaminacija in možnost nadzora izdiha z dodatnimi filtrskimi elementi.</p></div><ul class="feature-list"><li>IP66 izvedba za intenzivnejše čiščenje.</li><li>Možnost uporabe s polmasko ali celoobrazno masko.</li><li>Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri.</li></ul></div>
-        <div class="family-details reveal">
-          <div class="detail-block"><h4>Obrazni deli</h4><ul><li>CS3003 / CS3004 / CS3005 - HALO polmaska S / M / L.</li><li>CS3006 - HALO celoobrazna maska S.</li><li>CS3007 - HALO celoobrazna maska M / L.</li></ul></div>
-          <div class="detail-block"><h4>Filtri</h4><ul><li>CS3002 - HALO HEPA / P3 TM3 delčni filter P SL R, pakiranje 3 kosi.</li><li>CS3025 - HALO Bio P3 TM3 delčni filter P SL R.</li><li>CS3038 / CS3039 - Steri-Plus izdihovalni filter.</li><li>CS3027 - HALO BIO izdihovalni filter 95, pakiranje 15 kosov.</li></ul></div>
-          <div class="detail-block"><h4>Pripomočki</h4><ul><li>HALO pogonski sistem vključuje polnilnik, opore za vrat, torbo, pokrovček za preverjanje tesnjenja, filter, naglavni trak, pogonsko enoto in navodila.</li><li>CS3008 - HALO naglavni trak.</li><li>CS3011 - HALO čistilni in shranjevalni čep.</li><li>PAF-1043 - komplet za preverjanje prileganja polmaske.</li><li>PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala.</li></ul></div>
-        </div>
-      </section>
-      <section class="section detail-story-section">
-        <div class="section-heading reveal"><p class="eyebrow">Video in svetovanje</p><h2>HALO je zasnovan za zdravstvo, laboratorije in čista okolja</h2></div>
-        <div class="story-grid">
-          <article class="story-copy reveal">
-            <h3>Udobje, čiščenje in nadzor izdiha</h3>
-            <p>CleanSpace HALO je namenjen uporabnikom, ki respirator nosijo v zdravstvu, farmaciji, laboratorijih ali podobnih okoljih, kjer sta pomembna enostavno čiščenje in zanesljivo tesnjenje maske. Sistem je kompakten, brez pasu in cevi, zato uporabniku ne omejuje gibanja pri delu z bolniki, vzorci ali občutljivo opremo.</p>
-            <p>Pri izboru se preveri, ali uporabnik potrebuje masko za del obraza ali celoobrazno masko, kakšen tip filtra je potreben in ali je smiselna dodatna zaščita vizirja ali komplet za očala. Posebnost HALO programa so tudi rešitve za izdihovalne filtre, ki so uporabne pri nadzoru izdiha v občutljivih okoljih.</p>
-            <ul class="check-list">
-              <li>Primeren za zdravstvo, farmacijo, laboratorije in interventne ekipe.</li>
-              <li>Podpira masko za del obraza in celoobrazno masko.</li>
-              <li>Na voljo so delčni, Bio in Steri-Plus izdihovalni filtri.</li>
-            </ul>
-          </article>
-          <div class="video-library reveal" aria-label="CleanSpace HALO video povezave">
-            <a class="video-card" href="videi.html?mask=halo"><span>Interna video stran</span><h3>Videi za HALO</h3><p>Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model HALO.</p></a>
-            <a class="video-card" href="test.html?interest=CleanSpace%20HALO"><span>Preizkus pri kupcu</span><h3>Naroči masko na test</h3><p>Tu-Val pomaga izbrati velikost maske, filter in dodatke za zdravstveno ali laboratorijsko uporabo.</p></a>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer"><div><strong>Tu-Val d.o.o.</strong><p>Breznikova ulica 26, 1230 Domžale</p></div><div><a href="tel:+38617212123">+386 1 721 21 23</a><a href="mailto:sales@tu-val.si">sales@tu-val.si</a></div></footer>
-    <script src="besedila.js?v=6"></script>
-    <script src="script.js?v=43"></script>
-  </body>
-</html>
+:root {
+  color-scheme: light;
+  --brand: #01457e;
+  --brand-dark: #00345f;
+  --accent: #dca55f;
+  --line: #d8e3ed;
+  --soft: #f3f7fb;
+  --panel: #fff;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
 
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  color: var(--brand);
+  background: var(--soft);
+}
 
+button,
+input,
+select {
+  font: inherit;
+}
 
+.editor-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(360px, 720px);
+  gap: 20px;
+  align-items: end;
+  padding: 22px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--brand), var(--brand-dark));
+}
 
+.editor-header p,
+.editor-header h1 {
+  margin: 0;
+}
+
+.editor-header p {
+  color: #f0c17c;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.editor-header h1 {
+  margin-top: 6px;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1;
+}
+
+.repo-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto auto;
+  gap: 10px;
+  align-items: end;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+input,
+select {
+  min-height: 42px;
+  padding: 0 12px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 8px;
+  outline: none;
+}
+
+button {
+  min-height: 42px;
+  padding: 0 14px;
+  color: var(--brand-dark);
+  background: #fff;
+  border: 1px solid rgba(1, 69, 126, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+button.secondary {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.editor-shell {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 18px;
+  height: calc(100vh - 118px);
+  padding: 18px;
+}
+
+.editor-sidebar,
+.preview-panel {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 54px rgba(1, 69, 126, 0.1);
+}
+
+body:not(.is-authenticated) .editor-shell {
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+body:not(.is-authenticated) [data-save-github],
+body:not(.is-authenticated) [data-logout] {
+  display: none;
+}
+
+body.is-authenticated [data-login],
+body.is-authenticated [data-username],
+body.is-authenticated [data-password],
+body.is-authenticated .repo-panel label {
+  display: none;
+}
+
+.editor-sidebar {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px;
+}
+
+.status {
+  padding: 12px;
+  color: var(--brand-dark);
+  background: #eef5fb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.status.is-error {
+  color: #7a241f;
+  background: #fff2ee;
+  border-color: #f3c1b7;
+}
+
+.status.is-success {
+  color: #064f3e;
+  background: #eefaf5;
+  border-color: #bce8d5;
+}
+
+.field-list {
+  display: grid;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.field-card {
+  display: grid;
+  gap: 5px;
+  padding: 11px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.field-card.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220, 165, 95, 0.2);
+}
+
+.field-card strong {
+  font-size: 0.82rem;
+}
+
+.field-card span {
+  color: #426f96;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.preview-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.preview-toolbar span {
+  color: #426f96;
+  font-size: 0.9rem;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 0;
+}
+
+@media (max-width: 980px) {
+  .editor-header,
+  .repo-panel,
+  .editor-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-shell {
+    height: auto;
+  }
+
+  .preview-panel {
+    height: 72vh;
+  }
+}
