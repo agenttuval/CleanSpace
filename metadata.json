@@ -1,6 +1,0 @@
-{
-  "name": "CleanSpace Slovenija",
-  "description": "Zastopstvo in spletna stran za CleanSpace respiratorje z urejevalnikom besedil (CMS).",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
