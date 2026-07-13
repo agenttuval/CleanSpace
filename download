@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="sl">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tu-Val CleanSpace urejevalnik</title>
-    <link rel="stylesheet" href="editor.css?v=6">
+    <link rel="stylesheet" href="editor.css?v=9">
   </head>
   <body>
     <header class="editor-header">
@@ -30,14 +30,29 @@
     <main class="editor-shell">
       <aside class="editor-sidebar">
         <div class="status" data-status>Izberi stran in klikni besedilo v predogledu.</div>
+        <div class="editor-guide">
+          <strong>Kako urejaš stran</strong>
+          <ol>
+            <li>Najprej izberi stran ali masko.</li>
+            <li>Za besedilo klikni element v predogledu.</li>
+            <li>Za novo sliko obvezno izberi, kam jo želiš dodati.</li>
+          </ol>
+        </div>
         <label class="page-select">
-          Stran
+          Trenutno urejaš
           <select data-page-select></select>
         </label>
+        <div class="block-editor-panel" data-block-editor>
+          <div class="style-panel-head">
+            <strong>Dodani elementi na strani</strong>
+            <span>Tukaj vidiš vse, kar si dodal na izbrano stran. Klik na kartico te premakne do elementa v predogledu.</span>
+          </div>
+          <div class="block-list" data-block-list></div>
+        </div>
         <div class="custom-panel" data-custom-panel>
           <div class="style-panel-head">
-            <strong>Dodaj besedilni okvir</strong>
-            <span>Okvir se doda na trenutno izbrano stran in ga lahko urediš v predogledu.</span>
+            <strong>Dodaj novo besedilo</strong>
+            <span>To ustvari nov tekstovni blok na trenutni strani, ki ga potem urediš v predogledu.</span>
           </div>
           <label>
             Barva črk
@@ -52,12 +67,11 @@
             <textarea data-custom-text rows="3" placeholder="Vpiši besedilo, ki ga želiš dodati na stran."></textarea>
           </label>
           <button class="primary" type="button" data-custom-add>Dodaj okvir</button>
-          <div class="custom-admin-list" data-custom-list></div>
         </div>
         <div class="style-panel" data-style-panel>
           <div class="style-panel-head">
             <strong>Oblika izbranega besedila</strong>
-            <span data-active-style-label>Najprej klikni besedilo v predogledu.</span>
+            <span data-active-style-label>Najprej klikni besedilo v predogledu. Levi ali zgornji rob premika, desni ali spodnji pa spreminja velikost.</span>
           </div>
           <div class="style-grid">
             <label>
@@ -88,15 +102,39 @@
               Premik gor/dol
               <input data-style-y type="number" min="-260" max="260" step="1" placeholder="0">
             </label>
+            <label>
+              Rob
+              <input data-style-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-style-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-style-border-radius type="number" min="0" max="80" step="1" placeholder="px">
+            </label>
           </div>
+          <div class="style-action-row">
+            <button class="secondary light style-format-button" type="button" data-style-bold>Krepko</button>
+            <button class="secondary light" type="button" data-style-bullets-disc>Pikice</button>
+            <button class="secondary light" type="button" data-style-bullets-square>Kvadratki</button>
+            <button class="secondary light" type="button" data-style-bullets-none>Brez točk</button>
+          </div>
+          <button class="secondary danger" type="button" data-style-remove>Odstrani izbrano besedilo</button>
           <button class="secondary light" type="button" data-style-reset>Ponastavi obliko</button>
         </div>
         <div class="image-panel" data-image-panel>
           <div class="style-panel-head">
-            <strong>Izbrana slika</strong>
-            <span data-active-image-label>Najprej klikni sliko v predogledu.</span>
+            <strong>Slike</strong>
+            <span data-active-image-label>Najprej klikni sliko v predogledu ali spodaj dodaj novo. Pri novi sliki moraš izbrati, kam spada.</span>
           </div>
           <div class="image-add-box">
+            <p class="panel-note">Novo sliko lahko dodaš na domačo stran, stran Maske ali na posamezno masko.</p>
+            <label>
+              Kam želiš dodati sliko
+              <select data-image-target></select>
+            </label>
             <label>
               URL nove slike
               <textarea data-new-image-src rows="3" placeholder="https://..."></textarea>
@@ -128,32 +166,59 @@
               Premik gor/dol
               <input data-image-y type="number" min="-600" max="600" step="1" placeholder="0">
             </label>
+            <label>
+              Rob
+              <input data-image-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-image-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-image-border-radius type="number" min="0" max="120" step="1" placeholder="px">
+            </label>
           </div>
+          <button class="secondary danger" type="button" data-image-remove>Odstrani izbrano sliko</button>
           <button class="secondary light" type="button" data-image-reset>Odstrani ali ponastavi sliko</button>
-          <div class="custom-admin-list" data-custom-image-list></div>
         </div>
-        <div class="video-manager" data-video-manager hidden>
+        <div class="media-panel" data-media-panel>
           <div class="style-panel-head">
-            <strong>Videi</strong>
-            <span>Dodaj YouTube, Vimeo, iframe ali direkten video link. Shrani na GitHub, ko končaš.</span>
+            <strong>Video, audio in dokumenti</strong>
+            <span>Uporabi eno samo okno za dodajanje videa, zvoka, PDF-ja ali druge povezave.</span>
           </div>
+          <p class="panel-note">Če dodajaš video na stran Videi, spodaj izberi še masko, pod katero se bo prikazal.</p>
           <label>
-            Maska
-            <select data-video-mask></select>
+            Datoteka
+            <input data-media-file type="file">
+          </label>
+          <button class="secondary light" type="button" data-media-upload>Naloži datoteko</button>
+          <label>
+            Tip medija
+            <select data-media-type>
+              <option value="image">Slika</option>
+              <option value="video">Video</option>
+              <option value="audio">Audio</option>
+              <option value="document">Dokument ali povezava</option>
+            </select>
+          </label>
+          <label data-media-mask-wrap>
+            Maska za video
+            <select data-media-mask></select>
           </label>
           <label>
-            Naslov videa
-            <input data-video-title type="text" placeholder="Npr. Prikaz uporabe WORK">
+            Naslov
+            <input data-media-title type="text" placeholder="Npr. Navodila za uporabo">
           </label>
           <label>
-            Video link ali embed koda
-            <textarea data-video-url rows="3" placeholder="https://www.youtube.com/watch?v=..."></textarea>
+            URL ali embed koda
+            <textarea data-media-url rows="3" placeholder="https://..."></textarea>
           </label>
           <label>
             Kratek opis
-            <textarea data-video-description rows="3" placeholder="Kratek opis za kupce"></textarea>
+            <textarea data-media-description rows="3" placeholder="Opis medija za obiskovalce"></textarea>
           </label>
-          <button class="primary" type="button" data-video-add>Dodaj video</button>
+          <button class="primary" type="button" data-media-add>Dodaj</button>
           <div class="video-admin-list" data-video-list></div>
         </div>
         <div class="field-list" data-field-list></div>
@@ -168,7 +233,7 @@
       </section>
     </main>
 
-    <script src="editor.js?v=11"></script>
+    <script src="editor.js?v=15"></script>
   </body>
 </html>
 

@@ -194,6 +194,7 @@ const requireAdmin = (req, res) => {
 };
 
 const handleLogin = async (req, res) => {
+  loadDotEnv();
   const body = JSON.parse(await readBody(req));
   const expectedUsername = process.env.ADMIN_USERNAME || "admin";
   const expectedPassword = process.env.ADMIN_PASSWORD;
@@ -782,7 +783,23 @@ const createHttpError = (status, message, details) => {
   return error;
 };
 
-const vascoBaseUrl = () => (process.env.VASCO_API_BASE_URL || "http://192.168.0.5:8101").replace(/\/+$/, "");
+const normalizeVascoBaseUrl = (value) => String(value || "http://192.168.0.5:8101").trim().replace(/\/+$/, "");
+
+const vascoBaseUrl = () => normalizeVascoBaseUrl(process.env.VASCO_API_BASE_URL || "http://192.168.0.5:8101");
+
+const vascoBaseUrlFromBody = (body = {}) => {
+  const login = body.vascoLogin && typeof body.vascoLogin === "object" ? body.vascoLogin : {};
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : {};
+  return normalizeVascoBaseUrl(
+    login.apiUrl ||
+      body.vascoApiUrl ||
+      body.apiUrl ||
+      filters.vascoApiUrl ||
+      filters.apiUrl ||
+      process.env.VASCO_API_BASE_URL ||
+      "http://192.168.0.5:8101"
+  );
+};
 
 const vascoTimeoutMs = () => {
   const configured = Number(process.env.VASCO_API_TIMEOUT_MS || 20000);
@@ -794,6 +811,12 @@ const cleanValue = (value) => (typeof value === "string" ? value.trim() : value)
 const normalizeDateTime = (value) => {
   const date = cleanValue(value);
   if (!date) return "";
+  const slDate = String(date).match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if (slDate) {
+    const day = slDate[1].padStart(2, "0");
+    const month = slDate[2].padStart(2, "0");
+    return `${slDate[3]}-${month}-${day}T00:00:00`;
+  }
   return /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00` : date;
 };
 
@@ -822,6 +845,7 @@ const vascoLoginFrom = (body = {}) => {
     password,
     taxNumber,
     year: Number.isFinite(Number(year)) ? Number(year) : 0,
+    apiUrl: normalizeVascoBaseUrl(login.apiUrl || body.vascoApiUrl || filters.vascoApiUrl || process.env.VASCO_API_BASE_URL || "http://192.168.0.5:8101"),
   };
 };
 
@@ -841,7 +865,8 @@ const jwtExpirationMs = (token) => {
 };
 
 const fetchVascoLoginToken = async (credentials) => {
-  const cacheKey = [vascoBaseUrl(), credentials.username, credentials.taxNumber, credentials.year].join("|");
+  const baseUrl = credentials.apiUrl || vascoBaseUrl();
+  const cacheKey = [baseUrl, credentials.username, credentials.taxNumber, credentials.year].join("|");
   const cached = vascoTokenCache.get(cacheKey);
   if (cached && cached.expiresAt > Date.now() + 60_000) {
     return cached.token;
@@ -853,7 +878,7 @@ const fetchVascoLoginToken = async (credentials) => {
   let response;
 
   try {
-    response = await fetch(`${vascoBaseUrl()}/api/v1/Avtentikacija`, {
+    response = await fetch(`${baseUrl}/api/v1/Avtentikacija`, {
       method: "POST",
       signal: controller.signal,
       headers: {
@@ -947,8 +972,8 @@ const assertUsefulVascoFilter = (filters, body) => {
   }
 };
 
-const buildVascoOrdersUrl = (filters) => {
-  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloKupca`);
+const buildVascoOrdersUrl = (filters, baseUrl = vascoBaseUrl()) => {
+  const url = new URL(`${baseUrl}/api/v1/FA/narociloKupca`);
 
   Object.entries(filters).forEach(([key, value]) => {
     if (value !== "" && value !== undefined && value !== null) {
@@ -1062,15 +1087,16 @@ const fetchVascoOrders = async (body) => {
   const filters = vascoFiltersFrom(body);
   assertUsefulVascoFilter(filters, body);
 
-  const url = buildVascoOrdersUrl(filters);
+  const baseUrl = vascoBaseUrlFromBody(body);
+  const url = buildVascoOrdersUrl(filters, baseUrl);
   const payload = await fetchVascoJson(url, token, "Vasco API ni vrnil uspešnega odgovora.");
 
   if (!Array.isArray(payload)) {
     throw createHttpError(502, "Vasco API je vrnil nepričakovano obliko podatkov.", payload);
   }
 
-  const warnings = shouldEnrichCatalogs(body) ? await enrichOrdersFromCatalogs(payload, token) : [];
-  await fetchOrderStatesForOrders(payload, token, warnings);
+  const warnings = shouldEnrichCatalogs(body) ? await enrichOrdersFromCatalogs(payload, token, baseUrl) : [];
+  await fetchOrderStatesForOrders(payload, token, warnings, baseUrl);
   const planningData = await fetchVascoPlanningData(payload, token, body, warnings);
 
   return {
@@ -1088,7 +1114,7 @@ const fetchVascoOrderItemFields = async (body) => {
     throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
   }
 
-  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloKupca/postavke/polja`);
+  const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/narociloKupca/postavke/polja`);
   const payload = await fetchVascoJson(url, token, "Vasco API ni vrnil seznama polj.");
 
   if (!Array.isArray(payload)) {
@@ -1335,6 +1361,13 @@ const optionalNumber = (value) => {
   return parseDecimal(value);
 };
 
+const optionalClassicNumber = (value) => {
+  const text = cleanValue(value);
+  if (text === "" || text === undefined || text === null || String(text).includes("???")) return "";
+  const match = String(text).match(/^\(?\s*(-?\d+(?:[.,]\d+)?)\s*\)?/);
+  return match ? optionalNumber(match[1]) : "";
+};
+
 const requiredInteger = (value, label) => {
   const number = Number(value);
   if (!Number.isInteger(number)) {
@@ -1401,10 +1434,18 @@ const deliveryGroupKeyFrom = (order) =>
 
 const deliveryDocumentsFromRows = (rows, body = {}) => {
   const date = normalizeDateTime(body.deliveryDate || body.datum || body.datumDobavnice || todayDateTime());
+  const deliveryFields = body.deliveryFields && typeof body.deliveryFields === "object" ? body.deliveryFields : {};
+  const fieldValue = (name) => cleanValue(deliveryFields[name] || "");
+  const fieldNumberValue = (name) => optionalClassicNumber(fieldValue(name));
+  const fieldNumberOrOrder = (fieldName, order, orderKeys) => {
+    const manualValue = fieldNumberValue(fieldName);
+    return manualValue !== "" ? manualValue : optionalNumber(objectValueByNames(order, orderKeys));
+  };
   const groups = new Map();
 
   rows.forEach((row, index) => {
-    const partnerRaw = objectValueByNames(row.order, ["partner", "Partner"]);
+    const manualPartner = fieldNumberValue("partner");
+    const partnerRaw = manualPartner !== "" ? manualPartner : objectValueByNames(row.order, ["partner", "Partner"]);
     const partner = requiredInteger(partnerRaw, "Partner");
     const key = deliveryGroupKeyFrom(row.order);
     const current = groups.get(key) || {
@@ -1428,12 +1469,12 @@ const deliveryDocumentsFromRows = (rows, body = {}) => {
     const request = compactObject({
       datum: date,
       partner: group.partner,
-      prodajalna: optionalNumber(objectValueByNames(order, ["prodajalna", "Prodajalna"])),
+      prodajalna: fieldNumberOrOrder("prodajalna", order, ["prodajalna", "Prodajalna"]),
       komercialist: cleanValue(objectValueByNames(order, ["komercialist", "Komercialist"])),
       potnik: cleanValue(objectValueByNames(order, ["potnik", "Potnik"])),
       komisionar: cleanValue(objectValueByNames(order, ["komisionar", "Komisionar"])),
-      skladisce: optionalNumber(objectValueByNames(order, ["skladisce", "skladišče", "Skladisce", "SkladisceZaloge"])),
-      rabat1: optionalNumber(objectValueByNames(order, ["rabat1", "Rabat1", "rabat"])),
+      skladisce: fieldNumberOrOrder("skladisce", order, ["skladisce", "skladišče", "Skladisce", "SkladisceZaloge"]),
+      rabat1: fieldNumberOrOrder("rabat1", order, ["rabat1", "Rabat1", "rabat"]),
       postavke: group.postavke.map(({ _sourceOrder, _articleName, ...line }) => line),
     });
 
@@ -1468,7 +1509,7 @@ const createVascoDeliveryNotes = async (body) => {
     throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
   }
 
-  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/dobavnica`);
+  const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/dobavnica`);
   const created = [];
 
   for (const document of documents) {
@@ -1610,7 +1651,7 @@ const createVascoSupplierOrders = async (body) => {
     throw createHttpError(400, "Manjka Vasco prijava. Vnesi bearer token, vpiši Vasco uporabnika/geslo ali nastavi VASCO_API_USERNAME, VASCO_API_PASSWORD in VASCO_API_TAX_NUMBER.");
   }
 
-  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloDobavitelju`);
+  const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/narociloDobavitelju`);
   const created = [];
 
   for (const document of documents) {
@@ -1954,12 +1995,12 @@ const partnerNameFrom = (partner) =>
 
 const catalogKeyFrom = (entry) => objectValueByNames(entry, ["sifra", "Sifra", "code", "id"]);
 
-const fetchCatalogMap = async ({ token, pathName, codes, valueFrom, label }) => {
+const fetchCatalogMap = async ({ token, pathName, codes, valueFrom, label, baseUrl = vascoBaseUrl() }) => {
   const map = new Map();
   const batches = chunkValues(uniqueCleanValues(codes), 100);
 
   for (const batch of batches) {
-    const url = new URL(`${vascoBaseUrl()}${pathName}`);
+    const url = new URL(`${baseUrl}${pathName}`);
     url.searchParams.set("Sifra", batch.join(","));
     const payload = await fetchVascoJson(url, token, `${label} ni bilo mogoče prebrati.`);
     const entries = arrayFromVascoPayload(payload);
@@ -1980,21 +2021,22 @@ const fetchCatalogMap = async ({ token, pathName, codes, valueFrom, label }) => 
   return map;
 };
 
-const fetchArticleMap = (token, codes) =>
+const fetchArticleMap = (token, codes, baseUrl) =>
   fetchCatalogMap({
     token,
     pathName: "/api/v1/FASifranti/artikel",
     codes,
     valueFrom: articleNameFrom,
     label: "Šifrant artiklov",
+    baseUrl,
   });
 
-const fetchArticleDetailsByArticle = async (token, codes) => {
+const fetchArticleDetailsByArticle = async (token, codes, baseUrl = vascoBaseUrl()) => {
   const map = new Map();
   const batches = chunkValues(uniqueCleanValues(codes), 100);
 
   for (const batch of batches) {
-    const url = new URL(`${vascoBaseUrl()}/api/v1/FASifranti/artikel`);
+    const url = new URL(`${baseUrl}/api/v1/FASifranti/artikel`);
     url.searchParams.set("Sifra", batch.join(","));
     const payload = await fetchVascoJson(url, token, "Šifranta artiklov ni bilo mogoče prebrati.");
     const entries = arrayFromVascoPayload(payload);
@@ -2022,13 +2064,14 @@ const fetchArticleDetailsByArticle = async (token, codes) => {
   return map;
 };
 
-const fetchPartnerMap = (token, codes) =>
+const fetchPartnerMap = (token, codes, baseUrl) =>
   fetchCatalogMap({
     token,
     pathName: "/api/v1/SkupniSifranti/partner",
     codes,
     valueFrom: partnerNameFrom,
     label: "Šifrant partnerjev",
+    baseUrl,
   });
 
 const mapToPlainObject = (map) =>
@@ -2044,12 +2087,12 @@ const planningOptionsFrom = (body) => {
   };
 };
 
-const fetchStockByArticle = async (token, codes, options = {}) => {
+const fetchStockByArticle = async (token, codes, options = {}, baseUrl = vascoBaseUrl()) => {
   const map = new Map();
   const batches = chunkValues(uniqueCleanValues(codes), 100);
 
   for (const batch of batches) {
-    const url = new URL(`${vascoBaseUrl()}/api/v1/FASifranti/zaloga`);
+    const url = new URL(`${baseUrl}/api/v1/FASifranti/zaloga`);
     url.searchParams.set("Sifra", batch.join(","));
     if (options.skladisceZaloge) url.searchParams.set("Skladisce", options.skladisceZaloge);
 
@@ -2090,14 +2133,14 @@ const fetchStockByArticle = async (token, codes, options = {}) => {
   return map;
 };
 
-const fetchSupplierOrdersByArticle = async (token, codes, options = {}) => {
+const fetchSupplierOrdersByArticle = async (token, codes, options = {}, baseUrl = vascoBaseUrl()) => {
   const map = new Map();
   if (!options.datumDobaviteljaOd && !options.datumDobaviteljaDo) {
     return map;
   }
 
   const wanted = new Set(uniqueCleanValues(codes).map(normalizeKey));
-  const url = new URL(`${vascoBaseUrl()}/api/v1/FA/narociloDobavitelju`);
+  const url = new URL(`${baseUrl}/api/v1/FA/narociloDobavitelju`);
   if (options.datumDobaviteljaOd) url.searchParams.set("DatumOd", options.datumDobaviteljaOd);
   if (options.datumDobaviteljaDo) url.searchParams.set("DatumDo", options.datumDobaviteljaDo);
   url.searchParams.set("VrniPostavke", "1");
@@ -2147,6 +2190,7 @@ const isSingleIntegerText = (value) => /^\d+$/.test(String(value ?? "").trim());
 
 const fetchOpenCustomerOrders = async (token, body, warnings = []) => {
   const options = openCustomerOptionsFrom(body);
+  const baseUrl = vascoBaseUrlFromBody(body);
   if (!options.partner) return [];
 
   if (!isSingleIntegerText(options.partner)) {
@@ -2154,7 +2198,7 @@ const fetchOpenCustomerOrders = async (token, body, warnings = []) => {
   }
 
   const buildUrl = (includeStore = true) => {
-    const url = new URL(`${vascoBaseUrl()}/api/v1/FA/odpritaNarocilaKupca`);
+    const url = new URL(`${baseUrl}/api/v1/FA/odpritaNarocilaKupca`);
     url.searchParams.set("Partner", String(options.partner));
     if (includeStore && options.prodajalna !== "") url.searchParams.set("Prodajalna", String(options.prodajalna));
     return url;
@@ -2175,7 +2219,73 @@ const fetchOpenCustomerOrders = async (token, body, warnings = []) => {
   return rows;
 };
 
-const fetchOrderStatesForOrders = async (orders, token, warnings = []) => {
+const dashboardRowsFromPayload = (payload) => {
+  const rows = arrayFromVascoPayload(payload);
+  if (rows) return rows;
+  return payload && typeof payload === "object" ? [payload] : [];
+};
+
+const fetchVascoDashboardReceivables = async (body) => {
+  const token = await resolveVascoToken(body);
+  if (!token) return { terjatve: [] };
+
+  const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/terjatvePoZamudi`);
+  url.searchParams.set("NaDan", new Date().toISOString().slice(0, 10));
+
+  const payload = await fetchVascoJson(url, token, "Terjatev po zamudi ni bilo mogoče prebrati.");
+  return {
+    terjatve: dashboardRowsFromPayload(payload),
+  };
+};
+
+const openCustomerDashboardUrlFrom = (body) => {
+  const filters = body.filters && typeof body.filters === "object" ? body.filters : body;
+  const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/odpritaNarocilaKupca`);
+  const partner = cleanValue(filters.partner || filters.Partner || "");
+  const store = cleanValue(filters.prodajalna || filters.Prodajalna || "");
+
+  if (partner) url.searchParams.set("Partner", partner);
+  if (store) url.searchParams.set("Prodajalna", store);
+
+  return url;
+};
+
+const fetchVascoDashboardOpenOrders = async (body) => {
+  const token = await resolveVascoToken(body);
+  if (!token) {
+    return {
+      odprtaPos: [],
+      narocilaDetails: [],
+    };
+  }
+
+  const openPayload = await fetchVascoJson(openCustomerDashboardUrlFrom(body), token, "Odprtih naročil kupca ni bilo mogoče prebrati.");
+  const openRows = dashboardRowsFromPayload(openPayload);
+  const keys = uniqueCleanValues(
+    openRows.map((row) => {
+      const number = objectValueByNames(row, ["stevilka", "Stevilka"]);
+      const year = objectValueByNames(row, ["leto", "Leto"]);
+      return number && year ? `${number}.${year}` : "";
+    })
+  ).slice(0, 200);
+
+  const details = [];
+  for (const chunk of chunkValues(keys, 50)) {
+    const url = new URL(`${vascoBaseUrlFromBody(body)}/api/v1/FA/narociloKupca`);
+    url.searchParams.set("StevilkaLeto", chunk.join(","));
+    url.searchParams.set("VrniPostavke", "1");
+
+    const detailsPayload = await fetchVascoJson(url, token, "Podrobnosti odprtih naročil kupca ni bilo mogoče prebrati.");
+    details.push(...dashboardRowsFromPayload(detailsPayload));
+  }
+
+  return {
+    odprtaPos: openRows,
+    narocilaDetails: details,
+  };
+};
+
+const fetchOrderStatesForOrders = async (orders, token, warnings = [], baseUrl = vascoBaseUrl()) => {
   const candidates = orders.filter((order) => order?.stevilka && order?.leto);
   const maxRequests = 80;
   let failedCount = 0;
@@ -2183,7 +2293,7 @@ const fetchOrderStatesForOrders = async (orders, token, warnings = []) => {
 
   const fetchOneState = async (order) => {
     const url = new URL(
-      `${vascoBaseUrl()}/api/v1/FA/narociloKupca/stanje/${encodeURIComponent(order.stevilka)}/${encodeURIComponent(order.leto)}`
+      `${baseUrl}/api/v1/FA/narociloKupca/stanje/${encodeURIComponent(order.stevilka)}/${encodeURIComponent(order.leto)}`
     );
 
     try {
@@ -2215,6 +2325,7 @@ const fetchOrderStatesForOrders = async (orders, token, warnings = []) => {
 };
 
 const fetchVascoPlanningData = async (orders, token, body, warnings = []) => {
+  const baseUrl = vascoBaseUrlFromBody(body);
   const planningData = {
     stockByArticle: {},
     supplierByArticle: {},
@@ -2245,13 +2356,13 @@ const fetchVascoPlanningData = async (orders, token, body, warnings = []) => {
   const options = planningOptionsFrom(body);
 
   try {
-    planningData.stockByArticle = mapToPlainObject(await fetchStockByArticle(token, articleCodes, options));
+    planningData.stockByArticle = mapToPlainObject(await fetchStockByArticle(token, articleCodes, options, baseUrl));
   } catch (error) {
     warnings.push(`Zaloge iz Vasca ni bilo mogoče dopolniti: ${error.message}`);
   }
 
   try {
-    planningData.supplierByArticle = mapToPlainObject(await fetchSupplierOrdersByArticle(token, articleCodes, options));
+    planningData.supplierByArticle = mapToPlainObject(await fetchSupplierOrdersByArticle(token, articleCodes, options, baseUrl));
     if (!options.datumDobaviteljaOd && !options.datumDobaviteljaDo) {
       warnings.push("Naročila dobaviteljem niso vključena, ker ni vnesen datum od/do.");
     }
@@ -2260,7 +2371,7 @@ const fetchVascoPlanningData = async (orders, token, body, warnings = []) => {
   }
 
   try {
-    planningData.articleByArticle = mapToPlainObject(await fetchArticleDetailsByArticle(token, articleCodes));
+    planningData.articleByArticle = mapToPlainObject(await fetchArticleDetailsByArticle(token, articleCodes, baseUrl));
   } catch (error) {
     warnings.push(`Dobaviteljev artiklov ni bilo mogoče dopolniti: ${error.message}`);
   }
@@ -2268,7 +2379,7 @@ const fetchVascoPlanningData = async (orders, token, body, warnings = []) => {
   return planningData;
 };
 
-const enrichOrdersFromCatalogs = async (orders, token) => {
+const enrichOrdersFromCatalogs = async (orders, token, baseUrl = vascoBaseUrl()) => {
   const warnings = [];
   const partnerCodes = uniqueCleanValues(orders.map((order) => order.partner));
   const articleCodes = uniqueCleanValues(
@@ -2280,7 +2391,7 @@ const enrichOrdersFromCatalogs = async (orders, token) => {
 
   if (partnerCodes.length) {
     try {
-      partnerMap = await fetchPartnerMap(token, partnerCodes);
+      partnerMap = await fetchPartnerMap(token, partnerCodes, baseUrl);
     } catch (error) {
       warnings.push(`Nazivov kupcev ni bilo mogoče dopolniti: ${error.message}`);
     }
@@ -2288,7 +2399,7 @@ const enrichOrdersFromCatalogs = async (orders, token) => {
 
   if (articleCodes.length) {
     try {
-      articleMap = await fetchArticleMap(token, articleCodes);
+      articleMap = await fetchArticleMap(token, articleCodes, baseUrl);
     } catch (error) {
       warnings.push(`Nazivov artiklov ni bilo mogoče dopolniti: ${error.message}`);
     }
@@ -2794,6 +2905,128 @@ const sendWorkbook = async (res, workbook, fileName, body = {}) => {
 const countOrderItems = (orders) =>
   orders.reduce((count, order) => count + (Array.isArray(order.postavke) ? order.postavke.length : 0), 0);
 
+const vascoActionHistoryPath = () => path.join(vascoAppRoot(), "prenosi", "vasco-zgodovina-akcij.json");
+
+const readVascoActionHistory = async () => {
+  const content = await fs.readFile(vascoActionHistoryPath(), "utf8").catch(() => "");
+  if (!content.trim()) return [];
+
+  try {
+    const parsed = JSON.parse(content);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+};
+
+const writeVascoActionHistory = async (entries) => {
+  const filePath = vascoActionHistoryPath();
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, `${JSON.stringify(entries.slice(0, 500), null, 2)}\n`, "utf8");
+};
+
+let vascoHistoryWriteChain = Promise.resolve();
+
+const documentNumberFrom = (document) => {
+  const response = document?.response && typeof document.response === "object" ? document.response : {};
+  return [
+    document?.stevilka || document?.Stevilka || response.stevilka || response.Stevilka || response.id || "",
+    document?.leto || document?.Leto || response.leto || response.Leto || "",
+  ]
+    .filter(Boolean)
+    .join(".");
+};
+
+const historyUserFrom = (body = {}) => {
+  const login = body.vascoLogin && typeof body.vascoLogin === "object" ? body.vascoLogin : {};
+  return cleanValue(login.username || body.vascoUsername || process.env.USERNAME || process.env.USER || "neznano") || "neznano";
+};
+
+const historyRowOrderLabel = (row) => {
+  const order = row?.order && typeof row.order === "object" ? row.order : row;
+  return [
+    objectValueByNames(order, ["stevilka", "Stevilka"]),
+    objectValueByNames(order, ["leto", "Leto"]),
+  ]
+    .filter(Boolean)
+    .join(".");
+};
+
+const historyRowArticleLabel = (row) => {
+  const item = row?.item && typeof row.item === "object"
+    ? row.item
+    : row?.postavka && typeof row.postavka === "object"
+      ? row.postavka
+      : row;
+  return [itemCodeFrom(item), itemNameFrom(item)].filter(Boolean).join(" - ");
+};
+
+const historyDetailsFromRows = (body = {}) => {
+  const rows = Array.isArray(body.rows) ? body.rows : [];
+  const sourceOrders = uniqueCleanValues(
+    rows.flatMap((row) => [
+      historyRowOrderLabel(row),
+      objectValueByNames(row, ["narocila", "naročila", "narocilaKupcev", "sourceOrders"]),
+    ])
+  );
+  const articles = uniqueCleanValues(rows.map(historyRowArticleLabel));
+
+  return {
+    sourceOrders,
+    articles,
+    itemCount: rows.length,
+  };
+};
+
+const vascoActionHistoryEntry = ({ action, body, result = null, error = null }) => {
+  const created = Array.isArray(result?.created) ? result.created : [];
+  const details = historyDetailsFromRows(body);
+
+  return {
+    id: crypto.randomUUID(),
+    createdAt: new Date().toISOString(),
+    user: historyUserFrom(body),
+    action,
+    mode: body?.dryRun ? "Test / Demo" : "Prava oddaja",
+    success: !error,
+    dryRun: Boolean(body?.dryRun),
+    documentNumbers: created.map(documentNumberFrom).filter(Boolean),
+    sourceOrders: details.sourceOrders,
+    articles: details.articles,
+    itemCount: details.itemCount,
+    count: result?.count || created.length || 0,
+    error: error ? error.message || String(error) : "",
+  };
+};
+
+const appendVascoActionHistory = async (entry) => {
+  vascoHistoryWriteChain = vascoHistoryWriteChain.catch(() => {}).then(async () => {
+    const entries = await readVascoActionHistory();
+    entries.unshift(entry);
+    await writeVascoActionHistory(entries);
+  });
+
+  try {
+    await vascoHistoryWriteChain;
+  } catch (error) {
+    console.error("Zgodovine Vasco akcij ni bilo mogoče zapisati.", error);
+  }
+};
+
+const handleVascoActionHistoryRead = async (url, res) => {
+  const limit = Math.min(500, Math.max(1, Number(url.searchParams.get("limit") || 100)));
+  const entries = await readVascoActionHistory();
+
+  send(res, 200, {
+    ok: true,
+    count: entries.length,
+    entries: entries.slice(0, limit),
+  }, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
 const handleVascoOrdersRead = async (req, res) => {
   const body = await parseJsonBody(req);
   const result = await fetchVascoOrders(body);
@@ -2879,9 +3112,45 @@ const handleVascoOrderItemFieldsRead = async (req, res) => {
   });
 };
 
+const handleVascoDashboardReceivables = async (req, res) => {
+  const body = await parseJsonBody(req);
+  const result = await fetchVascoDashboardReceivables(body);
+
+  send(res, 200, result, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
+const handleVascoDashboardOpenOrders = async (req, res) => {
+  const body = await parseJsonBody(req);
+  const result = await fetchVascoDashboardOpenOrders(body);
+
+  send(res, 200, result, {
+    "Cache-Control": "no-store, max-age=0",
+    "Content-Type": "application/json; charset=utf-8",
+  });
+};
+
 const handleVascoDeliveryNotesCreate = async (req, res) => {
   const body = await parseJsonBody(req);
-  const result = await createVascoDeliveryNotes(body);
+  let result;
+
+  try {
+    result = await createVascoDeliveryNotes(body);
+    await appendVascoActionHistory(vascoActionHistoryEntry({
+      action: "Dobavnica",
+      body,
+      result,
+    }));
+  } catch (error) {
+    await appendVascoActionHistory(vascoActionHistoryEntry({
+      action: "Dobavnica",
+      body,
+      error,
+    }));
+    throw error;
+  }
 
   send(res, 200, result, {
     "Cache-Control": "no-store, max-age=0",
@@ -2891,7 +3160,23 @@ const handleVascoDeliveryNotesCreate = async (req, res) => {
 
 const handleVascoSupplierOrdersCreate = async (req, res) => {
   const body = await parseJsonBody(req);
-  const result = await createVascoSupplierOrders(body);
+  let result;
+
+  try {
+    result = await createVascoSupplierOrders(body);
+    await appendVascoActionHistory(vascoActionHistoryEntry({
+      action: "Naročilo dobavitelju",
+      body,
+      result,
+    }));
+  } catch (error) {
+    await appendVascoActionHistory(vascoActionHistoryEntry({
+      action: "Naročilo dobavitelju",
+      body,
+      error,
+    }));
+    throw error;
+  }
 
   send(res, 200, result, {
     "Cache-Control": "no-store, max-age=0",
@@ -3022,6 +3307,16 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === "POST" && url.pathname === "/api/vasco/dashboard-terjatve") {
+      await handleVascoDashboardReceivables(req, res);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/vasco/dashboard-odprta-narocila") {
+      await handleVascoDashboardOpenOrders(req, res);
+      return;
+    }
+
     if (req.method === "POST" && url.pathname === "/api/vasco/narocila-kupca/excel") {
       await handleVascoOrdersExcel(req, res);
       return;
@@ -3039,6 +3334,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === "POST" && url.pathname === "/api/vasco/narocilo-dobavitelju") {
       await handleVascoSupplierOrdersCreate(req, res);
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/vasco/history") {
+      await handleVascoActionHistoryRead(url, res);
       return;
     }
 
