@@ -167,7 +167,9 @@ const makeSession = (username) => {
 
 const verifySession = (req) => {
   try {
-    const token = parseCookies(req.headers.cookie).tuval_admin;
+    const authHeader = String(req.headers.authorization || "");
+    const bearerToken = authHeader.startsWith("Bearer ") ? authHeader.slice(7).trim() : "";
+    const token = bearerToken || parseCookies(req.headers.cookie).tuval_admin;
     if (!token || !token.includes(".")) return null;
 
     const [payload, signature] = token.split(".");
@@ -218,8 +220,9 @@ const handleLogin = async (req, res) => {
     return;
   }
 
-  send(res, 200, { ok: true, username: expectedUsername }, {
-    "Set-Cookie": `tuval_admin=${encodeURIComponent(makeSession(expectedUsername))}; ${cookieOptions()}`,
+  const sessionToken = makeSession(expectedUsername);
+  send(res, 200, { ok: true, username: expectedUsername, sessionToken }, {
+    "Set-Cookie": `tuval_admin=${encodeURIComponent(sessionToken)}; ${cookieOptions()}`,
     "Content-Type": "application/json; charset=utf-8",
   });
 };
