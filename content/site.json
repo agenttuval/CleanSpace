@@ -2843,15 +2843,7 @@
     "videi_ex": [],
     "videi_halo": []
   },
-  "videos": [
-    {
-      "id": "2e5f2992-4a5d-49a0-9bbb-02c2ec087a07",
-      "mask": "agile",
-      "title": "test a cleanspace agile",
-      "description": "to je le test",
-      "url": "https://www.youtube.com/watch?v=KtRDkSytlvI"
-    }
-  ],
+  "videos": [],
   "videi": [
     {
       "label": "Besedilo - Video knjižnica",
@@ -3241,12 +3233,14 @@
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "Video galerija je trenutno prazna"
+      "text": "",
+      "hidden": true
     },
     {
       "label": "Besedilo - Video galerija je pripravljena.",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "Video galerija je pripravljena."
+      "text": "",
+      "hidden": true
     },
     {
       "label": "Besedilo - Ni še dodanih videov",
@@ -3261,17 +3255,32 @@
     {
       "label": "Besedilo - CleanSpace AGILE",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE AGILE"
+      "text": "CLEANSPACE AGILE",
+      "style": {
+        "width": 605,
+        "minHeight": 32
+      }
     },
     {
       "label": "Besedilo - cleanspace test",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "cleanspace test"
+      "text": "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE – lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja.",
+      "style": {
+        "width": 558,
+        "minHeight": 34,
+        "fontSize": 20,
+        "color": "#014579"
+      }
     },
     {
       "label": "Besedilo - to je le test za clean space",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "ta test dela"
+      "text": "",
+      "style": {
+        "x": 22,
+        "y": 4
+      },
+      "hidden": true
     },
     {
       "label": "Besedilo - CleanSpace AGILE",
@@ -3281,17 +3290,46 @@
     {
       "label": "Besedilo - sasasa",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "sasasa"
+      "text": "",
+      "hidden": true
     },
     {
       "label": "Besedilo - sasasssaa",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "sasasssaa"
+      "text": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nošenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.",
+      "style": {
+        "width": 521,
+        "minHeight": 50,
+        "x": 0,
+        "y": 0,
+        "fontSize": 20,
+        "fontWeight": "700"
+      },
+      "hidden": true
     },
     {
       "label": "Besedilo - to je test za cleanspace agile",
       "selector": "main > section.section.custom-content-section:nth-of-type(3) > div.custom-content-grid > figure.custom-image-item > figcaption",
       "text": "to je test za cleanspace agile"
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan",
+      "style": {
+        "fontWeight": "700"
+      }
     }
   ],
   "videi_work": [
