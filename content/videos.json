@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "1f8a0862-fe38-4204-a154-250d995fe928",
+    "mask": "agile",
+    "title": "CleanSpace agile",
+    "description": "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE – lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja",
+    "url": "https://www.youtube.com/watch?v=hRulwXC7T-4"
+  },
+  {
+    "id": "cb71b888-0bfe-476b-960b-fd345dc656c4",
+    "mask": "agile",
+    "title": "CleanSpace agile",
+    "description": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nošenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.",
+    "url": "https://www.youtube.com/watch?v=o3yzv7_Nu2o"
+  },
+  {
+    "id": "7bf008bb-c999-497c-98ed-07d22d072459",
+    "mask": "agile",
+    "title": "CleanSpace agile",
+    "description": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan",
+    "url": "https://www.youtube.com/watch?v=bkJ-MrhIWoc&t=1s"
+  }
+]
