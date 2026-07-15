@@ -2838,10 +2838,122 @@
         "alt": "CleanSpace video knjižnica"
       }
     ],
-    "videi_cst_pro": [],
-    "videi_cst_ultra": [],
-    "videi_ex": [],
-    "videi_halo": []
+    "videi_cst_pro": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace video knjižnica",
+        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CleanSpace video knjižnica"
+      },
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      }
+    ],
+    "videi_cst_ultra": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace video knjižnica",
+        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CleanSpace video knjižnica"
+      },
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      }
+    ],
+    "videi_ex": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace video knjižnica",
+        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CleanSpace video knjižnica"
+      },
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      }
+    ],
+    "videi_halo": [
+      {
+        "label": "Slika - CleanSpace respirators",
+        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
+        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
+        "alt": "CleanSpace respirators"
+      },
+      {
+        "label": "Slika - Tu-Val",
+        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
+        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
+        "alt": "Tu-Val"
+      },
+      {
+        "label": "Slika - CleanSpace video knjižnica",
+        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CleanSpace video knjižnica"
+      }
+    ]
   },
   "videos": [],
   "videi": [
@@ -3430,8 +3542,342 @@
       "text": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace® WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju"
     }
   ],
-  "videi_cst_pro": [],
-  "videi_cst_ultra": [],
-  "videi_ex": [],
-  "videi_halo": []
+  "videi_cst_pro": [
+    {
+      "label": "Besedilo - VIDEO KNJIŽNICA",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "VIDEO KNJIŽNICA"
+    },
+    {
+      "label": "Besedilo - Videi za CleanSpace CST PRO",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
+      "text": "Videi za CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - CleanSpace CST PRO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
+      "text": "CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - Dodani video posnetki",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
+      "text": "",
+      "style": {
+        "x": 0,
+        "y": 0
+      },
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - 1 video",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Ni še dodanih videov",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
+      "text": "Ni še dodanih videov"
+    },
+    {
+      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
+      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST PRO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - CleanSpace® PRO – Predstavitev respirator...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® PRO – Predstavitev respiratorja"
+    },
+    {
+      "label": "Besedilo - Spoznajte respirator CleanSpace® PRO, nap...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte respirator CleanSpace® PRO, napredno rešitev za zaščito dihal v zahtevnih industrijskih okoljih. Video predstavlja ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. Odkrijte, zakaj CleanSpace® PRO zagotavlja zanesljivo zaščito, visoko raven udobja in popolno svobodo gibanja pri vsakodnevnem delu."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST PRO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - CleanSpace CST PRO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace CST PRO"
+    },
+    {
+      "label": "Besedilo - Spoznajte aplikacijo CleanSpace® SMART Ap...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte aplikacijo CleanSpace® SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje."
+    }
+  ],
+  "videi_cst_ultra": [
+    {
+      "label": "Besedilo - VIDEO KNJIŽNICA",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "VIDEO KNJIŽNICA"
+    },
+    {
+      "label": "Besedilo - Videi za CleanSpace CST ULTRA",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
+      "text": "Videi za CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - Dodani video posnetki",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - 1 video",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Ni še dodanih videov",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
+      "text": "Ni še dodanih videov"
+    },
+    {
+      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
+      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - CleanSpace® ULTRA – Predstavitev respirat...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® ULTRA – Predstavitev respiratorja"
+    },
+    {
+      "label": "Besedilo - Spoznajte respirator CleanSpace® ULTRA, z...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte respirator CleanSpace® ULTRA, zasnovan za uporabo v najzahtevnejših industrijskih okoljih. Video predstavlja njegove ključne lastnosti, robustno zasnovo, način delovanja in prednosti pri zaščiti dihal. CleanSpace® ULTRA zagotavlja zanesljivo zaščito, visoko udobje pri delu in odlično zmogljivost tudi v zahtevnih delovnih pogojih."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - CleanSpace® Insights Reporting – Upravlja...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® Insights Reporting – Upravljanje in poročanje o respiratorjih"
+    },
+    {
+      "label": "Besedilo - Spoznajte CleanSpace® Insights Reporting ...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte CleanSpace® Insights Reporting – napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - CleanSpace® Insights Reporting – Upravlja...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® Insights Reporting – Upravljanje in poročanje o respiratorjih"
+    },
+    {
+      "label": "Besedilo - Spoznajte CleanSpace® Insights Reporting ...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte CleanSpace® Insights Reporting – napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme."
+    },
+    {
+      "label": "Besedilo - CleanSpace CST ULTRA",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace CST ULTRA"
+    },
+    {
+      "label": "Besedilo - CleanSpace® EX – Predstavitev ATEX respir...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® EX – Predstavitev ATEX respiratorja"
+    },
+    {
+      "label": "Besedilo - Spoznajte CleanSpace® EX – PAPR respirato...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte CleanSpace® EX – PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace® EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu."
+    }
+  ],
+  "videi_ex": [
+    {
+      "label": "Besedilo - VIDEO KNJIŽNICA",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "VIDEO KNJIŽNICA"
+    },
+    {
+      "label": "Besedilo - Videi za CleanSpace EX",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
+      "text": "Videi za CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - CleanSpace EX",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
+      "text": "CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - Dodani video posnetki",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
+      "text": "Dodani video posnetki"
+    },
+    {
+      "label": "Besedilo - 1 video",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
+      "text": "1 video"
+    },
+    {
+      "label": "Besedilo - Ni še dodanih videov",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
+      "text": "Ni še dodanih videov"
+    },
+    {
+      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
+      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace EX",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - CleanSpace® EX – Predstavitev ATEX respir...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® EX – Predstavitev ATEX respiratorja"
+    },
+    {
+      "label": "Besedilo - Spoznajte CleanSpace® EX – PAPR respirato...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte CleanSpace® EX – PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace® EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu."
+    },
+    {
+      "label": "Besedilo - CleanSpace EX",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace EX"
+    },
+    {
+      "label": "Besedilo - CleanSpace® EX – Namestitev adapterja PAF...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® EX – Namestitev adapterja PAF-0078 za filtre"
+    },
+    {
+      "label": "Besedilo - Video prikazuje pravilno namestitev adapt...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace® EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih."
+    }
+  ],
+  "videi_halo": [
+    {
+      "label": "Besedilo - VIDEO KNJIŽNICA",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
+      "text": "VIDEO KNJIŽNICA"
+    },
+    {
+      "label": "Besedilo - Videi za CleanSpace HALO",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
+      "text": "Videi za CleanSpace HALO"
+    },
+    {
+      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Nazaj na maske",
+      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
+      "text": "Nazaj na maske"
+    },
+    {
+      "label": "Besedilo - CleanSpace HALO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
+      "text": "CLEANSPACE HALO"
+    },
+    {
+      "label": "Besedilo - Dodani video posnetki",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
+      "text": "",
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - 1 video",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
+      "text": "",
+      "style": {
+        "x": 0,
+        "y": 0
+      },
+      "hidden": true
+    },
+    {
+      "label": "Besedilo - Ni še dodanih videov",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
+      "text": "Ni še dodanih videov"
+    },
+    {
+      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
+      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace HALO",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE HALO"
+    },
+    {
+      "label": "Besedilo - CleanSpace® HALO – Uporaba čepa za čiščen...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® HALO – Uporaba čepa za čiščenje in shranjevanje"
+    },
+    {
+      "label": "Besedilo - Spoznajte pravilno uporabo čepa za čiščen...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace® HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju."
+    }
+  ]
 }
