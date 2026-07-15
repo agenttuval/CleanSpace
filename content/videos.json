@@ -40,5 +40,61 @@
     "title": "CleanSpace® WORK – Enostavno nameščanje polobrazne maske",
     "description": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace® WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju",
     "url": "https://www.youtube.com/watch?v=EgrjnxY-onY"
+  },
+  {
+    "id": "e0d16e21-da7a-40ed-9dfb-8c2bc65c9b3f",
+    "mask": "cst-pro",
+    "title": "CleanSpace® PRO – Predstavitev respiratorja",
+    "description": "Spoznajte respirator CleanSpace® PRO, napredno rešitev za zaščito dihal v zahtevnih industrijskih okoljih. Video predstavlja ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. Odkrijte, zakaj CleanSpace® PRO zagotavlja zanesljivo zaščito, visoko raven udobja in popolno svobodo gibanja pri vsakodnevnem delu.",
+    "url": "https://www.youtube.com/watch?v=jsIiA2r5AuY"
+  },
+  {
+    "id": "56be6b53-2b0d-4b6b-8eed-74671e501f2b",
+    "mask": "cst-pro",
+    "title": "CleanSpace CST PRO",
+    "description": "Spoznajte aplikacijo CleanSpace® SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje.",
+    "url": "https://www.youtube.com/watch?v=NSMo1ZIn4cI"
+  },
+  {
+    "id": "7d602ccf-f2dc-4939-b1fc-7b55451e1b7d",
+    "mask": "cst-ultra",
+    "title": "CleanSpace® ULTRA – Predstavitev respiratorja",
+    "description": "Spoznajte respirator CleanSpace® ULTRA, zasnovan za uporabo v najzahtevnejših industrijskih okoljih. Video predstavlja njegove ključne lastnosti, robustno zasnovo, način delovanja in prednosti pri zaščiti dihal. CleanSpace® ULTRA zagotavlja zanesljivo zaščito, visoko udobje pri delu in odlično zmogljivost tudi v zahtevnih delovnih pogojih.",
+    "url": "https://www.youtube.com/watch?v=kmL6E3365J8"
+  },
+  {
+    "id": "b6d75e2b-1c91-490e-a883-d37d7e12cbe7",
+    "mask": "cst-ultra",
+    "title": "CleanSpace® Insights Reporting – Upravljanje in poročanje o respiratorjih",
+    "description": "Spoznajte CleanSpace® Insights Reporting – napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme.",
+    "url": "https://www.youtube.com/watch?v=Du6_Rw0sqO0"
+  },
+  {
+    "id": "83af5279-c00a-4e9f-a70e-c48a3d630d3b",
+    "mask": "cst-ultra",
+    "title": "CleanSpace® Insights Reporting – Upravljanje in poročanje o respiratorjih",
+    "description": "Spoznajte CleanSpace® Insights Reporting – napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme.",
+    "url": "https://www.youtube.com/watch?v=_u_jbMr9HHc"
+  },
+  {
+    "id": "5835ad49-f42a-4b2d-93db-83a6070248e0",
+    "mask": "ex",
+    "title": "CleanSpace® EX – Predstavitev ATEX respiratorja",
+    "description": "Spoznajte CleanSpace® EX – PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace® EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu.",
+    "url": "https://www.youtube.com/watch?v=sXzn4skCiRg"
+  },
+  {
+    "id": "eae08307-a2dd-4553-aa39-55e6680a4f8b",
+    "mask": "ex",
+    "title": "CleanSpace® EX – Namestitev adapterja PAF-0078 za filtre",
+    "description": "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace® EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih.",
+    "url": "https://www.youtube.com/watch?v=ExmlmEZEjjM"
+  },
+  {
+    "id": "8f40b526-d1c1-495b-98a7-5924d92f6298",
+    "mask": "halo",
+    "title": "CleanSpace® HALO – Uporaba čepa za čiščenje in shranjevanje",
+    "description": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace® HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju.",
+    "url": "https://www.youtube.com/watch?v=05be6j5C4Ws"
   }
 ]
