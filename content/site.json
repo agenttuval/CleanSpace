@@ -3336,7 +3336,7 @@
     {
       "label": "Besedilo - Video knjižnica",
       "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "Video knjižnica"
+      "text": "VIDEO KNJIŽNICA"
     },
     {
       "label": "Besedilo - Videi za CleanSpace WORK",
@@ -3356,17 +3356,23 @@
     {
       "label": "Besedilo - CleanSpace WORK",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CleanSpace WORK"
+      "text": "CLEANSPACE WORK"
     },
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "Video galerija je trenutno prazna"
+      "text": "",
+      "hidden": true
     },
     {
       "label": "Besedilo - Video galerija je pripravljena.",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "Video galerija je pripravljena."
+      "text": "",
+      "style": {
+        "x": 0,
+        "y": 0
+      },
+      "hidden": true
     },
     {
       "label": "Besedilo - Ni še dodanih videov",
@@ -3377,6 +3383,51 @@
       "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
       "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE WORK"
+    },
+    {
+      "label": "Besedilo - CleanSpace® WORK – Lahek respirator za uč...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® WORK – Lahek respirator za učinkovito zaščito pri varjenju"
+    },
+    {
+      "label": "Besedilo - Odkrijte, kako respirator CleanSpace® WOR...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Odkrijte, kako respirator CleanSpace® WORK združuje izjemno nizko težo, udobje in zanesljivo zaščito dihal pri varjenju. V videu so predstavljene ključne prednosti respiratorja, ki omogoča neovirano gibanje in udobno uporabo tudi med dolgotrajnim delom. CleanSpace® WORK je idealna izbira za varilce, ki potrebujejo učinkovito zaščito pred varilnimi hlapi in trdnimi delci, ne da bi pri tem sklepali kompromise glede udobja."
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE WORK"
+    },
+    {
+      "label": "Besedilo - CleanSpace® WORK – Predstavitev respirato...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® WORK – Predstavitev respiratorja"
+    },
+    {
+      "label": "Besedilo - Spoznajte CleanSpace® WORK – lahek in zmo...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte CleanSpace® WORK – lahek in zmogljiv respirator s prisilnim dovodom zraka (PAPR), zasnovan za vsakodnevno uporabo v industriji. Video predstavlja njegove ključne lastnosti, prednosti in način delovanja ter prikazuje, kako zagotavlja zanesljivo zaščito dihal ob hkratnem udobju in svobodi gibanja. CleanSpace® WORK je odlična izbira za varjenje, brušenje, obdelavo kovin, gradbeništvo in druga delovna okolja, kjer je učinkovita zaščita dihal ključnega pomena."
+    },
+    {
+      "label": "Besedilo - CleanSpace WORK",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE WORK"
+    },
+    {
+      "label": "Besedilo - CleanSpace® WORK – Enostavno nameščanje p...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace® WORK – Enostavno nameščanje polobrazne maske"
+    },
+    {
+      "label": "Besedilo - Pravilna namestitev maske je prvi korak d...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace® WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju"
     }
   ],
   "videi_cst_pro": [],
