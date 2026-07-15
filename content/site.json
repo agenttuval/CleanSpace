@@ -2856,7 +2856,7 @@
     {
       "label": "Besedilo - Video knjižnica",
       "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "Video knjižnica"
+      "text": "VIDEO KNJIŽNICA"
     },
     {
       "label": "Besedilo - CleanSpace videi",
@@ -2876,7 +2876,7 @@
     {
       "label": "Besedilo - Dodani videi",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "Dodani videi"
+      "text": "DODANI VIDEI"
     },
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
@@ -2897,6 +2897,21 @@
       "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
       "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CLEANSPACE AGILE"
+    },
+    {
+      "label": "Besedilo - test a cleanspace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "test a cleanspace agile"
+    },
+    {
+      "label": "Besedilo - to je le test",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "to je le test"
     }
   ],
   "mediaBlocks": {
