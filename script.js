@@ -626,7 +626,7 @@ const partImageRules = [
   {
     match: ["CST1000"],
     image:
-      "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-CST-PRO-Respirator-with-High-Capacity-Filter-Image-01.jpg",
+      "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Back-1.jpg",
     label: "CST PRO pogonska enota",
   },
   {
@@ -656,7 +656,7 @@ const partImageRules = [
   {
     match: ["PAF-1018", "PAF-1026", "PAF-1017"],
     image:
-      "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
+      "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
     label: "Dodatki za celoobrazno masko",
   },
   {
@@ -1437,15 +1437,22 @@ const entriesForLanguage = (language) => {
   const translations = languageTranslations[language] || {};
   const pageName = currentPageName();
   const contentKey = currentContentKey();
+  const savedTranslations = siteContent?.translations?.[language] || {};
+  const savedEntries = [
+    ...(Array.isArray(savedTranslations.common) ? savedTranslations.common : []),
+    ...(Array.isArray(savedTranslations[pageName]) ? savedTranslations[pageName] : []),
+    ...(Array.isArray(savedTranslations[contentKey]) ? savedTranslations[contentKey] : []),
+  ];
 
   if (language === "hr") {
-    return [...(translations.common || [])];
+    return [...(translations.common || []), ...savedEntries];
   }
 
   return [
     ...(translations.common || []),
     ...(translations[pageName] || []),
     ...(translations[contentKey] || []),
+    ...savedEntries,
   ];
 };
 
