@@ -100,7 +100,7 @@
     {
       "label": "Domov - Tu-Val opis",
       "selector": ".intro-band .section-copy > p:not(.eyebrow)",
-      "text": "TU-VAL IN CLEANSPACETU-VAL d.o.o. iz Domzal je tehnicni inzenirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zascitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zascito dihal v industriji, varjenju, gradbenistvu, farmaciji, zdravstvu, laboratorijih in vzdrzevanju."
+      "text": "TU-VAL d.o.o. iz Domzal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
     },
     {
       "label": "Domov - kartica 01 naslov",
@@ -374,6 +374,36 @@
         "y": 104
       },
       "hidden": true
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "maske": [
