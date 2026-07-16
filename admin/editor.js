@@ -27,6 +27,7 @@ const elements = {
   logout: document.querySelector("[data-logout]"),
   saveGithub: document.querySelector("[data-save-github]"),
   pageSelect: document.querySelector("[data-page-select]"),
+  languageEdit: document.querySelector("[data-language-edit]"),
   videoPreviewWrap: document.querySelector("[data-video-preview-wrap]"),
   videoPreviewMask: document.querySelector("[data-video-preview-mask]"),
   blockList: document.querySelector("[data-block-list]"),
@@ -83,6 +84,7 @@ const elements = {
 
 let content = null;
 let selectedPage = pageMap[0];
+let selectedLanguage = "sl";
 let dirty = false;
 let activeKey = "";
 let activeImageKey = "";
@@ -244,6 +246,52 @@ const pageEntries = () =>
   content
     ? [...(content.common || []), ...(content[selectedPage.key] || []), ...customBlockEntries(), ...customMediaEntries()]
     : [];
+
+const translationGroups = (language = selectedLanguage) => {
+  if (!content) return {};
+  content.translations =
+    content.translations && typeof content.translations === "object" && !Array.isArray(content.translations)
+      ? content.translations
+      : {};
+  content.translations[language] =
+    content.translations[language] && typeof content.translations[language] === "object" && !Array.isArray(content.translations[language])
+      ? content.translations[language]
+      : {};
+  return content.translations[language];
+};
+
+const translationEntriesForPage = (pageKey = selectedPage.key, language = selectedLanguage) => {
+  const groups = translationGroups(language);
+  groups[pageKey] = Array.isArray(groups[pageKey]) ? groups[pageKey] : [];
+  return groups[pageKey];
+};
+
+const translationKeyForEntry = (entry = {}) => `${entry.selector || ""}|${entry.attribute || ""}|${entry.all ? "all" : ""}`;
+
+const findTranslationEntry = (entry) => {
+  if (selectedLanguage === "sl" || !entry?.selector) return null;
+  const key = translationKeyForEntry(entry);
+  return translationEntriesForPage().find((item) => translationKeyForEntry(item) === key) || null;
+};
+
+const displayTextForEntry = (entry) => findTranslationEntry(entry)?.text ?? entry?.text ?? "";
+
+const ensureTranslationEntry = (entry) => {
+  if (selectedLanguage === "sl" || !entry?.selector) return entry;
+  const entries = translationEntriesForPage();
+  const existing = findTranslationEntry(entry);
+  if (existing) return existing;
+
+  const created = {
+    label: entry.label || "Hrvaški prevod",
+    selector: entry.selector,
+    text: entry.text || "",
+  };
+  if (entry.attribute) created.attribute = entry.attribute;
+  if (entry.all) created.all = entry.all;
+  entries.push(created);
+  return created;
+};
 
 const getPageSpecificEntries = () => {
   if (!content) return [];
@@ -1220,7 +1268,7 @@ const renderFields = () => {
     const card = document.createElement("button");
     card.type = "button";
     card.className = `field-card${activeKey === key ? " is-active" : ""}`;
-    card.innerHTML = `<strong>${entry.label || "Besedilo"}</strong><span>${truncate(entry.text || "")}</span>`;
+    card.innerHTML = `<strong>${entry.label || "Besedilo"}</strong><span>${truncate(displayTextForEntry(entry) || "")}</span>`;
     card.addEventListener("click", () => focusEditable(key));
     elements.fieldList.append(card);
   });
@@ -1291,6 +1339,12 @@ const clearEntryStyle = (entry) => {
 
 const setEntryText = (entry, text) => {
   if (!entry) return;
+
+  if (selectedLanguage !== "sl") {
+    const translation = ensureTranslationEntry(entry);
+    translation.text = text;
+    return;
+  }
 
   if (entry.mediaBlockId) {
     const block = findMediaBlock(entry.mediaBlockId);
@@ -1693,7 +1747,7 @@ const updateStyleControls = () => {
   });
 
   elements.styleLabel.textContent = entry
-    ? entry.label || truncate(entry.text || "", 44)
+    ? entry.label || truncate(displayTextForEntry(entry) || "", 44)
     : "Najprej klikni besedilo v predogledu. Levi ali zgornji rob premika, desni ali spodnji pa spreminja velikost.";
   elements.styleColor.value = style.color || "#01457e";
   elements.styleFontSize.value = style.fontSize || "";
@@ -1735,7 +1789,7 @@ const updateEntryText = (key, value) => {
   const entry = findEntryByKey(key);
   if (!entry) return;
   const nextText = normalizeEditableText(value);
-  if (entry.text === nextText) return;
+  if (displayTextForEntry(entry) === nextText) return;
   setEntryText(entry, nextText);
   markDirty();
   renderFields();
@@ -1753,7 +1807,7 @@ const syncPreviewTexts = () => {
     if (!entry) return;
 
     const nextText = normalizeEditableText(editable.innerText || editable.textContent || "");
-    if (entry.text === nextText) return;
+    if (displayTextForEntry(entry) === nextText) return;
 
     setEntryText(entry, nextText);
     changed = true;
@@ -2126,7 +2180,7 @@ const preparePreview = () => {
     target.contentEditable = "true";
     target.spellcheck = true;
     target.hidden = Boolean(entry.hidden);
-    applyTextWithLineBreaks(target, entry.text);
+    applyTextWithLineBreaks(target, displayTextForEntry(entry));
     applyEntryStyleToTarget(target, getEntryStyle(entry));
 
     const activateTarget = () => {
@@ -2503,6 +2557,9 @@ const init = async () => {
 
   selectedPage = pageMap.find((page) => page.key === requestedPage) || selectedPage;
   elements.pageSelect.value = selectedPage.key;
+  if (elements.languageEdit) {
+    elements.languageEdit.value = selectedLanguage;
+  }
   if (requestedMask && videoMasks.some((mask) => mask.value === requestedMask)) {
     elements.mediaMask.value = requestedMask;
     selectedVideoPreviewMask = requestedMask;
@@ -2514,6 +2571,18 @@ const init = async () => {
       selectedVideoPreviewMask = selectedPage.videoMask;
     }
     loadPreview();
+  });
+  elements.languageEdit?.addEventListener("change", () => {
+    selectedLanguage = elements.languageEdit.value === "hr" ? "hr" : "sl";
+    activeKey = "";
+    activeImageKey = "";
+    loadPreview();
+    setStatus(
+      selectedLanguage === "hr"
+        ? "Urejaš hrvaška besedila. Slovenska besedila ostanejo nespremenjena."
+        : "Urejaš slovenska besedila.",
+      "success"
+    );
   });
   elements.videoPreviewMask?.addEventListener("change", () => {
     selectedVideoPreviewMask = elements.videoPreviewMask.value;
