@@ -1298,6 +1298,10 @@ h3 {
   border-radius: 0;
 }
 
+.custom-text-intro + .custom-bullet-item {
+  margin-top: 14px;
+}
+
 .custom-bullet-heading {
   display: flex;
   align-items: flex-start;
@@ -1946,6 +1950,15 @@ h3 {
 .asset-gallery figure:hover img {
   filter: saturate(1.08) contrast(1.04);
   transform: scale(1.07) rotate(0.6deg);
+}
+
+.agile-gallery img {
+  object-fit: contain;
+  background: #fff;
+}
+
+.agile-gallery figure:hover img {
+  transform: scale(1.035);
 }
 
 .asset-gallery figcaption {
