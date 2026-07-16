@@ -41,9 +41,7 @@ const port = Number(process.env.PORT || 4173);
 const repo = process.env.GITHUB_REPO || "agenttuval/CleanSpace";
 const branch = process.env.GITHUB_BRANCH || "main";
 const contentPath = "content/site.json";
-const videosPath = "content/videos.json";
 let runtimeContent = null;
-let runtimeVideos = null;
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
@@ -133,71 +131,6 @@ const persistRuntimeContent = async (content) => {
     await fs.writeFile(path.join(root, contentPath), updatedJson, "utf8");
   } catch (error) {
     console.warn(`Runtime content was not written to disk: ${error.message}`);
-  }
-
-  return updatedJson;
-};
-
-const readVideos = async () => {
-  if (runtimeVideos) return runtimeVideos;
-
-  try {
-    const raw = await fs.readFile(path.join(root, videosPath), "utf8");
-    const parsed = JSON.parse(raw.replace(/^\uFEFF/, ""));
-    runtimeVideos = Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    runtimeVideos = [];
-  }
-
-  return runtimeVideos;
-};
-
-const persistVideos = async (videosArray) => {
-  runtimeVideos = Array.isArray(videosArray) ? videosArray : [];
-  const updatedJson = `${JSON.stringify(runtimeVideos, null, 2)}\n`;
-
-  try {
-    await fs.writeFile(path.join(root, videosPath), updatedJson, "utf8");
-  } catch (error) {
-    console.warn(`Runtime videos were not written to disk: ${error.message}`);
-  }
-
-  const githubToken = process.env.GITHUB_TOKEN;
-  if (!githubToken) return updatedJson;
-
-  try {
-    const apiUrl = `https://api.github.com/repos/${repo}/contents/${videosPath}`;
-    const currentResponse = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: "application/vnd.github+json",
-        "User-Agent": "tuval-cleanspace-admin",
-      },
-    });
-
-    const currentFile = currentResponse.ok ? await currentResponse.json() : null;
-
-    const updateResponse = await fetch(apiUrl, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "User-Agent": "tuval-cleanspace-admin",
-      },
-      body: JSON.stringify({
-        message: "Update stored videos",
-        content: Buffer.from(updatedJson, "utf8").toString("base64"),
-        ...(currentFile && currentFile.sha ? { sha: currentFile.sha } : {}),
-        branch,
-      }),
-    });
-
-    if (!updateResponse.ok) {
-      console.warn("Videos were not persisted to GitHub: PUT request failed.");
-    }
-  } catch (error) {
-    console.warn(`Videos were not persisted to GitHub: ${error.message}`);
   }
 
   return updatedJson;
@@ -299,20 +232,12 @@ const handleContentSave = async (req, res) => {
   if (!session) return;
 
   const body = JSON.parse(await readBody(req));
-  const incomingVideos = Array.isArray(body.content && body.content.videos) ? body.content.videos : null;
   const content = normalizeContent(body.content);
 
   if (!content || typeof content !== "object") {
     send(res, 400, { ok: false, message: "Manjka vsebina za shranjevanje." });
     return;
   }
-
-  // Videos are stored separately in content/videos.json so they persist across
-  // deployments. site.json always keeps an empty videos array.
-  if (incomingVideos) {
-    await persistVideos(incomingVideos);
-  }
-  content.videos = [];
 
   const githubToken = process.env.GITHUB_TOKEN;
 
@@ -377,8 +302,7 @@ const handleContentSave = async (req, res) => {
 
 const handleContentRead = async (res) => {
   const content = await readLocalContent();
-  const videos = await readVideos();
-  send(res, 200, { ...content, videos }, {
+  send(res, 200, content, {
     "Cache-Control": "no-store, max-age=0",
     "Content-Type": "application/json; charset=utf-8",
   });

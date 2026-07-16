@@ -77,6 +77,78 @@ const applyTextWithLineBreaks = (element, text = "") => {
   element.style.whiteSpace = text.includes("\n") ? "pre-line" : "";
 };
 
+const applyFeatureText = (element, text = "") => {
+  const normalized = normalizeEditableText(text);
+  const lines = normalized.split("\n").map((line) => line.trim()).filter(Boolean);
+
+  if (!element?.closest?.(".feature-list") || lines.length < 2) {
+    applyTextWithLineBreaks(element, normalized);
+    return;
+  }
+
+  element.textContent = "";
+  element.style.whiteSpace = "";
+
+  const title = document.createElement("strong");
+  title.className = "feature-item-title";
+  title.textContent = lines[0];
+
+  const description = document.createElement("span");
+  description.className = "feature-item-description";
+  description.textContent = lines.slice(1).join(" ");
+
+  element.append(title, description);
+};
+
+const renderStructuredCustomText = (element, text = "") => {
+  if (!element) return;
+
+  const normalized = normalizeEditableText(text);
+  const sections = normalized
+    .split(/\n\s*\n/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  const isBulletSection = (part = "") => /^[•.]\s+/.test(part.trim());
+  const bulletSections = sections.filter(isBulletSection);
+
+  if (!bulletSections.length) {
+    applyTextWithLineBreaks(element, normalized);
+    return;
+  }
+
+  element.textContent = "";
+  element.style.whiteSpace = "";
+
+  sections.forEach((section, index) => {
+    if (isBulletSection(section)) {
+      const lines = section.split("\n").map((line) => line.trim()).filter(Boolean);
+      const item = document.createElement("div");
+      item.className = "custom-bullet-item";
+
+      const heading = document.createElement("strong");
+      heading.className = "custom-bullet-heading";
+      heading.textContent = lines[0].replace(/^[•.]\s*/, "");
+      item.append(heading);
+
+      if (lines[1]) {
+        const body = document.createElement("span");
+        body.className = "custom-bullet-body";
+        body.textContent = lines.slice(1).join(" ");
+        item.append(body);
+      }
+
+      element.append(item);
+      return;
+    }
+
+    const intro = document.createElement(index === 0 ? "span" : "p");
+    intro.className = index === 0 ? "custom-text-intro" : "custom-text-paragraph";
+    intro.textContent = section;
+    element.append(intro);
+  });
+};
+
 const applyEditableStyle = (element, style = {}) => {
   if (!element || !style) return;
 
@@ -257,8 +329,9 @@ const renderCustomContent = (content = {}) => {
       applyTextWithLineBreaks(title, normalizeEditableText(block.title || "Dodaten opis"));
       applyEditableStyle(title, block.titleStyle);
 
-      const text = document.createElement("p");
-      applyTextWithLineBreaks(text, normalizeEditableText(block.text || "Dodajte besedilo za ta okvir."));
+      const text = document.createElement("div");
+      text.className = "custom-text-body";
+      renderStructuredCustomText(text, normalizeEditableText(block.text || "Dodajte besedilo za ta okvir."));
       applyEditableStyle(text, block.textStyle);
 
       article.append(title, text);
@@ -380,7 +453,7 @@ const applyEditableTexts = (content = siteContent) => {
       element.hidden = Boolean(entry.hidden);
       if (entry.hidden) return;
 
-      applyTextWithLineBreaks(element, normalizeEditableText(entry.text));
+      applyFeatureText(element, entry.text);
       applyEditableStyle(element, entry.style);
     });
   });
@@ -449,6 +522,10 @@ const videoPage = document.querySelector("[data-video-page]");
 
 const heroRotatorSlides = [
   {
+    model: "CleanSpace HALO",
+    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
+  },
+  {
     model: "CleanSpace AGILE",
     src: "https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg",
   },
@@ -467,10 +544,6 @@ const heroRotatorSlides = [
   {
     model: "CleanSpace EX",
     src: "https://cleanspacetechnology.com/wp-content/uploads/2021/03/17-CleanSpace-EX-with-Full-Face-Mask-and-Coverall-Filter.jpg",
-  },
-  {
-    model: "CleanSpace HALO",
-    src: "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
   },
 ];
 
@@ -547,13 +620,13 @@ const partImageRules = [
   {
     match: ["PAF-0058"],
     image:
-      "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+      "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
     label: "Pred-filter in zaščitna prevleka",
   },
   {
     match: ["CST1000"],
     image:
-      "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+      "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-CST-PRO-Respirator-with-High-Capacity-Filter-Image-01.jpg",
     label: "CST PRO pogonska enota",
   },
   {
@@ -665,7 +738,7 @@ const partImageRules = [
     label: "HALO BIO izdihovalni filter",
   },
   {
-    match: ["HALO POWER SYSTEM"],
+    match: ["HALO POWER SYSTEM", "HALO POGONSKI SISTEM"],
     image:
       "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png",
     label: "HALO pogonska enota",
@@ -781,10 +854,10 @@ const languageNames = {
 const languageTranslations = {
   en: {
     common: [
-      { selector: ".site-nav a:nth-child(1)", text: "Home" },
-      { selector: ".site-nav a:nth-child(2)", text: "Masks" },
-      { selector: ".site-nav a:nth-child(3)", text: "Test" },
-      { selector: ".site-nav a:nth-child(4)", text: "Contact" },
+      { selector: ".site-nav > a:nth-of-type(1)", text: "Home" },
+      { selector: ".site-nav .nav-dropdown > .nav-link", text: "Masks" },
+      { selector: ".site-nav > a:nth-of-type(2)", text: "Test" },
+      { selector: ".site-nav > a:nth-of-type(3)", text: "Contact" },
       { selector: ".menu-toggle", attribute: "aria-label", text: "Open navigation" },
       { selector: ".choice-actions .details", text: "Details", all: true },
       { selector: ".choice-actions .ghost.dark", text: "Contact", all: true },
@@ -1014,10 +1087,10 @@ const languageTranslations = {
   },
   hr: {
     common: [
-      { selector: ".site-nav a:nth-child(1)", text: "Početna" },
-      { selector: ".site-nav a:nth-child(2)", text: "Maske" },
-      { selector: ".site-nav a:nth-child(3)", text: "Test" },
-      { selector: ".site-nav a:nth-child(4)", text: "Kontakt" },
+      { selector: ".site-nav > a:nth-of-type(1)", text: "Početna" },
+      { selector: ".site-nav .nav-dropdown > .nav-link", text: "Maske" },
+      { selector: ".site-nav > a:nth-of-type(2)", text: "Test" },
+      { selector: ".site-nav > a:nth-of-type(3)", text: "Kontakt" },
       { selector: ".menu-toggle", attribute: "aria-label", text: "Otvori navigaciju" },
       { selector: ".choice-actions .details", text: "Detalji", all: true },
       { selector: ".choice-actions .ghost.dark", text: "Kontakt", all: true },

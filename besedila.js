@@ -5,10 +5,10 @@
 
 window.TUVAL_TEXTS = {
   common: [
-    { label: "Navigacija - domov", selector: ".site-nav a:nth-child(1)", text: "Domov" },
-    { label: "Navigacija - maske", selector: ".site-nav a:nth-child(2)", text: "Maske" },
-    { label: "Navigacija - naroci test", selector: ".site-nav a:nth-child(3)", text: "Test" },
-    { label: "Navigacija - kontakt", selector: ".site-nav a:nth-child(4)", text: "Kontakt" },
+    { label: "Navigacija - domov", selector: ".site-nav > a:nth-of-type(1)", text: "Domov" },
+    { label: "Navigacija - maske", selector: ".site-nav .nav-dropdown > .nav-link", text: "Maske" },
+    { label: "Navigacija - naroci test", selector: ".site-nav > a:nth-of-type(2)", text: "Test" },
+    { label: "Navigacija - kontakt", selector: ".site-nav > a:nth-of-type(3)", text: "Kontakt" },
     { label: "Noga - podjetje", selector: ".site-footer strong", text: "Tu-Val d.o.o." },
     { label: "Noga - naslov", selector: ".site-footer p", text: "Breznikova ulica 26, 1230 Domžale" },
     { label: "Noga - telefon", selector: ".site-footer div:last-child a:nth-child(1)", text: "+386 1 721 21 23" },
