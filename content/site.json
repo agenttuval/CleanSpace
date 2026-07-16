@@ -1100,26 +1100,6 @@
       "text": "FILTRI"
     },
     {
-      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi."
-    },
-    {
-      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi."
-    },
-    {
-      "label": "Besedilo - CST1028 TM3A1P R SL, CST1008 TM3A2P R SL,...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
-      "text": "CST1028 TM3A1P R SL, CST1008 TM3A2P R SL, CST1027 TM3ABE1P R SL, CST1006 TM3ABEK1P R SL."
-    },
-    {
-      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
-      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov."
-    },
-    {
       "label": "Besedilo - Pripomocki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
       "text": "PRIPOMOCKI"
@@ -1234,6 +1214,48 @@
       "label": "Besedilo - Pošlji povpraševanje in Tu-Val pripravi p...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Pošlji povpraševanje in Tu-Val pripravi priporočilo glede maske, filtra in dodatkov."
+    },
+    {
+      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1028 kombinirani filter A1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1028 - kombinirani filter TM3A1P R SL za delce in organske pline ali hlape z nižjo zmogljivostjo A1.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1008 kombinirani filter A2P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CST1008 - kombinirani filter TM3A2P R SL za delce in organske pline ali hlape z višjo zmogljivostjo A2.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1027 kombinirani filter ABE1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "CST1027 - kombinirani filter TM3ABE1P R SL za delce ter organske, anorganske in kisle pline.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1006 kombinirani filter ABEK1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "CST1006 - kombinirani filter TM3ABEK1P R SL za delce, organske, anorganske in kisle pline ter amoniak.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
+      "editable": true
     }
   ],
   "cleanspace_cst_ultra": [
@@ -1365,11 +1387,6 @@
       "text": "FILTRI"
     },
     {
-      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "PAF-0058 - pred-filter in zaščitna prevleka."
-    },
-    {
       "label": "Besedilo - Pripomocki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
       "text": "PRIPOMOCKI"
@@ -1468,6 +1485,48 @@
       "label": "Besedilo - Tu-Val pomaga preveriti, ali je ULTRA pra...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Tu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejsi postopek ali delovisce."
+    },
+    {
+      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1028 kombinirani filter A1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1028 - kombinirani filter TM3A1P R SL za delce in organske pline ali hlape z nižjo zmogljivostjo A1.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1008 kombinirani filter A2P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CST1008 - kombinirani filter TM3A2P R SL za delce in organske pline ali hlape z višjo zmogljivostjo A2.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1027 kombinirani filter ABE1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "CST1027 - kombinirani filter TM3ABE1P R SL za delce ter organske, anorganske in kisle pline.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1006 kombinirani filter ABEK1P",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "CST1006 - kombinirani filter TM3ABEK1P R SL za delce, organske, anorganske in kisle pline ter amoniak.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
+      "editable": true
     }
   ],
   "cleanspace_ex": [
@@ -2081,9 +2140,10 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-WORK-Welding-Image-02-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 179,
-          "x": 450,
-          "y": 8
+          "width": 520,
+          "x": 0,
+          "y": 0,
+          "borderRadius": 18
         }
       },
       {
@@ -2094,9 +2154,10 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 1100,
-          "x": 71,
-          "y": 179
+          "width": 520,
+          "x": 0,
+          "y": 0,
+          "borderRadius": 18
         }
       },
       {
@@ -2322,30 +2383,6 @@
         "alt": "CleanSpace CST PRO zadnji pogled"
       },
       {
-        "label": "Slika - CST1005 delčni filter",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1005 delčni filter"
-      },
-      {
-        "label": "Slika - CST1004 visoko zmogljiv filter",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1004 visoko zmogljiv filter"
-      },
-      {
-        "label": "Slika - CST kombinirani filtri",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST kombinirani filtri"
-      },
-      {
-        "label": "Slika - Pred-filter in zaščitna prevleka",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "Pred-filter in zaščitna prevleka"
-      },
-      {
         "label": "Slika - CST1000 pogonska enota CST PRO",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Back-1.jpg",
@@ -2380,6 +2417,55 @@
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
         "alt": "Dodatki za celoobrazno masko"
+      },
+      {
+        "label": "Slika - CST1005 delčni filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1005 delčni filter",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1004 visoko zmogljiv filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1004 visoko zmogljiv filter",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1028 kombinirani filter A1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1028 kombinirani filter A1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1008 kombinirani filter A2P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1008 kombinirani filter A2P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1027 kombinirani filter ABE1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1027 kombinirani filter ABE1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1006 kombinirani filter ABEK1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1006 kombinirani filter ABEK1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
+        "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
+        "alt": "PAF-0058 pred-filter in zaščitna prevleka",
+        "editable": true
       }
     ],
     "cleanspace_cst_ultra": [
@@ -2432,10 +2518,53 @@
         "alt": "Dodatki za celoobrazno masko"
       },
       {
-        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
+        "label": "Slika - CST1005 delčni filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1005 delčni filter",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1004 visoko zmogljiv filter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
+        "alt": "CST1004 visoko zmogljiv filter",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1028 kombinirani filter A1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1028 kombinirani filter A1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1008 kombinirani filter A2P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1008 kombinirani filter A2P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1027 kombinirani filter ABE1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1027 kombinirani filter ABE1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1006 kombinirani filter ABEK1P",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "CST1006 kombinirani filter ABEK1P",
+        "editable": true
+      },
+      {
+        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
         "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
-        "alt": "PAF-0058 pred-filter in zaščitna prevleka"
+        "alt": "PAF-0058 pred-filter in zaščitna prevleka",
+        "editable": true
       }
     ],
     "cleanspace_ex": [

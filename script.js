@@ -1207,6 +1207,41 @@ const languageTranslations = {
         text: "ISO 9001 za razvoj, proizvodnju i podršku.",
       },
       { selector: ".certification-note .button", text: "CleanSpace usporedba" },
+      { selector: ".custom-text-card h2", text: "ZAŠTO CLEANSPACE?" },
+      {
+        selector: ".custom-text-intro",
+        text: "CleanSpace respiratori kombiniraju visoku razinu zaštite dišnih puteva, aktivni dovod filtriranog zraka i kompaktnu izvedbu bez cijevi, pojaseva ili baterijskih jedinica na leđima. Namijenjeni su korisnicima koji trebaju pouzdanu osobnu zaštitnu opremu, ali pri radu ne žele dodatno opterećenje, ograničeno kretanje ili osjećaj teškog disanja.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(1) .custom-bullet-heading", text: "Bez cijevi i pojaseva" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(1) .custom-bullet-body",
+        text: "Puhalna jedinica nalazi se iza vrata, zato korisnik nema cijevi, pojas ili baterijski ruksak.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(2) .custom-bullet-heading", text: "Lakše disanje pri radu" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(2) .custom-bullet-body",
+        text: "AirSensit tehnologija prepoznaje disanje korisnika i automatski prilagođava protok filtriranog zraka.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(3) .custom-bullet-heading", text: "Udobnost pri duljoj uporabi" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(3) .custom-bullet-body",
+        text: "Lagana i kompaktna izvedba smanjuje opterećenje korisnika tijekom višesatnog rada.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(4) .custom-bullet-heading", text: "Rješenja za različita okruženja" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(4) .custom-bullet-body",
+        text: "Dostupni su modeli za prašinu, zavarivanje, industriju, zdravstvo, laboratorije, farmaciju, dekontaminaciju i ATEX područja.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(5) .custom-bullet-heading", text: "Pametan nadzor uporabe" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(5) .custom-bullet-body",
+        text: "Odabrani modeli omogućuju povezivanje s aplikacijom CleanSpace za lakši pregled uporabe, održavanja i usklađenosti opreme.",
+      },
+      { selector: ".custom-bullet-item:nth-of-type(6) .custom-bullet-heading", text: "Podrška TU-VAL u Sloveniji" },
+      {
+        selector: ".custom-bullet-item:nth-of-type(6) .custom-bullet-body",
+        text: "Pomažemo pri odabiru respiratora, maske i filtra prema radnom okruženju, rizicima i načinu uporabe.",
+      },
     ],
     "maske.html": [
       { selector: ".page-hero-copy .eyebrow", text: "Odaberi model" },
@@ -1410,6 +1445,98 @@ const entriesForLanguage = (language) => {
   ];
 };
 
+const croatianDynamicReplacements = [
+  ["Naroči test", "Naruči test"],
+  ["Video knjižnica", "Videoteka"],
+  ["VIDEO KNJIŽNICA", "VIDEOTEKA"],
+  ["Videozapisi za izbrano masko", "Videozapisi za odabranu masku"],
+  ["Filtri", "Filtri"],
+  ["Pripomočki", "Dodaci"],
+  ["Pripomocki", "Dodaci"],
+  ["Slike", "Slike"],
+  ["sistem", "sustav"],
+  ["Sistem", "Sustav"],
+  ["sistemi", "sustavi"],
+  ["respiratorji", "respiratori"],
+  ["Respiratorji", "Respiratori"],
+  ["zaščita dihal", "zaštita dišnih puteva"],
+  ["Zaščita dihal", "Zaštita dišnih puteva"],
+  ["zaščite", "zaštite"],
+  ["zaščitna", "zaštitna"],
+  ["zaščitni", "zaštitni"],
+  ["delovni okolji", "radna okruženja"],
+  ["delovno okolje", "radno okruženje"],
+  ["delovnih okoljih", "radnim okruženjima"],
+  ["pri delu", "pri radu"],
+  ["Uporaba", "Uporaba"],
+  ["uporaba", "uporaba"],
+  ["uporabe", "uporabe"],
+  ["uporabnika", "korisnika"],
+  ["uporabnik", "korisnik"],
+  ["zanesljivo", "pouzdano"],
+  ["zanesljiva", "pouzdana"],
+  ["udobje", "udobnost"],
+  ["lažje dihanje", "lakše disanje"],
+  ["polnilna in shranjevalna postaja", "stanica za punjenje i pohranu"],
+  ["pred-filter in zaščitna prevleka", "predfiltar i zaštitna navlaka"],
+  ["delčni filter", "filtar za čestice"],
+  ["visoko zmogljiv", "visokoučinkovit"],
+  ["pakiranje", "pakiranje"],
+  ["celoobrazna maska", "maska za cijelo lice"],
+  ["maska za del obraza", "polumaska"],
+  ["Poglej maske", "Pogledaj maske"],
+  ["Povpraševanje", "Upit"],
+  ["Kontaktiraj", "Kontaktiraj"],
+  ["Nazaj na maske", "Natrag na maske"],
+  ["Podrobnosti", "Detalji"],
+  ["Izberi masko", "Odaberi masku"],
+  ["Dodana slika", "Dodana slika"],
+];
+
+const croatianDynamicOriginalText = new WeakMap();
+
+const applyCroatianDynamicReplacements = () => {
+  const main = document.querySelector("main");
+  if (!main || typeof document.createTreeWalker !== "function") return;
+
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let node = walker.nextNode();
+  while (node) {
+    nodes.push(node);
+    node = walker.nextNode();
+  }
+
+  nodes.forEach((textNode) => {
+    if (!textNode.textContent?.trim()) return;
+    if (!textNode.parentElement || textNode.parentElement.closest("script, style")) return;
+
+    if (!croatianDynamicOriginalText.has(textNode)) {
+      croatianDynamicOriginalText.set(textNode, textNode.textContent);
+    }
+
+    let nextText = textNode.textContent;
+    croatianDynamicReplacements.forEach(([from, to]) => {
+      nextText = nextText.split(from).join(to);
+    });
+    textNode.textContent = nextText;
+  });
+};
+
+const restoreCroatianDynamicReplacements = () => {
+  const main = document.querySelector("main");
+  if (!main || typeof document.createTreeWalker !== "function") return;
+
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+  let node = walker.nextNode();
+  while (node) {
+    if (croatianDynamicOriginalText.has(node)) {
+      node.textContent = croatianDynamicOriginalText.get(node) || "";
+    }
+    node = walker.nextNode();
+  }
+};
+
 const applyLanguageEntry = (entry) => {
   if (!entry?.selector || typeof entry.text !== "string") return;
 
@@ -1441,10 +1568,14 @@ const updateLanguageButtons = (language) => {
 const applySiteLanguage = (language, persist = true) => {
   const selectedLanguage = supportedLanguages.includes(language) ? language : "sl";
   restoreOriginalLanguageText();
+  restoreCroatianDynamicReplacements();
   document.documentElement.lang = selectedLanguage === "hr" ? "hr" : selectedLanguage;
 
   if (selectedLanguage !== "sl") {
     entriesForLanguage(selectedLanguage).forEach(applyLanguageEntry);
+    if (selectedLanguage === "hr") {
+      applyCroatianDynamicReplacements();
+    }
   }
 
   updateLanguageButtons(selectedLanguage);
