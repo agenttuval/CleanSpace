@@ -4071,6 +4071,11 @@
           "label": "Domov - tehnologija opis",
           "selector": ".difference-copy > p:not(.eyebrow)",
           "text": "CleanSpace respiratori su sustavi za zaštitu dišnih puteva s pozitivnim tlakom koji osiguravaju aktivnu opskrbu filtriranim zrakom. Tehnologija AirSensit prepoznaje korisnikovo disanje i automatski prilagođava protok zraka, čime se olakšava disanje i povećava udobnost pri korištenju, čak i tijekom dugotrajnog rada u zahtjevnim industrijskim, zdravstvenim i laboratorijskim okruženjima."
+        },
+        {
+          "label": "Navigacija - domov",
+          "selector": ".site-nav > a:nth-of-type(1)",
+          "text": "Dom"
         }
       ]
     }
