@@ -95,7 +95,11 @@
     {
       "label": "Domov - Tu-Val naslov",
       "selector": ".intro-band .section-copy h2",
-      "text": "Inzenirski partner za varnejšo zaščito dihal"
+      "text": "Inženirski partner za varnejšo zaščito dihal",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
     },
     {
       "label": "Domov - Tu-Val opis",
@@ -173,7 +177,7 @@
     {
       "label": "Domov - CST PRO opis",
       "selector": ".product-card:nth-child(2) div > p:last-child",
-      "text": "Vzdrzljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Domov - CST ULTRA oznaka",
@@ -242,7 +246,7 @@
     {
       "label": "Domov - tehnologija opis",
       "selector": ".difference-copy > p:not(.eyebrow)",
-      "text": "CleanSpace respiratorji so pozitivno-tlačni sistemi za zaščito dihal z aktivnim dovodom filtriranega zraka. AirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok zraka, zato je dihanje lažje, uporaba pa udobnejsa tudi pri daljšem delu v zahtevnih industrijskih, zdravstvenih in laboratorijskih okoljih."
+      "text": "CleanSpace respiratorji so pozitivno-tlačni sistemi za zaščito dihal z aktivnim dovodom filtriranega zraka. AirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok zraka, zato je dihanje lažje, uporaba pa udobnejša tudi pri daljšem delu v zahtevnih industrijskih, zdravstvenih in laboratorijskih okoljih."
     },
     {
       "label": "Besedilo - Brez pasov, cevi in baterijskih nahrbtnik...",
@@ -352,7 +356,7 @@
     {
       "label": "Besedilo - Nov lahki respirator za delce z ohlapnim ...",
       "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p:nth-of-type(2)",
-      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka in ohlapno prilegajočim obraznim delom za zaščito pred delci. Primeren za industrijo, gradbeništvo, logistiko, živilsko industrijo, čiščenje in vzdrževanje, kjer je pomembna hitra uvedba zaščite dihal brez preizkusa prileganja maske."
+      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka in ohlapno prilegajočim obraznim delom za zaščito pred delci. Primeren za industrijo, gradbeništvo, logistiko, živilsko industrijo, čiščenje in vzdrževanje, kjer je pomembna hitra uvedba zaščite dihal brez preizkuša prileganja maske."
     },
     {
       "label": "Besedilo - Dodana slika",
@@ -404,6 +408,36 @@
       "label": "Besedilo - AGILE",
       "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
       "text": "AGILE"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "maske": [
@@ -452,7 +486,7 @@
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Vzdrzljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Maske - CST PRO gumb podrobnosti",
@@ -588,6 +622,36 @@
       "label": "Besedilo - Kontakt",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > div.choice-actions > a.dark:nth-of-type(2)",
       "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "kontakt": [
@@ -765,6 +829,36 @@
       "label": "Besedilo - Poglej modele",
       "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > a",
       "text": "Poglej modele"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "cleanspace_work": [
@@ -969,6 +1063,61 @@
       "label": "Besedilo - Pošlji povpraševanje Tu-Val ekipi in prev...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Pošlji povpraševanje Tu-Val ekipi in preveri, ali WORK ustreza tvojemu delovnemu okolju."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
+    },
+    {
+      "label": "Besedilo - AirSensit tehnologija samodejno prilagaja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika."
+    },
+    {
+      "label": "Besedilo - Pretok zraka do 200 L/min in delovanje ba...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "Pretok zraka do 200 L/min in delovanje baterije do 8 ur."
+    },
+    {
+      "label": "Besedilo - Kompaktna enota pod 350 g, brez pasu in c...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "Kompaktna enota pod 350 g, brez pasu in cevi."
+    },
+    {
+      "label": "Besedilo - TM3 P R SL zaščita pred delci po standard...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(4)",
+      "text": "TM3 P R SL zaščita pred delci po standardu EN 12942."
+    },
+    {
+      "label": "Besedilo - Filtracija delcev 99,97 % s CleanSpace WO...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(5)",
+      "text": "Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom."
     }
   ],
   "cleanspace_cst_pro": [
@@ -1250,6 +1399,36 @@
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
       "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala.",
       "editable": true
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "cleanspace_cst_ultra": [
@@ -1521,6 +1700,36 @@
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
       "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
       "editable": true
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "cleanspace_ex": [
@@ -1532,7 +1741,7 @@
     {
       "label": "EX - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Intrinzicno varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je uporabi v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
+      "text": "Intrinžično varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je uporabi v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
     },
     {
       "label": "EX - kontakt gumb",
@@ -1724,7 +1933,7 @@
     {
       "label": "Besedilo - CleanSpace EX je zasnovan za potencialno ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace EX je zasnovan za delovna mesta s potencialno eksplozivnimi atmosferami, kjer je potrebna intrinzično varna ATEX oprema za zaščito dihal. Uporablja se v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi, kjer obicajna elektronska oprema ni primerna."
+      "text": "CleanSpace EX je zasnovan za delovna mesta s potencialno eksplozivnimi atmosferami, kjer je potrebna intrinzično varna ATEX oprema za zaščito dihal. Uporablja se v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi, kjer običajna elektronska oprema ni primerna."
     },
     {
       "label": "Besedilo - Ker podpira masko za del obraza in celoob...",
@@ -1783,6 +1992,36 @@
       "label": "Besedilo - Tu-Val pomaga preveriti, ali konfiguracij...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Tu-Val pomaga preveriti, ali konfiguracija EX ustreza delovnemu območju in potrebnim certifikacijam."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "cleanspace_halo": [
@@ -2034,6 +2273,36 @@
       "label": "Besedilo - Tu-Val pomaga izbrati velikost maske, fil...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Tu-Val pomaga izbrati velikost maske, filter in dodatke za zdravstveno ali laboratorijsko uporabo."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "customBlocks": {
@@ -2041,7 +2310,7 @@
       {
         "id": "block-mq588gm4-vknest",
         "title": "ZAKAJ CLEANSPACE?",
-        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n. Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\n. Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\n. Udobje pri daljši korištenju\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\n. Resitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\n. Pameten nadzor korištenja\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\n. Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način korištenja.",
+        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n. Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\n. Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\n. Udobje pri daljši korištenju\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\n. Rešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\n. Pameten nadzor korištenja\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\n. Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način korištenja.",
         "titleStyle": {
           "color": "#01457e"
         },
@@ -2673,6 +2942,12 @@
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
         "alt": "CleanSpace polnilnik"
+      },
+      {
+        "label": "Slika - CleanSpace filter adapter",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/PAF-0038-CleanSpace-Filter-Adaptor.jpg",
+        "alt": "CleanSpace filter adapter"
       }
     ],
     "cleanspace_halo": [
@@ -3128,6 +3403,66 @@
       "label": "Besedilo - to je le test",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "to je le test"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace agile"
+    },
+    {
+      "label": "Besedilo - Predstavitveni video prikazuje glavne pre...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih."
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace agile"
+    },
+    {
+      "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan"
     }
   ],
   "mediaBlocks": {
@@ -3283,7 +3618,7 @@
     {
       "label": "Besedilo - Ohlapen obrazni del omogoča uporabo brez ...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "Ohlapno prilegajoč obrazni del.\nZdruzljiv z drugo osebno zaščitno opremo",
+      "text": "Ohlapno prilegajoč obrazni del.\nZdružljiv z drugo osebno zaščitno opremo",
       "style": {
         "x": 0,
         "y": 0
@@ -3415,6 +3750,36 @@
       "label": "Besedilo - Tu-Val pomaga preveriti, ali AGILE ustrez...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Tu-Val pomaga preveriti, ali AGILE ustreza vašemu delu, tipu delcev in načinu organizacije ekipe."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_agile": [
@@ -3543,6 +3908,36 @@
       "style": {
         "fontWeight": "700"
       }
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_work": [
