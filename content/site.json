@@ -3533,6 +3533,36 @@
       "label": "Besedilo - Tu-Val pomaga preveriti, ali AGILE ustrez...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Tu-Val pomaga preveriti, ali AGILE ustreza vašemu delu, tipu delcev in načinu organizacije ekipe."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_agile": [
@@ -3789,6 +3819,36 @@
       "label": "Besedilo - Pravilna namestitev maske je prvi korak d...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_cst_pro": [
@@ -4220,6 +4280,29 @@
           "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
           "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
           "text": "Otkrijte novu generaciju zaštite dišnih puteva. CleanSpace AGILE osmišljen je za sve korisnike, bez obzira na oblik lica ili prisutnost dlačica na licu. Zahvaljujući laganom dizajnu, inteligentnom prilagođavanju protoka zraka i iznimnoj udobnosti, omogućuje sigurniji i ugodniji rad tijekom cijelog radnog dana."
+        }
+      ],
+      "videi_work": [],
+      "cleanspace_agile": [
+        {
+          "label": "Besedilo - Nov lahek respirator z aktivnim dovajanje...",
+          "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+          "text": "Lagani respirator s pogonom za pročišćavanje zraka namijenjen zaštiti dišnih puteva od čestica u industriji, građevinarstvu, skladištenju, logistici, održavanju i čišćenju. Jedinica za lice koja ne prianja čvrsto uz kožu omogućuje jednostavnu uporabu bez potrebe za provjerom brtvljenja maske."
+        },
+        {
+          "label": "Besedilo - AGILE je ohlapno prilegajoč respirator z ...",
+          "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > div > p",
+          "text": "CleanSpace AGILE je lagani respirator s pozitivnim tlakom koji aktivno dovodi filtrirani zrak radi zaštite dišnog sustava od lebdećih čestica u industrijskim radnim okruženjima. Zahvaljujući maski koja ne prianja čvrsto uz lice, nije potrebno provoditi testiranje njezine nepropusnosti što ovaj uređaj čini pogodnim za primjenu u proizvodnji, građevinarstvu, logistici, skladištenju, održavanju i poslovima čišćenja, kao i u timovima u kojima više zaposlenika dijeli istu opremu."
+        },
+        {
+          "label": "Besedilo - Po uradni strani CleanSpace je AGILE prim...",
+          "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
+          "text": "CleanSpace AGILE prikladan je za radna mjesta na kojima su prisutni prašina i lebdeće čestice te gdje je ključno brzo osigurati zaštitu dišnih puteva za cijeli tim. Koristi se u proizvodnji, građevinarstvu, skladištenju, logistici, prehrambenoj industriji, održavanju, čišćenju, komunalnom i uslužnom sektoru te općenito u industrijskim okruženjima."
+        },
+        {
+          "label": "Besedilo - Posebej uporaben je tam, kjer je fit test...",
+          "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
+          "text": "Posebno je koristan u situacijama kada opremu koristi više zaposlenika, kada je teško organizirati provjeru brtvljenja maske ili kada crte lica – poput brade – otežavaju uporabu polumaski koje tijesno prianjaju uz lice. CleanSpace AGILE namijenjen je zaštiti od čestica u zraku; za zaštitu od plinova, para ili za rad u ATEX zonama potrebno je odabrati drugi model sustava CleanSpace."
         }
       ]
     }
