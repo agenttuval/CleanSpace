@@ -512,7 +512,6 @@ const applyCustomCss = (content = siteContent) => {
   document.head.append(style);
 };
 
-renderCustomContent(siteContent);
 applyCustomCss(siteContent);
 applyEditableTexts(siteContent);
 applyEditableImages(siteContent);
