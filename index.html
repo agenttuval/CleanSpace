@@ -3,313 +3,238 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tu-Val | CleanSpace respiratorji</title>
-    <meta
-      name="description"
-      content="Tu-Val predstavlja CleanSpace respiratorje z aktivnim dovajanjem filtriranega zraka za zahtevna industrijska, zdravstvena in laboratorijska delovna okolja."
-    >
-    <link rel="stylesheet" href="styles.css?v=40">
+    <title>Tu-Val CleanSpace urejevalnik</title>
+    <link rel="stylesheet" href="editor.css?v=9">
   </head>
   <body>
-    <header class="site-header" data-header>
-      <a class="brand brand-word" href="https://cleanspacetechnology.com/" aria-label="Odpri CleanSpace Technology">
-        <img
-          class="cleanspace-logo"
-          src="https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png"
-          alt="CleanSpace respirators"
-        >
-      </a>
-      <a class="brand-logo-link" href="index.html" aria-label="Tu-Val domov">
-        <img class="brand-logo" src="https://www.tu-val.si/assets/img/logos/logo.svg" alt="Tu-Val">
-      </a>
-
-      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Odpri navigacijo">
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="site-nav" data-nav>
-        <a href="index.html" aria-current="page">Domov</a>
-                <div class="nav-dropdown">
-          <button class="nav-link" type="button">Maske</button>
-          <div class="nav-submenu">
-            <a href="cleanspace-work.html">WORK</a>
-            <a href="cleanspace-cst-pro.html">CST PRO</a>
-            <a href="cleanspace-cst-ultra.html">CST ULTRA</a>
-            <a href="cleanspace-ex.html">EX</a>
-            <a href="cleanspace-halo.html">HALO</a>
-            <a href="cleanspace-agile.html">AGILE</a>
-          </div>
-        </div>
-        <a href="test.html">Test</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
+    <header class="editor-header">
+      <div>
+        <p>Tu-Val CleanSpace</p>
+        <h1>Urejevalnik besedil</h1>
+      </div>
+      <form class="repo-panel" data-login-form>
+        <label>
+          Uporabnik
+          <input data-username type="text" autocomplete="username" placeholder="admin">
+        </label>
+        <label>
+          Geslo
+          <input data-password type="password" autocomplete="current-password" placeholder="Admin geslo">
+        </label>
+        <button class="secondary" type="submit" data-login>Prijava</button>
+        <button class="secondary" type="button" data-logout>Odjava</button>
+        <button class="primary" type="button" data-save-github>Shrani spremembe</button>
+      </form>
     </header>
 
-    <main>
-      <section class="hero hero-home">
-        <div class="hero-media" aria-hidden="true">
-          <img
-            data-hero-rotator
-            src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg"
-            alt="Delavec uporablja CleanSpace respirator v laboratoriju"
-          >
+    <main class="editor-shell">
+      <aside class="editor-sidebar">
+        <div class="status" data-status>Izberi stran in klikni besedilo v predogledu.</div>
+        <div class="editor-guide">
+          <strong>Kako urejaš stran</strong>
+          <ol>
+            <li>Najprej izberi stran ali masko.</li>
+            <li>Za besedilo klikni element v predogledu.</li>
+            <li>Za novo sliko obvezno izberi, kam jo želiš dodati.</li>
+          </ol>
         </div>
-        <div class="hero-content reveal">
-          <p class="eyebrow">Respiratorna zaščita prihodnosti</p>
-          <h1>CleanSpace respiratorji</h1>
-          <p class="lead">
-            Kompaktni respiratorji z aktivnim dovajanjem filtriranega
-            zraka, brez pasov in cevi, zasnovani za delo v zahtevnih okoljih.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="maske.html">Oglej si maske</a>
-            <a class="button ghost" href="kontakt.html">Povpraševanje</a>
+        <label class="page-select">
+          Trenutno urejaš
+          <select data-page-select></select>
+        </label>
+        <label class="page-select">
+          Jezik besedila
+          <select data-language-edit>
+            <option value="sl">Slovenščina</option>
+            <option value="hr">Hrvaščina</option>
+          </select>
+        </label>
+        <label class="page-select" data-video-preview-wrap hidden>
+          Predogled video strani za masko
+          <select data-video-preview-mask></select>
+        </label>
+        <div class="block-editor-panel" data-block-editor>
+          <div class="style-panel-head">
+            <strong>Dodani elementi na strani</strong>
+            <span>Tukaj vidiš vse, kar si dodal na izbrano stran. Klik na kartico te premakne do elementa v predogledu.</span>
           </div>
+          <div class="block-list" data-block-list></div>
         </div>
-        <div class="hero-panel reveal">
-          <span class="panel-label">Ključne prednosti</span>
-          <div class="metric-grid">
-            <div>
-              <strong data-count="99.97">99.97</strong>
-              <span>% filtracija</span>
-            </div>
-            <div>
-              <strong>&lt; 500 g</strong>
-              <span>lahka enota</span>
-            </div>
-            <div>
-              <strong>do 14 h</strong>
-              <span>delovanja</span>
-            </div>
+        <div class="custom-panel" data-custom-panel>
+          <div class="style-panel-head">
+            <strong>Dodaj novo besedilo</strong>
+            <span>To ustvari nov tekstovni blok na trenutni strani, ki ga potem urediš v predogledu.</span>
           </div>
+          <label>
+            Barva črk
+            <input data-custom-color type="color" value="#01457e">
+          </label>
+          <label>
+            Naslov okvirja
+            <input data-custom-title type="text" placeholder="Npr. Dodatne prednosti">
+          </label>
+          <label>
+            Besedilo okvirja
+            <textarea data-custom-text rows="3" placeholder="Vpiši besedilo, ki ga želiš dodati na stran."></textarea>
+          </label>
+          <button class="primary" type="button" data-custom-add>Dodaj okvir</button>
         </div>
-      </section>
-
-      <section class="section intro-band">
-        <div class="section-copy reveal">
-          <p class="eyebrow">Tu-Val d.o.o.</p>
-          <h2>Inženirski partner za varnejše delovno okolje</h2>
-          <p>
-            Tu-Val je razvojni dobavitelj iz Domžal, ki povezuje tehnično
-            svetovanje, distribucijo, proizvodnjo in poprodajno podporo.
-            Program CleanSpace dopolnjuje področja varjenja, industrije,
-            medicine in vzdrževanja z naprednimi rešitvami za zaščito dihal.
-          </p>
+        <div class="style-panel" data-style-panel>
+          <div class="style-panel-head">
+            <strong>Oblika izbranega besedila</strong>
+            <span data-active-style-label>Najprej klikni besedilo v predogledu. Levi ali zgornji rob premika, desni ali spodnji pa spreminja velikost.</span>
+          </div>
+          <div class="style-grid">
+            <label>
+              Barva črk
+              <input data-style-color type="color" value="#01457e">
+            </label>
+            <label>
+              Velikost
+              <input data-style-font-size type="number" min="10" max="120" step="1" placeholder="px">
+            </label>
+            <label>
+              Pisava
+              <select data-style-font-family>
+                <option value="">Privzeta</option>
+                <option value="Inter, ui-sans-serif, system-ui, sans-serif">Inter</option>
+                <option value="'Segoe UI', ui-sans-serif, system-ui, sans-serif">Segoe UI</option>
+                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', Times, serif">Times New Roman</option>
+              </select>
+            </label>
+            <label>
+              Premik levo/desno
+              <input data-style-x type="number" min="-260" max="260" step="1" placeholder="0">
+            </label>
+            <label>
+              Premik gor/dol
+              <input data-style-y type="number" min="-260" max="260" step="1" placeholder="0">
+            </label>
+            <label>
+              Rob
+              <input data-style-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-style-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-style-border-radius type="number" min="0" max="80" step="1" placeholder="px">
+            </label>
+          </div>
+          <div class="style-action-row">
+            <button class="secondary light style-format-button" type="button" data-style-bold>Krepko</button>
+            <button class="secondary light" type="button" data-style-bullets-disc>Pikice</button>
+            <button class="secondary light" type="button" data-style-bullets-square>Kvadratki</button>
+            <button class="secondary light" type="button" data-style-bullets-none>Brez točk</button>
+          </div>
+          <button class="secondary danger" type="button" data-style-remove>Odstrani izbrano besedilo</button>
+          <button class="secondary light" type="button" data-style-reset>Ponastavi obliko</button>
         </div>
-        <div class="capability-grid reveal">
-          <article>
-            <span>01</span>
-            <h3>Svetovanje pri izbiri</h3>
-            <p>Izbira respiratorja, maske in filtra glede na okolje, izpostavljenost in način dela.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Profesionalna uporaba</h3>
-            <p>Rešitve za varjenje, prah, farmacijo, laboratorije, dezinficiranje in eksplozijsko ogrožena območja.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Podpora po nakupu</h3>
-            <p>Kontakt, dodatki, filtri, nadomestni deli in pomoč pri pravilni uporabi opreme.</p>
-          </article>
+        <div class="image-panel" data-image-panel>
+          <div class="style-panel-head">
+            <strong>Uredi izbrano sliko</strong>
+            <span data-active-image-label>Najprej klikni sliko v predogledu. Nove slike dodajaj samo v spodnjem skupnem bloku.</span>
+          </div>
+          <label>
+            URL slike
+            <textarea data-image-src rows="3" placeholder="https://..."></textarea>
+          </label>
+          <label>
+            Opis slike
+            <input data-image-alt type="text" placeholder="Opis za sliko">
+          </label>
+          <div class="style-grid">
+            <label>
+              Širina slike
+              <input data-image-width type="number" min="80" max="1400" step="10" placeholder="px">
+            </label>
+            <label>
+              Premik levo/desno
+              <input data-image-x type="number" min="-600" max="600" step="1" placeholder="0">
+            </label>
+            <label>
+              Premik gor/dol
+              <input data-image-y type="number" min="-600" max="600" step="1" placeholder="0">
+            </label>
+            <label>
+              Rob
+              <input data-image-border-width type="number" min="0" max="24" step="1" placeholder="px">
+            </label>
+            <label>
+              Barva roba
+              <input data-image-border-color type="color" value="#01457e">
+            </label>
+            <label>
+              Zaobljenost
+              <input data-image-border-radius type="number" min="0" max="120" step="1" placeholder="px">
+            </label>
+          </div>
+          <button class="secondary danger" type="button" data-image-remove>Odstrani izbrano sliko</button>
+          <button class="secondary light" type="button" data-image-reset>Odstrani ali ponastavi sliko</button>
         </div>
-      </section>
-
-      <section class="section products-preview">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Pregled linije</p>
-          <h2>Kratek pregled CleanSpace mask</h2>
+        <div class="media-panel" data-media-panel>
+          <div class="style-panel-head">
+            <strong>Video, audio in dokumenti</strong>
+            <span>Uporabi eno samo okno za dodajanje slik, videa, zvoka, PDF-ja ali druge povezave.</span>
+          </div>
+          <p class="panel-note">Pri videu izberi masko. Pri sliki, audio ali dokumentu izberi, na katero stran ali masko ga želiš dodati.</p>
+          <label>
+            Datoteka
+            <input data-media-file type="file">
+          </label>
+          <button class="secondary light" type="button" data-media-upload>Naloži datoteko</button>
+          <label>
+            Tip medija
+            <select data-media-type>
+              <option value="image">Slika</option>
+              <option value="video">Video</option>
+              <option value="audio">Audio</option>
+              <option value="document">Dokument ali povezava</option>
+            </select>
+          </label>
+          <label data-media-target-wrap>
+            Kam želiš dodati
+            <select data-media-target></select>
+          </label>
+          <label data-media-mask-wrap>
+            Maska za video
+            <select data-media-mask></select>
+          </label>
+          <label>
+            Naslov
+            <input data-media-title type="text" placeholder="Npr. Navodila za uporabo">
+          </label>
+          <label>
+            URL ali embed koda
+            <textarea data-media-url rows="3" placeholder="https://..."></textarea>
+          </label>
+          <label>
+            Kratek opis
+            <textarea data-media-description rows="3" placeholder="Opis medija za obiskovalce"></textarea>
+          </label>
+          <button class="primary" type="button" data-media-add>Dodaj</button>
+          <div class="video-admin-list" data-video-list></div>
         </div>
+        <div class="field-list" data-field-list></div>
+      </aside>
 
-        <div class="product-strip product-overview-grid">
-          <article class="product-card reveal" data-card-link="cleanspace-work.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace WORK">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg"
-              alt="CleanSpace WORK respirator"
-            >
-            <div>
-              <p class="tag">Prah in delavnica</p>
-              <h3>CleanSpace WORK</h3>
-              <p>Najlažji industrijski respirator z aktivnim dovajanjem zraka za visoko prašna okolja, lesarstvo, beton in varjenje.</p>
-            </div>
-          </article>
-
-          <article class="product-card reveal" data-card-link="cleanspace-cst-pro.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace CST PRO">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-02.jpg"
-              alt="CleanSpace CST PRO respirator"
-            >
-            <div>
-              <p class="tag">Industrija</p>
-              <h3>CleanSpace CST PRO</h3>
-              <p>Vzdržljiv in povezan sistem za zahtevna opravila, z Bluetooth povezavo v CleanSpace aplikacijo.</p>
-            </div>
-          </article>
-
-          <article class="product-card reveal" data-card-link="cleanspace-cst-ultra.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace CST ULTRA">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg"
-              alt="CleanSpace CST ULTRA pri delu"
-            >
-            <div>
-              <p class="tag">Dekontaminacija</p>
-              <h3>CleanSpace CST ULTRA</h3>
-              <p>Napreden respirator z aktivnim dovajanjem zraka za okolja, kjer so pomembni IP65 zaščita, podatki o uporabi in nadzor skladnosti.</p>
-            </div>
-          </article>
-
-          <article class="product-card reveal" data-card-link="cleanspace-ex.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace EX">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-EX-USA-01.jpg"
-              alt="CleanSpace EX respirator"
-            >
-            <div>
-              <p class="tag">Nevarna območja</p>
-              <h3>CleanSpace EX</h3>
-              <p>Intrinzično varen respirator z aktivnim dovajanjem zraka za eksplozijsko ogrožena okolja, kemijo, petrokemijo ter nafto in plin.</p>
-            </div>
-          </article>
-
-          <article class="product-card reveal" data-card-link="cleanspace-halo.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace HALO">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg"
-              alt="CleanSpace HALO v laboratorijskem okolju"
-            >
-            <div>
-              <p class="tag">Zdravstvo</p>
-              <h3>CleanSpace HALO</h3>
-              <p>Za zdravstvena, farmacevtska in laboratorijska okolja, kjer sta udobje in dekontaminacija ključna.</p>
-            </div>
-          </article>
-
-          <article class="product-card reveal" data-card-link="cleanspace-agile.html" role="link" tabindex="0" aria-label="Odpri stran CleanSpace AGILE">
-            <img
-              src="https://cleanspacetechnology.com/wp-content/uploads/2026/06/CleanSpace-AGILE.jpg"
-              alt="CleanSpace AGILE respirator"
-            >
-            <div>
-              <p class="tag">Deljene ekipe</p>
-              <h3>CleanSpace AGILE</h3>
-              <p>Nov lahki respirator za delce z ohlapnim obraznim delom, primeren tam, kjer fit testiranje ni praktično in opremo uporablja več ljudi.</p>
-            </div>
-          </article>
+      <section class="preview-panel">
+        <div class="preview-toolbar">
+          <strong data-current-page>Domov</strong>
+          <span>Besedila z modrim robom lahko klikneš in urediš.</span>
         </div>
-
-        <div class="center-action reveal">
-          <a class="button primary" href="maske.html">Primerjaj modele</a>
-        </div>
-      </section>
-
-      <section class="section difference-band">
-        <div class="difference-visual reveal">
-          <img
-            src="https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-Fire-Investigation-Image-28-scaled.jpg"
-            alt="CleanSpace respirator pri delu na terenu"
-          >
-        </div>
-        <div class="difference-copy reveal">
-          <p class="eyebrow">AirSensit tehnologija</p>
-          <h2>Dihanje, ki ga sistem zazna in podpre</h2>
-          <p>
-            CleanSpace sistemi so zasnovani kot pozitivno-tlačni respiratorji.
-            AirSensit tehnologija se odziva na uporabnikovo dihanje in prilagaja
-            pretok svežega filtriranega zraka, kar zmanjša občutek napora pri daljši uporabi.
-          </p>
-          <ul class="check-list">
-            <li>Brez pasov, cevi in baterijskih nahrbtnikov.</li>
-            <li>Zvočna in vizualna opozorila za varnejše delo.</li>
-            <li>Možnost polmask ali celoobraznih mask pri izbranih modelih.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section certification-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Uradni certifikati</p>
-          <h2>Standardi in odobritve</h2>
-          <p>
-            CleanSpace navaja certifikate za različne modele in konfiguracije.
-            Končno izbiro preverimo glede na masko, filter in delovno okolje.
-          </p>
-        </div>
-
-        <div class="certification-grid">
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>CE</strong><small>EN12942</small></div>
-            <div>
-              <h3>Evropski respiratorni standard</h3>
-              <p>EN12942 za respiratorje z aktivnim dovajanjem filtriranega zraka.</p>
-            </div>
-          </article>
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>NIOSH</strong><small>USA</small></div>
-            <div>
-              <h3>NIOSH odobritev</h3>
-              <p>Odobreno za določene kompletne respiratorne sklope in filtre.</p>
-            </div>
-          </article>
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>AS/NZS</strong><small>1716</small></div>
-            <div>
-              <h3>Avstralski in novozelandski standard</h3>
-              <p>AS/NZS 1716 za certificirane CleanSpace respiratorne sisteme.</p>
-            </div>
-          </article>
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>EX</strong><small>ATEX</small></div>
-            <div>
-              <h3>IECEx in ATEX</h3>
-              <p>Za izbrane intrinzično varne izvedbe v EX območjih.</p>
-            </div>
-          </article>
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>IP</strong><small>66</small></div>
-            <div>
-              <h3>Zaščita pred prahom in vodo</h3>
-              <p>IP66 označuje zaščito opreme pred prahom in močnimi curki vode.</p>
-            </div>
-          </article>
-          <article class="certification-card reveal">
-            <div class="certification-mark"><strong>ISO</strong><small>9001</small></div>
-            <div>
-              <h3>Sistem vodenja kakovosti</h3>
-              <p>ISO 9001 za razvoj, proizvodnjo in podporo respiratornih rešitev.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="certification-note reveal">
-          <a class="button ghost dark" href="https://cleanspacetechnology.com/product-comparison/" target="_blank" rel="noreferrer">
-            CleanSpace primerjava
-          </a>
-        </div>
+        <iframe data-preview title="Predogled strani"></iframe>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div>
-        <strong>Tu-Val d.o.o.</strong>
-        <p>Breznikova ulica 26, 1230 Domžale</p>
-      </div>
-      <div>
-        <a href="tel:+38617212123">+386 1 721 21 23</a>
-        <a href="mailto:sales@tu-val.si">sales@tu-val.si</a>
-      </div>
-    </footer>
-
-    <script src="besedila.js?v=6"></script>
-    <script src="script.js?v=51"></script>
+    <script src="editor.js?v=23"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
