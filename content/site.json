@@ -622,6 +622,36 @@
       "label": "Besedilo - Kontakt",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(6) > div > div.choice-actions > a.dark:nth-of-type(2)",
       "text": "Kontakt"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "kontakt": [
@@ -3156,6 +3186,66 @@
       "label": "Besedilo - to je le test",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "to je le test"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace agile"
+    },
+    {
+      "label": "Besedilo - Predstavitveni video prikazuje glavne pre...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih."
+    },
+    {
+      "label": "Besedilo - CleanSpace AGILE",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
+      "text": "CleanSpace AGILE"
+    },
+    {
+      "label": "Besedilo - CleanSpace agile",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
+      "text": "CleanSpace agile"
+    },
+    {
+      "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
+      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+      "text": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan"
     }
   ],
   "mediaBlocks": {
@@ -3571,6 +3661,36 @@
       "style": {
         "fontWeight": "700"
       }
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_work": [
@@ -4076,6 +4196,30 @@
           "label": "Navigacija - domov",
           "selector": ".site-nav > a:nth-of-type(1)",
           "text": "Dom"
+        }
+      ],
+      "maske": [],
+      "videi": [],
+      "videi_agile": [
+        {
+          "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
+          "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
+          "text": "Ovdje su prikazani odabrani videozapisi koji predstavljaju CleanSpace respiratore, pružaju upute i prikazuju njihovu uporabu."
+        },
+        {
+          "label": "Besedilo - cleanspace test",
+          "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > h3",
+          "text": "Otkrijte revolucionarni respirator CleanSpace AGILE – lagani PAPR sustav koji ne prianja čvrsto uz lice, a pruža vrhunsku zaštitu od čestica prašine, iznimnu udobnost i potpunu slobodu kretanja. Saznajte više o njegovim ključnim prednostima i patentiranoj tehnologiji AirSensit® te otkrijte zašto je AGILE idealan izbor za industrijska radna okruženja."
+        },
+        {
+          "label": "Besedilo - sasasssaa",
+          "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+          "text": "Uvodni videozapis prikazuje ključne prednosti respiratora CleanSpace AGILE koji objedinjuje naprednu zaštitu dišnih puteva, lagan dizajn, jednostavnost uporabe i udobnost nošenja – bez potrebe za čvrstim prianjanjem uz lice. Također je prikladan za korisnike s bradom te za rad u prašnjavim industrijskim okruženjima."
+        },
+        {
+          "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
+          "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
+          "text": "Otkrijte novu generaciju zaštite dišnih puteva. CleanSpace AGILE osmišljen je za sve korisnike, bez obzira na oblik lica ili prisutnost dlačica na licu. Zahvaljujući laganom dizajnu, inteligentnom prilagođavanju protoka zraka i iznimnoj udobnosti, omogućuje sigurniji i ugodniji rad tijekom cijelog radnog dana."
         }
       ]
     }
