@@ -309,6 +309,12 @@ const renderCustomContent = (content = {}) => {
 
   if (!finalOrder.length) return;
 
+  const translatedCustomValue = (entry, field, fallback = "") => {
+    const language = readStoredLanguage();
+    const translated = entry?.translations?.[language]?.[field];
+    return translated || entry?.[field] || fallback;
+  };
+
   const section = document.createElement("section");
   section.className = "section custom-content-section";
   section.setAttribute("data-custom-content", "");
@@ -326,12 +332,12 @@ const renderCustomContent = (content = {}) => {
       article.setAttribute("data-custom-block", block.id || `custom-block-${index + 1}`);
 
       const title = document.createElement("h2");
-      applyTextWithLineBreaks(title, normalizeEditableText(block.title || "Dodaten opis"));
+      applyTextWithLineBreaks(title, normalizeEditableText(translatedCustomValue(block, "title", "Dodaten opis")));
       applyEditableStyle(title, block.titleStyle);
 
       const text = document.createElement("div");
       text.className = "custom-text-body";
-      renderStructuredCustomText(text, normalizeEditableText(block.text || "Dodajte besedilo za ta okvir."));
+      renderStructuredCustomText(text, normalizeEditableText(translatedCustomValue(block, "text", "Dodajte besedilo za ta okvir.")));
       applyEditableStyle(text, block.textStyle);
 
       article.append(title, text);
@@ -409,11 +415,11 @@ const renderCustomContent = (content = {}) => {
     }
 
     const title = document.createElement("h3");
-    applyTextWithLineBreaks(title, normalizeEditableText(entry.title || "Nov medijski blok"));
+    applyTextWithLineBreaks(title, normalizeEditableText(translatedCustomValue(entry, "title", "Nov medijski blok")));
     applyEditableStyle(title, entry.titleStyle);
 
     const description = document.createElement("p");
-    applyTextWithLineBreaks(description, normalizeEditableText(entry.description || "Dodaj opis za ta medij."));
+    applyTextWithLineBreaks(description, normalizeEditableText(translatedCustomValue(entry, "description", "Dodaj opis za ta medij.")));
     applyEditableStyle(description, entry.descriptionStyle);
 
     article.append(surface, title, description);
@@ -519,6 +525,7 @@ const contactForm = document.querySelector("[data-contact-form]");
 const formNote = document.querySelector("[data-form-note]");
 const heroRotator = document.querySelector("[data-hero-rotator]");
 const videoPage = document.querySelector("[data-video-page]");
+let videoPageRendererReady = false;
 
 const heroRotatorSlides = [
   {
@@ -1438,10 +1445,32 @@ const entriesForLanguage = (language) => {
   const pageName = currentPageName();
   const contentKey = currentContentKey();
   const savedTranslations = siteContent?.translations?.[language] || {};
+  const normalizeSavedEntries = (key) => {
+    const values = Array.isArray(savedTranslations[key]) ? savedTranslations[key] : [];
+    const sourceEntries = Array.isArray(siteContent?.[key]) ? siteContent[key] : [];
+
+    return values
+      .map((value, index) => {
+        if (value && typeof value === "object" && value.selector) {
+          return value;
+        }
+
+        const source = sourceEntries[index];
+        if (!source?.selector || typeof value !== "string") return null;
+
+        return {
+          selector: source.selector,
+          attribute: source.attribute,
+          all: source.all,
+          text: value,
+        };
+      })
+      .filter(Boolean);
+  };
   const savedEntries = [
-    ...(Array.isArray(savedTranslations.common) ? savedTranslations.common : []),
-    ...(Array.isArray(savedTranslations[pageName]) ? savedTranslations[pageName] : []),
-    ...(Array.isArray(savedTranslations[contentKey]) ? savedTranslations[contentKey] : []),
+    ...normalizeSavedEntries("common"),
+    ...normalizeSavedEntries(pageName),
+    ...normalizeSavedEntries(contentKey),
   ];
 
   if (language === "hr") {
@@ -1673,6 +1702,12 @@ const applySiteLanguage = (language, persist = true) => {
   if (persist) {
     writeStoredLanguage(selectedLanguage);
   }
+
+  renderCustomContent(siteContent);
+
+  if (videoPage && videoPageRendererReady) {
+    renderVideoPage();
+  }
 };
 
 const setupLanguageSwitcher = () => {
@@ -1863,6 +1898,68 @@ const videoMaskLabels = {
   halo: "CleanSpace HALO",
 };
 
+const croatianVideoText = {
+  "CleanSpace WORK - Lahek respirator za učinkovito zaščito pri varjenju":
+    "CleanSpace WORK - lagan respirator za učinkovitu zaštitu pri zavarivanju",
+  "Odkrijte, kako respirator CleanSpace WORK združuje izjemno nizko težo, udobje in zanesljivo zaščito dihal pri varjenju. V videu so predstavljene ključne prednosti respiratorja, ki omogoča neovirano gibanje in udobno uporabo tudi med dolgotrajnim delom. CleanSpace WORK je idealna izbira za varilce, ki potrebujejo učinkovito zaščito pred varilnimi hlapi in trdnimi delci, ne da bi pri tem sklepali kompromise glede udobja.":
+    "Otkrijte kako respirator CleanSpace WORK objedinjuje iznimno malu težinu, udobnost i pouzdanu zaštitu dišnih puteva pri zavarivanju. U videu su predstavljene ključne prednosti respiratora koji omogućuje nesmetano kretanje i udobnu uporabu čak i tijekom dugotrajnog rada. CleanSpace WORK idealan je izbor za zavarivače kojima je potrebna učinkovita zaštita od zavarivačkih dimova i krutih čestica, bez kompromisa u pogledu udobnosti.",
+  "CleanSpace WORK - Predstavitev respiratorja":
+    "CleanSpace WORK - predstavljanje respiratora",
+  "Spoznajte CleanSpace WORK - lahek in zmogljiv respirator s prisilnim dovodom zraka (PAPR), zasnovan za vsakodnevno uporabo v industriji. Video predstavlja njegove ključne lastnosti, prednosti in način delovanja ter prikazuje, kako zagotavlja zanesljivo zaščito dihal ob hkratnem udobju in svobodi gibanja. CleanSpace WORK je odlična izbira za varjenje, brušenje, obdelavo kovin, gradbeništvo in druga delovna okolja, kjer je učinkovita zaščita dihal ključnega pomena.":
+    "Upoznajte CleanSpace WORK - lagan i snažan respirator s prisilnim dovodom zraka, osmišljen za svakodnevnu uporabu u industriji. Video predstavlja njegove ključne značajke, prednosti i način rada te prikazuje kako osigurava pouzdanu zaštitu dišnih puteva uz istodobnu udobnost i slobodu kretanja. CleanSpace WORK odličan je izbor za zavarivanje, brušenje, obradu metala, građevinarstvo i druga radna okruženja u kojima je učinkovita zaštita dišnih puteva od ključne važnosti.",
+  "CleanSpace WORK - Enostavno nameščanje polobrazne maske":
+    "CleanSpace WORK - jednostavno namještanje polumaske",
+  "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju":
+    "Pravilno namještanje maske prvi je korak do učinkovite zaštite dišnih puteva. U ovom videu prikazano je kako brzo i jednostavno namjestiti polumasku CleanSpace WORK te je pravilno povezati s respiratorom. Kratki vodič pomaže vam pripremiti respirator za sigurnu i udobnu uporabu u industrijskom radnom okruženju.",
+  "CleanSpace PRO - Predstavitev respiratorja":
+    "CleanSpace PRO - predstavljanje respiratora",
+  "Spoznajte respirator CleanSpace PRO, napredno rešitev za zaščito dihal v zahtevnih industrijskih okoljih. Video predstavlja ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. Odkrijte, zakaj CleanSpace PRO zagotavlja zanesljivo zaščito, visoko raven udobja in popolno svobodo gibanja pri vsakodnevnem delu.":
+    "Upoznajte respirator CleanSpace PRO, napredno rješenje za zaštitu dišnih puteva u zahtjevnim industrijskim okruženjima. Video predstavlja ključne značajke, način rada i prednosti kompaktne izvedbe bez crijeva i pojasa. Otkrijte zašto CleanSpace PRO osigurava pouzdanu zaštitu, visoku razinu udobnosti i potpunu slobodu kretanja pri svakodnevnom radu.",
+  "Spoznajte aplikacijo CleanSpace SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje.":
+    "Upoznajte aplikaciju CleanSpace SMART App, koja omogućuje brzo povezivanje s respiratorom putem pametnog telefona. Video predstavlja njezine ključne funkcije, uključujući praćenje stanja respiratora, pristup važnim podacima i jednostavno upravljanje uređajem. Aplikacija korisnicima pomaže osigurati pravilno djelovanje respiratora te pojednostavljuje njegovu uporabu i održavanje.",
+  "CleanSpace ULTRA - Predstavitev respiratorja":
+    "CleanSpace ULTRA - predstavljanje respiratora",
+  "Spoznajte respirator CleanSpace ULTRA, zasnovan za uporabo v najzahtevnejših industrijskih okoljih. Video predstavlja njegove ključne lastnosti, robustno zasnovo, način delovanja in prednosti pri zaščiti dihal. CleanSpace ULTRA zagotavlja zanesljivo zaščito, visoko udobje pri delu in odlično zmogljivost tudi v zahtevnih delovnih pogojih.":
+    "Upoznajte respirator CleanSpace ULTRA, osmišljen za uporabu u najzahtjevnijim industrijskim okruženjima. Video predstavlja njegove ključne značajke, robusnu izvedbu, način rada i prednosti pri zaštiti dišnih puteva. CleanSpace ULTRA osigurava pouzdanu zaštitu, visoku udobnost pri radu i izvrsne performanse čak i u zahtjevnim radnim uvjetima.",
+  "CleanSpace Insights Reporting - Upravljanje in poročanje o respiratorjih":
+    "CleanSpace Insights Reporting - upravljanje i izvještavanje o respiratorima",
+  "Spoznajte CleanSpace Insights Reporting - napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme.":
+    "Upoznajte CleanSpace Insights Reporting - napredno rješenje za praćenje i upravljanje respiratorima CleanSpace. Video prikazuje kako možete pristupiti podacima o uporabi, pratiti stanje opreme i učinkovitije upravljati respiratorima u poduzeću. Sustav omogućuje bolji pregled uporabe opreme, pojednostavljuje održavanje i podržava učinkovito upravljanje osobnom zaštitnom opremom.",
+  "CleanSpace EX - Predstavitev ATEX respiratorja":
+    "CleanSpace EX - predstavljanje ATEX respiratora",
+  "Spoznajte CleanSpace EX - PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu.":
+    "Upoznajte CleanSpace EX - respirator s aktivnim dovodom zraka, osmišljen za sigurnu uporabu u eksplozijski ugroženim (ATEX) radnim okruženjima. Video predstavlja njegove ključne značajke, način rada i prednosti kompaktne izvedbe bez crijeva i pojasa. CleanSpace EX osigurava pouzdanu zaštitu dišnih puteva, visoku razinu udobnosti te ispunjava zahtjeve za uporabu u okruženjima u kojima je sigurnost na prvom mjestu.",
+  "CleanSpace EX - Namestitev adapterja PAF-0078 za filtre":
+    "CleanSpace EX - namještanje adaptera PAF-0078 za filtre",
+  "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih.":
+    "Video prikazuje pravilno namještanje adaptera PAF-0078 na respirator CleanSpace EX. Upoznajte postupak montaže adaptera koji omogućuje uporabu velikih filtara CleanSpace te osigurava pravilan i siguran rad respiratora. Pravilno namještanje ključno je za pouzdanu zaštitu dišnih puteva u zahtjevnim industrijskim i ATEX radnim okruženjima.",
+  "CleanSpace HALO - Uporaba čepa za čiščenje in shranjevanje":
+    "CleanSpace HALO - uporaba čepa za čišćenje i pohranu",
+  "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju.":
+    "Upoznajte pravilnu uporabu čepa za čišćenje i pohranu respiratora CleanSpace HALO. Video prikazuje kako čep pravilno namjestiti prije čišćenja ili pohrane respiratora te tako zaštititi uređaj od prodora vode i nečistoća. Pravilna uporaba pridonosi duljem vijeku trajanja respiratora i njegovu pouzdanom radu.",
+  "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE - lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja.":
+    "Pogledajte predstavljanje revolucionarnog respiratora CleanSpace AGILE - laganog respiratora s aktivnim dovodom zraka i labavo prianjajućim dijelom za lice, koji osigurava vrhunsku zaštitu od prašnih čestica, iznimnu udobnost i potpunu slobodu kretanja. Upoznajte ključne prednosti, patentiranu tehnologiju AirSensit® i zašto je AGILE idealan izbor za industrijska radna okruženja.",
+  "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.":
+    "Prezentacijski video prikazuje glavne prednosti respiratora CleanSpace AGILE, koji objedinjuje naprednu zaštitu dišnih puteva, malu težinu, jednostavnu uporabu i udobno nošenje bez potrebe za brtvljenjem maske na licu. Prikladan je i za korisnike s bradom te za rad u prašnjavim industrijskim okruženjima.",
+  "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan":
+    "Upoznajte novu generaciju zaštite dišnih puteva. CleanSpace AGILE osmišljen je za sve korisnike, bez obzira na oblik lica ili bradu. Zbog lagane izvedbe, inteligentnog prilagođavanja protoka zraka i iznimne udobnosti omogućuje sigurniji i ugodniji rad tijekom cijelog radnog dana.",
+  "test a cleanspace agile": "test za CleanSpace AGILE",
+  "to je le test": "ovo je samo test",
+  "to je le test za clean space": "ovo je samo test za CleanSpace",
+  "to je test za cleanspace agile": "ovo je test za CleanSpace AGILE",
+  "Dodani video posnetki": "Dodani videozapisi",
+  "Video galerija je trenutno prazna": "Video galerija trenutačno je prazna",
+  "Video galerija je pripravljena.": "Video galerija je spremna.",
+  "Odpri video": "Otvori video",
+  "Dodani video za prikaz izdelka, uporabe ali navodil.":
+    "Dodani videozapis za prikaz proizvoda, uporabe ili uputa.",
+};
+
+const translateVideoText = (text = "") => {
+  if (readStoredLanguage() !== "hr") return text;
+  return croatianVideoText[text] || text;
+};
+
 const normalizeVideoUrl = (value = "") => {
   const iframeMatch = value.match(/src=["']([^"']+)["']/i);
   return (iframeMatch ? iframeMatch[1] : value).trim();
@@ -1910,7 +2007,7 @@ const videoEmbed = (rawUrl = "") => {
   }
 };
 
-const renderVideoPage = () => {
+function renderVideoPage() {
   if (!videoPage) return;
 
   const content = siteContent || {};
@@ -1930,7 +2027,7 @@ const renderVideoPage = () => {
   const empty = document.querySelector("[data-video-empty]");
 
   if (title && maskLabel) {
-    title.textContent = `Videi za ${maskLabel}`;
+    title.textContent = readStoredLanguage() === "hr" ? `Videozapisi za ${maskLabel}` : `Videi za ${maskLabel}`;
   }
 
   if (filterLabel && maskLabel) {
@@ -1938,15 +2035,19 @@ const renderVideoPage = () => {
   }
 
   if (sectionTitle) {
-    sectionTitle.textContent = filteredVideos.length
-      ? "Dodani video posnetki"
-      : "Video galerija je trenutno prazna";
+    sectionTitle.textContent = translateVideoText(
+      filteredVideos.length ? "Dodani video posnetki" : "Video galerija je trenutno prazna"
+    );
   }
 
   if (count) {
-    count.textContent = filteredVideos.length
-      ? `${filteredVideos.length} ${filteredVideos.length === 1 ? "video" : "videi"}`
-      : "Video galerija je pripravljena.";
+    if (filteredVideos.length) {
+      count.textContent = readStoredLanguage() === "hr"
+        ? `${filteredVideos.length} ${filteredVideos.length === 1 ? "videozapis" : "videozapisa"}`
+        : `${filteredVideos.length} ${filteredVideos.length === 1 ? "video" : "videi"}`;
+    } else {
+      count.textContent = translateVideoText("Video galerija je pripravljena.");
+    }
   }
 
   if (!grid || !empty) return;
@@ -1981,7 +2082,7 @@ const renderVideoPage = () => {
       link.href = embed.src;
       link.target = "_blank";
       link.rel = "noreferrer";
-      link.textContent = "Odpri video";
+      link.textContent = translateVideoText("Odpri video");
       media.append(link);
     }
 
@@ -1993,17 +2094,18 @@ const renderVideoPage = () => {
     tag.textContent = videoMaskLabels[video.mask] || "CleanSpace";
 
     const heading = document.createElement("h3");
-    heading.textContent = video.title || "CleanSpace video";
+    heading.textContent = translateVideoText(video.title || "CleanSpace video");
 
     const description = document.createElement("p");
-    description.textContent = video.description || "Dodani video za prikaz izdelka, uporabe ali navodil.";
+    description.textContent = translateVideoText(video.description || "Dodani video za prikaz izdelka, uporabe ali navodil.");
 
     copy.append(tag, heading, description);
     card.append(media, copy);
     grid.append(card);
   });
-};
+}
 
+videoPageRendererReady = true;
 renderVideoPage();
 
 if (contactForm) {
