@@ -2,22 +2,22 @@
   "common": [
     {
       "label": "Navigacija - domov",
-      "selector": ".site-nav > a:nth-of-type(1)",
+      "selector": ".site-nav a:nth-child(1)",
       "text": "Domov"
     },
     {
       "label": "Navigacija - maske",
-      "selector": ".site-nav .nav-dropdown > .nav-link",
+      "selector": ".site-nav a:nth-child(2)",
       "text": "Maske"
     },
     {
-      "label": "Navigacija - naroči test",
-      "selector": ".site-nav > a:nth-of-type(2)",
+      "label": "Navigacija - naroci test",
+      "selector": ".site-nav a:nth-child(3)",
       "text": "Test"
     },
     {
       "label": "Navigacija - kontakt",
-      "selector": ".site-nav > a:nth-of-type(3)",
+      "selector": ".site-nav a:nth-child(4)",
       "text": "Kontakt"
     },
     {
@@ -45,7 +45,7 @@
     {
       "label": "Domov - nadnaslov",
       "selector": ".hero-content .eyebrow",
-      "text": "NAPREDNA ZASCIT DIHAL"
+      "text": "NAPREDNA ZAŠČIT DIHAL"
     },
     {
       "label": "Domov - glavni naslov",
@@ -63,14 +63,14 @@
       "text": "Oglej si maske"
     },
     {
-      "label": "Domov - gumb povpraševanje",
+      "label": "Domov - gumb povprasevanje",
       "selector": ".hero-actions .ghost",
       "text": "Povpraševanje"
     },
     {
       "label": "Domov - prednosti naslov",
       "selector": ".hero-panel .panel-label",
-      "text": "KLJUCNE PREDNOSTI"
+      "text": "KLJUČNE PREDNOSTI"
     },
     {
       "label": "Domov - metrika 1",
@@ -95,12 +95,12 @@
     {
       "label": "Domov - Tu-Val naslov",
       "selector": ".intro-band .section-copy h2",
-      "text": "Inzenirski partner za varnejšo zaščito dihal"
+      "text": "Inženirski partner za varnejšo zaščito dihal"
     },
     {
       "label": "Domov - Tu-Val opis",
       "selector": ".intro-band .section-copy > p:not(.eyebrow)",
-      "text": "TU-VAL d.o.o. iz Domžal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
+      "text": "TU-VAL IN CLEANSPACETU-VAL d.o.o. iz Domžal je tehnični inženirski partner za podjetja v Sloveniji, ki potrebujejo zanesljivo osebno zaščitno opremo za zahtevna delovna okolja. S programom CleanSpace ponujamo strokovno svetovanje, dobavo in podporo pri izbiri respiratorjev za zaščito dihal v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih in vzdrževanju."
     },
     {
       "label": "Domov - kartica 01 naslov",
@@ -120,7 +120,7 @@
     {
       "label": "Domov - kartica 02 opis",
       "selector": ".capability-grid article:nth-child(2) p",
-      "text": "Program CleanSpace pokriva zahtevna delovna okolja v industriji, varjenju, gradbenistvu, farmaciji, zdravstvu, laboratorijih, vzdrževanju in eksplozijsko ogroženih območjih. Resitve so namenjene delavcem, ki potrebujejo zanesljivo zaščito pred prahom, dimom, aerosoli, delci ali plini."
+      "text": "Program CleanSpace pokriva zahtevna delovna okolja v industriji, varjenju, gradbeništvu, farmaciji, zdravstvu, laboratorijih, vzdrževanju in eksplozijsko ogroženih območjih. Rešitve so namenjene delavcem, ki potrebujejo zanesljivo zaščito pred prahom, dimom, aerosoli, delci ali plini."
     },
     {
       "label": "Domov - kartica 03 naslov",
@@ -148,7 +148,7 @@
     {
       "label": "Domov - WORK oznaka",
       "selector": ".product-card:nth-child(1) .tag",
-      "text": "ZA PRASNA DELOVNA OKOLJA"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Domov - WORK naslov",
@@ -173,7 +173,7 @@
     {
       "label": "Domov - CST PRO opis",
       "selector": ".product-card:nth-child(2) div > p:last-child",
-      "text": "Vzdrzljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Domov - CST ULTRA oznaka",
@@ -193,7 +193,7 @@
     {
       "label": "Domov - EX oznaka",
       "selector": ".product-card:nth-child(4) .tag",
-      "text": "ATEX IN NEVARNA OBMOCJA"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "Domov - EX naslov",
@@ -242,7 +242,7 @@
     {
       "label": "Domov - tehnologija opis",
       "selector": ".difference-copy > p:not(.eyebrow)",
-      "text": "CleanSpace respiratorji so pozitivno-tlačni sistemi za zaščito dihal z aktivnim dovodom filtriranega zraka. AirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok zraka, zato je dihanje lažje, uporaba pa udobnejsa tudi pri daljšem delu v zahtevnih industrijskih, zdravstvenih in laboratorijskih okoljih."
+      "text": "CleanSpace respiratorji so pozitivno-tlačni sistemi za zaščito dihal z aktivnim dovodom filtriranega zraka. AirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok zraka, zato je dihanje lažje, uporaba pa udobnejša tudi pri daljšem delu v zahtevnih industrijskih, zdravstvenih in laboratorijskih okoljih."
     },
     {
       "label": "Besedilo - Brez pasov, cevi in baterijskih nahrbtnik...",
@@ -250,9 +250,9 @@
       "text": "Brez pasov, cevi in baterijskih nahrbtnikov."
     },
     {
-      "label": "Besedilo - Zvocna in vizualna opozorila za varnejše ...",
+      "label": "Besedilo - Zvočna in vizualna opozorila za varnejše ...",
       "selector": "main > section.section.difference-band:nth-of-type(4) > div.difference-copy:nth-of-type(2) > ul.check-list > li:nth-of-type(2)",
-      "text": "Zvocna in vizualna opozorila za varnejše delo."
+      "text": "Zvočna in vizualna opozorila za varnejše delo."
     },
     {
       "label": "Besedilo - Možnost polmask ali celoobraznih mask pri...",
@@ -292,12 +292,12 @@
     {
       "label": "Domov - certifikat NIOSH opis",
       "selector": ".certification-card:nth-child(2) p",
-      "text": "Odobreno za dolocene kompletne respiratorne sklope in filtre."
+      "text": "Odobreno za določene kompletne respiratorne sklope in filtre."
     },
     {
       "label": "Domov - certifikat ASNZS naslov",
       "selector": ".certification-card:nth-child(3) h3",
-      "text": "Avstralski in novoželandski standard"
+      "text": "Avstralski in novozelandski standard"
     },
     {
       "label": "Domov - certifikat ASNZS opis",
@@ -317,7 +317,7 @@
     {
       "label": "Domov - certifikat IP66 naslov",
       "selector": ".certification-card:nth-child(5) h3",
-      "text": "Zascita pred prahom in vodo"
+      "text": "Zaščita pred prahom in vodo"
     },
     {
       "label": "Domov - certifikat IP66 opis",
@@ -374,36 +374,6 @@
         "y": 104
       },
       "hidden": true
-    },
-    {
-      "label": "Besedilo - WORK",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
-      "text": "WORK"
-    },
-    {
-      "label": "Besedilo - CST PRO",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
-      "text": "CST PRO"
-    },
-    {
-      "label": "Besedilo - CST ULTRA",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
-      "text": "CST ULTRA"
-    },
-    {
-      "label": "Besedilo - EX",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
-      "text": "EX"
-    },
-    {
-      "label": "Besedilo - HALO",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
-      "text": "HALO"
-    },
-    {
-      "label": "Besedilo - AGILE",
-      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
-      "text": "AGILE"
     }
   ],
   "maske": [
@@ -452,7 +422,7 @@
     {
       "label": "Maske - CST PRO opis",
       "selector": ".mask-choice-card:nth-child(2) .mask-summary",
-      "text": "Vzdrzljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
+      "text": "Vzdržljiv industrijski respirator z aktivnim dovodom filtriranega zraka za zahtevna delovna okolja. Primeren za varjenje, obdelavo kovin, gradbeništvo, vzdrževanje, čiščenje in prehrambno industrijo, z možnostjo povezave v CleanSpace aplikacijo."
     },
     {
       "label": "Maske - CST PRO gumb podrobnosti",
@@ -492,7 +462,7 @@
     {
       "label": "Besedilo - Prah in delavnica",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > p.tag:nth-of-type(1)",
-      "text": "ZA PRASNA DELOVNA OKOLJA"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Besedilo - CleanSpace WORK",
@@ -537,7 +507,7 @@
     {
       "label": "Besedilo - Nevarna območja",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > p.tag:nth-of-type(1)",
-      "text": "ATEX IN NEVARNA OBMOCJA"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "Besedilo - CleanSpace EX",
@@ -604,7 +574,7 @@
     {
       "label": "Kontakt - uvodni opis",
       "selector": ".contact-copy .lead",
-      "text": "Pisite nam za CleanSpace respiratorje, filtre, dodatke ali strokovno svetovanje. TU-VAL vam pomaga izbrati ustrezno rešitev glede na delovno okolje, tveganja in način uporabe."
+      "text": "Pišite nam za CleanSpace respiratorje, filtre, dodatke ali strokovno svetovanje. TU-VAL vam pomaga izbrati ustrezno rešitev glede na delovno okolje, tveganja in način uporabe."
     },
     {
       "label": "Kontakt - kartica podjetje",
@@ -612,7 +582,7 @@
       "text": "Tu-Val d.o.o."
     },
     {
-      "label": "Kontakt - delovni čas",
+      "label": "Kontakt - delovni cas",
       "selector": ".contact-card p:nth-of-type(1)",
       "text": "Pon. - Pet.: 8:00 - 15:00"
     },
@@ -624,7 +594,7 @@
     {
       "label": "Kontakt - obrazec nadnaslov",
       "selector": ".form-heading .eyebrow",
-      "text": "POVPRASEVANJE"
+      "text": "POVPRAŠEVANJE"
     },
     {
       "label": "Kontakt - obrazec naslov",
@@ -632,7 +602,7 @@
       "text": "Pošlji osnovne podatke"
     },
     {
-      "label": "Kontakt - gumb pošlji",
+      "label": "Kontakt - gumb poslji",
       "selector": ".contact-form button",
       "text": "Pošlji povpraševanje"
     },
@@ -649,7 +619,7 @@
     {
       "label": "Kontakt - lokacija opis",
       "selector": ".location-details p",
-      "text": "Tu-Val se nahaja v Domžalah, na Breznikovi ulici 26. Za ogled, prevzem ali tehnično svetovanje se predhodno dogovorite po telefonu ali e-posti."
+      "text": "Tu-Val se nahaja v Domžalah, na Breznikovi ulici 26. Za ogled, prevzem ali tehnično svetovanje se predhodno dogovorite po telefonu ali e-pošti."
     },
     {
       "label": "Kontakt - zemljevid gumb",
@@ -676,7 +646,7 @@
     {
       "label": "Test - nadnaslov",
       "selector": ".contact-copy .eyebrow",
-      "text": "NAROCILO PREIZKUSA",
+      "text": "NAROČILO PREIZKUSA",
       "style": {
         "width": 724,
         "minHeight": 32,
@@ -744,9 +714,9 @@
       "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
     },
     {
-      "label": "Besedilo - Poklici Tu-Val",
+      "label": "Besedilo - Pokliči Tu-Val",
       "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a.dark",
-      "text": "Poklici Tu-Val"
+      "text": "Pokliči Tu-Val"
     },
     {
       "label": "Besedilo - Lažje je izbrati po preizkusu",
@@ -771,7 +741,7 @@
     {
       "label": "WORK - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "ZA PRASNA DELOVNA OKOLJA",
+      "text": "ZA PRAŠNA DELOVNA OKOLJA",
       "style": {
         "x": -1,
         "y": -1
@@ -810,7 +780,7 @@
     {
       "label": "WORK - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CleanSpace WORK je lahek pozitivno-tlačni respirator z aktivnim dovodom filtriranega zraka za prašna delovna okolja. Namenjen je zaščiti dihal pri delu s prahom in delci v delavnicah, gradbenistvu, lesarstvu, čiščenju in vzdrževanju. Pihalna enota je nameščena za vratom, zato uporabnik ne potrebuje pasu, cevi ali težke enote na hrbtu.",
+      "text": "CleanSpace WORK je lahek pozitivno-tlačni respirator z aktivnim dovodom filtriranega zraka za prašna delovna okolja. Namenjen je zaščiti dihal pri delu s prahom in delci v delavnicah, gradbeništvu, lesarstvu, čiščenju in vzdrževanju. Pihalna enota je nameščena za vratom, zato uporabnik ne potrebuje pasu, cevi ali težke enote na hrbtu.",
       "style": {
         "x": 0,
         "y": 0
@@ -852,6 +822,25 @@
       "text": "OPIS RESPIRATORJA"
     },
     {
+      "label": "Besedilo - AirSensit tehnologija prilagaja pretok zr...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
+      "text": "• AirSensit tehnologija samodejno prilagaja pretok zraka dihanju uporabnika.\n• Pretok zraka do 200 L/min in delovanje baterije do 8 ur.\n• Kompaktna enota pod 350 g, brez pasu in cevi",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "label": "Besedilo - TM3 delčna filtracija za prah in delce.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
+      "text": "• TM3 P R SL zaščita pred delci po standardu EN 12942."
+    },
+    {
+      "label": "Besedilo - Usmerjen v uporabo s polmasko in hitro me...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
+      "text": "• Filtracija delcev 99,97 % s CleanSpace WORK delčnim filtrom."
+    },
+    {
       "label": "Besedilo - Obrazni deli",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > h4",
       "text": "OBRAZNI DELI"
@@ -877,9 +866,9 @@
       "text": "CS3002W ORK - CleanSpace WORK Particulate Standard TM3 filter, pakiranje 3 kosi."
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
     },
     {
       "label": "Besedilo - PAF-1043 - komplet za kvantitativno preve...",
@@ -905,9 +894,9 @@
       }
     },
     {
-      "label": "Besedilo - Kje se najbolje izkaze",
+      "label": "Besedilo - Kje se najbolje izkaže",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
-      "text": "Kje se najbolje izkaze"
+      "text": "Kje se najbolje izkaže"
     },
     {
       "label": "Besedilo - CleanSpace WORK je namenjen predvsem delo...",
@@ -917,7 +906,7 @@
     {
       "label": "Besedilo - Kupec pri izbiri najprej preveri velikost...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Pri izbiri najprej preverimo velikost polmaske, vrsto delcev v okolju, trajanje uporabe in potreben filter. TU-VAL vam pomaga izbrati ustrezno konfiguracijo CleanSpace WORK respiratorja, dodatke, polnilnik in potrosni material za redno uporabo."
+      "text": "Pri izbiri najprej preverimo velikost polmaske, vrsto delcev v okolju, trajanje uporabe in potreben filter. TU-VAL vam pomaga izbrati ustrezno konfiguracijo CleanSpace WORK respiratorja, dodatke, polnilnik in potrošni material za redno uporabo."
     },
     {
       "label": "Besedilo - Najbolj smiselna izbira za prah, beton, l...",
@@ -1050,7 +1039,7 @@
     {
       "label": "Besedilo - Do 14 ur delovanja pri zmerni obremenitvi.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "Daljsi čas delovanja\nDo 14 ur delovanja pri zmerni obremenitvi za uporabo skozi daljše delovne procese.",
+      "text": "Daljši čas delovanja\nDo 14 ur delovanja pri zmerni obremenitvi za uporabo skozi daljše delovne procese.",
       "style": {
         "x": -1,
         "y": -2
@@ -1100,9 +1089,59 @@
       "text": "FILTRI"
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi."
+    },
+    {
+      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi."
+    },
+    {
+      "label": "Besedilo - CST1028 TM3A1P R SL, CST1008 TM3A2P R SL,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1028 TM3A1P R SL, CST1008 TM3A2P R SL, CST1027 TM3ABE1P R SL, CST1006 TM3ABEK1P R SL."
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - CST1000 - pogonska enota CST PRO.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1000 - pogonska enota CST PRO."
+    },
+    {
+      "label": "Besedilo - CST1019 / CST1020 - opora za vrat S / M.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1019 / CST1020 - opora za vrat S / M."
+    },
+    {
+      "label": "Besedilo - CST1037 / CST1038 - tekstilni ali netekst...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1037 / CST1038 - tekstilni ali netekstilni naglavni trak."
+    },
+    {
+      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
+    },
+    {
+      "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-102...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik."
+    },
+    {
+      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
     },
     {
       "label": "Besedilo - Video in svetovanje",
@@ -1125,7 +1164,7 @@
     {
       "label": "Besedilo - CST PRO je dobra izbira, ko podjetje potr...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace CST PRO je primeren za podjetja, ki potrebujejo en zanesljiv respirator za več različnih delovnih nalog in delovisc. Uporablja se pri varjenju, obdelavi kovin, gradbenistvu, čiščenju, vzdrževanju, prašnih postopkih in drugih zahtevnih industrijskih opravilih, kjer se lahko izmenjuje več uporabnikov ali tipov izpostavljenosti.\n\nSistem omogoča uporabo s polmasko ali celoobrazno masko, zato ga je mogoče lažje prilagoditi delovnemu okolju, potrebni stopnji zaščite dihal in zahtevam glede zaščite obraza oziroma oči.",
+      "text": "CleanSpace CST PRO je primeren za podjetja, ki potrebujejo en zanesljiv respirator za več različnih delovnih nalog in delovišč. Uporablja se pri varjenju, obdelavi kovin, gradbeništvu, čiščenju, vzdrževanju, prašnih postopkih in drugih zahtevnih industrijskih opravilih, kjer se lahko izmenjuje več uporabnikov ali tipov izpostavljenosti.\n\nSistem omogoča uporabo s polmasko ali celoobrazno masko, zato ga je mogoče lažje prilagoditi delovnemu okolju, potrebni stopnji zaščite dihal in zahtevam glede zaščite obraza oziroma oči.",
       "style": {
         "width": 554,
         "minHeight": 136
@@ -1134,7 +1173,7 @@
     {
       "label": "Besedilo - Pri konfiguraciji je pomembno ločiti med ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "Pri konfiguraciji CleanSpace CST PRO je pomembno razlikovati med delčnimi in kombiniranimi filtri. Ce so v okolju prisotni samo prah, dim ali aerosoli, je izbira filtra drugacna kot pri delu z neprijetnimi vonjavami, plini ali hlapi. Za pravilno izbiro respiratorja in filtra je priporočljivo preveriti varnostne liste snovi, dejansko izpostavljenost na delovnem mestu in trajanje uporabe."
+      "text": "Pri konfiguraciji CleanSpace CST PRO je pomembno razlikovati med delčnimi in kombiniranimi filtri. Če so v okolju prisotni samo prah, dim ali aerosoli, je izbira filtra drugačna kot pri delu z neprijetnimi vonjavami, plini ali hlapi. Za pravilno izbiro respiratorja in filtra je priporočljivo preveriti varnostne liste snovi, dejansko izpostavljenost na delovnem mestu in trajanje uporabe."
     },
     {
       "label": "Besedilo - Podpira masko za del obraza in celoobrazn...",
@@ -1171,7 +1210,7 @@
       "text": "Odpre prazno interno video stran, kjer se prikažejo vaši dodani posnetki za model CST PRO."
     },
     {
-      "label": "Besedilo - Preizkus pri kupcuNaroči masko na testPos...",
+      "label": "Besedilo - Preizkus pri kupcuNaroči masko na testPoš...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
       "text": "Preizkus CleanSpace CST PRO pri kupcu\n\nPošljite povpraševanje in dogovorite se za preizkus respiratorja CleanSpace CST PRO v vašem delovnem okolju. Ekipa TU-VAL preveri način uporabe, vrsto izpostavljenosti ter pripravi priporočilo glede maske, filtra in dodatkov."
     },
@@ -1184,72 +1223,6 @@
       "label": "Besedilo - Pošlji povpraševanje in Tu-Val pripravi p...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
       "text": "Pošlji povpraševanje in Tu-Val pripravi priporočilo glede maske, filtra in dodatkov."
-    },
-    {
-      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1028 kombinirani filter A1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
-      "text": "CST1028 - kombinirani filter TM3A1P R SL za delce in organske pline ali hlape z nižjo zmogljivostjo A1.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1008 kombinirani filter A2P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
-      "text": "CST1008 - kombinirani filter TM3A2P R SL za delce in organske pline ali hlape z višjo zmogljivostjo A2.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1027 kombinirani filter ABE1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
-      "text": "CST1027 - kombinirani filter TM3ABE1P R SL za delce ter organske, anorganske in kisle pline.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1006 kombinirani filter ABEK1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
-      "text": "CST1006 - kombinirani filter TM3ABEK1P R SL za delce, organske, anorganske in kisle pline ter amoniak.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
-      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1000 - pogonska enota CST PRO.",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "CST1000 - pogonska enota CST PRO.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-1024...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
-      "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
-      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala.",
-      "editable": true
     }
   ],
   "cleanspace_cst_ultra": [
@@ -1291,7 +1264,7 @@
     {
       "label": "CST ULTRA - opis respiratorja",
       "selector": ".family-story p",
-      "text": "CleanSpace CST ULTRA je naprednejsa izvedba platforme CST za okolja z visjimi zahtevami glede dekontaminacije, čiščenja opreme, sledljivosti uporabe in nadzora skladnosti. Podpira uporabo polmask ali celoobraznih mask ter filtrov trdih delcev ali kombiniranih filtrov, zato je primeren za sanacijska dela, visoko prašna okolja, obdelavo mineralnih materialov, varjenje in delo s kemičnimi ali biološkimi materiali."
+      "text": "CleanSpace CST ULTRA je naprednejša izvedba platforme CST za okolja z višjimi zahtevami glede dekontaminacije, čiščenja opreme, sledljivosti uporabe in nadzora skladnosti. Podpira uporabo polmask ali celoobraznih mask ter filtrov trdih delcev ali kombiniranih filtrov, zato je primeren za sanacijska dela, visoko prašna okolja, obdelavo mineralnih materialov, varjenje in delo s kemičnimi ali biološkimi materiali."
     },
     {
       "label": "Besedilo - CleanSpace CST ULTRA",
@@ -1381,18 +1354,58 @@
       "text": "FILTRI"
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - CST1005 - standardni delčni filter.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1005 - standardni delčni filter."
+    },
+    {
+      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1004 - visoko zmogljiv delčni filter."
+    },
+    {
+      "label": "Besedilo - CST1028 TM3A1P R SL, CST1008 TM3A2P R SL,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1028 TM3A1P R SL, CST1008 TM3A2P R SL, CST1027 TM3ABE1P R SL, CST1006 TM3ABEK1P R SL."
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka."
+    },
+    {
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - CST1010 - pogonska enota CST ULTRA.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1010 - pogonska enota CST ULTRA."
+    },
+    {
+      "label": "Besedilo - CST1019 / CST1020 - opora za vrat S / M.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CST1019 / CST1020 - opora za vrat S / M."
+    },
+    {
+      "label": "Besedilo - CST1037 / CST1038 - tekstilni ali netekst...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "CST1037 / CST1038 - tekstilni ali netekstilni naglavni trak."
+    },
+    {
+      "label": "Besedilo - CST1024 - čistilni in shranjevalni čep.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "CST1024 - čistilni in shranjevalni čep."
     },
     {
       "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
       "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
     },
     {
       "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
       "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
     },
     {
@@ -1421,7 +1434,7 @@
     {
       "label": "Besedilo - V primerjavi s standardnim industrijskim ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(2)",
-      "text": "V primerjavi s standardnim industrijskim modelom CST PRO je pri modelu CST ULTRA poudarek na odpornejsi izvedbi, lažjem čiščenju in podatkovni podpori prek CleanSpace aplikacije in portala CleanSpace Insights. Uporabnik lahko izbira med polmasko in celoobrazno masko, izbira filtra pa mora slediti dejanski izpostavljenosti: delci, prah, aerosoli, dim, kombinirana tveganja ali izbrani plini in hlapi."
+      "text": "V primerjavi s standardnim industrijskim modelom CST PRO je pri modelu CST ULTRA poudarek na odpornejši izvedbi, lažjem čiščenju in podatkovni podpori prek CleanSpace aplikacije in portala CleanSpace Insights. Uporabnik lahko izbira med polmasko in celoobrazno masko, izbira filtra pa mora slediti dejanski izpostavljenosti: delci, prah, aerosoli, dim, kombinirana tveganja ali izbrani plini in hlapi."
     },
     {
       "label": "Besedilo - Primeren za dekontaminacijske postopke in...",
@@ -1442,7 +1455,7 @@
       }
     },
     {
-      "label": "Besedilo - Podpira isto CST druzino mask, filtrov in...",
+      "label": "Besedilo - Podpira isto CST družino mask, filtrov in...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
       "text": "Podpira polmasko ali celoobrazno masko ter delčne ali kombinirane filtre glede na vrsto izpostavljenosti.",
       "style": {
@@ -1468,7 +1481,7 @@
     {
       "label": "Besedilo - Preizkus pri kupcuNaroči masko na testTu-...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2)",
-      "text": "Preizkus CleanSpace CST ULTRA pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace CST ULTRA v vašem delovnem okolju. Ekipa TU-VAL vam pomaga preveriti, ali je ULTRA prava izbira za zahtevnejse postopke, dekontaminacijo, sledljivost uporabe in izbrano vrsto izpostavljenosti."
+      "text": "Preizkus CleanSpace CST ULTRA pri kupcu\n\nDogovorite se za preizkus respiratorja CleanSpace CST ULTRA v vašem delovnem okolju. Ekipa TU-VAL vam pomaga preveriti, ali je ULTRA prava izbira za zahtevnejše postopke, dekontaminacijo, sledljivost uporabe in izbrano vrsto izpostavljenosti."
     },
     {
       "label": "Besedilo - Naroči masko na test",
@@ -1478,61 +1491,19 @@
     {
       "label": "Besedilo - Tu-Val pomaga preveriti, ali je ULTRA pra...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(2) > p",
-      "text": "Tu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejsi postopek ali delovisce."
-    },
-    {
-      "label": "Besedilo - CST1005 - standardni delčni filter, pakir...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "CST1005 - standardni delčni filter, pakiranje 3 kosi.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1004 - visoko zmogljiv delčni filter, ...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "CST1004 - visoko zmogljiv delčni filter, pakiranje 3 kosi.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1028 kombinirani filter A1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
-      "text": "CST1028 - kombinirani filter TM3A1P R SL za delce in organske pline ali hlape z nižjo zmogljivostjo A1.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1008 kombinirani filter A2P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
-      "text": "CST1008 - kombinirani filter TM3A2P R SL za delce in organske pline ali hlape z višjo zmogljivostjo A2.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1027 kombinirani filter ABE1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
-      "text": "CST1027 - kombinirani filter TM3ABE1P R SL za delce ter organske, anorganske in kisle pline.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - CST1006 kombinirani filter ABEK1P",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
-      "text": "CST1006 - kombinirani filter TM3ABEK1P R SL za delce, organske, anorganske in kisle pline ter amoniak.",
-      "editable": true
-    },
-    {
-      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
-      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
-      "editable": true
+      "text": "Tu-Val pomaga preveriti, ali je ULTRA prava izbira za zahtevnejši postopek ali delovišče."
     }
   ],
   "cleanspace_ex": [
     {
       "label": "EX - nadnaslov",
       "selector": ".detail-hero-copy .eyebrow",
-      "text": "ATEX IN NEVARNA OBMOCJA"
+      "text": "ATEX IN NEVARNA OBMOČJA"
     },
     {
       "label": "EX - uvodni opis",
       "selector": ".detail-hero-copy .lead",
-      "text": "Intrinzicno varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je uporabi v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
+      "text": "Intrinzično varen respirator z aktivnim dovodom filtriranega zraka za eksplozijsko ogrožena ATEX območja. Namenjen je uporabi v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi."
     },
     {
       "label": "EX - kontakt gumb",
@@ -1606,16 +1577,16 @@
     {
       "label": "Besedilo - ATEX / IECEx / ETL certifikacije.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "ATEX / IECEx / ETL certifikacije.\nIntrinzicno varna izvedba",
+      "text": "ATEX / IECEx / ETL certifikacije.\nIntrinzično varna izvedba",
       "style": {
         "x": 0,
         "y": 0
       }
     },
     {
-      "label": "Besedilo - IP66 izvedba za zahtevnejse čiščenje.",
+      "label": "Besedilo - IP66 izvedba za zahtevnejše čiščenje.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "IP66 izvedba za zahtevnejse čiščenje.\nAktivni dovod filtriranega zraka"
+      "text": "IP66 izvedba za zahtevnejše čiščenje.\nAktivni dovod filtriranega zraka"
     },
     {
       "label": "Besedilo - Možnost uporabe s polmasko ali celoobrazn...",
@@ -1658,49 +1629,68 @@
       "text": "PAF-0035 - TM3 P SL R delčni filter, pakiranje 3 kosi."
     },
     {
-      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "label": "Besedilo - PAF-0036 - pred-filter, pakiranje 10 koso...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
-      "hidden": false
+      "text": "PAF-0036 - pred-filter, pakiranje 10 kosov."
+    },
+    {
+      "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov."
     },
     {
       "label": "Besedilo - PAF-0078 - adapter za CleanSpace EX filtr...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
       "text": "PAF-0078 - adapter za CleanSpace EX filtre."
     },
     {
       "label": "Besedilo - PAF-0037 - visoko zmogljiv P3 TM3 P SL R ...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
       "text": "PAF-0037 - visoko zmogljiv P3 TM3 P SL R filter."
     },
     {
       "label": "Besedilo - PAF-0050 TM3A1P R SL, PAF-0077 TM3A2P R S...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
       "text": "PAF-0050 TM3A1P R SL, PAF-0077 TM3A2P R SL, PAF-0051 TM3ABE1P R SL, PAF-0052 TM3ABEK1P R SL."
     },
     {
       "label": "Besedilo - PAF-0087 - TM2AXP NR SL, PAF-0057 - pred-...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
       "text": "PAF-0087 - TM2AXP NR SL, PAF-0057 - pred-filter za velike filtre, PAF-0049 - zaščitna prevleka."
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - PAF-0060 - pogonski sistem CS EX z enoto,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "PAF-0060 - pogonski sistem CS EX z enoto, oporami za vrat, filtrom, naglavnim trakom, polnilnikom, pokrovčkom za preverjanje tesnjenja, pokrovčkom za preverjanje pretoka in torbo."
+    },
+    {
+      "label": "Besedilo - PAF-1030 - tekstilni naglavni trak za pol...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "PAF-1030 - tekstilni naglavni trak za polmasko."
+    },
+    {
+      "label": "Besedilo - PAF-1028 / PAF-1012 / PAF-1013 - opora za...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "PAF-1028 / PAF-1012 / PAF-1013 - opora za vrat S / M / L."
     },
     {
       "label": "Besedilo - PAF-1043 - komplet za preverjanje prilega...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
       "text": "PAF-1043 - komplet za preverjanje prileganja polmaske."
     },
     {
       "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
       "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
     },
     {
       "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-102...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
       "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik."
     },
     {
@@ -1724,7 +1714,7 @@
     {
       "label": "Besedilo - CleanSpace EX je zasnovan za potencialno ...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace EX je zasnovan za delovna mesta s potencialno eksplozivnimi atmosferami, kjer je potrebna intrinzično varna ATEX oprema za zaščito dihal. Uporablja se v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi, kjer obicajna elektronska oprema ni primerna."
+      "text": "CleanSpace EX je zasnovan za delovna mesta s potencialno eksplozivnimi atmosferami, kjer je potrebna intrinzično varna ATEX oprema za zaščito dihal. Uporablja se v kemijski industriji, petrokemiji, energetiki, lakirnicah, industriji nafte in plina ter pri ravnanju z nevarnimi snovmi, kjer običajna elektronska oprema ni primerna."
     },
     {
       "label": "Besedilo - Ker podpira masko za del obraza in celoob...",
@@ -1862,9 +1852,9 @@
       "text": "OPIS RESPIRATORJA"
     },
     {
-      "label": "Besedilo - IP66 izvedba za intenzivnejse čiščenje.",
+      "label": "Besedilo - IP66 izvedba za intenzivnejše čiščenje.",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "IP66 zaščita za intenzivnejse čiščenje\nZasnovan za zdravstvena in laboratorijska okolja",
+      "text": "IP66 zaščita za intenzivnejše čiščenje\nZasnovan za zdravstvena in laboratorijska okolja",
       "style": {
         "x": 0,
         "y": 0
@@ -1882,7 +1872,7 @@
     {
       "label": "Besedilo - Na voljo so delčni, Bio in Steri-Plus izd...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(3)",
-      "text": "Delčni, Bio in Steri-Plus izdihovalni filtri\nNa voljo so filtrski elementi za delce, bio zaščito in nadzor izdiha."
+      "text": "Delčni, Bio in Steri-Plus izdihovalni filtri"
     },
     {
       "label": "Besedilo - Obrazni deli",
@@ -1930,28 +1920,33 @@
       "text": "CS3027 - HALO BIO izdihovalni filter 95, pakiranje 15 kosov."
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
+    },
+    {
+      "label": "Besedilo - HALO pogonski sistem vključuje polnilnik,...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "HALO pogonski sistem vključuje polnilnik, opore za vrat, torbo, pokrovček za preverjanje tesnjenja, filter, naglavni trak, pogonsko enoto in navodila."
     },
     {
       "label": "Besedilo - CS3008 - HALO naglavni trak.",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
       "text": "CS3008 - HALO naglavni trak."
     },
     {
-      "label": "Besedilo - CS3011 - HALO čistilni in shranjevalni ce...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "label": "Besedilo - CS3011 - HALO čistilni in shranjevalni če...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
       "text": "CS3011 - HALO čistilni in shranjevalni čep."
     },
     {
       "label": "Besedilo - PAF-1043 - komplet za preverjanje prilega...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
       "text": "PAF-1043 - komplet za preverjanje prileganja polmaske."
     },
     {
       "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
       "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
     },
     {
@@ -1985,7 +1980,7 @@
     {
       "label": "Besedilo - Primeren za zdravstvo, farmacijo, laborat...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(1)",
-      "text": "Primeren za zdravstvo, farmacijo, laboratorije in nadzorovana cista okolja.",
+      "text": "Primeren za zdravstvo, farmacijo, laboratorije in nadzorovana čista okolja.",
       "style": {
         "x": 0,
         "y": 0
@@ -2041,7 +2036,7 @@
       {
         "id": "block-mq588gm4-vknest",
         "title": "ZAKAJ CLEANSPACE?",
-        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n. Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\n. Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\n. Udobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\n. Resitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\n. Pameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\n. Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
+        "text": "CleanSpace respiratorji združujejo visoko stopnjo zaščite dihal, aktivni dovod filtriranega zraka in kompaktno zasnovo brez cevi, pasov ali baterijskih enot na hrbtu. Namenjeni so uporabnikom, ki potrebujejo zanesljivo osebno zaščitno opremo, vendar pri delu ne želijo dodatne obremenitve, omejenega gibanja ali občutka težkega dihanja.\n\n• Brez cevi in pasov\nPihalna enota je nameščena za vratom, zato uporabnik nima cevi, pasu ali baterijskega nahrbtnika.\n\n• Lažje dihanje pri delu\nAirSensit tehnologija zazna dihanje uporabnika in samodejno prilagaja pretok filtriranega zraka.\n\n• Udobje pri daljši uporabi\nLahka in kompaktna zasnova zmanjšuje obremenitev uporabnika pri večurnem delu.\n\n• Rešitve za različna okolja\nNa voljo so modeli za prah, varjenje, industrijo, zdravstvo, laboratorije, farmacijo, dekontaminacijo in ATEX območja.\n\n• Pameten nadzor uporabe\nIzbrani modeli omogočajo povezavo z aplikacijo CleanSpace za lažji pregled nad uporabo, vzdrževanjem in skladnostjo opreme.\n\n• Podpora TU-VAL v Sloveniji\nPomagamo pri izbiri respiratorja, maske in filtra glede na delovno okolje, tveganja in način uporabe.",
         "titleStyle": {
           "color": "#01457e"
         },
@@ -2085,10 +2080,10 @@
         "alt": "Tu-Val"
       },
       {
-        "label": "Slika - CleanSpace laboratorijska uporaba",
+        "label": "Slika - CleanSpace WORK pri uporabi",
         "selector": "main > section.hero.hero-home:nth-of-type(1) > div.hero-media:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-for-Healthcare-7.jpg",
-        "alt": "Delaveč uporablja CleanSpace respirator v laboratoriju"
+        "src": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CleanSpace-WORK-Welding.jpg-uCrTLnLFWTgLT44u8oGRNKkdRBMwL3.jpeg",
+        "alt": "Delavec uporablja CleanSpace WORK respirator"
       },
       {
         "label": "Slika - CleanSpace WORK respirator",
@@ -2134,10 +2129,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/10/CleanSpace-WORK-Welding-Image-02-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 520,
-          "x": 0,
-          "y": 0,
-          "borderRadius": 18
+          "width": 179,
+          "x": 450,
+          "y": 8
         }
       },
       {
@@ -2148,10 +2142,9 @@
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/02/CleanSpace-CST-PRO-Carpentar-Image-18-Thumbnail.jpg",
         "alt": "Dodana slika",
         "style": {
-          "width": 520,
-          "x": 0,
-          "y": 0,
-          "borderRadius": 18
+          "width": 1100,
+          "x": -13,
+          "y": 535
         }
       },
       {
@@ -2231,10 +2224,10 @@
         "alt": "Tu-Val"
       },
       {
-        "label": "Slika - CleanSpace video knjiznica",
+        "label": "Slika - CleanSpace video knjižnica",
         "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
+        "alt": "CleanSpace video knjižnica"
       }
     ],
     "test": [
@@ -2361,7 +2354,7 @@
       {
         "label": "Slika - CleanSpace CST PRO sistem",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
         "alt": "CleanSpace CST PRO sistem"
       },
       {
@@ -2380,78 +2373,61 @@
         "label": "Slika - CST1005 delčni filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1005 delčni filter",
-        "editable": true
+        "alt": "CST1005 delčni filter"
       },
       {
         "label": "Slika - CST1004 visoko zmogljiv filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1004 visoko zmogljiv filter",
-        "editable": true
+        "alt": "CST1004 visoko zmogljiv filter"
       },
       {
-        "label": "Slika - CST1028 kombinirani filter A1P",
+        "label": "Slika - CST kombinirani filtri",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1028 kombinirani filter A1P",
-        "editable": true
+        "alt": "CST kombinirani filtri"
       },
       {
-        "label": "Slika - CST1008 kombinirani filter A2P",
+        "label": "Slika - Pred-filter in zaščitna prevleka",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1008 kombinirani filter A2P",
-        "editable": true
+        "alt": "Pred-filter in zaščitna prevleka"
       },
       {
-        "label": "Slika - CST1027 kombinirani filter ABE1P",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1027 kombinirani filter ABE1P",
-        "editable": true
-      },
-      {
-        "label": "Slika - CST1006 kombinirani filter ABEK1P",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1006 kombinirani filter ABEK1P",
-        "editable": true
-      },
-      {
-        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
-        "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
-        "alt": "PAF-0058 pred-filter in zaščitna prevleka",
-        "editable": true
-      },
-      {
-        "label": "Slika - CST1000 pogonska enota CST PRO",
+        "label": "Slika - CST PRO pogonska enota",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Back-1.jpg",
-        "alt": "CST1000 pogonska enota CST PRO",
-        "editable": true
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
+        "alt": "CST PRO pogonska enota"
       },
       {
-        "label": "Slika - CS3014 polnilna in shranjevalna postaja",
+        "label": "Slika - CST opore in trakovi",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
-        "alt": "CS3014 polnilna in shranjevalna postaja",
-        "editable": true
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
       },
       {
-        "label": "Slika - PAF-1101 univerzalni polnilnik",
+        "label": "Slika - CST opore in trakovi",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
-        "alt": "PAF-1101 univerzalni polnilnik",
-        "editable": true
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
       },
       {
-        "label": "Slika - PAF-1018 PAF-1026 PAF-1017 dodatki",
+        "label": "Slika - CleanSpace polnilna postaja",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "PAF-1018 PAF-1026 PAF-1017 dodatki",
-        "editable": true
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
+        "alt": "CleanSpace polnilna postaja"
+      },
+      {
+        "label": "Slika - CleanSpace polnilnik",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
+        "alt": "CleanSpace polnilnik"
+      },
+      {
+        "label": "Slika - Dodatki za celoobrazno masko",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
+        "alt": "Dodatki za celoobrazno masko"
       }
     ],
     "cleanspace_cst_ultra": [
@@ -2474,10 +2450,10 @@
         "alt": "CleanSpace CST ULTRA pri delu"
       },
       {
-        "label": "Slika - CleanSpace CST ULTRA sistem",
+        "label": "Slika - CleanSpace CST ULTRA komplet",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
-        "alt": "CleanSpace CST ULTRA sistem"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
+        "alt": "CleanSpace CST ULTRA komplet"
       },
       {
         "label": "Slika - CST ULTRA z visoko zmogljivim filtrom",
@@ -2492,65 +2468,64 @@
         "alt": "CleanSpace CST ULTRA zadnji pogled"
       },
       {
-        "label": "Slika - CleanSpace polnilna postaja",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
-        "alt": "CleanSpace polnilna postaja"
-      },
-      {
-        "label": "Slika - Dodatki za celoobrazno masko",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
-        "alt": "Dodatki za celoobrazno masko"
-      },
-      {
         "label": "Slika - CST1005 delčni filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1005 delčni filter",
-        "editable": true
+        "alt": "CST1005 delčni filter"
       },
       {
         "label": "Slika - CST1004 visoko zmogljiv filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1004-High-Capacity-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
-        "alt": "CST1004 visoko zmogljiv filter",
-        "editable": true
+        "alt": "CST1004 visoko zmogljiv filter"
       },
       {
-        "label": "Slika - CST1028 kombinirani filter A1P",
+        "label": "Slika - CST kombinirani filtri",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1028 kombinirani filter A1P",
-        "editable": true
+        "alt": "CST kombinirani filtri"
       },
       {
-        "label": "Slika - CST1008 kombinirani filter A2P",
+        "label": "Slika - Pred-filter in zaščitna prevleka",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1008 kombinirani filter A2P",
-        "editable": true
+        "alt": "Pred-filter in zaščitna prevleka"
       },
       {
-        "label": "Slika - CST1027 kombinirani filter ABE1P",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1027 kombinirani filter ABE1P",
-        "editable": true
+        "label": "Slika - CST ULTRA pogonska enota",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-00.png",
+        "alt": "CST ULTRA pogonska enota"
       },
       {
-        "label": "Slika - CST1006 kombinirani filter ABEK1P",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
-        "alt": "CST1006 kombinirani filter ABEK1P",
-        "editable": true
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
       },
       {
-        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
-        "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
-        "alt": "PAF-0058 pred-filter in zaščitna prevleka",
-        "editable": true
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
+      },
+      {
+        "label": "Slika - CST opore in trakovi",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
+        "alt": "CST opore in trakovi"
+      },
+      {
+        "label": "Slika - CleanSpace polnilna postaja",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
+        "alt": "CleanSpace polnilna postaja"
+      },
+      {
+        "label": "Slika - Dodatki za celoobrazno masko",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
+        "alt": "Dodatki za celoobrazno masko"
       }
     ],
     "cleanspace_ex": [
@@ -2575,7 +2550,7 @@
       {
         "label": "Slika - CleanSpace EX komplet",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-04.png",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-00.png",
         "alt": "CleanSpace EX komplet"
       },
       {
@@ -2599,14 +2574,14 @@
       {
         "label": "Slika - CleanSpace pred-filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-03.png",
         "alt": "CleanSpace pred-filter"
       },
       {
-        "label": "Slika - PAF-0058 pred-filter in zaščitna prevleka",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
-        "alt": "PAF-0058 pred-filter in zaščitna prevleka"
+        "label": "Slika - Pred-filter in zaščitna prevleka",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "Pred-filter in zaščitna prevleka"
       },
       {
         "label": "Slika - CleanSpace filter adapter",
@@ -2633,22 +2608,22 @@
         "alt": "CleanSpace kombinirani filtri"
       },
       {
-        "label": "Slika - Half Mask Fit Testing Kit",
+        "label": "Slika - CleanSpace EX pogonska enota",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-PAF-1043-Half-Mask-Quantitative-Fit-Testing-Kit-Image-1200x718.png",
-        "alt": "Half Mask Fit Testing Kit"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/09/PAF-_0060-CleanSpace-EX.jpg",
+        "alt": "CleanSpace EX pogonska enota"
       },
       {
-        "label": "Slika - CleanSpace polnilna postaja",
+        "label": "Slika - EX opore in naglavni trak",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
-        "alt": "CleanSpace polnilna postaja"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-02.png",
+        "alt": "EX opore in naglavni trak"
       },
       {
-        "label": "Slika - CleanSpace polnilnik",
+        "label": "Slika - EX opore in naglavni trak",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
-        "alt": "CleanSpace polnilnik"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-EX-Stack-02.png",
+        "alt": "EX opore in naglavni trak"
       },
       {
         "label": "Slika - Half Mask Fit Testing Kit",
@@ -2689,10 +2664,10 @@
         "alt": "CleanSpace HALO v laboratoriju"
       },
       {
-        "label": "Slika - CleanSpace HALO zadnji pogled",
+        "label": "Slika - CleanSpace HALO sistem",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-HALO-Back-01a.jpg",
-        "alt": "CleanSpace HALO zadnji pogled"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-00.png",
+        "alt": "CleanSpace HALO sistem"
       },
       {
         "label": "Slika - CleanSpace HALO respirator",
@@ -2731,26 +2706,32 @@
         "alt": "HALO BIO izdihovalni filter"
       },
       {
-        "label": "Slika - HALO naglavni trak",
+        "label": "Slika - HALO pogonski sistem vključuje polnilnik,...",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "HALO pogonski sistem vključuje polnilnik, opore za vrat, torbo, pokrovček za preverjanje tesnjenja, filter, naglavni trak, pogonsko enoto in navodila."
+      },
+      {
+        "label": "Slika - HALO naglavni trak",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3008-CleanSpace-HALO-Head-Harness.jpg",
         "alt": "HALO naglavni trak"
       },
       {
         "label": "Slika - HALO čistilni in shranjevalni čep",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-HALO-USA-Stack-05.png",
         "alt": "HALO čistilni in shranjevalni čep"
       },
       {
         "label": "Slika - Half Mask Fit Testing Kit",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/12/CleanSpace-PAF-1043-Half-Mask-Quantitative-Fit-Testing-Kit-Image-1200x718.png",
         "alt": "Half Mask Fit Testing Kit"
       },
       {
         "label": "Slika - Dodatki za celoobrazno masko",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
         "alt": "Dodatki za celoobrazno masko"
       }
@@ -2789,7 +2770,7 @@
       {
         "label": "Slika - CleanSpace AGILE komplet",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-04.png",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-00.png",
         "alt": "CleanSpace AGILE komplet"
       },
       {
@@ -2803,6 +2784,18 @@
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-04.png",
         "alt": "AGILE polnilnik"
+      },
+      {
+        "label": "Slika - AGILE opora za vrat",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-02.png",
+        "alt": "AGILE opora za vrat"
+      },
+      {
+        "label": "Slika - AGILE pogonska enota",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2026/05/CleanSpace-AGILE-Stack-00.png",
+        "alt": "AGILE pogonska enota"
       }
     ],
     "videi_agile": [
@@ -2819,10 +2812,10 @@
         "alt": "Tu-Val"
       },
       {
-        "label": "Slika - CleanSpace video knjiznica",
+        "label": "Slika - CleanSpace video knjižnica",
         "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
+        "alt": "CleanSpace video knjižnica"
       }
     ],
     "videi_work": [
@@ -2839,234 +2832,31 @@
         "alt": "Tu-Val"
       },
       {
-        "label": "Slika - CleanSpace video knjiznica",
+        "label": "Slika - CleanSpace video knjižnica",
         "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
+        "alt": "CleanSpace video knjižnica"
       }
     ],
-    "videi_cst_pro": [
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      },
-      {
-        "label": "Slika - CleanSpace video knjiznica",
-        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
-      },
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      }
-    ],
-    "videi_cst_ultra": [
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      },
-      {
-        "label": "Slika - CleanSpace video knjiznica",
-        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
-      },
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      }
-    ],
-    "videi_ex": [
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header.is-scrolled > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header.is-scrolled > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      },
-      {
-        "label": "Slika - CleanSpace video knjiznica",
-        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
-      },
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      }
-    ],
-    "videi_halo": [
-      {
-        "label": "Slika - CleanSpace respirators",
-        "selector": "header.site-header > a.brand.brand-word:nth-of-type(1) > img.cleanspace-logo",
-        "src": "https://img.stormwater.com/files/base/ebm/stw/image/2020/09/cs_respirator_logo_mono_hires_apr20.5f50243dec63e.png",
-        "alt": "CleanSpace respirators"
-      },
-      {
-        "label": "Slika - Tu-Val",
-        "selector": "header.site-header > a.brand-logo-link:nth-of-type(2) > img.brand-logo",
-        "src": "https://www.tu-val.si/assets/img/logos/logo.svg",
-        "alt": "Tu-Val"
-      },
-      {
-        "label": "Slika - CleanSpace video knjiznica",
-        "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-image:nth-of-type(2) > img",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-00-1.png",
-        "alt": "CleanSpace video knjiznica"
-      }
-    ]
+    "videi_cst_pro": [],
+    "videi_cst_ultra": [],
+    "videi_ex": [],
+    "videi_halo": []
   },
   "videos": [
     {
-      "id": "1f8a0862-fe38-4204-a154-250d995fe928",
+      "id": "2e5f2992-4a5d-49a0-9bbb-02c2ec087a07",
       "mask": "agile",
-      "title": "CleanSpace agile",
-      "description": "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE - lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja",
-      "url": "https://www.youtube.com/watch?v=hRulwXC7T-4"
-    },
-    {
-      "id": "cb71b888-0bfe-476b-960b-fd345dc656c4",
-      "mask": "agile",
-      "title": "CleanSpace agile",
-      "description": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.",
-      "url": "https://www.youtube.com/watch?v=o3yzv7_Nu2o"
-    },
-    {
-      "id": "7bf008bb-c999-497c-98ed-07d22d072459",
-      "mask": "agile",
-      "title": "CleanSpace agile",
-      "description": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan",
-      "url": "https://www.youtube.com/watch?v=bkJ-MrhIWoc&t=1s"
-    },
-    {
-      "id": "73d5eafb-e61e-4311-86a3-459f2ea4c35a",
-      "mask": "work",
-      "title": "CleanSpace WORK - Lahek respirator za učinkovito zaščito pri varjenju",
-      "description": "Odkrijte, kako respirator CleanSpace WORK združuje izjemno nizko težo, udobje in zanesljivo zaščito dihal pri varjenju. V videu so predstavljene ključne prednosti respiratorja, ki omogoča neovirano gibanje in udobno uporabo tudi med dolgotrajnim delom. CleanSpace WORK je idealna izbira za varilce, ki potrebujejo učinkovito zaščito pred varilnimi hlapi in trdnimi delci, ne da bi pri tem sklepali kompromise glede udobja.",
-      "url": "https://www.youtube.com/watch?v=UMTXzcdgH6E"
-    },
-    {
-      "id": "77615edf-b2cf-4c93-af9a-58364c894ca1",
-      "mask": "work",
-      "title": "CleanSpace WORK - Predstavitev respiratorja",
-      "description": "Spoznajte CleanSpace WORK - lahek in zmogljiv respirator s prisilnim dovodom zraka (PAPR), zasnovan za vsakodnevno uporabo v industriji. Video predstavlja njegove ključne lastnosti, prednosti in način delovanja ter prikazuje, kako zagotavlja zanesljivo zaščito dihal ob hkratnem udobju in svobodi gibanja. CleanSpace WORK je odlična izbira za varjenje, brušenje, obdelavo kovin, gradbeništvo in druga delovna okolja, kjer je učinkovita zaščita dihal ključnega pomena.",
-      "url": "https://www.youtube.com/watch?v=9meu4qlpuDw&t=1s"
-    },
-    {
-      "id": "e6a5fd2e-9639-4b33-9092-a5a6cd1e8906",
-      "mask": "work",
-      "title": "CleanSpace WORK - Enostavno nameščanje polobrazne maske",
-      "description": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju",
-      "url": "https://www.youtube.com/watch?v=EgrjnxY-onY"
-    },
-    {
-      "id": "e0d16e21-da7a-40ed-9dfb-8c2bc65c9b3f",
-      "mask": "cst-pro",
-      "title": "CleanSpace PRO - Predstavitev respiratorja",
-      "description": "Spoznajte respirator CleanSpace PRO, napredno rešitev za zaščito dihal v zahtevnih industrijskih okoljih. Video predstavlja ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. Odkrijte, zakaj CleanSpace PRO zagotavlja zanesljivo zaščito, visoko raven udobja in popolno svobodo gibanja pri vsakodnevnem delu.",
-      "url": "https://www.youtube.com/watch?v=jsIiA2r5AuY"
-    },
-    {
-      "id": "56be6b53-2b0d-4b6b-8eed-74671e501f2b",
-      "mask": "cst-pro",
-      "title": "CleanSpace CST PRO",
-      "description": "Spoznajte aplikacijo CleanSpace SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje.",
-      "url": "https://www.youtube.com/watch?v=NSMo1ZIn4cI"
-    },
-    {
-      "id": "7d602ccf-f2dc-4939-b1fc-7b55451e1b7d",
-      "mask": "cst-ultra",
-      "title": "CleanSpace ULTRA - Predstavitev respiratorja",
-      "description": "Spoznajte respirator CleanSpace ULTRA, zasnovan za uporabo v najzahtevnejših industrijskih okoljih. Video predstavlja njegove ključne lastnosti, robustno zasnovo, način delovanja in prednosti pri zaščiti dihal. CleanSpace ULTRA zagotavlja zanesljivo zaščito, visoko udobje pri delu in odlično zmogljivost tudi v zahtevnih delovnih pogojih.",
-      "url": "https://www.youtube.com/watch?v=kmL6E3365J8"
-    },
-    {
-      "id": "b6d75e2b-1c91-490e-a883-d37d7e12cbe7",
-      "mask": "cst-ultra",
-      "title": "CleanSpace Insights Reporting - Upravljanje in poročanje o respiratorjih",
-      "description": "Spoznajte CleanSpace Insights Reporting - napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme.",
-      "url": "https://www.youtube.com/watch?v=Du6_Rw0sqO0"
-    },
-    {
-      "id": "83af5279-c00a-4e9f-a70e-c48a3d630d3b",
-      "mask": "cst-ultra",
-      "title": "CleanSpace Insights Reporting - Upravljanje in poročanje o respiratorjih",
-      "description": "Spoznajte CleanSpace Insights Reporting - napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme.",
-      "url": "https://www.youtube.com/watch?v=_u_jbMr9HHc"
-    },
-    {
-      "id": "5835ad49-f42a-4b2d-93db-83a6070248e0",
-      "mask": "ex",
-      "title": "CleanSpace EX - Predstavitev ATEX respiratorja",
-      "description": "Spoznajte CleanSpace EX - PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu.",
-      "url": "https://www.youtube.com/watch?v=sXzn4skCiRg"
-    },
-    {
-      "id": "eae08307-a2dd-4553-aa39-55e6680a4f8b",
-      "mask": "ex",
-      "title": "CleanSpace EX - Namestitev adapterja PAF-0078 za filtre",
-      "description": "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih.",
-      "url": "https://www.youtube.com/watch?v=ExmlmEZEjjM"
-    },
-    {
-      "id": "8f40b526-d1c1-495b-98a7-5924d92f6298",
-      "mask": "halo",
-      "title": "CleanSpace HALO - Uporaba čepa za čiščenje in shranjevanje",
-      "description": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju.",
-      "url": "https://www.youtube.com/watch?v=05be6j5C4Ws"
+      "title": "test a cleanspace agile",
+      "description": "to je le test",
+      "url": "https://www.youtube.com/watch?v=KtRDkSytlvI"
     }
   ],
   "videi": [
     {
-      "label": "Besedilo - Video knjiznica",
+      "label": "Besedilo - Video knjižnica",
       "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
+      "text": "Video knjižnica"
     },
     {
       "label": "Besedilo - CleanSpace videi",
@@ -3086,7 +2876,7 @@
     {
       "label": "Besedilo - Dodani videi",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "DODANI VIDEI"
+      "text": "Dodani videi"
     },
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
@@ -3099,29 +2889,14 @@
       "text": "Video galerija je pripravljena."
     },
     {
-      "label": "Besedilo - Ni se dodanih videov",
+      "label": "Besedilo - Ni še dodanih videov",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
+      "text": "Ni še dodanih videov"
     },
     {
       "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
       "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace AGILE",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE AGILE"
-    },
-    {
-      "label": "Besedilo - test a cleanspace agile",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "test a cleanspace agile"
-    },
-    {
-      "label": "Besedilo - to je le test",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "to je le test"
     }
   ],
   "mediaBlocks": {
@@ -3203,7 +2978,7 @@
     {
       "label": "Besedilo - Nov lahek respirator z aktivnim dovajanje...",
       "selector": "main > section.detail-hero:nth-of-type(1) > div.detail-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
-      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pred delci v industriji, gradbenistvu, skladiščih, logistiki, vzdrževanju in čiščenju. Ohlapno prilegajoč obrazni del omogoča enostavno uporabo brez preverjanja tesnjenja maske."
+      "text": "Lahek respirator z aktivnim dovodom filtriranega zraka za zaščito dihal pred delci v industriji, gradbeništvu, skladiščih, logistiki, vzdrževanju in čiščenju. Ohlapno prilegajoč obrazni del omogoča enostavno uporabo brez preverjanja tesnjenja maske."
     },
     {
       "label": "Besedilo - Maska prekriva del obraza: da",
@@ -3268,7 +3043,7 @@
     {
       "label": "Besedilo - AirSensit tehnologija sproti prilagaja pr...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(1)",
-      "text": "AirSensit tehnologija za lažje dihanje.\nZascita pred delci v zraku, 99,97% filtracija delcev",
+      "text": "AirSensit tehnologija za lažje dihanje.\nZaščita pred delci v zraku, 99,97% filtracija delcev",
       "style": {
         "x": 0,
         "y": 0
@@ -3277,7 +3052,7 @@
     {
       "label": "Besedilo - Ohlapen obrazni del omogoča uporabo brez ...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-story:nth-of-type(1) > ul.feature-list > li:nth-of-type(2)",
-      "text": "Ohlapno prilegajoč obrazni del.\nZdruzljiv z drugo osebno zaščitno opremo",
+      "text": "Ohlapno prilegajoč obrazni del.\nZdružljiv z drugo osebno zaščitno opremo",
       "style": {
         "x": 0,
         "y": 0
@@ -3298,9 +3073,9 @@
       "text": "OBRAZNI DEL"
     },
     {
-      "label": "Besedilo - Fačepiece - ena velikost za vse, z ohlapn...",
+      "label": "Besedilo - Facepiece - ena velikost za vse, z ohlapn...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(1) > ul > li",
-      "text": ". Ena velikost za različne uporabnike, z ohlapnim prileganjem za udobno uporabo brez preverjanja tesnjenja maske.",
+      "text": "• Ena velikost za različne uporabnike, z ohlapnim prileganjem za udobno uporabo brez preverjanja tesnjenja maske.",
       "style": {
         "width": 235,
         "minHeight": 76
@@ -3317,14 +3092,25 @@
       "text": "AGILE DParticulate Filter - 99,97 % filtracija delcev za vsakodnevna prašna industrijska okolja."
     },
     {
-      "label": "Besedilo - Pripomocki",
+      "label": "Besedilo - Pripomočki",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > h4",
-      "text": "PRIPOMOCKI"
+      "text": "PRIPOMOČKI"
     },
     {
       "label": "Besedilo - Universal Battery Charger - univerzalni p...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
       "text": "Universal Battery Charger - univerzalni polnilnik."
+    },
+    {
+      "label": "Besedilo - Neck Support x 2 - mala in srednja opora ...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "Neck Support x 2 - mala in srednja opora za vrat."
+    },
+    {
+      "label": "Besedilo - Power Unit and User Instruction - pogonsk...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "",
+      "hidden": true
     },
     {
       "label": "Besedilo - Video in svetovanje",
@@ -3341,14 +3127,14 @@
       }
     },
     {
-      "label": "Besedilo - Kje se najbolje izkaze",
+      "label": "Besedilo - Kje se najbolje izkaže",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > h3",
-      "text": "Kje se najbolje izkaze"
+      "text": "Kje se najbolje izkaže"
     },
     {
       "label": "Besedilo - Po uradni strani CleanSpace je AGILE prim...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > p:nth-of-type(1)",
-      "text": "CleanSpace AGILE je primeren za delovna mesta, kjer so prisotni prah in delci v zraku, hkrati pa je pomembna hitra uvedba zaščite dihal v ekipi. Uporablja se v proizvodnji, gradbenistvu, skladiščih, logistiki, živilski industriji, vzdrževanju, čiščenju, komunalnih in storitvenih dejavnostih ter splošnih industrijskih okoljih."
+      "text": "CleanSpace AGILE je primeren za delovna mesta, kjer so prisotni prah in delci v zraku, hkrati pa je pomembna hitra uvedba zaščite dihal v ekipi. Uporablja se v proizvodnji, gradbeništvu, skladiščih, logistiki, živilski industriji, vzdrževanju, čiščenju, komunalnih in storitvenih dejavnostih ter splošnih industrijskih okoljih."
     },
     {
       "label": "Besedilo - Posebej uporaben je tam, kjer je fit test...",
@@ -3367,7 +3153,7 @@
     {
       "label": "Besedilo - Dobro sodeluje z drugo osebno varovalno o...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(2)",
-      "text": "Zdruzljiv z drugo osebno zaščitno opremo, kot so celade, zaščitna očala in zaščita sluha.",
+      "text": "Združljiv z drugo osebno zaščitno opremo, kot so čelade, zaščitna očala in zaščita sluha.",
       "style": {
         "x": 0,
         "y": 0,
@@ -3378,7 +3164,7 @@
     {
       "label": "Besedilo - Ni primeren za pline, pare, okolja z malo...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > article.story-copy > ul.check-list > li:nth-of-type(3)",
-      "text": "Za pline, hlape, atmosfero z nizko vsebnostjo kisika ali ATEX območja je primernejsi drug CleanSpace model."
+      "text": "Za pline, hlape, atmosfero z nizko vsebnostjo kisika ali ATEX območja je primernejši drug CleanSpace model."
     },
     {
       "label": "Besedilo - Interna video stran Videi za AGILE Odpre ...",
@@ -3393,7 +3179,7 @@
     {
       "label": "Besedilo - Odpre interno video stran, kjer lahko dod...",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.story-grid:nth-of-type(2) > div.video-library > a.video-card:nth-of-type(1) > p",
-      "text": "Odpre interno video stran, kjer lahko dodajate svoje predstavitvene ali izobrazevalne posnetke za model AGILE."
+      "text": "Odpre interno video stran, kjer lahko dodajate svoje predstavitvene ali izobraževalne posnetke za model AGILE."
     },
     {
       "label": "Besedilo - Preizkus pri kupcu Naroči masko na test T...",
@@ -3413,9 +3199,9 @@
   ],
   "videi_agile": [
     {
-      "label": "Besedilo - Video knjiznica",
+      "label": "Besedilo - Video knjižnica",
       "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
+      "text": "VIDEO KNJIŽNICA"
     },
     {
       "label": "Besedilo - Videi za CleanSpace AGILE",
@@ -3440,19 +3226,17 @@
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "",
-      "hidden": true
+      "text": "Video galerija je trenutno prazna"
     },
     {
       "label": "Besedilo - Video galerija je pripravljena.",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "",
-      "hidden": true
+      "text": "Video galerija je pripravljena."
     },
     {
-      "label": "Besedilo - Ni se dodanih videov",
+      "label": "Besedilo - Ni še dodanih videov",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
+      "text": "Ni še dodanih videov"
     },
     {
       "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
@@ -3462,32 +3246,17 @@
     {
       "label": "Besedilo - CleanSpace AGILE",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE AGILE",
-      "style": {
-        "width": 605,
-        "minHeight": 32
-      }
+      "text": "CLEANSPACE AGILE"
     },
     {
       "label": "Besedilo - cleanspace test",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE - lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja.",
-      "style": {
-        "width": 558,
-        "minHeight": 34,
-        "fontSize": 20,
-        "color": "#014579"
-      }
+      "text": "cleanspace test"
     },
     {
       "label": "Besedilo - to je le test za clean space",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(1) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "",
-      "style": {
-        "x": 22,
-        "y": 4
-      },
-      "hidden": true
+      "text": "ta test dela"
     },
     {
       "label": "Besedilo - CleanSpace AGILE",
@@ -3497,53 +3266,24 @@
     {
       "label": "Besedilo - sasasa",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "",
-      "hidden": true
+      "text": "sasasa"
     },
     {
       "label": "Besedilo - sasasssaa",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.",
-      "style": {
-        "width": 521,
-        "minHeight": 50,
-        "x": 0,
-        "y": 0,
-        "fontSize": 20,
-        "fontWeight": "700"
-      },
-      "hidden": true
+      "text": "sasasssaa"
     },
     {
       "label": "Besedilo - to je test za cleanspace agile",
       "selector": "main > section.section.custom-content-section:nth-of-type(3) > div.custom-content-grid > figure.custom-image-item > figcaption",
       "text": "to je test za cleanspace agile"
-    },
-    {
-      "label": "Besedilo - CleanSpace AGILE",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE AGILE"
-    },
-    {
-      "label": "Besedilo - CleanSpace agile",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan",
-      "style": {
-        "fontWeight": "700"
-      }
     }
   ],
   "videi_work": [
     {
-      "label": "Besedilo - Video knjiznica",
+      "label": "Besedilo - Video knjižnica",
       "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
+      "text": "Video knjižnica"
     },
     {
       "label": "Besedilo - Videi za CleanSpace WORK",
@@ -3563,416 +3303,31 @@
     {
       "label": "Besedilo - CleanSpace WORK",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CLEANSPACE WORK"
+      "text": "CleanSpace WORK"
     },
     {
       "label": "Besedilo - Video galerija je trenutno prazna",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "",
-      "hidden": true
+      "text": "Video galerija je trenutno prazna"
     },
     {
       "label": "Besedilo - Video galerija je pripravljena.",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "",
-      "style": {
-        "x": 0,
-        "y": 0
-      },
-      "hidden": true
+      "text": "Video galerija je pripravljena."
     },
     {
-      "label": "Besedilo - Ni se dodanih videov",
+      "label": "Besedilo - Ni še dodanih videov",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
+      "text": "Ni še dodanih videov"
     },
     {
       "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
       "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE WORK"
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK - Lahek respirator za uc...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace WORK - Lahek respirator za učinkovito zaščito pri varjenju"
-    },
-    {
-      "label": "Besedilo - Odkrijte, kako respirator CleanSpace WOR...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Odkrijte, kako respirator CleanSpace WORK združuje izjemno nizko težo, udobje in zanesljivo zaščito dihal pri varjenju. V videu so predstavljene ključne prednosti respiratorja, ki omogoča neovirano gibanje in udobno uporabo tudi med dolgotrajnim delom. CleanSpace WORK je idealna izbira za varilce, ki potrebujejo učinkovito zaščito pred varilnimi hlapi in trdnimi delci, ne da bi pri tem sklepali kompromise glede udobja."
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE WORK"
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK - Predstavitev respirato...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace WORK - Predstavitev respiratorja"
-    },
-    {
-      "label": "Besedilo - Spoznajte CleanSpace WORK - lahek in zmo...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte CleanSpace WORK - lahek in zmogljiv respirator s prisilnim dovodom zraka (PAPR), zasnovan za vsakodnevno uporabo v industriji. Video predstavlja njegove ključne lastnosti, prednosti in način delovanja ter prikazuje, kako zagotavlja zanesljivo zaščito dihal ob hkratnem udobju in svobodi gibanja. CleanSpace WORK je odlična izbira za varjenje, brušenje, obdelavo kovin, gradbeništvo in druga delovna okolja, kjer je učinkovita zaščita dihal ključnega pomena."
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE WORK"
-    },
-    {
-      "label": "Besedilo - CleanSpace WORK - Enostavno nameščanje p...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace WORK - Enostavno nameščanje polobrazne maske"
-    },
-    {
-      "label": "Besedilo - Pravilna namestitev maske je prvi korak d...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju"
     }
   ],
-  "videi_cst_pro": [
-    {
-      "label": "Besedilo - VIDEO KNJIZNICA",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
-    },
-    {
-      "label": "Besedilo - Videi za CleanSpace CST PRO",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
-      "text": "Videi za CleanSpace CST PRO"
-    },
-    {
-      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
-      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
-    },
-    {
-      "label": "Besedilo - Nazaj na maske",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
-      "text": "Nazaj na maske"
-    },
-    {
-      "label": "Besedilo - CleanSpace CST PRO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CleanSpace CST PRO"
-    },
-    {
-      "label": "Besedilo - Dodani video posnetki",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "",
-      "style": {
-        "x": 0,
-        "y": 0
-      },
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - 1 video",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Ni se dodanih videov",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
-    },
-    {
-      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
-      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST PRO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST PRO"
-    },
-    {
-      "label": "Besedilo - CleanSpace PRO - Predstavitev respirator...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace PRO - Predstavitev respiratorja"
-    },
-    {
-      "label": "Besedilo - Spoznajte respirator CleanSpace PRO, nap...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte respirator CleanSpace PRO, napredno rešitev za zaščito dihal v zahtevnih industrijskih okoljih. Video predstavlja ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. Odkrijte, zakaj CleanSpace PRO zagotavlja zanesljivo zaščito, visoko raven udobja in popolno svobodo gibanja pri vsakodnevnem delu."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST PRO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST PRO"
-    },
-    {
-      "label": "Besedilo - CleanSpace CST PRO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace CST PRO"
-    },
-    {
-      "label": "Besedilo - Spoznajte aplikacijo CleanSpace SMART Ap...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte aplikacijo CleanSpace SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje."
-    }
-  ],
-  "videi_cst_ultra": [
-    {
-      "label": "Besedilo - VIDEO KNJIZNICA",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
-    },
-    {
-      "label": "Besedilo - Videi za CleanSpace CST ULTRA",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
-      "text": "Videi za CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
-      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
-    },
-    {
-      "label": "Besedilo - Nazaj na maske",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
-      "text": "Nazaj na maske"
-    },
-    {
-      "label": "Besedilo - CleanSpace CST ULTRA",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - Dodani video posnetki",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - 1 video",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Ni se dodanih videov",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
-    },
-    {
-      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
-      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST ULTRA",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - CleanSpace ULTRA - Predstavitev respirat...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace ULTRA - Predstavitev respiratorja"
-    },
-    {
-      "label": "Besedilo - Spoznajte respirator CleanSpace ULTRA, z...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte respirator CleanSpace ULTRA, zasnovan za uporabo v najzahtevnejših industrijskih okoljih. Video predstavlja njegove ključne lastnosti, robustno zasnovo, način delovanja in prednosti pri zaščiti dihal. CleanSpace ULTRA zagotavlja zanesljivo zaščito, visoko udobje pri delu in odlično zmogljivost tudi v zahtevnih delovnih pogojih."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST ULTRA",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - CleanSpace Insights Reporting - Upravlja...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace Insights Reporting - Upravljanje in poročanje o respiratorjih"
-    },
-    {
-      "label": "Besedilo - Spoznajte CleanSpace Insights Reporting ...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte CleanSpace Insights Reporting - napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST ULTRA",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - CleanSpace Insights Reporting - Upravlja...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace Insights Reporting - Upravljanje in poročanje o respiratorjih"
-    },
-    {
-      "label": "Besedilo - Spoznajte CleanSpace Insights Reporting ...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte CleanSpace Insights Reporting - napredno rešitev za spremljanje in upravljanje respiratorjev CleanSpace. Video prikazuje, kako lahko dostopate do podatkov o uporabi, spremljate stanje opreme ter učinkoviteje upravljate respiratorje v podjetju. Sistem omogoča boljši pregled nad uporabo opreme, poenostavlja vzdrževanje in podpira učinkovito upravljanje osebne varovalne opreme."
-    },
-    {
-      "label": "Besedilo - CleanSpace CST ULTRA",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace CST ULTRA"
-    },
-    {
-      "label": "Besedilo - CleanSpace EX - Predstavitev ATEX respir...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace EX - Predstavitev ATEX respiratorja"
-    },
-    {
-      "label": "Besedilo - Spoznajte CleanSpace EX - PAPR respirato...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte CleanSpace EX - PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu."
-    }
-  ],
-  "videi_ex": [
-    {
-      "label": "Besedilo - VIDEO KNJIZNICA",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
-    },
-    {
-      "label": "Besedilo - Videi za CleanSpace EX",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
-      "text": "Videi za CleanSpace EX"
-    },
-    {
-      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
-      "text": "Tukaj se prikažejo izbrani video posnetki za predstavitve, navodila in prikaz uporabe CleanSpace respiratorjev."
-    },
-    {
-      "label": "Besedilo - Nazaj na maske",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
-      "text": "Nazaj na maske"
-    },
-    {
-      "label": "Besedilo - CleanSpace EX",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CleanSpace EX"
-    },
-    {
-      "label": "Besedilo - Dodani video posnetki",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "Dodani video posnetki"
-    },
-    {
-      "label": "Besedilo - 1 video",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "1 video"
-    },
-    {
-      "label": "Besedilo - Ni se dodanih videov",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
-    },
-    {
-      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
-      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace EX",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace EX"
-    },
-    {
-      "label": "Besedilo - CleanSpace EX - Predstavitev ATEX respir...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace EX - Predstavitev ATEX respiratorja"
-    },
-    {
-      "label": "Besedilo - Spoznajte CleanSpace EX - PAPR respirato...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte CleanSpace EX - PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu."
-    },
-    {
-      "label": "Besedilo - CleanSpace EX",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CleanSpace EX"
-    },
-    {
-      "label": "Besedilo - CleanSpace EX - Namestitev adapterja PAF...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace EX - Namestitev adapterja PAF-0078 za filtre"
-    },
-    {
-      "label": "Besedilo - Video prikazuje pravilno namestitev adapt...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih."
-    }
-  ],
-  "videi_halo": [
-    {
-      "label": "Besedilo - VIDEO KNJIZNICA",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.eyebrow:nth-of-type(1)",
-      "text": "VIDEO KNJIZNICA"
-    },
-    {
-      "label": "Besedilo - Videi za CleanSpace HALO",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > h1",
-      "text": "Videi za CleanSpace HALO"
-    },
-    {
-      "label": "Besedilo - Tukaj se prikažejo izbrani video posnetki...",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > p.lead:nth-of-type(2)",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Nazaj na maske",
-      "selector": "main > section.page-hero.video-hero:nth-of-type(1) > div.page-hero-copy:nth-of-type(1) > div.hero-actions > a",
-      "text": "Nazaj na maske"
-    },
-    {
-      "label": "Besedilo - CleanSpace HALO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.eyebrow",
-      "text": "CLEANSPACE HALO"
-    },
-    {
-      "label": "Besedilo - Dodani video posnetki",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2",
-      "text": "",
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - 1 video",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.section-heading:nth-of-type(1) > p.section-note",
-      "text": "",
-      "style": {
-        "x": 0,
-        "y": 0
-      },
-      "hidden": true
-    },
-    {
-      "label": "Besedilo - Ni se dodanih videov",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > h3",
-      "text": "Ni se dodanih videov"
-    },
-    {
-      "label": "Besedilo - Ko bodo videi dodani, se bodo prikazali t...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.video-empty:nth-of-type(2) > p",
-      "text": "Ko bodo videi dodani, se bodo prikazali tukaj."
-    },
-    {
-      "label": "Besedilo - CleanSpace HALO",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p.tag:nth-of-type(1)",
-      "text": "CLEANSPACE HALO"
-    },
-    {
-      "label": "Besedilo - CleanSpace HALO - Uporaba čepa za čiščen...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > h3",
-      "text": "CleanSpace HALO - Uporaba čepa za čiščenje in shranjevanje"
-    },
-    {
-      "label": "Besedilo - Spoznajte pravilno uporabo čepa za čiščen...",
-      "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
-      "text": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju."
-    }
-  ]
+  "videi_cst_pro": [],
+  "videi_cst_ultra": [],
+  "videi_ex": [],
+  "videi_halo": []
 }

@@ -404,36 +404,6 @@
       "label": "Besedilo - AGILE",
       "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
       "text": "AGILE"
-    },
-    {
-      "label": "Besedilo - WORK",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
-      "text": "WORK"
-    },
-    {
-      "label": "Besedilo - CST PRO",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
-      "text": "CST PRO"
-    },
-    {
-      "label": "Besedilo - CST ULTRA",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
-      "text": "CST ULTRA"
-    },
-    {
-      "label": "Besedilo - EX",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
-      "text": "EX"
-    },
-    {
-      "label": "Besedilo - HALO",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
-      "text": "HALO"
-    },
-    {
-      "label": "Besedilo - AGILE",
-      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
-      "text": "AGILE"
     }
   ],
   "maske": [
@@ -1135,36 +1105,6 @@
       "text": "PRIPOMOCKI"
     },
     {
-      "label": "Besedilo - CST1000 - pogonska enota CST PRO.",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
-      "text": "CST1000 - pogonska enota CST PRO."
-    },
-    {
-      "label": "Besedilo - CST1020 - opora za vrat M.",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
-      "text": "CST1020 - opora za vrat M."
-    },
-    {
-      "label": "Besedilo - CST1038 - tekstilni ali netekstilni naglavni trak.",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
-      "text": "CST1038 - tekstilni ali netekstilni naglavni trak."
-    },
-    {
-      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
-      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav."
-    },
-    {
-      "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-102...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5)",
-      "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik."
-    },
-    {
-      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja, PA...",
-      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6)",
-      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala."
-    },
-    {
       "label": "Besedilo - Video in svetovanje",
       "selector": "main > section.section.detail-story-section:nth-of-type(4) > div.section-heading:nth-of-type(1) > p.eyebrow",
       "text": "VIDEO IN SVETOVANJE"
@@ -1285,6 +1225,30 @@
       "label": "Besedilo - PAF-0058 - pred-filter in zaščitna prevle...",
       "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7)",
       "text": "PAF-0058 - pred-filter in zaščitna prevleka, pakiranje 20 kosov.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CST1000 - pogonska enota CST PRO.",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1)",
+      "text": "CST1000 - pogonska enota CST PRO.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - CS3014 - polnilna in shranjevalna postaja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2)",
+      "text": "CS3014 - polnilna in shranjevalna postaja za 8 naprav.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - PAF-1101 - univerzalni polnilnik, PAF-1024...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3)",
+      "text": "PAF-1101 - univerzalni polnilnik, PAF-1024 - avtomobilski polnilnik.",
+      "editable": true
+    },
+    {
+      "label": "Besedilo - PAF-1018 / PAF-1026 - zaščite vizirja...",
+      "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4)",
+      "text": "PAF-1018 / PAF-1026 - zaščite vizirja, PAF-1017 - komplet za očala.",
       "editable": true
     }
   ],
@@ -2335,8 +2299,8 @@
       {
         "label": "Slika - CleanSpace WORK stranski pogled",
         "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(3) > img",
-        "src": "https://www.premierwelding.com/media/catalog/product/cache/59032c6a43c8d946e4d978722405b73b/c/l/cleanspace-halo-work-back.jpg",
-        "alt": "CleanSpace WORK zadnji pogled"
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-WORK-USA-Side.jpg",
+        "alt": "CleanSpace WORK stranski pogled"
       },
       {
         "label": "Slika - CleanSpace WORK filter",
@@ -2413,42 +2377,6 @@
         "alt": "CleanSpace CST PRO zadnji pogled"
       },
       {
-        "label": "Slika - CST1000 pogonska enota CST PRO",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Back-1.jpg",
-        "alt": "CST1000 pogonska enota CST PRO"
-      },
-      {
-        "label": "Slika - CST opore in trakovi",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
-        "alt": "CST opore in trakovi"
-      },
-      {
-        "label": "Slika - CST opore in trakovi",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/06/CleanSpace-CST-PRO-Stack-03.png",
-        "alt": "CST opore in trakovi"
-      },
-      {
-        "label": "Slika - CleanSpace polnilna postaja",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
-        "alt": "CleanSpace polnilna postaja"
-      },
-      {
-        "label": "Slika - CleanSpace polnilnik",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(5) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
-        "alt": "CleanSpace polnilnik"
-      },
-      {
-        "label": "Slika - Dodatki za celoobrazno masko",
-        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(6) > img.part-thumb",
-        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-ULTRA-USA-Stack-05.png",
-        "alt": "Dodatki za celoobrazno masko"
-      },
-      {
         "label": "Slika - CST1005 delčni filter",
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
         "src": "https://cleanspacetechnology.com/wp-content/uploads/2025/06/CleanSpace-CST1005-Particulate-Filter-TM3PRSL-P3-3pk-Image-01-1200x1200.jpg",
@@ -2495,6 +2423,34 @@
         "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(2) > ul.visual-parts > li.part-card:nth-of-type(7) > img.part-thumb",
         "src": "https://www.premierwelding.com/media/catalog/product/c/s/cs_paf-0058.jpg",
         "alt": "PAF-0058 pred-filter in zaščitna prevleka",
+        "editable": true
+      },
+      {
+        "label": "Slika - CST1000 pogonska enota CST PRO",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(1) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Back-1.jpg",
+        "alt": "CST1000 pogonska enota CST PRO",
+        "editable": true
+      },
+      {
+        "label": "Slika - CS3014 polnilna in shranjevalna postaja",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(2) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CS3014-CleanSpace-Docking-Station-Charging-Storage-Case.jpg",
+        "alt": "CS3014 polnilna in shranjevalna postaja",
+        "editable": true
+      },
+      {
+        "label": "Slika - PAF-1101 univerzalni polnilnik",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(3) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2020/12/CleanSpace-PAF-1101-Universial-Battery-Charger-Image-01-1.png",
+        "alt": "PAF-1101 univerzalni polnilnik",
+        "editable": true
+      },
+      {
+        "label": "Slika - PAF-1018 PAF-1026 PAF-1017 dodatki",
+        "selector": "main > section.section.detail-spec-section:nth-of-type(3) > div.family-details:nth-of-type(2) > div.detail-block:nth-of-type(3) > ul.visual-parts > li.part-card:nth-of-type(4) > img.part-thumb",
+        "src": "https://cleanspacetechnology.com/wp-content/uploads/2024/11/CleanSpace-CST-PRO-USA-Stack-05-1.png",
+        "alt": "PAF-1018 PAF-1026 PAF-1017 dodatki",
         "editable": true
       }
     ],
@@ -3287,7 +3243,7 @@
     {
       "label": "Besedilo - Stranski pogled",
       "selector": "main > section.section.detail-gallery-section:nth-of-type(2) > div.asset-gallery.detail-gallery:nth-of-type(2) > figure:nth-of-type(1) > figcaption",
-      "text": "HALO zadnji pogled"
+      "text": "Stranski pogled"
     },
     {
       "label": "Besedilo - Zadnji pogled",
