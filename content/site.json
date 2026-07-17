@@ -110,7 +110,11 @@
     {
       "label": "Domov - kartica 01 opis",
       "selector": ".capability-grid article:nth-child(1) p",
-      "text": "Skupaj preverimo vaše delovno okolje, vrsto izpostavljenosti in način dela ter izberemo primeren CleanSpace respirator, masko in filter. Tako dobite rešitev za zaščito dihal, ki ustreza vašim zaposlenim, tveganjem na delovnem mestu in zahtevam varnosti pri delu."
+      "text": "Skupaj preverimo vaše delovno okolje, vrsto izpostavljenosti in način dela ter izberemo primeren CleanSpace respirator, masko in filter. Tako dobite rešitev za zaščito dihal, ki ustreza vašim zaposlenim, tveganjem na delovnem mestu in zahtevam varnosti pri delu.",
+      "style": {
+        "x": -1,
+        "y": 2
+      }
     },
     {
       "label": "Domov - kartica 02 naslov",
@@ -403,6 +407,36 @@
     {
       "label": "Besedilo - AGILE",
       "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
       "text": "AGILE"
     }
   ],
@@ -3974,5 +4008,71 @@
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju."
     }
-  ]
+  ],
+  "translations": {
+    "hr": {
+      "index": [
+        {
+          "label": "Domov - uvodni opis",
+          "selector": ".hero-content .lead",
+          "text": "CleanSpace respiratori su kompaktni uređaji s pozitivnim tlakom koji osiguravaju aktivnu dobavu filtriranog zraka. Namijenjeni su tvrtkama čijim je zaposlenicima potrebna pouzdana, udobna i učinkovita zaštita dišnih puteva od prašine, dimova, aerosola, lebdećih čestica ili specifičnih kemijskih opasnosti. Tvrtka TU-VAL d.o.o. sa sjedištem u Domžalama pomaže tvrtkama u Sloveniji pri odabiru odgovarajućeg CleanSpace modela, filtra i maske, uzimajući u obzir radno okruženje, vrstu izloženosti i način uporabe."
+        },
+        {
+          "label": "Domov - Tu-Val opis",
+          "selector": ".intro-band .section-copy > p:not(.eyebrow)",
+          "text": "Tvrtka TU-VAL d.o.o. sa sjedištem u Domžalama tehnički je inženjerski partner tvrtkama u Sloveniji kojima je potrebna pouzdana osobna zaštitna oprema za zahtjevna radna okruženja. Putem asortimana CleanSpace pružamo stručne savjete, opskrbu i podršku pri odabiru opreme za zaštitu dišnih puteva za sektore kao što su industrija, zavarivanje, građevinarstvo, farmaceutska industrija, zdravstvo, laboratoriji i održavanje."
+        },
+        {
+          "label": "Domov - kartica 01 opis",
+          "selector": ".capability-grid article:nth-child(1) p",
+          "text": "Zajedno procjenjujemo vaše radno okruženje, vrstu izloženosti i metode rada kako bismo odabrali odgovarajući CleanSpace respirator, masku i filtar. Time dobivate rješenje za zaštitu dišnih puteva prilagođeno vašim zaposlenicima, rizicima na radnom mjestu i zahtjevima zaštite na radu."
+        },
+        {
+          "label": "Domov - kartica 02 opis",
+          "selector": ".capability-grid article:nth-child(2) p",
+          "text": "Asortiman CleanSpace namijenjen je zahtjevnim radnim okruženjima u industriji, zavarivanju, građevinarstvu, farmaceutskoj industriji, zdravstvu, laboratorijima, održavanju te područjima s rizikom od eksplozije. Ova su rješenja osmišljena za radnike kojima je potrebna pouzdana zaštita od prašine, dimova, aerosola, čestica ili plinova."
+        },
+        {
+          "label": "Domov - kartica 03 opis",
+          "selector": ".capability-grid article:nth-child(3) p",
+          "text": "Podrška ne prestaje kupnjom respiratora. Pomažemo pri odabiru filtara, dodatne opreme i rezervnih dijelova, savjetujemo o pravilnoj uporabi opreme te osiguravamo da CleanSpace respiratori ostanu učinkovito i pouzdano sredstvo za zaštitu dišnih puteva pri svakodnevnom radu."
+        },
+        {
+          "label": "Domov - WORK opis",
+          "selector": ".product-card:nth-child(1) div > p:last-child",
+          "text": "Najlakši industrijski respirator s aktivnim dovodom filtriranog zraka za zaštitu dišnih puteva pri radu s prašinom. Pogodan za radionice, građevinarstvo, obradu betona i kamena, obradu drva, čišćenje i održavanje."
+        },
+        {
+          "label": "Domov - CST PRO opis",
+          "selector": ".product-card:nth-child(2) div > p:last-child",
+          "text": "Izdržljiv industrijski respirator s aktivnim dovodom filtriranog zraka za zahtjevna radna okruženja. Prikladan za zavarivanje, obradu metala, građevinarstvo, održavanje, čišćenje i prehrambenu industriju, uz mogućnost povezivanja s aplikacijom CleanSpace."
+        },
+        {
+          "label": "Domov - CST ULTRA opis",
+          "selector": ".product-card:nth-child(3) div > p:last-child",
+          "text": "Napredni industrijski respirator za zahtjevna radna okruženja gdje su dekontaminacija, čišćenje opreme, sljedivost upotrebe i izvještavanje o usklađenosti ključni. Pogodan za uklanjanje azbesta, rudarstvo, kamenolome i kemijske ili biološke opasnosti."
+        },
+        {
+          "label": "Domov - EX opis",
+          "selector": ".product-card:nth-child(4) div > p:last-child",
+          "text": "ATEX uređaj za zaštitu dišnih puteva za upotrebu u potencijalno eksplozivnim atmosferama koje zahtijevaju intrinzično sigurnu opremu. Dizajniran je za kemijsku, petrokemijsku, rafinerijsku, energetsku te naftnu i plinsku industriju."
+        },
+        {
+          "label": "Domov - HALO opis",
+          "selector": ".product-card:nth-child(5) div > p:last-child",
+          "text": "CleanSpace respirator za zdravstvena, farmaceutska i laboratorijska okruženja u kojima su važni udobnost tijekom dugotrajne uporabe, jednostavnost čišćenja i dekontaminacije te pouzdana zaštita dišnih puteva."
+        },
+        {
+          "label": "Besedilo - Nov lahki respirator za delce z ohlapnim ...",
+          "selector": "main > section.section.products-preview:nth-of-type(3) > div.product-strip.product-overview-grid:nth-of-type(2) > article.product-card:nth-of-type(6) > div > p:nth-of-type(2)",
+          "text": "Lagani respirator s aktivnim dovodom filtriranog zraka i maskom koja ne prianja čvrsto uz lice, namijenjen zaštiti od čestica. Pogodan je za primjenu u industriji, građevinarstvu, logistici, prehrambenoj industriji te poslovima čišćenja i održavanja, gdje je važna brza uspostava zaštite dišnih puteva – bez potrebe za ispitivanjem nepropusnosti prianjanja maske."
+        },
+        {
+          "label": "Domov - tehnologija opis",
+          "selector": ".difference-copy > p:not(.eyebrow)",
+          "text": "CleanSpace respiratori su sustavi za zaštitu dišnih puteva s pozitivnim tlakom koji osiguravaju aktivnu opskrbu filtriranim zrakom. Tehnologija AirSensit prepoznaje korisnikovo disanje i automatski prilagođava protok zraka, čime se olakšava disanje i povećava udobnost pri korištenju, čak i tijekom dugotrajnog rada u zahtjevnim industrijskim, zdravstvenim i laboratorijskim okruženjima."
+        }
+      ]
+    }
+  }
 }
