@@ -268,13 +268,101 @@ const translationEntriesForPage = (pageKey = selectedPage.key, language = select
 
 const translationKeyForEntry = (entry = {}) => `${entry.selector || ""}|${entry.attribute || ""}|${entry.all ? "all" : ""}`;
 
+const croatianTextReplacements = [
+  ["Respiratorna zaščita prihodnosti", "Respiratorna zaštita budućnosti"],
+  ["Oglej si maske", "Pogledaj maske"],
+  ["Povpraševanje", "Upit"],
+  ["Naroči masko na test", "Naruči masku za test"],
+  ["Naroči test", "Naruči test"],
+  ["Preizkus pri kupcu", "Testiranje kod kupca"],
+  ["Nazaj na maske", "Natrag na maske"],
+  ["Podrobnosti", "Detalji"],
+  ["Pripomočki", "Dodaci"],
+  ["Pripomocki", "Dodaci"],
+  ["Video knjižnica", "Videoteka"],
+  ["VIDEO KNJIŽNICA", "VIDEOTEKA"],
+  ["Interna video stran", "Interna video stranica"],
+  ["Videi za", "Videozapisi za"],
+  ["Opis respiratorja", "Opis respiratora"],
+  ["Obrazni deli", "Dijelovi za lice"],
+  ["Obrazni del", "Dio za lice"],
+  ["Za koga je primeren", "Za koga je prikladan"],
+  ["Kje se najbolje izkaže", "Gdje se najbolje pokazuje"],
+  ["Stranski pogled", "Bočni pogled"],
+  ["Zadnji pogled", "Stražnji pogled"],
+  ["Komplet in dodatki", "Komplet i dodaci"],
+  ["Komplet in filter", "Komplet i filtar"],
+  ["Kompaktna enota brez cevi", "Kompaktna jedinica bez cijevi"],
+  ["Uporaba pri varjenju", "Uporaba pri zavarivanju"],
+  ["Prah in delavnica", "Prašina i radionica"],
+  ["Nevarna območja", "Opasna područja"],
+  ["Deljene ekipe", "Dijeljena oprema"],
+  ["sistem", "sustav"],
+  ["Sistem", "Sustav"],
+  ["sistemi", "sustavi"],
+  ["respiratorji", "respiratori"],
+  ["Respiratorji", "Respiratori"],
+  ["zaščita dihal", "zaštita dišnih puteva"],
+  ["Zaščita dihal", "Zaštita dišnih puteva"],
+  ["zaščito dihal", "zaštitu dišnih puteva"],
+  ["zaščiti dihal", "zaštiti dišnih puteva"],
+  ["zaščite dihal", "zaštite dišnih puteva"],
+  ["delovno okolje", "radno okruženje"],
+  ["delovnem okolju", "radnom okruženju"],
+  ["delovnih okoljih", "radnim okruženjima"],
+  ["zahtevna delovna okolja", "zahtjevna radna okruženja"],
+  ["zahtevnih okoljih", "zahtjevnim okruženjima"],
+  ["pri delu", "pri radu"],
+  ["delo", "rad"],
+  ["delu", "radu"],
+  ["uporabnika", "korisnika"],
+  ["uporabnikov", "korisnika"],
+  ["uporabnik", "korisnik"],
+  ["zanesljivo", "pouzdano"],
+  ["zanesljiva", "pouzdana"],
+  ["udobje", "udobnost"],
+  ["udobja", "udobnosti"],
+  ["dihanje", "disanje"],
+  ["Dihanje", "Disanje"],
+  ["aktivnim dovajanjem", "aktivnim dovodom"],
+  ["filtriranega zraka", "filtriranog zraka"],
+  ["pretok zraka", "protok zraka"],
+  ["polnilna in shranjevalna postaja", "stanica za punjenje i pohranu"],
+  ["univerzalni polnilnik", "univerzalni punjač"],
+  ["avtomobilski polnilnik", "automobilski punjač"],
+  ["pred-filter in zaščitna prevleka", "predfiltar i zaštitna navlaka"],
+  ["delčni filter", "filtar za čestice"],
+  ["delčnim filtrom", "filtrom za čestice"],
+  ["delci", "čestice"],
+  ["delcev", "čestica"],
+  ["visoko zmogljiv", "visokoučinkovit"],
+  ["celoobrazna maska", "maska za cijelo lice"],
+  ["Celoobrazna maska", "Maska za cijelo lice"],
+  ["maska za del obraza", "polumaska"],
+  ["polmaska", "polumaska"],
+  ["obrazni del", "dio za lice"],
+];
+
+const autoCroatianText = (text = "") => {
+  let nextText = String(text || "");
+  croatianTextReplacements.forEach(([from, to]) => {
+    nextText = nextText.split(from).join(to);
+  });
+  return nextText;
+};
+
 const findTranslationEntry = (entry) => {
   if (selectedLanguage === "sl" || !entry?.selector) return null;
   const key = translationKeyForEntry(entry);
   return translationEntriesForPage().find((item) => translationKeyForEntry(item) === key) || null;
 };
 
-const displayTextForEntry = (entry) => findTranslationEntry(entry)?.text ?? entry?.text ?? "";
+const displayTextForEntry = (entry) => {
+  const translation = findTranslationEntry(entry);
+  if (translation) return translation.text ?? "";
+  if (selectedLanguage === "hr") return autoCroatianText(entry?.text || "");
+  return entry?.text ?? "";
+};
 
 const ensureTranslationEntry = (entry) => {
   if (selectedLanguage === "sl" || !entry?.selector) return entry;
