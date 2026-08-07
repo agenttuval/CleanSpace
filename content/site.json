@@ -45,7 +45,7 @@
     {
       "label": "Domov - nadnaslov",
       "selector": ".hero-content .eyebrow",
-      "text": "NAPREDNA ZASCIT DIHAL"
+      "text": "NAPREDNA ZAŠČITA DIHAL"
     },
     {
       "label": "Domov - glavni naslov",
@@ -55,7 +55,7 @@
     {
       "label": "Domov - uvodni opis",
       "selector": ".hero-content .lead",
-      "text": "CleanSpace respiratorji so kompaktni pozitivno-tlačni respiratorji z aktivnim dovodom filtriranega zraka. Namenjeni so podjetjem, kjer zaposleni potrebujejo zanesljivo, udobno in učinkovito zaščito dihal pri delu s prahom, dimom, aerosoli, delci ali izbranimi kemičnimi tveganji.TU-VAL d.o.o. iz Domžal podjetjem v Sloveniji pomaga pri izbiri ustreznega CleanSpace modela, filtra in maske glede na delovno okolje, vrsto izpostavljenosti in način uporabe."
+      "text": "CleanSpace respiratorji so kompaktni pozitivno-tlačni respiratorji z aktivnim dovodom filtriranega zraka. Namenjeni so podjetjem, kjer zaposleni potrebujejo zanesljivo, udobno in učinkovito zaščito dihal pri delu s prahom, dimom, aerosoli, delci ali izbranimi kemičnimi tveganji. TU-VAL d.o.o. iz Domžal podjetjem v Sloveniji pomaga pri izbiri ustreznega CleanSpace modela, filtra in maske glede na delovno okolje, vrsto izpostavljenosti in način uporabe."
     },
     {
       "label": "Domov - gumb maske",
@@ -152,7 +152,7 @@
     {
       "label": "Domov - WORK oznaka",
       "selector": ".product-card:nth-child(1) .tag",
-      "text": "ZA PRASNA DELOVNA OKOLJA"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Domov - WORK naslov",
@@ -256,7 +256,7 @@
     {
       "label": "Besedilo - Zvocna in vizualna opozorila za varnejše ...",
       "selector": "main > section.section.difference-band:nth-of-type(4) > div.difference-copy:nth-of-type(2) > ul.check-list > li:nth-of-type(2)",
-      "text": "Zvocna in vizualna opozorila za varnejše delo."
+      "text": "Zvočna in vizualna opozorila za varnejše delo."
     },
     {
       "label": "Besedilo - Možnost polmask ali celoobraznih mask pri...",
@@ -321,7 +321,7 @@
     {
       "label": "Domov - certifikat IP66 naslov",
       "selector": ".certification-card:nth-child(5) h3",
-      "text": "Zascita pred prahom in vodo"
+      "text": "Zaščita pred prahom in vodo"
     },
     {
       "label": "Domov - certifikat IP66 opis",
@@ -526,7 +526,7 @@
     {
       "label": "Besedilo - Prah in delavnica",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(1) > div > p.tag:nth-of-type(1)",
-      "text": "ZA PRASNA DELOVNA OKOLJA"
+      "text": "ZA PRAŠNA DELOVNA OKOLJA"
     },
     {
       "label": "Besedilo - CleanSpace WORK",
@@ -571,7 +571,7 @@
     {
       "label": "Besedilo - Nevarna območja",
       "selector": "main > section.section.mask-overview-section:nth-of-type(2) > div.mask-choice-grid:nth-of-type(2) > article.mask-choice-card:nth-of-type(4) > div > p.tag:nth-of-type(1)",
-      "text": "ATEX IN NEVARNA OBMOCJA"
+      "text": "ČATEX IN NEVARNA OBMOCJA"
     },
     {
       "label": "Besedilo - CleanSpace EX",
@@ -740,7 +740,7 @@
     {
       "label": "Test - nadnaslov",
       "selector": ".contact-copy .eyebrow",
-      "text": "NAROCILO PREIZKUSA",
+      "text": "NAROČILO PREIZKUSA",
       "style": {
         "width": 724,
         "minHeight": 32,
@@ -810,7 +810,7 @@
     {
       "label": "Besedilo - Poklici Tu-Val",
       "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a.dark",
-      "text": "Poklici Tu-Val"
+      "text": "Pokliči Tu-Val"
     },
     {
       "label": "Besedilo - Lažje je izbrati po preizkusu",
@@ -3463,6 +3463,36 @@
       "label": "Besedilo - Spoznajte novo generacijo zaščite dihal. ...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "mediaBlocks": {
@@ -4036,6 +4066,36 @@
       "label": "Besedilo - Pravilna namestitev maske je prvi korak d...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(3) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Pravilna namestitev maske je prvi korak do učinkovite zaščite dihal. V tem videu je prikazano, kako hitro in enostavno namestiti polobrazno masko CleanSpace WORK ter jo pravilno povezati z respiratorjem. Kratek vodič vam pomaga pripraviti respirator za varno in udobno uporabo v industrijskem delovnem okolju"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_cst_pro": [
