@@ -75,7 +75,7 @@
     var acceptButton = document.createElement('button');
     acceptButton.type = 'button';
     acceptButton.className = 'cookie-consent-accept';
-    acceptButton.textContent = 'Prihvati';
+    acceptButton.textContent = 'Sprejmi';
     acceptButton.addEventListener('click', function () {
       storeConsent('accepted');
       removeBanner(banner);
