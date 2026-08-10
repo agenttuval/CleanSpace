@@ -3249,21 +3249,21 @@
       "mask": "agile",
       "title": "CleanSpace agile",
       "description": "Oglejte si predstavitev revolucionarnega respiratorja CleanSpace AGILE - lahkega PAPR respiratorja z ohlapno prilegajočo se masko (loose fit), ki zagotavlja vrhunsko zaščito pred prašnimi delci, izjemno udobje in popolno svobodo gibanja. Spoznajte ključne prednosti, patentirano tehnologijo AirSensit® ter zakaj je AGILE idealna izbira za industrijska delovna okolja",
-      "url": "https://www.youtube.com/watch?v=hRulwXC7T-4"
+      "url": "https://www.youtube.com/watch?v=BMBp74csmbE"
     },
     {
       "id": "cb71b888-0bfe-476b-960b-fd345dc656c4",
       "mask": "agile",
       "title": "CleanSpace agile",
       "description": "Predstavitveni video prikazuje glavne prednosti respiratorja CleanSpace AGILE, ki združuje napredno zaščito dihal, nizko težo, enostavno uporabo in udobno nosenje brez potrebe po tesnjenju maske na obrazu. Primeren je tudi za uporabnike z brado ter za delo v prašnih industrijskih okoljih.",
-      "url": "https://www.youtube.com/watch?v=o3yzv7_Nu2o"
+      "url": "https://www.youtube.com/watch?v=s3fc6FlbZCE&t"
     },
     {
       "id": "7bf008bb-c999-497c-98ed-07d22d072459",
       "mask": "agile",
       "title": "CleanSpace agile",
       "description": "Spoznajte novo generacijo zaščite dihal. CleanSpace AGILE je zasnovan za vse uporabnike, ne glede na obliko obraza ali brado. Zaradi lahke zasnove, inteligentnega prilagajanja pretoka zraka in izjemnega udobja omogoča varnejše in prijetnejše delo skozi celoten delovni dan",
-      "url": "https://www.youtube.com/watch?v=bkJ-MrhIWoc&t=1s"
+      "url": "https://www.youtube.com/watch?v=9meu4qlpuDw&t"
     },
     {
       "id": "73d5eafb-e61e-4311-86a3-459f2ea4c35a",
@@ -4179,6 +4179,36 @@
       "label": "Besedilo - Spoznajte aplikacijo CleanSpace SMART Ap...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Spoznajte aplikacijo CleanSpace SMART App, ki omogoča hitro povezavo z respiratorjem prek pametnega telefona. Video predstavlja njene ključne funkcije, vključno s spremljanjem stanja respiratorja, dostopom do pomembnih podatkov in enostavnim upravljanjem naprave. Aplikacija uporabnikom pomaga zagotoviti pravilno delovanje respiratorja ter poenostavi njegovo uporabo in vzdrževanje."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_cst_ultra": [
@@ -4288,6 +4318,36 @@
       "label": "Besedilo - Spoznajte CleanSpace EX - PAPR respirato...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(4) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Spoznajte CleanSpace EX - PAPR respirator, zasnovan za varno uporabo v eksplozijsko ogroženih (ATEX) delovnih okoljih. Video predstavlja njegove ključne lastnosti, način delovanja in prednosti kompaktne zasnove brez cevi in pasu. CleanSpace EX zagotavlja zanesljivo zaščito dihal, visoko raven udobja ter izpolnjuje zahteve za uporabo v okoljih, kjer je varnost na prvem mestu."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_ex": [
@@ -4365,6 +4425,36 @@
       "label": "Besedilo - Video prikazuje pravilno namestitev adapt...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card:nth-of-type(2) > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Video prikazuje pravilno namestitev adapterja PAF-0078 na respirator CleanSpace EX. Spoznajte postopek montaže adapterja, ki omogoča uporabo velikih filtrov CleanSpace ter zagotavlja pravilno in varno delovanje respiratorja. Pravilna namestitev je ključna za zanesljivo zaščito dihal v zahtevnih industrijskih in ATEX delovnih okoljih."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "videi_halo": [
@@ -4434,6 +4524,36 @@
       "label": "Besedilo - Spoznajte pravilno uporabo čepa za čiščen...",
       "selector": "main > section.section.video-page-section:nth-of-type(2) > div.stored-video-grid:nth-of-type(3) > article.stored-video-card > div.stored-video-copy:nth-of-type(2) > p:nth-of-type(2)",
       "text": "Spoznajte pravilno uporabo čepa za čiščenje in shranjevanje respiratorja CleanSpace HALO. Video prikazuje, kako čep pravilno namestiti pred čiščenjem ali shranjevanjem respiratorja ter tako zaščititi napravo pred vdorom vode in nečistoč. Pravilna uporaba pripomore k daljši življenjski dobi respiratorja in njegovemu zanesljivemu delovanju."
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header.is-scrolled > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
     }
   ],
   "translations": {
@@ -4832,7 +4952,7 @@
         "Dodani videozapisi",
         "1 videozapis",
         "Još nema dodanih videozapisa",
-        "Kada videozapisi budu dodani, prikazat će se ovdje.",
+        "Kada videozapisi budu dodani, prikazat ��e se ovdje.",
         "CLEANSPACE HALO",
         "CleanSpace HALO - korištenje čepa za čišćenje i pohranu",
         "Upoznajte pravilnu korištenje čepa za čišćenje i pohranu respiratora CleanSpace HALO. Video prikazuje kako čep pravilno namjestiti prije čišćenja ili pohrane respiratora te tako zaštititi uređaj od prodora vode i nečistoća. Pravilna korištenje pridonosi duljem vijeku trajanja respiratora i njegovu pouzdanom radu."
