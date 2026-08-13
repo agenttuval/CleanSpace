@@ -376,7 +376,8 @@
         "minHeight": 32,
         "x": 415,
         "y": 104
-      }
+      },
+      "hidden": true
     },
     {
       "label": "Besedilo - WORK",
@@ -653,9 +654,263 @@
       "text": "AGILE"
     }
   ],
-  "kontakt": [],
-  "test": [],
-  "cleanspace_work": [],
+  "kontakt": [
+    {
+      "label": "Kontakt - nadnaslov",
+      "selector": ".contact-copy .eyebrow",
+      "text": "KONTAKT"
+    },
+    {
+      "label": "Kontakt - naslov",
+      "selector": ".contact-copy h1",
+      "text": "Izberimo pravo zaščito dihal za vaše podjetje"
+    },
+    {
+      "label": "Kontakt - uvodni opis",
+      "selector": ".contact-copy .lead",
+      "text": "Pisite nam za CleanSpace respiratorje, filtre, dodatke ali strokovno svetovanje. TU-VAL vam pomaga izbrati ustrezno rešitev glede na delovno okolje, tveganja in način uporabe."
+    },
+    {
+      "label": "Kontakt - kartica podjetje",
+      "selector": ".contact-card h2",
+      "text": "Tu-Val d.o.o."
+    },
+    {
+      "label": "Kontakt - delovni čas",
+      "selector": ".contact-card p:nth-of-type(1)",
+      "text": "Pon. - Pet.: 8:00 - 15:00"
+    },
+    {
+      "label": "Kontakt - vikend",
+      "selector": ".contact-card p:nth-of-type(2)",
+      "text": "Sob. - Ned.: zaprto"
+    },
+    {
+      "label": "Kontakt - obrazec nadnaslov",
+      "selector": ".form-heading .eyebrow",
+      "text": "POVPRASEVANJE"
+    },
+    {
+      "label": "Kontakt - obrazec naslov",
+      "selector": ".form-heading h2",
+      "text": "Pošlji osnovne podatke"
+    },
+    {
+      "label": "Kontakt - gumb pošlji",
+      "selector": ".contact-form button",
+      "text": "Pošlji povpraševanje"
+    },
+    {
+      "label": "Kontakt - opomba obrazca",
+      "selector": ".form-note",
+      "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
+    },
+    {
+      "label": "Kontakt - lokacija naslov",
+      "selector": ".location-details h2",
+      "text": "Kje nas najdete"
+    },
+    {
+      "label": "Kontakt - lokacija opis",
+      "selector": ".location-details p",
+      "text": "Tu-Val se nahaja v Domžalah, na Breznikovi ulici 26. Za ogled, prevzem ali tehnično svetovanje se predhodno dogovorite po telefonu ali e-posti."
+    },
+    {
+      "label": "Kontakt - zemljevid gumb",
+      "selector": ".location-details .button",
+      "text": "Odpri zemljevid"
+    },
+    {
+      "label": "Besedilo - T +386 1 721 21 23",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a:nth-of-type(1)",
+      "text": "T +386 1 721 21 23"
+    },
+    {
+      "label": "Besedilo - E sales@tu-val.si",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a:nth-of-type(2)",
+      "text": "E sales@tu-val.si"
+    },
+    {
+      "label": "Besedilo - Tu-Val d.o.o.",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel > div.map-frame:nth-of-type(1) > a.map-pin-label",
+      "text": "Tu-Val d.o.o."
+    }
+  ],
+  "test": [
+    {
+      "label": "Test - nadnaslov",
+      "selector": ".contact-copy .eyebrow",
+      "text": "NAROČILO PREIZKUSA",
+      "style": {
+        "width": 724,
+        "minHeight": 32,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "label": "Test - naslov",
+      "selector": ".contact-copy h1",
+      "text": "Naročite CleanSpace respirator na preizkus",
+      "style": {
+        "fontSize": 70
+      }
+    },
+    {
+      "label": "Test - uvodni opis",
+      "selector": ".contact-copy .lead",
+      "text": "Izpolnite osnovne podatke in ekipa TU-VAL vam pomaga izbrati primeren CleanSpace respirator za preizkus v vašem delovnem okolju"
+    },
+    {
+      "label": "Test - kartica naslov",
+      "selector": ".contact-card h2",
+      "text": "Kaj se zgodi po oddaji?"
+    },
+    {
+      "label": "Test - kartica opis 1",
+      "selector": ".contact-card p:nth-of-type(1)",
+      "text": "Ekipa TU-VAL prejme vaše povpraševanje in preveri osnovne podatke za preizkus respiratorja.",
+      "style": {
+        "width": 362,
+        "minHeight": 40
+      }
+    },
+    {
+      "label": "Test - kartica opis 2",
+      "selector": ".contact-card p:nth-of-type(2)",
+      "text": "Po oddaji se podatki samodejno pošljejo na sales@tu-val.si.",
+      "style": {
+        "width": 362,
+        "minHeight": 40
+      }
+    },
+    {
+      "label": "Test - obrazec nadnaslov",
+      "selector": ".form-heading .eyebrow",
+      "text": "TEST OPREME"
+    },
+    {
+      "label": "Test - obrazec naslov",
+      "selector": ".form-heading h2",
+      "text": "Naročam respirator na preizkus",
+      "style": {
+        "fontSize": 40
+      }
+    },
+    {
+      "label": "Test - gumb",
+      "selector": ".contact-form button",
+      "text": "Pošlji naročilo testa"
+    },
+    {
+      "label": "Test - opomba",
+      "selector": ".form-note",
+      "text": "Ob oddaji se podatki pošljejo na sales@tu-val.si."
+    },
+    {
+      "label": "Besedilo - Poklici Tu-Val",
+      "selector": "main > section.contact-hero:nth-of-type(1) > div.contact-card:nth-of-type(2) > a.dark",
+      "text": "Pokliči Tu-Val"
+    },
+    {
+      "label": "Besedilo - Lažje je izbrati po preizkusu",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > h2",
+      "text": "Lažje je izbrati po preizkusu",
+      "style": {
+        "fontSize": 40
+      }
+    },
+    {
+      "label": "Besedilo - Test pomaga preveriti udobje, prileganje ...",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > p",
+      "text": "Preizkus CleanSpace respiratorja pomaga preveriti udobje, prileganje maske, izbiro filtra in primernost sistema za dejanske pogoje v vašem delovnem okolju."
+    },
+    {
+      "label": "Besedilo - Poglej modele",
+      "selector": "main > section.section.contact-section:nth-of-type(2) > div.location-panel.test-side-panel > div.location-details > a",
+      "text": "Poglej modele"
+    },
+    {
+      "label": "Besedilo - WORK",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(1)",
+      "text": "WORK"
+    },
+    {
+      "label": "Besedilo - CST PRO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(2)",
+      "text": "CST PRO"
+    },
+    {
+      "label": "Besedilo - CST ULTRA",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(3)",
+      "text": "CST ULTRA"
+    },
+    {
+      "label": "Besedilo - EX",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(4)",
+      "text": "EX"
+    },
+    {
+      "label": "Besedilo - HALO",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(5)",
+      "text": "HALO"
+    },
+    {
+      "label": "Besedilo - AGILE",
+      "selector": "header.site-header > nav.site-nav > div.nav-dropdown:nth-of-type(1) > div.nav-submenu > a:nth-of-type(6)",
+      "text": "AGILE"
+    }
+  ],
+  "cleanspace_work": [
+    {
+      "label": "WORK - nadnaslov",
+      "selector": ".detail-hero-copy .eyebrow",
+      "text": "ZA PRASNA DELOVNA OKOLJA",
+      "style": {
+        "x": -1,
+        "y": -1
+      }
+    },
+    {
+      "label": "WORK - uvodni opis",
+      "selector": ".detail-hero-copy .lead",
+      "text": "Najlažji industrijski respirator z aktivnim dovodom filtriranega zraka za delovna mesta, kjer je glavno tveganje prah. Primeren za delavnice, gradbeništvo, obdelavo betona in kam[...]"
+    },
+    {
+      "label": "WORK - kontakt gumb",
+      "selector": ".hero-actions .primary",
+      "text": "Povprašaj za WORK"
+    },
+    {
+      "label": "WORK - galerija naslov",
+      "selector": ".detail-gallery-section h2",
+      "text": "Kaj kupec dobi"
+    },
+    {
+      "label": "WORK - slika 1 napis",
+      "selector": ".detail-gallery figure:nth-of-type(1) figcaption",
+      "text": "Uporaba pri varjenju"
+    },
+    {
+      "label": "WORK - slika 2 napis",
+      "selector": ".detail-gallery figure:nth-of-type(2) figcaption",
+      "text": "Celoobrazna maska"
+    },
+    {
+      "label": "WORK - slika 3 napis",
+      "selector": ".detail-gallery figure:nth-of-type(3) figcaption",
+      "text": "Kompaktna enota brez cevi"
+    },
+    {
+      "label": "WORK - opis respiratorja",
+      "selector": ".family-story p",
+      "text": "CleanSpace WORK je lahek pozitivno-tlačni respirator z aktivnim dovodom filtriranega zraka za prašna delovna okolja. Namenjen je zaščiti dihal pri delu s prahom in delci v dela[...]",
+      "style": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
   "cleanspace_cst_pro": [],
   "cleanspace_cst_ultra": [],
   "cleanspace_ex": [],
